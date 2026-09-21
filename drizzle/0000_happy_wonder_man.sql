@@ -1,0 +1,23 @@
+CREATE TABLE `products` (
+	`id` text PRIMARY KEY NOT NULL,
+	`kind` text NOT NULL,
+	`vehicle_type` text,
+	`name` text NOT NULL,
+	`brand` text NOT NULL,
+	`description` text NOT NULL,
+	`price` integer NOT NULL,
+	`stock` integer DEFAULT 0 NOT NULL,
+	`source_url` text,
+	`image_url` text,
+	`connector` text,
+	`cells` integer,
+	`capacity_mah` integer,
+	`length_mm` integer,
+	`width_mm` integer,
+	`height_mm` integer,
+	`min_cells` integer,
+	`max_cells` integer,
+	`battery_count` integer DEFAULT 1 NOT NULL,
+	`tags_json` text DEFAULT '[]' NOT NULL,
+	`is_active` integer DEFAULT true NOT NULL
+);

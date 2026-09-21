@@ -1,0 +1,25 @@
+import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+
+export const products = sqliteTable("products", {
+  id: text("id").primaryKey(),
+  kind: text("kind").notNull(),
+  vehicleType: text("vehicle_type"),
+  name: text("name").notNull(),
+  brand: text("brand").notNull(),
+  description: text("description").notNull(),
+  price: integer("price").notNull(),
+  stock: integer("stock").notNull().default(0),
+  sourceUrl: text("source_url"),
+  imageUrl: text("image_url"),
+  connector: text("connector"),
+  cells: integer("cells"),
+  capacityMah: integer("capacity_mah"),
+  lengthMm: integer("length_mm"),
+  widthMm: integer("width_mm"),
+  heightMm: integer("height_mm"),
+  minCells: integer("min_cells"),
+  maxCells: integer("max_cells"),
+  batteryCount: integer("battery_count").notNull().default(1),
+  tagsJson: text("tags_json").notNull().default("[]"),
+  isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
+});
