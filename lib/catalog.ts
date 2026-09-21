@@ -33,12 +33,16 @@ function row(p:CatalogProduct){
 }
 
 export async function loadCatalog():Promise<CatalogProduct[]>{
-  if(!env.DB) throw new Error("Produktdatabasen er ikke tilgjengelig.");
-  const count=await env.DB.prepare("SELECT COUNT(*) AS count FROM products").first<{count:number}>();
-  if(!count?.count){
-    const sql="INSERT OR IGNORE INTO products (id,kind,vehicle_type,name,brand,description,price,stock,source_url,image_url,connector,cells,capacity_mah,length_mm,width_mm,height_mm,min_cells,max_cells,battery_count,tags_json,is_active) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    await env.DB.batch(seed.map(p=>env.DB.prepare(sql).bind(...row(p))));
+  try{
+    if(!env.DB) return seed;
+    const count=await env.DB.prepare("SELECT COUNT(*) AS count FROM products").first<{count:number}>();
+    if(!count?.count){
+      const sql="INSERT OR IGNORE INTO products (id,kind,vehicle_type,name,brand,description,price,stock,source_url,image_url,connector,cells,capacity_mah,length_mm,width_mm,height_mm,min_cells,max_cells,battery_count,tags_json,is_active) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+      await env.DB.batch(seed.map(p=>env.DB.prepare(sql).bind(...row(p))));
+    }
+    const result=await env.DB.prepare("SELECT id,kind,vehicle_type,name,brand,description,price,stock,source_url,image_url,connector,cells,capacity_mah,length_mm,width_mm,height_mm,min_cells,max_cells,battery_count,tags_json FROM products WHERE is_active = 1 ORDER BY kind DESC, price ASC").all();
+    return result.results.map((r:any)=>({id:r.id,kind:r.kind,vehicleType:r.vehicle_type,name:r.name,brand:r.brand,description:r.description,price:r.price,stock:r.stock,sourceUrl:r.source_url,imageUrl:r.image_url,connector:r.connector,cells:r.cells,capacityMah:r.capacity_mah,lengthMm:r.length_mm,widthMm:r.width_mm,heightMm:r.height_mm,minCells:r.min_cells,maxCells:r.max_cells,batteryCount:r.battery_count,tags:JSON.parse(r.tags_json)}));
+  }catch{
+    return seed;
   }
-  const result=await env.DB.prepare("SELECT id,kind,vehicle_type,name,brand,description,price,stock,source_url,image_url,connector,cells,capacity_mah,length_mm,width_mm,height_mm,min_cells,max_cells,battery_count,tags_json FROM products WHERE is_active = 1 ORDER BY kind DESC, price ASC").all();
-  return result.results.map((r:any)=>({id:r.id,kind:r.kind,vehicleType:r.vehicle_type,name:r.name,brand:r.brand,description:r.description,price:r.price,stock:r.stock,sourceUrl:r.source_url,imageUrl:r.image_url,connector:r.connector,cells:r.cells,capacityMah:r.capacity_mah,lengthMm:r.length_mm,widthMm:r.width_mm,heightMm:r.height_mm,minCells:r.min_cells,maxCells:r.max_cells,batteryCount:r.battery_count,tags:JSON.parse(r.tags_json)}));
 }
