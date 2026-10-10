@@ -20,25 +20,25 @@ import {
 
 const CATEGORIES=[
   {label:"3D-print",href:"https://www.elefun.no/",Icon:Printer},
-  {label:"Batteri & ladere",href:"https://www.elefun.no/",Icon:Zap},
+  {label:"Batteri & ladere",href:"#accessories",Icon:Zap},
   {label:"Bilbane",href:"https://www.elefun.no/",Icon:RectangleHorizontal},
-  {label:"Biler",href:"https://www.elefun.no/",Icon:Car},
-  {label:"Båter",href:"https://www.elefun.no/",Icon:Ship},
-  {label:"Droner",href:"https://www.elefun.no/",Icon:Fan},
+  {label:"Biler",href:"#car",Icon:Car},
+  {label:"Båter",href:"#boat",Icon:Ship},
+  {label:"Droner",href:"#drone",Icon:Fan},
   {label:"Droner for FPV",href:"https://www.elefun.no/",Icon:Video},
-  {label:"Fly",href:"https://www.elefun.no/",Icon:Plane},
+  {label:"Fly",href:"#plane",Icon:Plane},
 ];
 
 export default function ElefunChrome({children}:{children:React.ReactNode}){
   return (
     <div className="site-shell">
-      <div className="prototype-bar"><strong>PROTOTYPE</strong><span>Produktdata lagres i database – ingen ekte bestilling</span></div>
+      <div className="prototype-bar"><strong>PROTOTYPE</strong><span>Studentprosjekt · Prisøyeblikksbilder · Ingen ekte bestilling</span></div>
       <header className="store-header">
         <div className="header-main">
           <a className="elefun-logo" href="https://www.elefun.no/" target="_blank" rel="noreferrer">
             <img src="/brand/elefun-logo-white.svg" alt="Elefun"/>
           </a>
-          <button className="header-menu" type="button"><Menu/><span>Meny</span></button>
+          <details className="header-menu-details"><summary className="header-menu"><Menu/><span>Meny</span></summary><div className="header-menu-panel"><a href="#car">Elektrobiler</a><a href="#boat">Elektrobåter</a><a href="#drone">Droner med kamera</a><a href="#plane">Elektrofly</a><a href="#accessories">Batterier og ladere</a></div></details>
           <form className="search" action="https://www.elefun.no/" method="get" target="_blank">
             <input name="search_text" placeholder="Søk blant våre 30.000 produkter" aria-label="Søk blant våre 30.000 produkter"/>
             <button type="submit"><Search/><span>Søk</span></button>
@@ -46,7 +46,7 @@ export default function ElefunChrome({children}:{children:React.ReactNode}){
           <nav className="header-actions">
             <a href="https://www.elefun.no/" target="_blank" rel="noreferrer"><Headset/><span>Kundeservice</span></a>
             <a href="https://www.elefun.no/" target="_blank" rel="noreferrer"><UserRound/><span>Logg inn</span></a>
-            <a href="https://www.elefun.no/" target="_blank" rel="noreferrer"><ShoppingCart/><span>Handlevogn</span></a>
+            <a href="#cart"><ShoppingCart/><span>Handlevogn</span></a>
           </nav>
         </div>
         <div className="header-stripe"/>
@@ -54,7 +54,7 @@ export default function ElefunChrome({children}:{children:React.ReactNode}){
 
       <nav className="category-nav" aria-label="Kategorier">
         {CATEGORIES.map(({label,href,Icon})=>(
-          <a key={label} href={href} target="_blank" rel="noreferrer">
+          <a key={label} href={href} target={href.startsWith("#")?undefined:"_blank"} rel="noreferrer">
             <Icon/>
             <span>{label}</span>
           </a>

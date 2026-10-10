@@ -1,94 +1,48 @@
 "use client";
-
-import { useState } from "react";
-import type { CatalogProduct } from "@/lib/catalog";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { BatteryCharging, Check, Info, PackageCheck, Ship, ShoppingCart, Truck, X } from "lucide-react";
-
+import { useEffect, useRef, useState } from "react";
+import type { CatalogProduct } from "@/lib/catalog-types";
+import { batteryReasons, chargingReasons, packageLines, rules } from "@/lib/compatibility";
+import { BatteryCharging, Check, ChevronRight, ExternalLink, PackageCheck, Search, ShoppingCart, X, Zap } from "lucide-react";
 const money=(n:number)=>new Intl.NumberFormat("nb-NO",{style:"currency",currency:"NOK",maximumFractionDigits:0}).format(n);
-type Reason={code:"connector"|"voltage"|"length"|"width"|"height";label:string};
-
-function compatibility(vehicle:CatalogProduct,battery:CatalogProduct):Reason[]{
-  const reasons:Reason[]=[];
-  if(vehicle.connector!==battery.connector)reasons.push({code:"connector",label:`Feil kontakt: modellen bruker ${vehicle.connector}, batteriet har ${battery.connector}.`});
-  if((battery.cells??0)<(vehicle.minCells??0)||(battery.cells??0)>(vehicle.maxCells??0))reasons.push({code:"voltage",label:`Feil spenning: modellen støtter ${vehicle.minCells===vehicle.maxCells?`${vehicle.minCells}S`:`${vehicle.minCells}–${vehicle.maxCells}S`}.`});
-  if((battery.lengthMm??0)>(vehicle.lengthMm??0))reasons.push({code:"length",label:`For langt: ${battery.lengthMm} mm, maks ${vehicle.lengthMm} mm.`});
-  if((battery.widthMm??0)>(vehicle.widthMm??0))reasons.push({code:"width",label:`For bredt: ${battery.widthMm} mm, maks ${vehicle.widthMm} mm.`});
-  if((battery.heightMm??0)>(vehicle.heightMm??0))reasons.push({code:"height",label:`For høyt: ${battery.heightMm} mm, maks ${vehicle.heightMm} mm.`});
-  return reasons;
-}
-
+const categories=[['car','Elektrobiler'],['boat','Elektrobåter'],['drone','Droner med kamera'],['plane','Elektrofly']] as const;
+type SavedPackage={id:string;name:string;total:number;lines:{id:string;name:string;quantity:number;price:number}[]};
 export default function Configurator({products}:{products:CatalogProduct[]}){
-  const vehicles=products.filter(p=>p.kind==="vehicle");
-  const batteries=products.filter(p=>p.kind==="battery");
-  const charger=products.find(p=>p.kind==="charger")!;
-  const[vehicleId,setVehicleId]=useState(vehicles[0]?.id);
-  const[vehicleFilter,setVehicleFilter]=useState<"all"|"car"|"boat">("all");
-  const[showAll,setShowAll]=useState(false);
-  const[cart,setCart]=useState(false);
-  const vehicle=vehicles.find(p=>p.id===vehicleId)??vehicles[0];
-  const compatible=batteries.filter(b=>compatibility(vehicle,b).length===0);
-  const[batteryId,setBatteryId]=useState<string|undefined>(compatible[0]?.id);
-  const selectedBattery=batteries.find(b=>b.id===batteryId);
-  const chosenBattery=selectedBattery&&compatibility(vehicle,selectedBattery).length===0?selectedBattery:compatible[0];
-  const displayed=showAll?batteries:compatible;
-  const total=vehicle.price+(chosenBattery?.price??0)*(vehicle.batteryCount||1)+charger.price;
-  const filteredVehicles=vehicles.filter(v=>vehicleFilter==="all"||v.vehicleType===vehicleFilter);
-
-  function chooseVehicle(id:string){
-    const next=vehicles.find(v=>v.id===id)!;
-    const current=batteries.find(b=>b.id===batteryId);
-    setVehicleId(id); setCart(false);
-    if(!current||compatibility(next,current).length)setBatteryId(batteries.find(b=>compatibility(next,b).length===0)?.id);
-  }
-
-  return <main>
-    <div className="breadcrumbs"><a href="https://www.elefun.no/" target="_blank" rel="noreferrer">Forside</a> <span>/</span> Pakker <span>/</span> Finn riktig batteri</div>
-    <section className="builder-head">
-      <div>
-        <Badge>PAKKEBYGGER</Badge>
-        <h1>Velg modell og batteri</h1>
-        <p>Vi sjekker kontakt, spenning og fysiske mål før batteriet kan velges.</p>
-      </div>
-      <div className="db-status"><span/><div><strong>Database tilkoblet</strong><small>{products.length} produkter tilgjengelig</small></div></div>
-    </section>
-
-    <section className="vehicle-section">
-      <div className="section-title">
-        <div><span className="step">1</span><h2>Velg bil eller båt</h2></div>
-        <div className="filter-tabs">
-          <button className={vehicleFilter==="all"?"selected":""} onClick={()=>setVehicleFilter("all")}>Alle</button>
-          <button className={vehicleFilter==="car"?"selected":""} onClick={()=>setVehicleFilter("car")}>Biler</button>
-          <button className={vehicleFilter==="boat"?"selected":""} onClick={()=>setVehicleFilter("boat")}>Båter</button>
-        </div>
-      </div>
-      <div className="vehicle-grid">{filteredVehicles.map(v=><button key={v.id} className={`vehicle-card ${v.id===vehicle.id?"selected":""}`} onClick={()=>chooseVehicle(v.id)}>
-        <div className="vehicle-image">{v.imageUrl?<img src={v.imageUrl} alt=""/>:v.vehicleType==="boat"?<Ship/>:<Truck/>}<Badge>{v.vehicleType==="boat"?"BÅT":"BIL"}</Badge></div>
-        <div className="vehicle-info"><small>{v.brand}</small><strong>{v.name}</strong><p>{v.description}</p><div className="tag-row">{v.tags.map(t=><i key={t}>{t}</i>)}</div><div className="vehicle-price"><span>{money(v.price)}</span>{v.stock>0?<em>{v.stock>=100?"100+":v.stock} på lager</em>:<em className="sold">Ikke på lager</em>}</div></div>
-        {v.id===vehicle.id&&<span className="selected-check"><Check/></span>}
-      </button>)}</div>
-    </section>
-
-    <div className="builder-grid">
-      <section className="battery-section">
-        <div className="section-title"><div><span className="step">2</span><div><h2>Velg batteri</h2><p>{vehicle.batteryCount>1?`Denne modellen bruker ${vehicle.batteryCount} like batterier.`:"Velg ett batteri til modellen."}</p></div></div><label className="show-all"><input type="checkbox" checked={showAll} onChange={e=>setShowAll(e.target.checked)}/>Vis også batterier som ikke passer</label></div>
-        <div className="fit-summary"><PackageCheck/><div><strong>{compatible.length} batterier passer til {vehicle.brand}</strong><span>Krav: {vehicle.minCells===vehicle.maxCells?`${vehicle.minCells}S`:`${vehicle.minCells}–${vehicle.maxCells}S`} · {vehicle.connector} · maks {vehicle.lengthMm} × {vehicle.widthMm} × {vehicle.heightMm} mm</span></div></div>
-        <div className="battery-list">{displayed.map(b=>{const reasons=compatibility(vehicle,b);const fits=reasons.length===0;const picked=chosenBattery?.id===b.id;return <button key={b.id} className={`battery-card ${picked?"selected":""} ${!fits?"blocked":""}`} disabled={!fits} onClick={()=>{setBatteryId(b.id);setCart(false)}}>
-          <div className="battery-icon"><BatteryCharging/><b>{b.cells}S</b></div><div className="battery-copy"><div><strong>{b.name}</strong>{fits?<Badge className="fits"><Check/> Passer</Badge>:<Badge className="no-fit"><X/> Passer ikke</Badge>}</div><p>{b.description}</p><div className="tag-row">{b.tags.map(t=><i key={t}>{t}</i>)}</div>{!fits&&<div className="reason"><Info/>{reasons[0].label}</div>}</div><div className="battery-price"><strong>{money(b.price)}</strong><span>{b.stock} på lager</span></div>
-        </button>})}</div>
-      </section>
-
-      <aside className="summary-card">
-          <div className="summary-banner"><img src="/brand/elefun-banner.jpg" alt="Elefun"/></div>
-        <Badge className="complete"><Check/> KOMPATIBEL PAKKE</Badge><h2>{vehicle.name}</h2>
-        <div className="package-line"><span>Modell</span><strong>{money(vehicle.price)}</strong></div>
-        <div className="package-product"><BatteryCharging/><div><strong>{chosenBattery?.name??"Ingen batterier passer"}</strong><span>{vehicle.batteryCount>1?`${vehicle.batteryCount} × ${money(chosenBattery?.price??0)}`:money(chosenBattery?.price??0)}</span></div></div>
-        <div className="package-line"><span>SmartCharge Multi 100W</span><strong>{money(charger.price)}</strong></div>
-        <div className="summary-total"><span>Pakkepris</span><strong>{money(total)}</strong><small>inkl. mva.</small></div>
-        <Button className="buy-button" disabled={!chosenBattery} onClick={()=>setCart(true)}>{cart?<><Check/>Lagt i handlevogn</>:<><ShoppingCart/>Legg pakken i handlevogn</>}</Button>
-        <div className="compat-list"><h3>Kontrollert automatisk</h3><div><Check/>Riktig kontakttype ({vehicle.connector})</div><div><Check/>Riktig batterispenning</div><div><Check/>Passer i batterirommet</div></div>
-      </aside>
-    </div>
-  </main>;
+ const [category,setCategory]=useState('car');const [query,setQuery]=useState('');const [sort,setSort]=useState('default');
+ const [vehicleId,setVehicleId]=useState<string>();const [batteryId,setBatteryId]=useState<string>();const [chargerId,setChargerId]=useState<string>();
+ const [showAll,setShowAll]=useState(false);const [cart,setCart]=useState<SavedPackage[]>([]);const [cartOpen,setCartOpen]=useState(false);const [notice,setNotice]=useState('');
+ const dialog=useRef<HTMLDialogElement>(null);const cartDialog=useRef<HTMLDialogElement>(null);
+ useEffect(()=>{try{const parsed=JSON.parse(localStorage.getItem('elefun-packages-v2')??'[]');if(Array.isArray(parsed)&&parsed.every(p=>typeof p?.total==='number'&&Array.isArray(p.lines)))setCart(parsed);}catch{}
+ const route=()=>{const c=location.hash.slice(1);if(categories.some(([id])=>id===c)||c==='accessories'){setCategory(c);setQuery('');}if(c==='cart')setCartOpen(true);};const click=(e:MouseEvent)=>{if((e.target as Element).closest('a[href="#cart"]')){e.preventDefault();setCartOpen(true);}};route();window.addEventListener('hashchange',route);document.addEventListener('click',click);return()=>{window.removeEventListener('hashchange',route);document.removeEventListener('click',click);};},[]);
+ useEffect(()=>{if(vehicleId)dialog.current?.showModal();else dialog.current?.close();},[vehicleId]);
+ useEffect(()=>{if(cartOpen)cartDialog.current?.showModal();else cartDialog.current?.close();},[cartOpen]);
+ function saveCart(next:SavedPackage[]){setCart(next);try{localStorage.setItem('elefun-packages-v2',JSON.stringify(next));}catch{}window.dispatchEvent(new CustomEvent('elefun-cart',{detail:next.length}));}
+ const vehicle=products.find(p=>p.id===vehicleId);const rule=vehicle?rules[vehicle.id]:undefined;
+ const battery=products.find(p=>p.id===batteryId);const charger=products.find(p=>p.id===chargerId);
+ const lines=vehicle?packageLines(products,vehicle,battery,charger):[];const total=lines.reduce((s,l)=>s+l.quantity*l.product.price,0);
+ const reasons=vehicle?chargingReasons(vehicle,battery,charger):[];
+ function choose(v:CatalogProduct){const r=rules[v.id];setVehicleId(v.id);setBatteryId(r?.batteryIds[0]);setChargerId(r?.includedCharger?undefined:r?.chargerIds[0]);setShowAll(false);setNotice('');}
+ function add(){if(!vehicle||reasons.length)return;saveCart([...cart,{id:crypto.randomUUID(),name:vehicle.name,total,lines:lines.map(l=>({id:l.product.id,name:l.product.name,quantity:l.quantity,price:l.product.price}))}]);setNotice('Pakken er lagt i demo-handlevognen.');}
+ const filtered=products.filter(p=>(category==='accessories'?p.kind!=='vehicle':p.kind==='vehicle'&&p.vehicleType===category)&&`${p.name} ${p.brand}`.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>sort==='low'?a.price-b.price:sort==='high'?b.price-a.price:0);
+ return <main>
+  <div className="breadcrumbs">Forside <ChevronRight size={14}/> Radiostyrt hobby <ChevronRight size={14}/> {categories.find(([id])=>id===category)?.[1]??'Batterier og ladere'}</div>
+  <section className="catalog-intro"><div><span className="eyebrow">MER HOBBY. MINDRE GJETTING.</span><h1>Finn modellen.<br/>Bygg din pakke.</h1><p>Velg en modell og få batterier og ladere samlet på ett sted. Vi viser hva som passer, hva som følger med og hva som mangler.</p><a href="#catalog" className="primary-link">Utforsk modellene <ChevronRight size={18}/></a></div><div className="intro-visual"><img src={products.find(p=>p.id==='50807')?.imageUrl??''} alt="ARRMA Typhon radiostyrt buggy"/><span><PackageCheck size={20}/> Tilbehør til akkurat din modell</span></div></section>
+  <section id="catalog" className="vehicle-section">
+   <div className="category-picker" aria-label="Produktkategori">{categories.map(([id,label])=><button key={id} className={category===id?'selected':''} onClick={()=>{setCategory(id);location.hash=id;setQuery('');}}>{label}<small>5 modeller</small></button>)}<button className={category==='accessories'?'selected':''} onClick={()=>{setCategory('accessories');location.hash='accessories';setQuery('');}}>Batterier & ladere<small>Tilbehør</small></button></div>
+   <div className="catalog-toolbar"><div><h2>{categories.find(([id])=>id===category)?.[1]??'Batterier, ladere og tilbehør'}</h2><span>{filtered.length} produkter · Priser fra kildeøyeblikksbilder</span></div><label className="catalog-search"><Search size={18}/><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Søk i utvalget" aria-label="Søk i utvalget"/></label><select aria-label="Sorter produkter" value={sort} onChange={e=>setSort(e.target.value)}><option value="default">Anbefalt rekkefølge</option><option value="low">Pris: lav til høy</option><option value="high">Pris: høy til lav</option></select></div>
+   <div className="vehicle-grid">{filtered.map(v=><article key={v.id} className="vehicle-card catalog-card"><div className="vehicle-image"><img src={v.imageUrl??''} alt={v.name} loading="lazy"/><span className="product-category">{v.kind==='vehicle'?'MODELL':v.kind==='battery'?'BATTERI':v.kind==='charger'?'LADER':'TILBEHØR'}</span></div><div className="vehicle-info"><small>{v.brand}</small><h3>{v.name}</h3><p>{v.description}</p><div className="vehicle-price"><strong>{money(v.price)}</strong><small>Prisøyeblikksbilde</small></div>{v.kind==='vehicle'?<button className="build-button" onClick={()=>choose(v)}>Bygg pakke <ChevronRight size={17}/></button>:<a className="source-link" href={v.sourceUrl??'#'} target="_blank" rel="noreferrer">Se spesifikasjoner hos Elefun <ExternalLink size={14}/></a>}</div></article>)}</div>{filtered.length===0&&<p className="empty-state">Ingen produkter matcher søket. Prøv et annet navn.</p>}
+  </section>
+  <div className="catalog-footnote"><PackageCheck/><p>Modellspesifikke batterier og ladeoppsett. Uavklarte kombinasjoner blir markert og kan ikke legges til som en ferdig pakke.</p><button onClick={()=>setCartOpen(true)}><ShoppingCart size={18}/> Demo-handlevogn ({cart.length})</button></div>
+  <dialog ref={dialog} className="builder-dialog" onCancel={()=>setVehicleId(undefined)} onClose={()=>setVehicleId(undefined)}>
+   {vehicle&&rule&&<><header className="dialog-header"><div><span className="eyebrow">DIN PAKKE</span><h2>{vehicle.name}</h2></div><button className="icon-button" aria-label="Lukk pakkebygger" onClick={()=>setVehicleId(undefined)}><X/></button></header><div className="dialog-grid"><section className="builder-options"><div className="model-overview"><img src={vehicle.imageUrl??''} alt={vehicle.name}/><div><strong>{money(vehicle.price)}</strong><p>{rule.note}</p><a className="source-link" href={vehicle.sourceUrl??'#'} target="_blank" rel="noreferrer">Modell og kilde hos Elefun <ExternalLink size={14}/></a></div></div>
+   <div className="option-title"><h3><span className="step">1</span> Batteri {vehicle.batteryCount>1?`(${vehicle.batteryCount} stk.)`:'(ekstra)'}</h3><label><input type="checkbox" checked={showAll} onChange={e=>setShowAll(e.target.checked)}/> Vis andre batterier</label></div>
+   {products.filter(p=>p.kind==='battery'&&(showAll||rule.batteryIds.includes(p.id))).map(b=>{const why=batteryReasons(vehicle,b);const blocked=why.length>0;return <div className={`option-card ${batteryId===b.id?'selected':''} ${blocked?'blocked':''}`} key={b.id}><button disabled={blocked} onClick={()=>{setBatteryId(b.id);setNotice('');}}><BatteryCharging/><div><strong>{b.name}</strong><small>{blocked?why[0]:'Modellspesifikt batteri fra Elefuns anbefalinger'}</small></div><b>{money(b.price)}</b>{batteryId===b.id&&!blocked&&<Check size={17}/>}</button><a className="source-link" href={b.sourceUrl??'#'} target="_blank" rel="noreferrer">Produktspesifikasjoner <ExternalLink size={12}/></a></div>})}
+   <h3 className="option-title"><span className="step">2</span> Lader og nødvendig kabling</h3>
+   {rule.includedCharger&&<><div className="included-note"><Check size={18}/><span>Egnet lader følger med modellen. Ekstra lader er valgfritt for dette batterioppsettet.</span></div><button className="source-link" onClick={()=>{setChargerId(undefined);setNotice('');}}>Bruk bare medfølgende lader</button></>}
+   {rule.chargerIds.map(id=>{const c=products.find(p=>p.id===id);return c?<div className={`option-card ${chargerId===id?'selected':''}`} key={id}><button onClick={()=>{setChargerId(id);setNotice('');}}><Zap/><div><strong>{c.name}</strong><small>{rule.chargingPending||rule.needsPowerSupply?'Oppsettet trenger bekreftelse / ekstra tilbehør':'Lader til valgt batterioppsett'}</small></div><b>{money(c.price)}</b></button><a className="source-link" href={c.sourceUrl??'#'} target="_blank" rel="noreferrer">Kontroller ladeegenskaper <ExternalLink size={12}/></a></div>:null;})}
+   {rule.leadIds.map(id=>{const p=products.find(p=>p.id===id);return p?<div className="included-note" key={id}><Check size={18}/><span>{vehicle.batteryCount} × {p.name} legges til automatisk.<br/>{p.description}</span></div>:null;})}
+   {reasons.length>0&&<div className="pending-note"><strong>Må avklares før pakken er komplett</strong><ul>{reasons.map(r=><li key={r}>{r}</li>)}</ul></div>}
+   </section><aside className="package-summary"><span className={`package-status ${reasons.length?'pending':''}`}>{reasons.length?'Trenger avklaring':'Batteri og lading passer'}</span><h3>Dette får du i pakken</h3>{lines.map(l=><div className="summary-row" key={l.product.id}><span>{l.quantity} × {l.product.name}</span><b>{money(l.quantity*l.product.price)}</b></div>)}{rule.includedCharger&&<div className="summary-row"><span>Lader som følger med</span><b>Inkludert</b></div>}<div className="summary-total"><span>Sum for valgte varer</span><strong>{money(total)}</strong><small>Demopriser · inkl. mva. · frakt ikke beregnet</small></div><button className="build-button" disabled={reasons.length>0} onClick={add}><ShoppingCart size={18}/> Legg i demo-handlevogn</button><p className="builder-disclaimer">{vehicle.vehicleType==='plane'?'Sender og eventuelt mottaker kommer i tillegg. Pakken er ikke et komplett flyklart sett.':'Kontroller hva som følger med, og eventuelle batterier til senderen.'}</p><div aria-live="polite" className="success-notice">{notice}</div></aside></div></>}
+  </dialog>
+  <dialog ref={cartDialog} className="cart-dialog" onCancel={()=>setCartOpen(false)} onClose={()=>setCartOpen(false)}><header className="dialog-header"><h2>Demo-handlevogn</h2><button className="icon-button" aria-label="Lukk handlevogn" onClick={()=>setCartOpen(false)}><X/></button></header><p>Lagres på denne enheten. Ingen ekte ordre eller betaling.</p>{cart.length===0?<p className="empty-state">Handlevognen er tom. Velg en modell og bygg en pakke.</p>:cart.map(p=><article className="cart-package" key={p.id}><h3>{p.name}</h3>{p.lines.map(l=><div className="summary-row" key={l.id}><span>{l.quantity} × {l.name}</span><b>{money(l.price*l.quantity)}</b></div>)}<div className="summary-row"><b>{money(p.total)}</b><button onClick={()=>saveCart(cart.filter(c=>c.id!==p.id))}>Fjern pakken</button></div></article>)}<h3>Totalt: {money(cart.reduce((s,p)=>s+p.total,0))}</h3></dialog>
+ </main>;
 }
