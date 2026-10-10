@@ -5,6 +5,7 @@ import type { CatalogProduct } from "./catalog-types";
 export type { CatalogProduct } from "./catalog-types";
 const seed=snapshot as CatalogProduct[];
 const revision="elefun-20-models-2026-10-10-v1";
+const imageRevision="elefun-product-gallery-images-2026-10-10-v2";
 export async function loadCatalog():Promise<CatalogProduct[]>{
   try {
     const db=env.DB;
@@ -19,6 +20,14 @@ export async function loadCatalog():Promise<CatalogProduct[]>{
         ...oldIds.map(id=>db.prepare("UPDATE products SET is_active=0 WHERE id=?").bind(id)),
         ...seed.map(p=>db.prepare(sql).bind(p.id,p.kind,p.vehicleType,p.name,p.brand,p.description,p.price,p.stock,p.sourceUrl,p.imageUrl,p.connector,p.cells,p.capacityMah,p.lengthMm,p.widthMm,p.heightMm,p.minCells,p.maxCells,p.batteryCount,JSON.stringify(p.tags),1)),
         db.prepare("INSERT OR IGNORE INTO catalog_revisions (id) VALUES (?)").bind(revision)
+      ]);
+    }
+    const imagesLoaded=await db.prepare("SELECT id FROM catalog_revisions WHERE id=?").bind(imageRevision).first();
+    if(!imagesLoaded){
+      // Refresh existing installations without replacing prices or compatibility data.
+      await db.batch([
+        ...seed.map(p=>db.prepare("UPDATE products SET image_url=? WHERE id=?").bind(p.imageUrl,p.id)),
+        db.prepare("INSERT OR IGNORE INTO catalog_revisions (id) VALUES (?)").bind(imageRevision)
       ]);
     }
     const result=await db.prepare("SELECT * FROM products WHERE is_active=1").all<Record<string,unknown>>();

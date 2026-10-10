@@ -73,3 +73,9 @@ Batterier er knyttet til den konkrete modellens anbefalte tilbehør, og modellsp
 - Modelladapter for FMS Zero (XT60-batteri til EC5 på modellen): https://www.elefun.no/vare-70589/ladekabel-overganger-bronto-overgang-male-xt60-til-female-ec5
 
 Dette er en kuratert katalog, ikke en universell kompatibilitetsmotor for vilkårlige varer. Batterimål er ikke oppfunnet; passform bygger på modellens konkrete tilbehørsanbefaling og spesifikasjon. For nye batterier må også strømkrav, kjemi, størrelse, polaritet, balansering og eventuell Smart-protokoll vurderes før en kobling legges til.
+
+## Rene produktbilder – 10. oktober 2026
+
+Alle 55 bildekilder er kontrollert mot produktgalleriet og visuelt gjennomgått. Bildene bruker originale JPG-filer under `/bilder/produktbilder/`, uten Elefuns `aspx/resize.aspx`-endepunkt eller metadata for deling. Pris og produktdetaljer rendres separat i grensesnittet. MJX 73081 bruker bilde 19, som viser produktet uten den ekstra skalaetiketten i bilde 3. Kildesporingen ligger i `data/product-image-sources.json`. Firecrawl-verktøyet var ikke tilgjengelig; HTML og bilder ble hentet direkte fra Elefun.
+
+En egen bildekilderevisjon oppdaterer kun `image_url` i eksisterende D1-kataloger, i én transaksjon. Den endrer ikke priser eller kompatibilitetsdata.
