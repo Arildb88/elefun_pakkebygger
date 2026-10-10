@@ -18,16 +18,8 @@ import {
   Zap,
 } from "lucide-react";
 
-const CATEGORIES=[
-  {label:"3D-print",href:"https://www.elefun.no/",Icon:Printer},
-  {label:"Batteri & ladere",href:"#accessories",Icon:Zap},
-  {label:"Bilbane",href:"https://www.elefun.no/",Icon:RectangleHorizontal},
-  {label:"Biler",href:"#car",Icon:Car},
-  {label:"Båter",href:"#boat",Icon:Ship},
-  {label:"Droner",href:"#drone",Icon:Fan},
-  {label:"Droner for FPV",href:"https://www.elefun.no/",Icon:Video},
-  {label:"Fly",href:"#plane",Icon:Plane},
-];
+import MegaMenu from "./mega-menu";
+import CatalogHeaderSearch from "./catalog-header-search";
 
 export default function ElefunChrome({children}:{children:React.ReactNode}){
   return (
@@ -38,11 +30,8 @@ export default function ElefunChrome({children}:{children:React.ReactNode}){
           <a className="elefun-logo" href="https://www.elefun.no/" target="_blank" rel="noreferrer">
             <img src="/brand/elefun-logo-white.svg" alt="Elefun"/>
           </a>
-          <details className="header-menu-details"><summary className="header-menu"><Menu/><span>Meny</span></summary><div className="header-menu-panel"><a href="#car">Elektrobiler</a><a href="#boat">Elektrobåter</a><a href="#drone">Droner med kamera</a><a href="#plane">Elektrofly</a><a href="#accessories">Batterier og ladere</a></div></details>
-          <form className="search" action="https://www.elefun.no/" method="get" target="_blank">
-            <input name="search_text" placeholder="Søk blant våre 30.000 produkter" aria-label="Søk blant våre 30.000 produkter"/>
-            <button type="submit"><Search/><span>Søk</span></button>
-          </form>
+
+          <CatalogHeaderSearch/>
           <nav className="header-actions">
             <a href="https://www.elefun.no/" target="_blank" rel="noreferrer"><Headset/><span>Kundeservice</span></a>
             <a href="https://www.elefun.no/" target="_blank" rel="noreferrer"><UserRound/><span>Logg inn</span></a>
@@ -52,14 +41,7 @@ export default function ElefunChrome({children}:{children:React.ReactNode}){
         <div className="header-stripe"/>
       </header>
 
-      <nav className="category-nav" aria-label="Kategorier">
-        {CATEGORIES.map(({label,href,Icon})=>(
-          <a key={label} href={href} target={href.startsWith("#")?undefined:"_blank"} rel="noreferrer">
-            <Icon/>
-            <span>{label}</span>
-          </a>
-        ))}
-      </nav>
+      <MegaMenu/>
 
       <div className="hero-card">
         <img className="hero-banner" src="/brand/elefun-logo-white.svg" alt="Elefun"/>
