@@ -44,6 +44,6 @@ export default async function ShelfPage({params}:Params){
       </p>
     </header>
     <ShelfNav category={category} current={shelf}/>
-    <ShelfView products={shelf.products}/>
+    <ShelfView category={category} shelf={shelf}/>
   </main>;
 }

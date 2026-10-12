@@ -1,13 +1,14 @@
 "use client";
 import { useMemo, useState } from "react";
 import { SlidersHorizontal } from "lucide-react";
-import type { ShelfProduct } from "@/lib/shelf-types";
+import { productHref, type Shelf, type ShelfCategory, type ShelfProduct } from "@/lib/shelf-types";
 import { ShelfCard } from "./shelf-ui";
 
 function toggle<T>(list:T[],value:T){return list.includes(value)?list.filter(v=>v!==value):[...list,value];}
 const brandOf=(p:ShelfProduct)=>p.brand??"Øvrige";
 
-export default function ShelfView({products}:{products:ShelfProduct[]}){
+export default function ShelfView({category,shelf}:{category:Pick<ShelfCategory,"slug">;shelf:Pick<Shelf,"slug"|"products">}){
+  const products=shelf.products;
   const [brands,setBrands]=useState<string[]>([]);
   const [inStock,setInStock]=useState(false);
   const [onSale,setOnSale]=useState(false);
@@ -45,7 +46,7 @@ export default function ShelfView({products}:{products:ShelfProduct[]}){
         <label className="select"><span>Sorter</span><select value={sort} onChange={e=>setSort(e.target.value)}><option value="default">Anbefalt</option><option value="low">Pris: lav til høy</option><option value="high">Pris: høy til lav</option><option value="reviews">Flest omtaler</option></select></label>
       </div>
       {shown.length===0?<div className="empty"><h2>Ingen produkter passer filtrene</h2><p>Fjern et filter for å se flere produkter.</p><button type="button" className="btn-secondary" onClick={reset}>Nullstill filtre</button></div>:
-      <div className="product-grid">{shown.map((p,i)=><ShelfCard key={p.id} product={p} priority={i<4}/>)}</div>}
+      <div className="product-grid">{shown.map((p,i)=><ShelfCard key={p.id} product={p} href={productHref(category,shelf,p)} priority={i<4}/>)}</div>}
     </section>
   </div>;
 }

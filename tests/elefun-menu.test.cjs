@@ -10,7 +10,7 @@ function load(file){
   return mod.exports;
 }
 const {megaMenu,columnsFor}=load('lib/elefun-menu.ts');
-const {SHELF_CATEGORIES,INTERNAL_HREF}=load('lib/elefun-shelves.ts');
+const {SHELF_CATEGORIES,INTERNAL_HREF,productHref}=load('lib/elefun-shelves.ts');
 const walk=(nodes,fn)=>{for(const n of nodes){fn(n);walk(n.children??[],fn);}};
 
 test('menu snapshot holds every Elefun main category, each linking back to elefun.no',()=>{
@@ -45,6 +45,12 @@ test('shelf products are real Elefun items with a price, image and product link'
         if(p.previousPrice) assert.ok(p.previousPrice>p.price);
       }
     }
+  }
+});
+
+test('each shelf product has an internal page under its subcategory',()=>{
+  for(const c of SHELF_CATEGORIES)for(const s of c.subs)for(const p of s.products){
+    assert.equal(productHref(c,s,p),`/sortiment/${c.slug}/${s.slug}/${p.id}`);
   }
 });
 

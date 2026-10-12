@@ -1,5 +1,5 @@
 import data from "@/data/elefun-shelves.json";
-import { categoryHref, shelfHref, type ShelfCategory } from "./shelf-types";
+import { categoryHref, shelfHref, type Shelf, type ShelfCategory } from "./shelf-types";
 
 export * from "./shelf-types";
 
@@ -8,6 +8,7 @@ export const SHELVES_FETCHED_AT=data.fetchedAt;
 
 export const findCategory=(slug:string)=>SHELF_CATEGORIES.find(c=>c.slug===slug);
 export const findShelf=(c:ShelfCategory,slug:string)=>c.subs.find(s=>s.slug===slug);
+export const findProduct=(_c:ShelfCategory,s:Shelf,id:string)=>s.products.find(p=>p.id===id);
 export const productCount=(c:ShelfCategory)=>c.subs.reduce((n,s)=>n+s.products.length,0);
 
 /** Elefun category id (top-level or subcategory) → the page for it in this store. */

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Star } from "lucide-react";
-import { discountPercent, shelfHref, type Shelf, type ShelfCategory, type ShelfProduct } from "@/lib/shelf-types";
+import { discountPercent, productHref, shelfHref, type Shelf, type ShelfCategory, type ShelfProduct } from "@/lib/shelf-types";
 import { cleanName, money } from "@/lib/store";
 import { AddToCart } from "./cart-controls";
 
@@ -8,17 +8,17 @@ export function StockLine({stock}:{stock:ShelfProduct["stock"]}){
   return <span className={`stock ${stock.inStock?"stock-in":"stock-out"}`}><i aria-hidden/>{stock.label}</span>;
 }
 
-export function ShelfCard({product,priority=false}:{product:ShelfProduct;priority?:boolean}){
+export function ShelfCard({product,href,priority=false}:{product:ShelfProduct;href:string;priority?:boolean}){
   const name=cleanName(product.name);
   const off=discountPercent(product);
   return <article className="pcard scard">
-    <a className="pcard-media scard-media" href={product.url} target="_blank" rel="noreferrer" tabIndex={-1} aria-hidden="true">
+    <Link className="pcard-media scard-media" href={href} tabIndex={-1} aria-hidden="true">
       {product.imageUrl&&<img src={product.imageUrl} alt="" loading={priority?"eager":"lazy"}/>}
       {off>0&&<span className="scard-badge">−{off} %</span>}
-    </a>
+    </Link>
     <div className="pcard-body">
       {product.brand&&<span className="scard-brand">{product.brand}</span>}
-      <h3><a href={product.url} target="_blank" rel="noreferrer">{name}<span className="sr-only"> (åpnes hos Elefun)</span></a></h3>
+      <h3><Link href={href}>{name}</Link></h3>
       <div className="scard-meta">
         <StockLine stock={product.stock}/>
         {product.reviews>0&&<span className="scard-reviews"><Star size={13} aria-hidden/>{product.reviews} <span className="sr-only">omtaler</span></span>}
@@ -56,6 +56,6 @@ export function ShelfSection({category,shelf}:{category:ShelfCategory;shelf:Shel
       </div>
       <Link href={href}>Se utvalget ({shelf.products.length}) <ArrowRight size={16} aria-hidden/></Link>
     </div>
-    <div className="product-grid shelf-grid">{shelf.products.slice(0,4).map(p=><ShelfCard key={p.id} product={p}/>)}</div>
+    <div className="product-grid shelf-grid">{shelf.products.slice(0,4).map(p=><ShelfCard key={p.id} product={p} href={productHref(category,shelf,p)}/>)}</div>
   </section>;
 }

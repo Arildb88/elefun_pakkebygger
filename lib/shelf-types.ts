@@ -7,4 +7,5 @@ export type ShelfCategory={id:number;slug:string;name:string;icon?:string;source
 
 export const categoryHref=(c:Pick<ShelfCategory,"slug">)=>`/sortiment/${c.slug}`;
 export const shelfHref=(c:Pick<ShelfCategory,"slug">,s:Pick<Shelf,"slug">)=>`/sortiment/${c.slug}/${s.slug}`;
+export const productHref=(c:Pick<ShelfCategory,"slug">,s:Pick<Shelf,"slug">,p:Pick<ShelfProduct,"id">)=>`${shelfHref(c,s)}/${p.id}`;
 export const discountPercent=(p:ShelfProduct)=>p.previousPrice?Math.round((1-p.price/p.previousPrice)*100):0;
