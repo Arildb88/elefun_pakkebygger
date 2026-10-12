@@ -6,6 +6,8 @@ import type { CatalogProduct } from "@/lib/catalog-types";
 import { accessoriesFor, builderHref, categoryOf, cleanName, modelsUsing, money, productHref, specsFor } from "@/lib/store";
 import { ProductCard, SpecRail } from "@/components/store-ui";
 import { AddToCart } from "@/components/cart-controls";
+import { RatingBadge, ReviewSection } from "@/components/reviews";
+import { reviewsFor } from "@/lib/reviews";
 
 export const dynamic = "force-dynamic";
 
@@ -31,6 +33,7 @@ export default async function ProductPage({params}:{params:Promise<{id:string}>}
   const fit=isVehicle?accessoriesFor(products,product):null;
   const usedBy=isVehicle?[]:modelsUsing(products,product);
   const related=products.filter(p=>p.id!==product.id&&category.match(p)).slice(0,4);
+  const reviews=reviewsFor(product.id);
   const pending=fit?.rule&&(fit.rule.batteryPending||fit.rule.chargingPending||fit.rule.needsPowerSupply);
 
   return <main className="store-main">
@@ -42,6 +45,7 @@ export default async function ProductPage({params}:{params:Promise<{id:string}>}
       </div>
       <div className="product-info">
         <h1>{name}</h1>
+        {reviews&&<RatingBadge data={reviews} href="#anmeldelser"/>}
         <SpecRail specs={specsFor(product)} size="lg"/>
         {isVehicle&&fit?.rule&&<p className="product-note">{fit.rule.note}</p>}
         {!isVehicle&&product.description!=="Tilbehør fra Elefuns produktkatalog."&&<p className="product-note">{product.description}</p>}
@@ -81,6 +85,8 @@ export default async function ProductPage({params}:{params:Promise<{id:string}>}
       </div>
       <ul className="fit-list">{usedBy.map(v=><FitRow key={v.id} product={v} role={v.tags[0]??"Modell"}/>)}</ul>
     </section>}
+
+    {reviews&&<ReviewSection data={reviews}/>}
 
     {related.length>0&&<section className="related" aria-labelledby="related-title">
       <div className="section-head section-head-row">

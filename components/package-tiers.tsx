@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { Check, ShoppingCart, SlidersHorizontal } from "lucide-react";
 import { cleanName, discountFor, money, productHref, shortTitle, type DefaultPackage, type TIERS } from "@/lib/store";
+import { reviewsFor } from "@/lib/reviews";
+import { RatingBadge } from "./reviews";
 
 type Tier={tier:(typeof TIERS)[number];pkg:DefaultPackage};
 
@@ -19,7 +21,7 @@ export default function PackageTiers({tiers,onAdd,onCustomize}:{tiers:Tier[];onA
     </div>
     <div className="tier-grid">
       {tiers.map(({tier,pkg})=>{
-        const v=pkg.vehicle;const extras=pkg.lines.slice(1);
+        const v=pkg.vehicle;const extras=pkg.lines.slice(1);const reviews=reviewsFor(v.id);
         return <article key={tier.id} className={`tier tier-${tier.id}`} aria-labelledby={`tier-${tier.id}`}>
           <header className="tier-head">
             <h3 id={`tier-${tier.id}`}>{tier.name} <Level level={tier.level}/></h3>
@@ -27,6 +29,7 @@ export default function PackageTiers({tiers,onAdd,onCustomize}:{tiers:Tier[];onA
           </header>
           <a className="tier-media" href={productHref(v)} tabIndex={-1} aria-hidden="true">{v.imageUrl&&<img src={v.imageUrl} alt="" loading="lazy"/>}</a>
           <a className="tier-model" href={productHref(v)}>{cleanName(v.name)}</a>
+          {reviews&&<div className="tier-rating"><RatingBadge data={reviews} href={`${productHref(v)}#anmeldelser`}/></div>}
           <ul className="tier-items" aria-label="Dette er med i pakken">
             {extras.map(l=><li key={l.product.id}><Check size={16} aria-hidden/><span>{l.quantity} × {shortTitle(l.product)}</span></li>)}
             {pkg.includedCharger&&<li><Check size={16} aria-hidden/><span>Lader følger med modellen</span></li>}
