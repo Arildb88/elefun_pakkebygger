@@ -1,0 +1,4563 @@
+{
+  "source": "https://www.elefun.no/",
+  "fetchedAt": "2026-10-12",
+  "categories": [
+    {
+      "id": 1509,
+      "name": "3D-print",
+      "icon": "3dprint",
+      "url": "https://www.elefun.no/3d-print",
+      "children": [
+        {
+          "id": 1303,
+          "name": "3D-Printere",
+          "url": "https://www.elefun.no/kategori-1303/3d-print-printere",
+          "icon": "3dprint"
+        },
+        {
+          "id": 1437,
+          "name": "3D-Scanner",
+          "url": "https://www.elefun.no/kategori-1437/3d-print-scanner",
+          "icon": "scanner-gun"
+        },
+        {
+          "id": 1616,
+          "name": "CNC-Maskiner",
+          "url": "https://www.elefun.no/kategori-1616",
+          "icon": "bore-hole",
+          "children": [
+            {
+              "id": 1425,
+              "name": "CNC-Maskiner",
+              "url": "https://www.elefun.no/kategori-1425/cnc-maskiner",
+              "icon": "bore-hole"
+            },
+            {
+              "id": 1617,
+              "name": "CNC utstyr & tilbehør",
+              "url": "https://www.elefun.no/kategori-1617/cnc-maskiner-utstyr-tilbehor"
+            }
+          ]
+        },
+        {
+          "id": 1489,
+          "name": "Laser kutte- & gravering",
+          "url": "https://www.elefun.no/kategori-1489",
+          "icon": "lazer",
+          "children": [
+            {
+              "id": 1439,
+              "name": "Laser kutte- & graveringsmaskiner",
+              "url": "https://www.elefun.no/kategori-1439/laser-kutte-gravering-maskiner",
+              "icon": "lazer"
+            },
+            {
+              "id": 1487,
+              "name": "Tilbehør & options",
+              "url": "https://www.elefun.no/kategori-1487/laser-kutte-gravering-tilbehor"
+            },
+            {
+              "id": 1580,
+              "name": "Materialer til Laser",
+              "url": "https://www.elefun.no/filter-1580/laser-kutte-gravering-materialer"
+            }
+          ]
+        },
+        {
+          "id": 1629,
+          "name": "UV-Printere",
+          "url": "https://www.elefun.no/kategori-1629",
+          "icon": "print",
+          "children": [
+            {
+              "id": 1622,
+              "name": "UV-Printere",
+              "url": "https://www.elefun.no/kategori-1622/uv-printere",
+              "icon": "print"
+            },
+            {
+              "id": 1628,
+              "name": "UV-Printer Tilbehør",
+              "url": "https://www.elefun.no/kategori-1628/uv-printere-printer-tilbehor"
+            }
+          ]
+        },
+        {
+          "id": 1321,
+          "name": "Filament",
+          "url": "https://www.elefun.no/kategori-1321",
+          "icon": "compact-disc",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 1577,
+              "name": "Filament 1.75mm",
+              "url": "https://www.elefun.no/kategori-1577",
+              "icon": "compact-disc",
+              "children": [
+                {
+                  "id": 1419,
+                  "name": "ALLE filament 1.75mm",
+                  "url": "https://www.elefun.no/filter-1419/3d-print-filament-175mm",
+                  "icon": "grid-round"
+                },
+                {
+                  "id": 1310,
+                  "name": "ABS",
+                  "url": "https://www.elefun.no/filter-1419/?f=|cba32_e265|",
+                  "icon": "compact-disc"
+                },
+                {
+                  "id": 1315,
+                  "name": "ASA",
+                  "url": "https://www.elefun.no/filter-1419/?f=|cba32_e277|",
+                  "icon": "compact-disc"
+                },
+                {
+                  "id": 1311,
+                  "name": "PETG",
+                  "url": "https://www.elefun.no/filter-1419/?f=|cba32_e255|",
+                  "icon": "compact-disc"
+                },
+                {
+                  "id": 1304,
+                  "name": "PLA",
+                  "url": "https://www.elefun.no/filter-1419/?f=|cba32_e247|",
+                  "icon": "compact-disc"
+                },
+                {
+                  "id": 1318,
+                  "name": "PLA +",
+                  "url": "https://www.elefun.no/filter-1419/3d-print-filament-175mm?f=|cba32_e240|",
+                  "icon": "compact-disc"
+                },
+                {
+                  "id": 1312,
+                  "name": "TPU / FLEX",
+                  "url": "https://www.elefun.no/filter-1419/?f=|cba32_e252|",
+                  "icon": "compact-disc"
+                }
+              ]
+            },
+            {
+              "id": 1578,
+              "name": "Filament 2.85mm",
+              "url": "https://www.elefun.no/kategori-1578",
+              "icon": "compact-disc",
+              "children": [
+                {
+                  "id": 1352,
+                  "name": "ALLE filament 2.85mm",
+                  "url": "https://www.elefun.no/filter-1352/3d-print-filament-285mm",
+                  "icon": "grid-round"
+                },
+                {
+                  "id": 1354,
+                  "name": "ABS",
+                  "url": "https://www.elefun.no/filter-1352/?f=|cba32_e265|",
+                  "icon": "compact-disc"
+                },
+                {
+                  "id": 1355,
+                  "name": "Nylon",
+                  "url": "https://www.elefun.no/filter-1352/?f=|cba32_e267|",
+                  "icon": "compact-disc"
+                },
+                {
+                  "id": 1385,
+                  "name": "PETG",
+                  "url": "https://www.elefun.no/filter-1352/3d-print-filament-285mm?f=|cba32_e255|",
+                  "icon": "compact-disc"
+                },
+                {
+                  "id": 1353,
+                  "name": "PLA",
+                  "url": "https://www.elefun.no/filter-1352/?f=|cba32_e247|",
+                  "icon": "compact-disc"
+                },
+                {
+                  "id": 1356,
+                  "name": "PVA & Støttemateriale",
+                  "url": "https://www.elefun.no/filter-1352/?f=|cba32_e270|",
+                  "icon": "compact-disc"
+                },
+                {
+                  "id": 1386,
+                  "name": "TPU / FLEX",
+                  "url": "https://www.elefun.no/filter-1352/?f=|cba32_e252|",
+                  "icon": "compact-disc"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1381,
+          "name": "Resin",
+          "url": "https://www.elefun.no/kategori-1381/3d-print-resin",
+          "icon": "bottle-water",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 1625,
+          "name": "Maker supply",
+          "url": "https://www.elefun.no/kategori-1625",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 1627,
+              "name": "Fjærer",
+              "url": "https://www.elefun.no/filter-1627/3d-print-maker-supply-fjarer"
+            },
+            {
+              "id": 1624,
+              "name": "Gjengeinnsatser",
+              "url": "https://www.elefun.no/filter-1625/3d-print-maker-supply-gjengeinnsatser"
+            },
+            {
+              "id": 1626,
+              "name": "Magneter",
+              "url": "https://www.elefun.no/filter-1626/3d-print-maker-supply-magneter"
+            },
+            {
+              "id": 881,
+              "name": "Muttere og skiver",
+              "url": "https://www.elefun.no/filter-881/skruer-nylon-locknuts"
+            },
+            {
+              "id": 878,
+              "name": "Skruer",
+              "url": "https://www.elefun.no/filter-878/skruer"
+            }
+          ]
+        },
+        {
+          "id": 1370,
+          "name": "Options og deler",
+          "url": "https://www.elefun.no/kategori-1370",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 1592,
+              "name": "Bambu Lab",
+              "url": "https://www.elefun.no/filter-1592/3d-print-bambu-lab-deler"
+            },
+            {
+              "id": 1367,
+              "name": "Creality",
+              "url": "https://www.elefun.no/kategori-1367",
+              "children": [
+                {
+                  "id": 1360,
+                  "name": "Dyser",
+                  "url": "https://www.elefun.no/kategori-1360/3d-print-dyser"
+                },
+                {
+                  "id": 1364,
+                  "name": "Printplater",
+                  "url": "https://www.elefun.no/kategori-1364/3d-print-printplater"
+                },
+                {
+                  "id": 1365,
+                  "name": "Oppgraderinger",
+                  "url": "https://www.elefun.no/kategori-1365/3d-print-options-deler"
+                },
+                {
+                  "id": 1308,
+                  "name": "Deler",
+                  "url": "https://www.elefun.no/kategori-1308/3d-print-options-deler"
+                }
+              ]
+            },
+            {
+              "id": 1368,
+              "name": "Ultimaker",
+              "url": "https://www.elefun.no/kategori-1368",
+              "children": [
+                {
+                  "id": 1357,
+                  "name": "Print Core",
+                  "url": "https://www.elefun.no/kategori-1357/3d-print-options-deler"
+                },
+                {
+                  "id": 1359,
+                  "name": "Reservedeler",
+                  "url": "https://www.elefun.no/kategori-1359/3d-print-options-deler"
+                },
+                {
+                  "id": 1358,
+                  "name": "Tilbehør",
+                  "url": "https://www.elefun.no/kategori-1358/3d-print-options-deler"
+                }
+              ]
+            },
+            {
+              "id": 1369,
+              "name": "Andre",
+              "url": "https://www.elefun.no/kategori-1369",
+              "children": [
+                {
+                  "id": 1363,
+                  "name": "Deler P120",
+                  "url": "https://www.elefun.no/kategori-1363/3d-print-options-deler"
+                },
+                {
+                  "id": 1361,
+                  "name": "Dyser P120",
+                  "url": "https://www.elefun.no/kategori-1361/3d-print-dyser"
+                },
+                {
+                  "id": 1362,
+                  "name": "Dyser Prusa/andre",
+                  "url": "https://www.elefun.no/kategori-1362/3d-print-dyser"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1407,
+          "name": "Selvbyggerutstyr",
+          "url": "https://www.elefun.no/kategori-1407",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 1404,
+              "name": "Aluminumsprofiler",
+              "url": "https://www.elefun.no/kategori-1404/3d-print-selvbyggerutstyr-aluminumsprofiler"
+            },
+            {
+              "id": 1405,
+              "name": "Drivverk",
+              "url": "https://www.elefun.no/kategori-1405/3d-print-selvbyggerutstyr-drivverk"
+            },
+            {
+              "id": 1401,
+              "name": "Elektronikk",
+              "url": "https://www.elefun.no/kategori-1401/3d-print-selvbyggerutstyr-elektronikk"
+            },
+            {
+              "id": 1403,
+              "name": "Lineære skinner",
+              "url": "https://www.elefun.no/kategori-1403/3d-print-selvbyggerutstyr-lineare-skinner"
+            },
+            {
+              "id": 1406,
+              "name": "Skruer og muttere",
+              "url": "https://www.elefun.no/kategori-1406/3d-print-selvbyggerutstyr-skruer-og-muttere"
+            },
+            {
+              "id": 1402,
+              "name": "Stepper motor",
+              "url": "https://www.elefun.no/kategori-1402/3d-print-selvbyggerutstyr-stepper-motor"
+            }
+          ]
+        },
+        {
+          "id": 1317,
+          "name": "Verktøy & tilbehør",
+          "url": "https://www.elefun.no/kategori-1317/3d-print-verktoy-og-tilbehor",
+          "group": "Tilbehør"
+        }
+      ]
+    },
+    {
+      "id": 1510,
+      "name": "Batteri & ladere",
+      "icon": "bolt",
+      "url": "https://www.elefun.no/batteri-og-ladere",
+      "children": [
+        {
+          "id": 391,
+          "name": "Ladere",
+          "url": "https://www.elefun.no/kategori-391",
+          "icon": "charging-station",
+          "group": "Ladere & tilbehør",
+          "children": [
+            {
+              "id": 235,
+              "name": "Computerladere LiPo/NiMh",
+              "url": "https://www.elefun.no/kategori-235/computerlader"
+            },
+            {
+              "id": 909,
+              "name": "Enkle ladere LiPo",
+              "url": "https://www.elefun.no/kategori-909/lader-lipo"
+            },
+            {
+              "id": 908,
+              "name": "Enkle ladere NiMh",
+              "url": "https://www.elefun.no/kategori-908/lader-nimh"
+            },
+            {
+              "id": 236,
+              "name": "Lader for TX/RX batteri",
+              "url": "https://www.elefun.no/kategori-236/lader-txrx"
+            },
+            {
+              "id": 1279,
+              "name": "USB ladere",
+              "url": "https://www.elefun.no/kategori-1279/lader-usb",
+              "icon": "usb"
+            },
+            {
+              "id": 3,
+              "name": "Diverse ladere",
+              "url": "https://www.elefun.no/kategori-3/lader"
+            },
+            {
+              "id": 1307,
+              "name": "Ladere for Li-Ion",
+              "url": "https://www.elefun.no/kategori-1307/lader-liion"
+            },
+            {
+              "id": 234,
+              "name": "Powersupply",
+              "url": "https://www.elefun.no/kategori-234/powersupply"
+            }
+          ]
+        },
+        {
+          "id": 528,
+          "name": "Kontakter & kabling",
+          "url": "https://www.elefun.no/kategori-528",
+          "icon": "plug",
+          "group": "Ladere & tilbehør",
+          "children": [
+            {
+              "id": 5,
+              "name": "Kontakter",
+              "url": "https://www.elefun.no/filter-5/kontakter"
+            },
+            {
+              "id": 171,
+              "name": "Krympeplast, bunting",
+              "url": "https://www.elefun.no/kategori-171/krympeplast-bunting"
+            },
+            {
+              "id": 152,
+              "name": "Ledninger",
+              "url": "https://www.elefun.no/kategori-152/ledning"
+            }
+          ]
+        },
+        {
+          "id": 369,
+          "name": "Ladetilbehør",
+          "url": "https://www.elefun.no/kategori-369",
+          "group": "Ladere & tilbehør",
+          "children": [
+            {
+              "id": 205,
+              "name": "Balanseringskontakter",
+              "url": "https://www.elefun.no/kategori-205/ladetilbehor-balanseringskontakt"
+            },
+            {
+              "id": 206,
+              "name": "Ladekabler & overganger",
+              "url": "https://www.elefun.no/filter-206/ladekabel-overganger"
+            },
+            {
+              "id": 175,
+              "name": "LiPo balanserere",
+              "url": "https://www.elefun.no/kategori-175/balanserer-lipo"
+            },
+            {
+              "id": 1240,
+              "name": "Utladere",
+              "url": "https://www.elefun.no/kategori-1240/utlader"
+            }
+          ]
+        },
+        {
+          "id": 371,
+          "name": "Li-Po Batterier",
+          "url": "https://www.elefun.no/kategori-371",
+          "icon": "battery-full",
+          "group": "Batterier",
+          "children": [
+            {
+              "id": 1173,
+              "name": "Li-Po for FPV race",
+              "url": "https://www.elefun.no/kategori-1173/batteri-lipo-fpv-race"
+            },
+            {
+              "id": 312,
+              "name": "LiPo for bil",
+              "url": "https://www.elefun.no/kategori-312/batteri-lipo-bil"
+            },
+            {
+              "id": 1418,
+              "name": "Li-Ion",
+              "url": "https://www.elefun.no/kategori-1418/batteri-liion"
+            },
+            {
+              "id": 173,
+              "name": "Li-Po 1s - ( 3,7V )",
+              "url": "https://www.elefun.no/kategori-173/batteri-lipo-1s"
+            },
+            {
+              "id": 197,
+              "name": "Li-Po 2s - ( 7,4V )",
+              "url": "https://www.elefun.no/kategori-197/batteri-lipo-2s"
+            },
+            {
+              "id": 313,
+              "name": "Li-Po 3s - ( 11,1V )",
+              "url": "https://www.elefun.no/kategori-313/batteri-lipo-3s"
+            },
+            {
+              "id": 314,
+              "name": "Li-Po 4s - ( 14,8V )",
+              "url": "https://www.elefun.no/kategori-314/batteri-lipo-4s"
+            },
+            {
+              "id": 278,
+              "name": "Li-Po 5s - ( 18,5V )",
+              "url": "https://www.elefun.no/kategori-278/batteri-lipo-5s"
+            },
+            {
+              "id": 259,
+              "name": "Li-Po 6s - 12s",
+              "url": "https://www.elefun.no/kategori-259/batteri-lipo"
+            },
+            {
+              "id": 1259,
+              "name": "Senderbatteri LiPo",
+              "url": "https://www.elefun.no/kategori-1259/batteri-sender-lipo"
+            },
+            {
+              "id": 1260,
+              "name": "Mottakerbatteri LiPo",
+              "url": "https://www.elefun.no/kategori-1260/batteri-mottaker-lipo"
+            }
+          ]
+        },
+        {
+          "id": 388,
+          "name": "Ni-Mh Batterier",
+          "url": "https://www.elefun.no/kategori-388",
+          "icon": "battery-full",
+          "group": "Batterier",
+          "children": [
+            {
+              "id": 2,
+              "name": "Drivbatterier Ni-Mh 7.2V",
+              "url": "https://www.elefun.no/kategori-2/batteri-drivbatteri-nimh-72v"
+            },
+            {
+              "id": 903,
+              "name": "Drivbatterier Ni-Mh 8.4V",
+              "url": "https://www.elefun.no/kategori-903/batteri-drivbatteri-nimh-84v"
+            },
+            {
+              "id": 4,
+              "name": "Batterier (løse celler)",
+              "url": "https://www.elefun.no/kategori-4/batteri-nimh"
+            }
+          ]
+        },
+        {
+          "id": 847,
+          "name": "Li-FePo4 batt.",
+          "url": "https://www.elefun.no/kategori-847/batteri-lifepo4",
+          "icon": "battery-full",
+          "group": "Batterier"
+        },
+        {
+          "id": 1608,
+          "name": "12V Batterier",
+          "url": "https://www.elefun.no/filter-1491/12V-batterier",
+          "icon": "car-battery",
+          "group": "Batterier"
+        },
+        {
+          "id": 740,
+          "name": "Bærbar strømbank",
+          "url": "https://www.elefun.no/filter-740/strombank?f=|cba19_e125|",
+          "icon": "plug-circle-bolt",
+          "group": "Batterier"
+        },
+        {
+          "id": 1249,
+          "name": "Batteristropper",
+          "url": "https://www.elefun.no/kategori-1249/batterifester",
+          "icon": "ribbon",
+          "group": "Sikkerhet"
+        },
+        {
+          "id": 1596,
+          "name": "Røykvarslere",
+          "url": "https://www.elefun.no/kategori-1596/",
+          "icon": "sensor-on",
+          "group": "Sikkerhet"
+        },
+        {
+          "id": 523,
+          "name": "Sikker ladebag for LiPo",
+          "url": "https://www.elefun.no/kategori-523/sikker-ladebag",
+          "icon": "dumpster-fire",
+          "group": "Sikkerhet"
+        },
+        {
+          "id": 1274,
+          "name": "Spesialbrannslukkere",
+          "url": "https://www.elefun.no/kategori-1274/brannslukker",
+          "icon": "fire-extinguisher",
+          "group": "Sikkerhet"
+        },
+        {
+          "id": 1258,
+          "name": "Sender/mottaker batterier",
+          "url": "https://www.elefun.no/kategori-1258",
+          "icon": "battery-full",
+          "group": "Sikkerhet",
+          "children": [
+            {
+              "id": 359,
+              "name": "Senderbatteri NiMh",
+              "url": "https://www.elefun.no/kategori-359/batteri-sender-nimh"
+            },
+            {
+              "id": 1259,
+              "name": "Senderbatteri LiPo",
+              "url": "https://www.elefun.no/kategori-1259/batteri-sender-lipo"
+            },
+            {
+              "id": 526,
+              "name": "Senderbatteri LiFe",
+              "url": "https://www.elefun.no/kategori-526/batteri-sender-life"
+            },
+            {
+              "id": 142,
+              "name": "Mottakerbatteri NiMh",
+              "url": "https://www.elefun.no/kategori-142/batteri-mottaker-nimh"
+            },
+            {
+              "id": 1260,
+              "name": "Mottakerbatteri LiPo",
+              "url": "https://www.elefun.no/kategori-1260/batteri-mottaker-lipo"
+            },
+            {
+              "id": 527,
+              "name": "Mottakerbatteri LiFe",
+              "url": "https://www.elefun.no/kategori-527/batteri-mottaker-life"
+            },
+            {
+              "id": 4,
+              "name": "Batterier (løse celler)",
+              "url": "https://www.elefun.no/kategori-4/batteri-nimh"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1519,
+      "name": "Bilbane",
+      "icon": "car-tilt",
+      "url": "https://www.elefun.no/bilbaner",
+      "children": [
+        {
+          "id": 325,
+          "name": "Bilbaner",
+          "url": "https://www.elefun.no/filter-325/bilbane",
+          "icon": "car-tilt"
+        },
+        {
+          "id": 669,
+          "name": "Biler",
+          "url": "https://www.elefun.no/filter-669/bilbane-biler",
+          "icon": "car-side"
+        },
+        {
+          "id": 853,
+          "name": "Banedeler",
+          "url": "https://www.elefun.no/filter-853/bilbane-banedeler",
+          "icon": "road"
+        },
+        {
+          "id": 852,
+          "name": "Bildeler",
+          "url": "https://www.elefun.no/filter-852/bilbane-bildeler",
+          "icon": "gears"
+        }
+      ]
+    },
+    {
+      "id": 1504,
+      "name": "Biler",
+      "icon": "truck-monster",
+      "url": "https://www.elefun.no/bil",
+      "children": [
+        {
+          "id": 354,
+          "name": "Elektrobiler",
+          "url": "https://www.elefun.no/kategori-354",
+          "icon": "truck-monster",
+          "group": "Biler",
+          "children": [
+            {
+              "id": 642,
+              "name": "Alle Elektrobiler",
+              "url": "https://www.elefun.no/kategori-7-189-190-488-489-249-316-573-358-1619/radiostyrt-bil-elektro-alle"
+            },
+            {
+              "id": 190,
+              "name": "Buggy",
+              "url": "https://www.elefun.no/filter-190/radiostyrt-bil-elektro-buggy"
+            },
+            {
+              "id": 488,
+              "name": "Crawlere",
+              "url": "https://www.elefun.no/kategori-488/radiostyrt-bil-elektro-crawler"
+            },
+            {
+              "id": 189,
+              "name": "Drift",
+              "url": "https://www.elefun.no/kategori-189/radiostyrt-bil-elektro-drift"
+            },
+            {
+              "id": 1619,
+              "name": "Mikrobiler",
+              "url": "https://www.elefun.no/filter-1619/biler-elektrobiler-mikrobiler"
+            },
+            {
+              "id": 7,
+              "name": "Monstertrucks",
+              "url": "https://www.elefun.no/kategori-7/radiostyrt-bil-elektro-monstertruck"
+            },
+            {
+              "id": 489,
+              "name": "Stadium, Short Course",
+              "url": "https://www.elefun.no/kategori-489/radiostyrt-bil-elektro"
+            },
+            {
+              "id": 249,
+              "name": "Touring, Asfalt",
+              "url": "https://www.elefun.no/kategori-249/radiostyrt-bil-elektro-touring"
+            },
+            {
+              "id": 573,
+              "name": "Leker - Biler",
+              "url": "https://www.elefun.no/kategori-573/radiostyrt-bil"
+            }
+          ]
+        },
+        {
+          "id": 491,
+          "name": "Nitrobiler",
+          "url": "https://www.elefun.no/filter-491/radiostyrt-bil-nitro",
+          "icon": "truck-monster",
+          "group": "Biler"
+        },
+        {
+          "id": 479,
+          "name": "Bensinbiler",
+          "url": "https://www.elefun.no/kategori-479/radiostyrt-bil-bensin",
+          "icon": "truck-monster",
+          "group": "Biler"
+        },
+        {
+          "id": 897,
+          "name": "Anleggsmaskiner",
+          "url": "https://www.elefun.no/kategori-897/radiostyrt-anleggsmaskin",
+          "icon": "forklift",
+          "group": "Andre kjøretøy"
+        },
+        {
+          "id": 1144,
+          "name": "Lastebiler",
+          "url": "https://www.elefun.no/kategori-1144",
+          "icon": "truck-moving",
+          "group": "Andre kjøretøy",
+          "children": [
+            {
+              "id": 1145,
+              "name": "Trekkvogner",
+              "url": "https://www.elefun.no/kategori-1145/radiostyrt-lastebil-trekkvogn",
+              "icon": "truck-flatbed"
+            },
+            {
+              "id": 1146,
+              "name": "Hengere",
+              "url": "https://www.elefun.no/kategori-1146/radiostyrt-lastebil-henger",
+              "icon": "trailer"
+            },
+            {
+              "id": 1147,
+              "name": "Tilbehør",
+              "url": "https://www.elefun.no/kategori-1147/radiostyrt-lastebil-tilbehor"
+            }
+          ]
+        },
+        {
+          "id": 316,
+          "name": "Tanks & militærkjøretøy",
+          "url": "https://www.elefun.no/kategori-316/radiostyrt-militar",
+          "icon": "tank",
+          "group": "Andre kjøretøy"
+        },
+        {
+          "id": 821,
+          "name": "Bilutstyr",
+          "url": "https://www.elefun.no/kategori-821",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 1337,
+              "name": "Bagger",
+              "url": "https://www.elefun.no/kategori-1337/radiostyrt-bil-bag"
+            },
+            {
+              "id": 1343,
+              "name": "Beskyttelsestrekk",
+              "url": "https://www.elefun.no/kategori-1343/radiostyrt-bil-beskyttelsestrekk"
+            },
+            {
+              "id": 8,
+              "name": "Biltilbehør",
+              "url": "https://www.elefun.no/kategori-8/radiostyrt-bil-utstyr"
+            },
+            {
+              "id": 1256,
+              "name": "Crawler skalatilbehør 1:10",
+              "url": "https://www.elefun.no/filter-1301/?f=|cba22_e144|"
+            },
+            {
+              "id": 384,
+              "name": "Dekk & felger",
+              "url": "https://www.elefun.no/kategori-384",
+              "children": [
+                {
+                  "id": 1350,
+                  "name": "Crawler dekk & felger",
+                  "url": "https://www.elefun.no/filter-1350/radiostyrt-bil-dekk-felg-crawler"
+                },
+                {
+                  "id": 555,
+                  "name": "1/16 & 1/18 Diverse",
+                  "url": "https://www.elefun.no/kategori-555/radiostyrt-bil-dekk-felg"
+                },
+                {
+                  "id": 768,
+                  "name": "1/12 Skumdekk",
+                  "url": "https://www.elefun.no/kategori-768/radiostyrt-bil-skumdekk-112"
+                },
+                {
+                  "id": 1333,
+                  "name": "1/10 Buggy EOS",
+                  "url": "https://www.elefun.no/kategori-1333/radiostyrt-bil-dekk-felg-110"
+                },
+                {
+                  "id": 115,
+                  "name": "1/10 Buggy, stadium",
+                  "url": "https://www.elefun.no/kategori-115/radiostyrt-bil-dekk-felg-110"
+                },
+                {
+                  "id": 921,
+                  "name": "1/10 Drift",
+                  "url": "https://www.elefun.no/kategori-921/radiostyrt-bil-dekk-felg-drift-110"
+                },
+                {
+                  "id": 767,
+                  "name": "1/10 Short Course",
+                  "url": "https://www.elefun.no/kategori-767/radiostyrt-bil-dekk-felg-110"
+                },
+                {
+                  "id": 91,
+                  "name": "1/10 Touring, asfalt",
+                  "url": "https://www.elefun.no/kategori-91/radiostyrt-bil-dekk-felg-110"
+                },
+                {
+                  "id": 557,
+                  "name": "1/8 & 1/10 Monster",
+                  "url": "https://www.elefun.no/kategori-557/radiostyrt-bil-dekk-felg-monster-18"
+                },
+                {
+                  "id": 63,
+                  "name": "1/8 Buggy & Truggy",
+                  "url": "https://www.elefun.no/kategori-63/radiostyrt-bil-dekk-felg-buggy-18"
+                },
+                {
+                  "id": 554,
+                  "name": "1/5 Dekk & felger",
+                  "url": "https://www.elefun.no/kategori-554/radiostyrt-bil-dekk-felg"
+                },
+                {
+                  "id": 116,
+                  "name": "Traxxas Dekk og felger",
+                  "url": "https://www.elefun.no/kategori-116/radiostyrt-bil-dekk-felg-traxxas"
+                },
+                {
+                  "id": 1109,
+                  "name": "Dekksmøring",
+                  "url": "https://www.elefun.no/kategori-1109/radiostyrt-bil-dekksmoring"
+                }
+              ]
+            },
+            {
+              "id": 915,
+              "name": "Gyrostabilisering for bil",
+              "url": "https://www.elefun.no/kategori-915/radiostyrt-bil-gyro"
+            },
+            {
+              "id": 831,
+              "name": "Karosseri",
+              "url": "https://www.elefun.no/kategori-831",
+              "children": [
+                {
+                  "id": 592,
+                  "name": "Karosseri Buggy",
+                  "url": "https://www.elefun.no/kategori-592/radiostyrt-bil-karosseri-buggy"
+                },
+                {
+                  "id": 1278,
+                  "name": "Karosseri Crawler/Trail",
+                  "url": "https://www.elefun.no/kategori-1278/radiostyrt-bil-karosseri-crawler"
+                },
+                {
+                  "id": 1340,
+                  "name": "Karosseri M-Chassis",
+                  "url": "https://www.elefun.no/kategori-1340/radiostyrt-bil-karosseri"
+                },
+                {
+                  "id": 591,
+                  "name": "Karosseri Monstertruck",
+                  "url": "https://www.elefun.no/kategori-591/radiostyrt-bil-karosseri-monstertruck"
+                },
+                {
+                  "id": 593,
+                  "name": "Karosseri Onroad",
+                  "url": "https://www.elefun.no/kategori-593/radiostyrt-bil-karosseri-onroad"
+                },
+                {
+                  "id": 594,
+                  "name": "Karosseri Stadium/SC",
+                  "url": "https://www.elefun.no/kategori-594/radiostyrt-bil-karosseri"
+                },
+                {
+                  "id": 1139,
+                  "name": "Karosseri Touring",
+                  "url": "https://www.elefun.no/kategori-1139/radiostyrt-bil-karosseri"
+                },
+                {
+                  "id": 164,
+                  "name": "Karosseriklips",
+                  "url": "https://www.elefun.no/kategori-164/radiostyrt-bil-karosseriklips"
+                },
+                {
+                  "id": 1614,
+                  "name": "Lexan",
+                  "url": "https://www.elefun.no/filter-1614/lexan"
+                }
+              ]
+            },
+            {
+              "id": 374,
+              "name": "Lys",
+              "url": "https://www.elefun.no/kategori-374",
+              "children": [
+                {
+                  "id": 936,
+                  "name": "Lyssystemer for bil",
+                  "url": "https://www.elefun.no/kategori-936/radiostyrt-bil-led"
+                },
+                {
+                  "id": 1430,
+                  "name": "Traxxas Lyssett",
+                  "url": "https://www.elefun.no/kategori-1430/radiostyrt-bil-led-traxxas"
+                },
+                {
+                  "id": 668,
+                  "name": "Lys Fly/Heli/Drone",
+                  "url": "https://www.elefun.no/kategori-668/radiostyrt-led",
+                  "icon": "lightbulb-on"
+                }
+              ]
+            },
+            {
+              "id": 1301,
+              "name": "Oppgradering bil",
+              "url": "https://www.elefun.no/filter-1301/radiostyrt-bil"
+            },
+            {
+              "id": 493,
+              "name": "Skruesett til bil",
+              "url": "https://www.elefun.no/kategori-493/radiostyrt-bil-skruesett"
+            },
+            {
+              "id": 134,
+              "name": "Startere for bil",
+              "url": "https://www.elefun.no/kategori-134/radiostyrt-bil-glowmotor-starter"
+            },
+            {
+              "id": 625,
+              "name": "Tidtaking",
+              "url": "https://www.elefun.no/kategori-625/radiostyrt-tidtaking"
+            },
+            {
+              "id": 1383,
+              "name": "Vinsjer",
+              "url": "https://www.elefun.no/kategori-1383/radiostyrt-bil-vinsj"
+            },
+            {
+              "id": 1384,
+              "name": "Yeah Racing",
+              "url": "https://www.elefun.no/aspx/produsent.aspx?ProdusentID=573"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1503,
+      "name": "Båter",
+      "icon": "boat",
+      "url": "https://www.elefun.no/bat",
+      "children": [
+        {
+          "id": 10,
+          "name": "Elektrobåter",
+          "url": "https://www.elefun.no/kategori-10/radiostyrt-bat",
+          "icon": "boat",
+          "group": "Båter"
+        },
+        {
+          "id": 1329,
+          "name": "ROV & undervannsdroner",
+          "url": "https://www.elefun.no/kategori-1329",
+          "group": "Båter",
+          "children": [
+            {
+              "id": 482,
+              "name": "ROV & undervannsdroner",
+              "url": "https://www.elefun.no/filter-482/rov-undervannsdroner"
+            },
+            {
+              "id": 1331,
+              "name": "ROV tilbehør",
+              "url": "https://www.elefun.no/kategori-1331/rov-undervannsdroner-tilbehor",
+              "icon": "reel"
+            }
+          ]
+        },
+        {
+          "id": 1398,
+          "name": "Fiskehjelpere",
+          "url": "https://www.elefun.no/kategori-1398/radiostyrt-bat-fiskehjelper",
+          "icon": "fishing-rod",
+          "group": "Båter"
+        },
+        {
+          "id": 60,
+          "name": "Seilbåter",
+          "url": "https://www.elefun.no/kategori-60/radiostyrt-bat-seilbat",
+          "icon": "sailboat",
+          "group": "Båter"
+        },
+        {
+          "id": 182,
+          "name": "Båttilbehør",
+          "url": "https://www.elefun.no/kategori-182/radiostyrt-bat-tilbehor",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 910,
+          "name": "Drivaksling",
+          "url": "https://www.elefun.no/kategori-910/radiostyrt-bat-drivaksling",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 912,
+          "name": "Fleksadapter",
+          "url": "https://www.elefun.no/kategori-912/radiostyrt-bat-fleksadapter",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 765,
+          "name": "Fleksaksel",
+          "url": "https://www.elefun.no/kategori-765/radiostyrt-bat-fleksaksel",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 911,
+          "name": "Kobberrør før fleksaksel",
+          "url": "https://www.elefun.no/kategori-911/radiostyrt-bat-kobberror",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 914,
+          "name": "Motorfester",
+          "url": "https://www.elefun.no/kategori-914/radiostyrt-bat-motorfester",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 907,
+          "name": "Plastrør for fleksaksel",
+          "url": "https://www.elefun.no/kategori-907/radiostyrt-bat-plastror",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 590,
+          "name": "Propeller",
+          "url": "https://www.elefun.no/kategori-590/radiostyrt-bat-propeller",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 913,
+          "name": "Ror",
+          "url": "https://www.elefun.no/kategori-913/radiostyrt-bat-ror",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 81,
+          "name": "Startere fly, heli og båt",
+          "url": "https://www.elefun.no/kategori-81/glowmotor-starter-fly-heli",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 906,
+          "name": "Teflonskiver",
+          "url": "https://www.elefun.no/kategori-906/radiostyrt-bat-teflonskiver",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 691,
+          "name": "Vannkjøling",
+          "url": "https://www.elefun.no/kategori-691/radiostyrt-bat-vannkjoling",
+          "group": "Tilbehør"
+        }
+      ]
+    },
+    {
+      "id": 1500,
+      "name": "Droner",
+      "icon": "drone",
+      "url": "https://www.elefun.no/droner",
+      "children": [
+        {
+          "id": 775,
+          "name": "Droner med kamera",
+          "url": "https://www.elefun.no/filter-775/drone-med-kamera",
+          "icon": "drone",
+          "group": "Droner"
+        },
+        {
+          "id": 1285,
+          "name": "Droner for industri",
+          "url": "https://www.elefun.no/kategori-1285/drone-proff",
+          "icon": "drone",
+          "group": "Droner"
+        },
+        {
+          "id": 712,
+          "name": "Droner uten kamera",
+          "url": "https://www.elefun.no/kategori-712/drone",
+          "icon": "drone-front",
+          "group": "Droner"
+        },
+        {
+          "id": 1283,
+          "name": "DJI Modelltilbehør",
+          "url": "https://www.elefun.no/kategori-1283",
+          "icon": "dji",
+          "group": "Droneutstyr",
+          "children": [
+            {
+              "id": 1423,
+              "name": "Avata / FPV tilbehør",
+              "url": "https://www.elefun.no/filter-1423/drone-tilbehor-dji"
+            },
+            {
+              "id": 1245,
+              "name": "Inspire Tilbehør",
+              "url": "https://www.elefun.no/filter-1245/drone-tilbehor-dji"
+            },
+            {
+              "id": 1605,
+              "name": "Matrice Tilbehør",
+              "url": "https://www.elefun.no/filter-1605/droner-dji-modelltilbehor-matrice-tilbehor"
+            },
+            {
+              "id": 1277,
+              "name": "Mavic 2 tilbehør",
+              "url": "https://www.elefun.no/kategori-1277/drone-tilbehor-dji"
+            },
+            {
+              "id": 1436,
+              "name": "Mavic 3 Tilbehør",
+              "url": "https://www.elefun.no/kategori-1436/drone-tilbehor-dji"
+            },
+            {
+              "id": 1371,
+              "name": "Mavic Air 2 tilbehør",
+              "url": "https://www.elefun.no/kategori-1371/drone-tilbehor-dji"
+            },
+            {
+              "id": 1427,
+              "name": "Mavic Air 2S tilbehør",
+              "url": "https://www.elefun.no/kategori-1427/drone-tilbehor-dji"
+            },
+            {
+              "id": 1255,
+              "name": "Mavic Air tilbehør",
+              "url": "https://www.elefun.no/kategori-1255/drone-tilbehor-dji"
+            },
+            {
+              "id": 1211,
+              "name": "Mavic Tilbehør",
+              "url": "https://www.elefun.no/kategori-1211/drone-tilbehor-dji"
+            },
+            {
+              "id": 1562,
+              "name": "Mini Tilbehør",
+              "url": "https://www.elefun.no/filter-1562/drone-tilbehor-dji"
+            },
+            {
+              "id": 1591,
+              "name": "Neo Tilbehør",
+              "url": "https://www.elefun.no/filter-1591/drone-tilbehor-dji"
+            },
+            {
+              "id": 1119,
+              "name": "Phantom 3 Tilbehør",
+              "url": "https://www.elefun.no/kategori-1119/drone-tilbehor-dji"
+            },
+            {
+              "id": 1142,
+              "name": "Phantom 4 Tilbehør",
+              "url": "https://www.elefun.no/kategori-1142/drone-tilbehor-dji"
+            }
+          ]
+        },
+        {
+          "id": 1282,
+          "name": "Dronetilbehør",
+          "url": "https://www.elefun.no/kategori-1282/drone-tilbehor",
+          "group": "Droneutstyr"
+        },
+        {
+          "id": 891,
+          "name": "Koffert og sekker",
+          "url": "https://www.elefun.no/kategori-891/drone-sekk-koffert",
+          "icon": "suitcase",
+          "group": "Droneutstyr"
+        },
+        {
+          "id": 1281,
+          "name": "Landingsplattform",
+          "url": "https://www.elefun.no/kategori-1281/drone-landingsplattform",
+          "icon": "helicopter-symbol",
+          "group": "Droneutstyr"
+        },
+        {
+          "id": 1609,
+          "name": "Programvare og tjenester",
+          "url": "https://www.elefun.no/filter-1609/droner-programvare-og-tjenester",
+          "icon": "compact-disc",
+          "group": "Droneutstyr"
+        },
+        {
+          "id": 797,
+          "name": "Propeller",
+          "url": "https://www.elefun.no/kategori-797",
+          "icon": "propeller",
+          "group": "Droneutstyr",
+          "children": [
+            {
+              "id": 798,
+              "name": "Andre",
+              "url": "https://www.elefun.no/kategori-798/droner-propeller"
+            },
+            {
+              "id": 750,
+              "name": "APC",
+              "url": "https://www.elefun.no/kategori-750/droner-propeller"
+            }
+          ]
+        },
+        {
+          "id": 1505,
+          "name": "Simulator",
+          "url": "https://www.elefun.no/kategori-1505",
+          "icon": "desktop",
+          "group": "Droneutstyr",
+          "children": [
+            {
+              "id": 264,
+              "name": "Simulator",
+              "url": "https://www.elefun.no/kategori-264/radioutstyr-simulator",
+              "icon": "desktop"
+            },
+            {
+              "id": 36,
+              "name": "Interface/ledninger",
+              "url": "https://www.elefun.no/kategori-36/radioutstyr-simulator-interface",
+              "icon": "plug"
+            }
+          ]
+        },
+        {
+          "id": 1280,
+          "name": "Solskjerming",
+          "url": "https://www.elefun.no/kategori-1280/drone-solskjerming",
+          "icon": "sun-cloud",
+          "group": "Droneutstyr"
+        },
+        {
+          "id": 1334,
+          "name": "DJI Care Refresh",
+          "url": "https://www.elefun.no/kategori-1334/",
+          "icon": "shield-check",
+          "group": "Droneutstyr"
+        }
+      ]
+    },
+    {
+      "id": 1543,
+      "name": "Droner for FPV",
+      "icon": "drone",
+      "url": "https://www.elefun.no/fpv-drone",
+      "children": [
+        {
+          "id": 1190,
+          "name": "FPV droner",
+          "url": "https://www.elefun.no/kategori-1190",
+          "icon": "drone",
+          "children": [
+            {
+              "id": 1124,
+              "name": "Ferdigbygget",
+              "url": "https://www.elefun.no/kategori-1124/fpv-race-drone"
+            },
+            {
+              "id": 1176,
+              "name": "FPV Rammer",
+              "url": "https://www.elefun.no/kategori-1176/fpv-race-drone-ramme"
+            }
+          ]
+        },
+        {
+          "id": 1380,
+          "name": "DJI Avata / FPV",
+          "url": "https://www.elefun.no/kategori-1380",
+          "icon": "dji",
+          "children": [
+            {
+              "id": 1325,
+              "name": "DJI Avata / FPV / Neo",
+              "url": "https://www.elefun.no/kategori-1325/fpv-race-drone",
+              "icon": "dji"
+            },
+            {
+              "id": 1378,
+              "name": "Kamera og kamerasett",
+              "url": "https://www.elefun.no/kategori-1378/fpv-drone-dji-kamera"
+            },
+            {
+              "id": 1376,
+              "name": "PNP-BNF",
+              "url": "https://www.elefun.no/kategori-1376/fpv-drone"
+            },
+            {
+              "id": 1374,
+              "name": "Tilbehør",
+              "url": "https://www.elefun.no/kategori-1374/fpv-drone-dji-tilbehor"
+            }
+          ]
+        },
+        {
+          "id": 1326,
+          "name": "FPV-fly",
+          "url": "https://www.elefun.no/kategori-1326/droner-fpv-fly-og-vinger",
+          "icon": "paper-plane-top"
+        },
+        {
+          "id": 1182,
+          "name": "Flight controller",
+          "url": "https://www.elefun.no/kategori-1182/fpv-drone-flight-controller",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 1191,
+          "name": "FPV utstyr",
+          "url": "https://www.elefun.no/kategori-1191",
+          "icon": "head-side-goggles",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 1197,
+              "name": "FPV kamera",
+              "url": "https://www.elefun.no/kategori-1197",
+              "icon": "video",
+              "children": [
+                {
+                  "id": 1253,
+                  "name": "Kameratilbehør",
+                  "url": "https://www.elefun.no/kategori-1253/fpv-race-drone-kamera",
+                  "icon": "video"
+                },
+                {
+                  "id": 1184,
+                  "name": "FPV Kamera og sett",
+                  "url": "https://www.elefun.no/kategori-1184/fpv-race-drone-kamera",
+                  "icon": "video"
+                }
+              ]
+            },
+            {
+              "id": 1193,
+              "name": "Videobriller/monitor",
+              "url": "https://www.elefun.no/kategori-1193",
+              "icon": "head-side-goggles",
+              "children": [
+                {
+                  "id": 1325,
+                  "name": "DJI Avata / FPV / Neo",
+                  "url": "https://www.elefun.no/kategori-1325/fpv-race-drone",
+                  "icon": "dji"
+                },
+                {
+                  "id": 932,
+                  "name": "Fat Shark",
+                  "url": "https://www.elefun.no/kategori-932/fpv-race-drone-videobriller",
+                  "icon": "head-side-goggles"
+                },
+                {
+                  "id": 1195,
+                  "name": "Skyzone",
+                  "url": "https://www.elefun.no/kategori-1195/fpv-race-drone-videobriller",
+                  "icon": "head-side-goggles"
+                },
+                {
+                  "id": 1196,
+                  "name": "Diverse",
+                  "url": "https://www.elefun.no/kategori-1196/fpv-race-drone-videobriller",
+                  "icon": "head-side-goggles"
+                },
+                {
+                  "id": 1237,
+                  "name": "VR-Briller for telefon",
+                  "url": "https://www.elefun.no/kategori-1237/vr-briller",
+                  "icon": "head-side-goggles"
+                },
+                {
+                  "id": 745,
+                  "name": "Monitor",
+                  "url": "https://www.elefun.no/kategori-745/fpv-race-drone-monitor",
+                  "icon": "tv"
+                }
+              ]
+            },
+            {
+              "id": 1199,
+              "name": "FPV Tilbehør",
+              "url": "https://www.elefun.no/kategori-1199",
+              "children": [
+                {
+                  "id": 1188,
+                  "name": "FPV tilbehør",
+                  "url": "https://www.elefun.no/kategori-1188/fpv-race-drone-tilbehor"
+                },
+                {
+                  "id": 1414,
+                  "name": "Shark Byte",
+                  "url": "https://www.elefun.no/kategori-1414/fpv-race-drone-tilbehor"
+                },
+                {
+                  "id": 746,
+                  "name": "FPV Kabler",
+                  "url": "https://www.elefun.no/kategori-746/fpv-race-drone-tilbehor"
+                }
+              ]
+            },
+            {
+              "id": 1198,
+              "name": "Videolink",
+              "url": "https://www.elefun.no/kategori-1198",
+              "icon": "satellite-dish",
+              "children": [
+                {
+                  "id": 1186,
+                  "name": "Antenner",
+                  "url": "https://www.elefun.no/kategori-1186/fpv-race-drone-videolink-antenner",
+                  "icon": "tower-broadcast"
+                },
+                {
+                  "id": 1185,
+                  "name": "Videolink",
+                  "url": "https://www.elefun.no/kategori-1185/fpv-race-drone-videolink",
+                  "icon": "satellite-dish"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1247,
+          "name": "Kabler",
+          "url": "https://www.elefun.no/kategori-1247/fpv-drone-kabler",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 1246,
+          "name": "Kapasitatorer",
+          "url": "https://www.elefun.no/kategori-1246/kapasitator",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 891,
+          "name": "Koffert og sekker",
+          "url": "https://www.elefun.no/kategori-891/drone-sekk-koffert",
+          "icon": "suitcase",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 1281,
+          "name": "Landingsplattform",
+          "url": "https://www.elefun.no/kategori-1281/drone-landingsplattform",
+          "icon": "helicopter-symbol",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 1200,
+          "name": "Motor & ESC for FPV race",
+          "url": "https://www.elefun.no/kategori-1200",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 1179,
+              "name": "Motorer - FPV race",
+              "url": "https://www.elefun.no/kategori-1179/fpv-race-drone-motor"
+            },
+            {
+              "id": 1189,
+              "name": "DJI Snail",
+              "url": "https://www.elefun.no/kategori-1189/fpv-race-drone-dji-snail"
+            },
+            {
+              "id": 1178,
+              "name": "Regulator - FPV race",
+              "url": "https://www.elefun.no/kategori-1178/fpv-race-droner-esc"
+            }
+          ]
+        },
+        {
+          "id": 1545,
+          "name": "Propeller FPV",
+          "url": "https://www.elefun.no/kategori-1545",
+          "icon": "propeller3",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 1252,
+              "name": "Azure",
+              "url": "https://www.elefun.no/kategori-1252/fpv-race-drone-propeller"
+            },
+            {
+              "id": 1254,
+              "name": "Gemfan",
+              "url": "https://www.elefun.no/kategori-1254/fpv-race-drone-propeller"
+            },
+            {
+              "id": 1234,
+              "name": "HQ-Prop",
+              "url": "https://www.elefun.no/kategori-1234/fpv-race-drone-propeller"
+            },
+            {
+              "id": 1177,
+              "name": "Diverse",
+              "url": "https://www.elefun.no/kategori-1177/fpv-race-drone-propeller"
+            },
+            {
+              "id": 1289,
+              "name": "2 inch",
+              "url": "https://www.elefun.no/kategori-1289/fpv-race-drone-propeller-2inch"
+            },
+            {
+              "id": 1290,
+              "name": "3 inch",
+              "url": "https://www.elefun.no/kategori-1290/fpv-race-drone-propeller-3inch"
+            },
+            {
+              "id": 1291,
+              "name": "4 inch",
+              "url": "https://www.elefun.no/kategori-1291/fpv-race-drone-propeller-4inch"
+            },
+            {
+              "id": 1292,
+              "name": "5 inch",
+              "url": "https://www.elefun.no/kategori-1292/fpv-race-drone-propeller-5inch"
+            },
+            {
+              "id": 1293,
+              "name": "6 inch",
+              "url": "https://www.elefun.no/kategori-1293/fpv-race-drone-propeller-6inch"
+            },
+            {
+              "id": 1294,
+              "name": "7 inch +",
+              "url": "https://www.elefun.no/kategori-1294/fpv-race-drone-propeller-7inch"
+            },
+            {
+              "id": 1295,
+              "name": "Mikro",
+              "url": "https://www.elefun.no/kategori-1295/fpv-race-drone-propeller"
+            }
+          ]
+        },
+        {
+          "id": 1174,
+          "name": "Race porter",
+          "url": "https://www.elefun.no/kategori-1174/fpv-race-drone-port",
+          "icon": "u",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 1505,
+          "name": "Simulator",
+          "url": "https://www.elefun.no/kategori-1505",
+          "icon": "desktop",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 264,
+              "name": "Simulator",
+              "url": "https://www.elefun.no/kategori-264/radioutstyr-simulator",
+              "icon": "desktop"
+            },
+            {
+              "id": 36,
+              "name": "Interface/ledninger",
+              "url": "https://www.elefun.no/kategori-36/radioutstyr-simulator-interface",
+              "icon": "plug"
+            }
+          ]
+        },
+        {
+          "id": 1248,
+          "name": "Skruer og muttere",
+          "url": "https://www.elefun.no/kategori-1248/fpv-race-drone-tilbehor",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 1251,
+          "name": "Softmount",
+          "url": "https://www.elefun.no/kategori-1251/fpv-race-drone-softmount",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 1250,
+          "name": "Standoffs",
+          "url": "https://www.elefun.no/kategori-1250/fpv-race-drone-standoffs",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 1183,
+          "name": "Øvrig tilbehør",
+          "url": "https://www.elefun.no/kategori-1183/fpv-race-drone-tilbehor",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 1334,
+          "name": "DJI Care Refresh",
+          "url": "https://www.elefun.no/kategori-1334/",
+          "icon": "shield-check",
+          "group": "Tilbehør"
+        }
+      ]
+    },
+    {
+      "id": 1502,
+      "name": "Fly",
+      "icon": "plane",
+      "url": "https://www.elefun.no/fly",
+      "children": [
+        {
+          "id": 841,
+          "name": "El.fly-pakker",
+          "url": "https://www.elefun.no/kategori-841",
+          "icon": "plane",
+          "group": "Modellfly",
+          "children": [
+            {
+              "id": 16,
+              "name": "Komplette flypakker",
+              "url": "https://www.elefun.no/kategori-16/radiostyrt-fly-elektro-pakke"
+            },
+            {
+              "id": 633,
+              "name": "Pakker u. sender/mottaker",
+              "url": "https://www.elefun.no/kategori-633/radiostyrt-fly-elektro-pakke"
+            },
+            {
+              "id": 638,
+              "name": "BNF-fly for Spektrum",
+              "url": "https://www.elefun.no/kategori-638/radiostyrt-fly-elektro-pakke"
+            }
+          ]
+        },
+        {
+          "id": 401,
+          "name": "Bensinfly",
+          "url": "https://www.elefun.no/kategori-401",
+          "icon": "plane",
+          "group": "Modellfly",
+          "children": [
+            {
+              "id": 319,
+              "name": "Acro / 3D",
+              "url": "https://www.elefun.no/kategori-319/radiostyrt-fly-bensin-acro-3d"
+            },
+            {
+              "id": 251,
+              "name": "Skala / Warbird",
+              "url": "https://www.elefun.no/kategori-251/radiostyrt-fly-bensin-skala"
+            }
+          ]
+        },
+        {
+          "id": 398,
+          "name": "Elektrofly",
+          "url": "https://www.elefun.no/kategori-398",
+          "icon": "plane",
+          "group": "Modellfly",
+          "children": [
+            {
+              "id": 641,
+              "name": "Alle Elektrofly",
+              "url": "https://www.elefun.no/kategori-267-12-14-43-145-499-500-501-504-272-252-502/radiostyrt-fly-elektro-alle"
+            },
+            {
+              "id": 272,
+              "name": "Acro / 3D - balsa",
+              "url": "https://www.elefun.no/kategori-272/radiostyrt-fly-elektro-acro-3d"
+            },
+            {
+              "id": 504,
+              "name": "Acro / 3D - foam",
+              "url": "https://www.elefun.no/kategori-504/radiostyrt-fly-elektro-acro-3d"
+            },
+            {
+              "id": 499,
+              "name": "EDF / Jet",
+              "url": "https://www.elefun.no/kategori-499/radiostyrt-fly-elektro-edf-jet"
+            },
+            {
+              "id": 1223,
+              "name": "Flite Test",
+              "url": "https://www.elefun.no/aspx/produsent.aspx?ProdusentID=423"
+            },
+            {
+              "id": 14,
+              "name": "Flyvende vinger",
+              "url": "https://www.elefun.no/kategori-14/radiostyrt-fly-elektro-flyvende-vinger"
+            },
+            {
+              "id": 1326,
+              "name": "FPV-fly",
+              "url": "https://www.elefun.no/kategori-1326/droner-fpv-fly-og-vinger",
+              "icon": "paper-plane-top"
+            },
+            {
+              "id": 43,
+              "name": "Indoor",
+              "url": "https://www.elefun.no/kategori-43/radiostyrt-fly-elektro-indoor"
+            },
+            {
+              "id": 145,
+              "name": "Sjøfly",
+              "url": "https://www.elefun.no/kategori-145/radiostyrt-fly-elektro-sjofly"
+            },
+            {
+              "id": 500,
+              "name": "Skala",
+              "url": "https://www.elefun.no/kategori-500/radiostyrt-fly-elektro-skala"
+            },
+            {
+              "id": 501,
+              "name": "Sport",
+              "url": "https://www.elefun.no/kategori-501/radiostyrt-fly-elektro-sport"
+            },
+            {
+              "id": 502,
+              "name": "Trainer - balsa",
+              "url": "https://www.elefun.no/kategori-502/radiostyrt-fly-elektro-trainer"
+            },
+            {
+              "id": 252,
+              "name": "Trainer - foam",
+              "url": "https://www.elefun.no/kategori-252/radiostyrt-fly-elektro-trainer"
+            },
+            {
+              "id": 267,
+              "name": "Warbird",
+              "url": "https://www.elefun.no/kategori-267/radiostyrt-fly-elektro-warbirds"
+            }
+          ]
+        },
+        {
+          "id": 400,
+          "name": "Fuelfly",
+          "url": "https://www.elefun.no/kategori-400",
+          "icon": "plane",
+          "group": "Modellfly",
+          "children": [
+            {
+              "id": 605,
+              "name": "Elektrokonverteringssett",
+              "url": "https://www.elefun.no/kategori-597/"
+            },
+            {
+              "id": 640,
+              "name": "Alle Fuelfly",
+              "url": "https://www.elefun.no/kategori-310-203-224-242-506-507-508/radiostyrt-fly-fuel-alle"
+            },
+            {
+              "id": 224,
+              "name": "Acro / 3D",
+              "url": "https://www.elefun.no/kategori-224/radiostyrt-fly-fuel-acro-3d"
+            },
+            {
+              "id": 310,
+              "name": "Byggesett / KIT",
+              "url": "https://www.elefun.no/kategori-310/radiostyrt-fly-fuel-kit"
+            },
+            {
+              "id": 507,
+              "name": "Skala",
+              "url": "https://www.elefun.no/kategori-507/radiostyrt-fly-fuel-skala"
+            },
+            {
+              "id": 506,
+              "name": "Warbird",
+              "url": "https://www.elefun.no/kategori-506/radiostyrt-fly-fuel-warbirds"
+            }
+          ]
+        },
+        {
+          "id": 402,
+          "name": "Seilfly",
+          "url": "https://www.elefun.no/kategori-402",
+          "icon": "plane",
+          "group": "Modellfly",
+          "children": [
+            {
+              "id": 77,
+              "name": "Glidere",
+              "url": "https://www.elefun.no/kategori-77/radiostyrt-fly-seilfly-glider"
+            },
+            {
+              "id": 498,
+              "name": "Motorglidere",
+              "url": "https://www.elefun.no/kategori-498/radiostyrt-fly-seilfly-motorglider"
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "name": "Leker - Fly",
+          "url": "https://www.elefun.no/kategori-12/modellfly-leker",
+          "icon": "paper-plane",
+          "group": "Modellfly"
+        },
+        {
+          "id": 403,
+          "name": "Betrekning",
+          "url": "https://www.elefun.no/kategori-403",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 44,
+              "name": "Profilm betrekning",
+              "url": "https://www.elefun.no/kategori-44/radiostyrt-fly-betrekning"
+            },
+            {
+              "id": 222,
+              "name": "Bullet Trim Tape",
+              "url": "https://www.elefun.no/kategori-222/radiostyrt-fly-betrekning-trim-tape"
+            },
+            {
+              "id": 223,
+              "name": "Tilbehør betrekning",
+              "url": "https://www.elefun.no/kategori-223/radiostyrt-fly-betrekning-tilbehor"
+            }
+          ]
+        },
+        {
+          "id": 70,
+          "name": "Flytilbehør diverse",
+          "url": "https://www.elefun.no/kategori-70/radiostyrt-fly-tilbehor",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 843,
+          "name": "Hardware",
+          "url": "https://www.elefun.no/kategori-843",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 545,
+              "name": "Hengsler",
+              "url": "https://www.elefun.no/kategori-545/radiostyrt-fly-hardware-hengsler"
+            },
+            {
+              "id": 23,
+              "name": "Hjul",
+              "url": "https://www.elefun.no/kategori-23/radiostyrt-fly-hardware-hjul"
+            },
+            {
+              "id": 61,
+              "name": "Linker & stag",
+              "url": "https://www.elefun.no/kategori-61/radiostyrt-fly-hardware-linker-stag"
+            },
+            {
+              "id": 75,
+              "name": "Pianotråd",
+              "url": "https://www.elefun.no/kategori-75/materialer-pianotrad"
+            },
+            {
+              "id": 546,
+              "name": "Rorhorn",
+              "url": "https://www.elefun.no/kategori-546/radiostyrt-fly-hardware-rorhorn"
+            },
+            {
+              "id": 88,
+              "name": "Ski og flottører",
+              "url": "https://www.elefun.no/kategori-88/radiostyrt-fly"
+            },
+            {
+              "id": 107,
+              "name": "Spinnere",
+              "url": "https://www.elefun.no/kategori-107/radiostyrt-fly-hardware-spinnere"
+            },
+            {
+              "id": 255,
+              "name": "Understell",
+              "url": "https://www.elefun.no/kategori-255/radiostyrt-fly-hardware-understell"
+            }
+          ]
+        },
+        {
+          "id": 1602,
+          "name": "Krybber og stativer",
+          "url": "https://www.elefun.no/kategori-1602/",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 668,
+          "name": "Lys Fly/Heli/Drone",
+          "url": "https://www.elefun.no/kategori-668/radiostyrt-led",
+          "icon": "lightbulb-on",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 111,
+          "name": "Piloter",
+          "url": "https://www.elefun.no/kategori-111/radiostyrt-fly-pilot",
+          "icon": "user-pilot",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 408,
+          "name": "Propeller",
+          "url": "https://www.elefun.no/kategori-408",
+          "icon": "propeller",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 133,
+              "name": "APC - elektro",
+              "url": "https://www.elefun.no/kategori-133/radiostyrt-fly-propell-elektro"
+            },
+            {
+              "id": 20,
+              "name": "APC - fuel",
+              "url": "https://www.elefun.no/kategori-20/radiostyrt-fly-propell-fuel"
+            },
+            {
+              "id": 318,
+              "name": "Foldepropeller",
+              "url": "https://www.elefun.no/kategori-318/radiostyrt-fly-foldepropeller"
+            },
+            {
+              "id": 19,
+              "name": "GWS - elektro",
+              "url": "https://www.elefun.no/kategori-19/radiostyrt-fly-propell-elektro"
+            },
+            {
+              "id": 1431,
+              "name": "MA - Trepropeller",
+              "url": "https://www.elefun.no/kategori-1431/radiostyrt-fly-propell"
+            },
+            {
+              "id": 792,
+              "name": "Xoar - bensin",
+              "url": "https://www.elefun.no/kategori-792/radiostyrt-fly-propell"
+            },
+            {
+              "id": 21,
+              "name": "Diverse",
+              "url": "https://www.elefun.no/kategori-21/radiostyrt-fly-propell"
+            },
+            {
+              "id": 168,
+              "name": "Propell- og bladbalanserere",
+              "url": "https://www.elefun.no/kategori-168/radiostyrt-fly-propellbalanserer"
+            }
+          ]
+        },
+        {
+          "id": 868,
+          "name": "Røyksystemer",
+          "url": "https://www.elefun.no/kategori-868",
+          "icon": "smoke",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 615,
+              "name": "Oljebasert",
+              "url": "https://www.elefun.no/kategori-615/royksystem"
+            },
+            {
+              "id": 306,
+              "name": "Røykenheter",
+              "url": "https://www.elefun.no/kategori-306/roykpatron",
+              "icon": "smoke"
+            }
+          ]
+        },
+        {
+          "id": 100,
+          "name": "Sendepult/nakkestropp",
+          "url": "https://www.elefun.no/kategori-100/radioutstyr-sendepulter-sendervotter-og-nakkestropper",
+          "icon": "inbox-in",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 1505,
+          "name": "Simulator",
+          "url": "https://www.elefun.no/kategori-1505",
+          "icon": "desktop",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 264,
+              "name": "Simulator",
+              "url": "https://www.elefun.no/kategori-264/radioutstyr-simulator",
+              "icon": "desktop"
+            },
+            {
+              "id": 36,
+              "name": "Interface/ledninger",
+              "url": "https://www.elefun.no/kategori-36/radioutstyr-simulator-interface",
+              "icon": "plug"
+            }
+          ]
+        },
+        {
+          "id": 81,
+          "name": "Startere fly, heli og båt",
+          "url": "https://www.elefun.no/kategori-81/glowmotor-starter-fly-heli",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 172,
+          "name": "Strømsystemer",
+          "url": "https://www.elefun.no/kategori-172/radioutstyr-stromsystemer",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 254,
+          "name": "Vingeposer",
+          "url": "https://www.elefun.no/kategori-254/radiostyrt-fly-vingepose",
+          "group": "Tilbehør"
+        }
+      ]
+    },
+    {
+      "id": 1501,
+      "name": "Helikopter",
+      "icon": "helicopter",
+      "url": "https://www.elefun.no/helikopter",
+      "children": [
+        {
+          "id": 553,
+          "name": "Helikopter",
+          "url": "https://www.elefun.no/filter-553/radiostyrt-helikopter",
+          "icon": "helicopter"
+        },
+        {
+          "id": 584,
+          "name": "Canopy",
+          "url": "https://www.elefun.no/kategori-584",
+          "group": "Helikopterutstyr",
+          "children": [
+            {
+              "id": 577,
+              "name": "Canopy - Trex 450/470",
+              "url": "https://www.elefun.no/kategori-577/radiostyrt-helikopter-canopy"
+            },
+            {
+              "id": 578,
+              "name": "Canopy - Trex 500",
+              "url": "https://www.elefun.no/kategori-578/radiostyrt-helikopter-canopy"
+            },
+            {
+              "id": 579,
+              "name": "Canopy - Trex 550",
+              "url": "https://www.elefun.no/kategori-579/radiostyrt-helikopter-canopy"
+            },
+            {
+              "id": 580,
+              "name": "Canopy - Trex 600",
+              "url": "https://www.elefun.no/kategori-580/radiostyrt-helikopter-canopy"
+            },
+            {
+              "id": 581,
+              "name": "Canopy - Trex 700",
+              "url": "https://www.elefun.no/kategori-581/radiostyrt-helikopter-canopy"
+            },
+            {
+              "id": 288,
+              "name": "Canopy - Andre",
+              "url": "https://www.elefun.no/kategori-288/radiostyrt-helikopter-canopy"
+            }
+          ]
+        },
+        {
+          "id": 521,
+          "name": "Crankshaft clamps",
+          "url": "https://www.elefun.no/kategori-521/verktoy-crankshaft-clamp",
+          "group": "Helikopterutstyr"
+        },
+        {
+          "id": 296,
+          "name": "Flybarless",
+          "url": "https://www.elefun.no/kategori-296/radiostyrt-helikopter-flybarless",
+          "group": "Helikopterutstyr"
+        },
+        {
+          "id": 130,
+          "name": "Helitilbehør",
+          "url": "https://www.elefun.no/kategori-130/radiostyrt-helikopter-tilbehor",
+          "group": "Helikopterutstyr"
+        },
+        {
+          "id": 838,
+          "name": "Rotorblader",
+          "url": "https://www.elefun.no/kategori-838",
+          "group": "Helikopterutstyr",
+          "children": [
+            {
+              "id": 132,
+              "name": "Halerotorblader",
+              "url": "https://www.elefun.no/kategori-132/radiostyrt-helikopter-halerotorblader"
+            },
+            {
+              "id": 131,
+              "name": "Hovedrotorblader",
+              "url": "https://www.elefun.no/kategori-131/radiostyrt-helikopter-hovedrotorblader"
+            }
+          ]
+        },
+        {
+          "id": 1505,
+          "name": "Simulator",
+          "url": "https://www.elefun.no/kategori-1505",
+          "icon": "desktop",
+          "group": "Helikopterutstyr",
+          "children": [
+            {
+              "id": 264,
+              "name": "Simulator",
+              "url": "https://www.elefun.no/kategori-264/radioutstyr-simulator",
+              "icon": "desktop"
+            },
+            {
+              "id": 36,
+              "name": "Interface/ledninger",
+              "url": "https://www.elefun.no/kategori-36/radioutstyr-simulator-interface",
+              "icon": "plug"
+            }
+          ]
+        },
+        {
+          "id": 81,
+          "name": "Startere fly, heli og båt",
+          "url": "https://www.elefun.no/kategori-81/glowmotor-starter-fly-heli",
+          "group": "Helikopterutstyr"
+        }
+      ]
+    },
+    {
+      "id": 1542,
+      "name": "Kamerautstyr",
+      "icon": "video",
+      "url": "https://www.elefun.no/kamerautstyr",
+      "children": [
+        {
+          "id": 629,
+          "name": "Kamera",
+          "url": "https://www.elefun.no/kategori-629/kamera",
+          "icon": "camera-security"
+        },
+        {
+          "id": 1184,
+          "name": "FPV Kamera og sett",
+          "url": "https://www.elefun.no/kategori-1184/fpv-race-drone-kamera",
+          "icon": "video"
+        },
+        {
+          "id": 1193,
+          "name": "Videobriller/monitor",
+          "url": "https://www.elefun.no/kategori-1193",
+          "icon": "head-side-goggles",
+          "children": [
+            {
+              "id": 1325,
+              "name": "DJI Avata / FPV / Neo",
+              "url": "https://www.elefun.no/kategori-1325/fpv-race-drone",
+              "icon": "dji"
+            },
+            {
+              "id": 932,
+              "name": "Fat Shark",
+              "url": "https://www.elefun.no/kategori-932/fpv-race-drone-videobriller",
+              "icon": "head-side-goggles"
+            },
+            {
+              "id": 1195,
+              "name": "Skyzone",
+              "url": "https://www.elefun.no/kategori-1195/fpv-race-drone-videobriller",
+              "icon": "head-side-goggles"
+            },
+            {
+              "id": 1196,
+              "name": "Diverse",
+              "url": "https://www.elefun.no/kategori-1196/fpv-race-drone-videobriller",
+              "icon": "head-side-goggles"
+            },
+            {
+              "id": 1237,
+              "name": "VR-Briller for telefon",
+              "url": "https://www.elefun.no/kategori-1237/vr-briller",
+              "icon": "head-side-goggles"
+            },
+            {
+              "id": 745,
+              "name": "Monitor",
+              "url": "https://www.elefun.no/kategori-745/fpv-race-drone-monitor",
+              "icon": "tv"
+            }
+          ]
+        },
+        {
+          "id": 929,
+          "name": "Håndholdt Kameragimbal",
+          "url": "https://www.elefun.no/kategori-929/kamera-gimbal-handholdt",
+          "icon": "camera-cctv"
+        },
+        {
+          "id": 1612,
+          "name": "Mikrofon",
+          "url": "https://www.elefun.no/filter-1612/mikrofon",
+          "icon": "microphone"
+        },
+        {
+          "id": 679,
+          "name": "Minnekort",
+          "url": "https://www.elefun.no/filter-679/minnekort",
+          "icon": "sd-card"
+        },
+        {
+          "id": 1275,
+          "name": "Minnepenner",
+          "url": "https://www.elefun.no/kategori-1275/minnepenner",
+          "icon": "usb-drive"
+        },
+        {
+          "id": 1199,
+          "name": "FPV Tilbehør",
+          "url": "https://www.elefun.no/kategori-1199",
+          "children": [
+            {
+              "id": 1188,
+              "name": "FPV tilbehør",
+              "url": "https://www.elefun.no/kategori-1188/fpv-race-drone-tilbehor"
+            },
+            {
+              "id": 1414,
+              "name": "Shark Byte",
+              "url": "https://www.elefun.no/kategori-1414/fpv-race-drone-tilbehor"
+            },
+            {
+              "id": 746,
+              "name": "FPV Kabler",
+              "url": "https://www.elefun.no/kategori-746/fpv-race-drone-tilbehor"
+            }
+          ]
+        },
+        {
+          "id": 858,
+          "name": "Kameratilbehør",
+          "url": "https://www.elefun.no/kategori-858",
+          "children": [
+            {
+              "id": 1120,
+              "name": "Tilbehør DJI Osmo",
+              "url": "https://www.elefun.no/kategori-1120/kamera-tilbehor"
+            },
+            {
+              "id": 1319,
+              "name": "Tilbehør DJI Osmo Action",
+              "url": "https://www.elefun.no/kategori-1319/kamera-tilbehor"
+            },
+            {
+              "id": 1300,
+              "name": "Tilbehør DJI Osmo Pocket",
+              "url": "https://www.elefun.no/kategori-1300/kamera-tilbehor"
+            },
+            {
+              "id": 1296,
+              "name": "Tilbehør DJI Ronin-S",
+              "url": "https://www.elefun.no/kategori-1296/kamera-tilbehor"
+            },
+            {
+              "id": 626,
+              "name": "Tilbehør GoPro",
+              "url": "https://www.elefun.no/kategori-626/kamera-tilbehor"
+            },
+            {
+              "id": 1299,
+              "name": "Tilbehør Insta360",
+              "url": "https://www.elefun.no/kategori-1299/kamera-tilbehor"
+            }
+          ]
+        },
+        {
+          "id": 1198,
+          "name": "Videolink",
+          "url": "https://www.elefun.no/kategori-1198",
+          "icon": "satellite-dish",
+          "children": [
+            {
+              "id": 1186,
+              "name": "Antenner",
+              "url": "https://www.elefun.no/kategori-1186/fpv-race-drone-videolink-antenner",
+              "icon": "tower-broadcast"
+            },
+            {
+              "id": 1185,
+              "name": "Videolink",
+              "url": "https://www.elefun.no/kategori-1185/fpv-race-drone-videolink",
+              "icon": "satellite-dish"
+            }
+          ]
+        },
+        {
+          "id": 1334,
+          "name": "DJI Care Refresh",
+          "url": "https://www.elefun.no/kategori-1334/",
+          "icon": "shield-check"
+        }
+      ]
+    },
+    {
+      "id": 1521,
+      "name": "Modellbygging, LEGO & byggesett",
+      "icon": "ship",
+      "url": "https://www.elefun.no/modellbygging",
+      "children": [
+        {
+          "id": 326,
+          "name": "Byggesett",
+          "url": "https://www.elefun.no/kategori-326",
+          "icon": "ship",
+          "group": "Modellbygging",
+          "children": [
+            {
+              "id": 694,
+              "name": "Komplette startsett",
+              "url": "https://www.elefun.no/filter-694/byggesett-startsett",
+              "icon": "box-check",
+              "group": "Plastbyggesett"
+            },
+            {
+              "id": 531,
+              "name": "Båter",
+              "url": "https://www.elefun.no/filter-531/byggesett-plast-bater",
+              "icon": "anchor",
+              "group": "Plastbyggesett"
+            },
+            {
+              "id": 201,
+              "name": "Fly & helikopter",
+              "url": "https://www.elefun.no/filter-201/byggesett-plast-fly-helikopter",
+              "icon": "plane-prop",
+              "group": "Plastbyggesett"
+            },
+            {
+              "id": 695,
+              "name": "Kjøretøy",
+              "url": "https://www.elefun.no/filter-695/byggesett-kjoretoy",
+              "icon": "rv",
+              "group": "Plastbyggesett"
+            },
+            {
+              "id": 1257,
+              "name": "Motorer",
+              "url": "https://www.elefun.no/filter-1257/byggesett-motor",
+              "icon": "engine",
+              "group": "Plastbyggesett"
+            },
+            {
+              "id": 217,
+              "name": "Øvrige byggesett - plast",
+              "url": "https://www.elefun.no/filter-217/byggesett-plast",
+              "icon": "rectangles-mixed",
+              "group": "Plastbyggesett"
+            },
+            {
+              "id": 317,
+              "name": "Seilskuter & båter",
+              "url": "https://www.elefun.no/filter-317/byggesett-tre-bater",
+              "icon": "ship",
+              "group": "Trebyggesett"
+            },
+            {
+              "id": 1422,
+              "name": "Ugears - Trebyggesett",
+              "url": "https://www.elefun.no/filter-1422/byggesett-tre",
+              "icon": "gears",
+              "group": "Trebyggesett"
+            },
+            {
+              "id": 1212,
+              "name": "Øvrige byggesett - tre",
+              "url": "https://www.elefun.no/filter-1212/byggesett-tre",
+              "icon": "rectangles-mixed",
+              "group": "Trebyggesett"
+            },
+            {
+              "id": 699,
+              "name": "Metallbyggesett",
+              "url": "https://www.elefun.no/filter-699/byggesett-metall",
+              "icon": "cars",
+              "group": "Metallbyggesett"
+            }
+          ]
+        },
+        {
+          "id": 684,
+          "name": "Diecast modeller",
+          "url": "https://www.elefun.no/filter-684/diecast-modeller",
+          "icon": "car-side",
+          "group": "Modellbygging"
+        },
+        {
+          "id": 1244,
+          "name": "LEGO & byggeklosser",
+          "url": "https://www.elefun.no/filter-1244/brikker-byggeklosser",
+          "icon": "block-brick",
+          "group": "Modellbygging"
+        },
+        {
+          "id": 1582,
+          "name": "Miniatyrspill",
+          "url": "https://www.elefun.no/kategori-1582",
+          "icon": "warhammer",
+          "group": "Modellbygging",
+          "children": [
+            {
+              "id": 1581,
+              "name": "Spill og startsett",
+              "url": "https://www.elefun.no/filter-1581/miniatyrspill?f=|cba40_e316|cba40_e319|",
+              "icon": "warhammer"
+            },
+            {
+              "id": 1583,
+              "name": "Figurer",
+              "url": "https://www.elefun.no/filter-1581/?f=|cba40_e320|",
+              "icon": "warhammer"
+            },
+            {
+              "id": 1584,
+              "name": "Maling",
+              "url": "https://www.elefun.no/filter-218/miniatyrspill-maling?f=|cba0_eb693|cba0_eb712|",
+              "icon": "fill-drip"
+            },
+            {
+              "id": 1585,
+              "name": "Pensler",
+              "url": "https://www.elefun.no/filter-692/?f=|cba0_eb693|cba0_eb712|",
+              "icon": "paintbrush-fine"
+            },
+            {
+              "id": 1586,
+              "name": "Spray",
+              "url": "https://www.elefun.no/filter-1167/?f=|cba0_eb693|",
+              "icon": "spray-can"
+            },
+            {
+              "id": 1587,
+              "name": "Verktøy & utstyr",
+              "url": "https://www.elefun.no/filter-1587/miniatyrspill-verktoy-utstyr",
+              "icon": "scissors"
+            }
+          ]
+        },
+        {
+          "id": 1399,
+          "name": "Kalendere",
+          "url": "https://www.elefun.no/filter-1399/julekalender",
+          "icon": "tree-christmas",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 705,
+          "name": "Lim",
+          "url": "https://www.elefun.no/kategori-705/verktoy-lim",
+          "icon": "eye-dropper",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 927,
+          "name": "Maling",
+          "url": "https://www.elefun.no/kategori-927",
+          "icon": "fill-drip",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 1597,
+              "name": "Airbrush & utstyr",
+              "url": "https://www.elefun.no/filter-1597/verktoy-airbrush-og-utstyr"
+            },
+            {
+              "id": 311,
+              "name": "Dekalark & maskering",
+              "url": "https://www.elefun.no/kategori-311/dekalark-maskering",
+              "icon": "tape"
+            },
+            {
+              "id": 1167,
+              "name": "Lakk: For plast",
+              "url": "https://www.elefun.no/filter-1167/lakk-for-plast",
+              "icon": "spray-can"
+            },
+            {
+              "id": 218,
+              "name": "Maling",
+              "url": "https://www.elefun.no/filter-218/modellbygging-byggesett-maling-hobby-akrylmaling",
+              "icon": "fill-drip"
+            },
+            {
+              "id": 1598,
+              "name": "Maling - For airbrush",
+              "url": "https://www.elefun.no/filter-1598/maling-for-airbrush"
+            },
+            {
+              "id": 692,
+              "name": "Pensler",
+              "url": "https://www.elefun.no/filter-692/verktoy-pensler",
+              "icon": "paintbrush"
+            }
+          ]
+        },
+        {
+          "id": 1611,
+          "name": "Utstilling & monter",
+          "url": "https://www.elefun.no/filter-1611/modellbygging-utstilling-monter",
+          "icon": "square-heart",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 1217,
+          "name": "Verktøy & byggeutstyr",
+          "url": "https://www.elefun.no/kategori-1217",
+          "icon": "screwdriver-wrench",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 1216,
+              "name": "Startsett modellbygging",
+              "url": "https://www.elefun.no/kategori-1216/modellbygging-verktoy-sett"
+            },
+            {
+              "id": 1219,
+              "name": "Klemmer & klyper",
+              "url": "https://www.elefun.no/kategori-1219/verktoy-klemme-klype"
+            },
+            {
+              "id": 1215,
+              "name": "Kniver",
+              "url": "https://www.elefun.no/kategori-1215/verktoy-kniv"
+            },
+            {
+              "id": 1594,
+              "name": "Kuttematter",
+              "url": "https://www.elefun.no/filter-1594/"
+            },
+            {
+              "id": 1218,
+              "name": "Måleverktøy",
+              "url": "https://www.elefun.no/kategori-1218/verktoy-maleverktoy"
+            },
+            {
+              "id": 210,
+              "name": "Måleverktøy el.",
+              "url": "https://www.elefun.no/kategori-210/verktoy-maleverktoy"
+            },
+            {
+              "id": 1221,
+              "name": "Pinsetter",
+              "url": "https://www.elefun.no/kategori-1221/verktoy-pinsett"
+            },
+            {
+              "id": 109,
+              "name": "Skrujern & umbraco",
+              "url": "https://www.elefun.no/kategori-109/verktoy"
+            },
+            {
+              "id": 1220,
+              "name": "Tenger",
+              "url": "https://www.elefun.no/kategori-1220/verktoy-tenger"
+            },
+            {
+              "id": 1222,
+              "name": "Øvrig byggeutstyr",
+              "url": "https://www.elefun.no/kategori-1222/modellbygging-byggeutstyr"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1531,
+      "name": "Modelljernbane",
+      "icon": "train",
+      "url": "https://www.elefun.no/modelljernbane",
+      "children": [
+        {
+          "id": 731,
+          "name": "Alle togsett",
+          "url": "https://www.elefun.no/kategori-483-732-736-922-1287/",
+          "icon": "train",
+          "group": "Togsett & startsett"
+        },
+        {
+          "id": 483,
+          "name": "Startsett - H0 analog",
+          "url": "https://www.elefun.no/kategori-483/modelljernbane-startsett-h0",
+          "icon": "train",
+          "group": "Togsett & startsett"
+        },
+        {
+          "id": 736,
+          "name": "Startsett - H0 digital",
+          "url": "https://www.elefun.no/kategori-736/modelljernbane-startsett-h0",
+          "icon": "train",
+          "group": "Togsett & startsett"
+        },
+        {
+          "id": 732,
+          "name": "Startsett - G inne/ute",
+          "url": "https://www.elefun.no/kategori-732/modelljernbane-startsett-g",
+          "icon": "train",
+          "group": "Togsett & startsett"
+        },
+        {
+          "id": 1287,
+          "name": "Startsett - Z",
+          "url": "https://www.elefun.no/kategori-1287/modelljernbane-startsett-z",
+          "icon": "train",
+          "group": "Togsett & startsett"
+        },
+        {
+          "id": 922,
+          "name": "Startsett for barn",
+          "url": "https://www.elefun.no/kategori-922/modelljernbane-startsett",
+          "icon": "train",
+          "group": "Togsett & startsett"
+        },
+        {
+          "id": 923,
+          "name": "Lokomotiv",
+          "url": "https://www.elefun.no/kategori-923",
+          "icon": "train",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 749,
+              "name": "H0 - Märklin",
+              "url": "https://www.elefun.no/kategori-749/modelljernbane-lokomotiv-h0"
+            },
+            {
+              "id": 572,
+              "name": "H0 - PIKO",
+              "url": "https://www.elefun.no/kategori-572/modelljernbane-lokomotiv-h0"
+            }
+          ]
+        },
+        {
+          "id": 1264,
+          "name": "Skinner",
+          "url": "https://www.elefun.no/kategori-1264",
+          "icon": "train-track",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 1265,
+              "name": "H0 - C-skinner Märklin",
+              "url": "https://www.elefun.no/kategori-1265/modelljernbane-skinner-h0"
+            },
+            {
+              "id": 484,
+              "name": "H0 - Skinner standard",
+              "url": "https://www.elefun.no/kategori-484/modelljernbane-skinner-h0"
+            },
+            {
+              "id": 1288,
+              "name": "Z - Skinner",
+              "url": "https://www.elefun.no/kategori-1288/modelljernbane-skinner-z"
+            },
+            {
+              "id": 734,
+              "name": "G - Skinner",
+              "url": "https://www.elefun.no/kategori-734/modelljernbane-skinner-g"
+            }
+          ]
+        },
+        {
+          "id": 1267,
+          "name": "Vogner",
+          "url": "https://www.elefun.no/kategori-1267",
+          "icon": "traincar",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 1273,
+              "name": "H0 - Alle",
+              "url": "https://www.elefun.no/kategori-534-1271-1272/"
+            },
+            {
+              "id": 1271,
+              "name": "H0 - Märklin",
+              "url": "https://www.elefun.no/kategori-1271/modelljernbane-vogner-h0"
+            },
+            {
+              "id": 1272,
+              "name": "H0 - Märklin Start Up",
+              "url": "https://www.elefun.no/kategori-1272/modelljernbane-vogner-h0"
+            },
+            {
+              "id": 534,
+              "name": "H0 - PIKO",
+              "url": "https://www.elefun.no/kategori-534/modelljernbane-vogner-h0"
+            },
+            {
+              "id": 762,
+              "name": "G - Togvogner",
+              "url": "https://www.elefun.no/kategori-762/modelljernbane-vogner-g"
+            }
+          ]
+        },
+        {
+          "id": 1269,
+          "name": "Bygninger",
+          "url": "https://www.elefun.no/filter-1269/modelljernbane-bygninger",
+          "icon": "house",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 1268,
+          "name": "Kjøretøy H0",
+          "url": "https://www.elefun.no/kategori-1268/modelljernbane-kjoretoy-h0",
+          "icon": "car-side",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 862,
+          "name": "Landskap",
+          "url": "https://www.elefun.no/filter-862/modelljernbane-landskap",
+          "icon": "trees",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 686,
+          "name": "Deler & tilb.H0",
+          "url": "https://www.elefun.no/kategori-686/modelljernbane-tilbehor-h0",
+          "icon": "gear",
+          "group": "Tilbehør"
+        }
+      ]
+    },
+    {
+      "id": 825,
+      "name": "Motor & tilbehør",
+      "icon": "engine",
+      "url": "https://www.elefun.no/kategori-825",
+      "children": [
+        {
+          "id": 382,
+          "name": "Elmotor & tilb.",
+          "url": "https://www.elefun.no/kategori-382",
+          "children": [
+            {
+              "id": 1557,
+              "name": "Motorsett",
+              "url": "https://www.elefun.no/kategori-1557",
+              "children": [
+                {
+                  "id": 562,
+                  "name": "Motorsett/pakker - Bil",
+                  "url": "https://www.elefun.no/kategori-562/radiostyrt-bil-elmotor-motorsett-borstelos"
+                },
+                {
+                  "id": 283,
+                  "name": "Motorsett/pakker - Fly",
+                  "url": "https://www.elefun.no/kategori-283/radiostyrt-fly-elmotor-motorsett"
+                }
+              ]
+            },
+            {
+              "id": 1558,
+              "name": "Motorer",
+              "url": "https://www.elefun.no/kategori-1558",
+              "children": [
+                {
+                  "id": 29,
+                  "name": "Motorer - Bil børste",
+                  "url": "https://www.elefun.no/kategori-29/radiostyrt-bil-elmotor-borste"
+                },
+                {
+                  "id": 561,
+                  "name": "Motorer - Bil børsteløs",
+                  "url": "https://www.elefun.no/kategori-561/radiostyrt-bil-elmotor-borstelos"
+                },
+                {
+                  "id": 588,
+                  "name": "Motorer - Båt",
+                  "url": "https://www.elefun.no/kategori-588/radiostyrt-bat-elmotor"
+                },
+                {
+                  "id": 376,
+                  "name": "Motorer - Fly børsteløs",
+                  "url": "https://www.elefun.no/filter-376/elmotor-flymotor-borstelos"
+                },
+                {
+                  "id": 1179,
+                  "name": "Motorer - FPV race",
+                  "url": "https://www.elefun.no/kategori-1179/fpv-race-drone-motor"
+                },
+                {
+                  "id": 237,
+                  "name": "Motorer - Heli børsteløs",
+                  "url": "https://www.elefun.no/kategori-237/radiostyrt-helikopter-elmotor-borstelos"
+                }
+              ]
+            },
+            {
+              "id": 1559,
+              "name": "Regulatorer",
+              "url": "https://www.elefun.no/kategori-1559",
+              "children": [
+                {
+                  "id": 196,
+                  "name": "Regulator - Bil børste",
+                  "url": "https://www.elefun.no/kategori-196/radiostyrt-bil-regulator-borste"
+                },
+                {
+                  "id": 42,
+                  "name": "Regulator - Bil børsteløs",
+                  "url": "https://www.elefun.no/kategori-42/radiostyrt-bil-regulator-borstelos"
+                },
+                {
+                  "id": 587,
+                  "name": "Regulator - Båt",
+                  "url": "https://www.elefun.no/kategori-587/radiostyrt-bat-regulator"
+                },
+                {
+                  "id": 195,
+                  "name": "Regulator - Fly/heli børsteløs",
+                  "url": "https://www.elefun.no/kategori-195/regulator-borstelos"
+                }
+              ]
+            },
+            {
+              "id": 1136,
+              "name": "El-Motor/Esc-tilbehør",
+              "url": "https://www.elefun.no/kategori-1136/",
+              "group": "Tilbehør"
+            },
+            {
+              "id": 144,
+              "name": "Hyperion tilbehør",
+              "url": "https://www.elefun.no/kategori-144/radiostyrt-fly-motor-tilbehor",
+              "group": "Tilbehør"
+            },
+            {
+              "id": 79,
+              "name": "Motorfester",
+              "url": "https://www.elefun.no/kategori-79/glowmotor-motorfester",
+              "group": "Tilbehør"
+            },
+            {
+              "id": 1435,
+              "name": "Pinions",
+              "url": "https://www.elefun.no/kategori-1435",
+              "group": "Tilbehør",
+              "children": [
+                {
+                  "id": 726,
+                  "name": "Castle Pinions",
+                  "url": "https://www.elefun.no/kategori-726/elmotor-pinion"
+                },
+                {
+                  "id": 725,
+                  "name": "Pinions Surpass",
+                  "url": "https://www.elefun.no/kategori-725/elmotor-pinion"
+                },
+                {
+                  "id": 65,
+                  "name": "Gir og Pinioner",
+                  "url": "https://www.elefun.no/kategori-65/elmotor-pinion"
+                }
+              ]
+            },
+            {
+              "id": 138,
+              "name": "Propellfeste",
+              "url": "https://www.elefun.no/kategori-138/radiostyrt-fly-elmotor-propellfeste",
+              "group": "Tilbehør"
+            }
+          ]
+        },
+        {
+          "id": 381,
+          "name": "Glowmotor & tilb.",
+          "url": "https://www.elefun.no/kategori-381",
+          "children": [
+            {
+              "id": 31,
+              "name": "Bilmotorer",
+              "url": "https://www.elefun.no/kategori-31/radiostyrt-bil-glowmotor"
+            },
+            {
+              "id": 108,
+              "name": "Helikoptermotorer",
+              "url": "https://www.elefun.no/kategori-108/radiostyrt-helikopter-glowmotor"
+            },
+            {
+              "id": 157,
+              "name": "OS Flymotorer",
+              "url": "https://www.elefun.no/kategori-157/radiostyrt-fly-glowmotor"
+            },
+            {
+              "id": 134,
+              "name": "Startere for bil",
+              "url": "https://www.elefun.no/kategori-134/radiostyrt-bil-glowmotor-starter"
+            },
+            {
+              "id": 177,
+              "name": "Bilpotter",
+              "url": "https://www.elefun.no/kategori-177/radiostyrt-bil-glowmotor-potter"
+            },
+            {
+              "id": 83,
+              "name": "Eksosdeflektor",
+              "url": "https://www.elefun.no/kategori-83/glowmotor-eksosdeflektor"
+            },
+            {
+              "id": 178,
+              "name": "Flypotter",
+              "url": "https://www.elefun.no/kategori-178/radiostyrt-fly-glowmotor-potter"
+            },
+            {
+              "id": 82,
+              "name": "Fuelfilter",
+              "url": "https://www.elefun.no/kategori-82/glowmotor-fuelfilter"
+            },
+            {
+              "id": 181,
+              "name": "Fuelslangeklips",
+              "url": "https://www.elefun.no/kategori-181/glowmotor-fuelslangeklips"
+            },
+            {
+              "id": 85,
+              "name": "Fuelslanger & ventiler",
+              "url": "https://www.elefun.no/kategori-85/glowmotor-fuelslanger-ventiler"
+            },
+            {
+              "id": 78,
+              "name": "Fueltanker",
+              "url": "https://www.elefun.no/kategori-78/glowmotor-fueltank"
+            },
+            {
+              "id": 84,
+              "name": "Fylleflasker",
+              "url": "https://www.elefun.no/kategori-84/glowmotor-fylleflaske"
+            },
+            {
+              "id": 682,
+              "name": "Glødeplugger",
+              "url": "https://www.elefun.no/kategori-682/glowmotor-glodeplugg"
+            },
+            {
+              "id": 87,
+              "name": "Glødere",
+              "url": "https://www.elefun.no/kategori-87/glowmotor-gloder"
+            },
+            {
+              "id": 166,
+              "name": "Helikopterpotter div",
+              "url": "https://www.elefun.no/kategori-166/radiostyrt-helikopter-glowmotor-potte"
+            },
+            {
+              "id": 286,
+              "name": "Luftfilter",
+              "url": "https://www.elefun.no/kategori-286/glowmotor-luftfilter"
+            },
+            {
+              "id": 46,
+              "name": "Pumper",
+              "url": "https://www.elefun.no/kategori-46/glowmotor-pumper"
+            },
+            {
+              "id": 167,
+              "name": "Glowmotordeler",
+              "url": "https://www.elefun.no/kategori-167/glowmotor-deler"
+            },
+            {
+              "id": 79,
+              "name": "Motorfester",
+              "url": "https://www.elefun.no/kategori-79/glowmotor-motorfester"
+            },
+            {
+              "id": 81,
+              "name": "Startere fly, heli og båt",
+              "url": "https://www.elefun.no/kategori-81/glowmotor-starter-fly-heli"
+            }
+          ]
+        },
+        {
+          "id": 1443,
+          "name": "Turbinmotorer",
+          "url": "https://www.elefun.no/kategori-1443",
+          "children": [
+            {
+              "id": 1441,
+              "name": "Turbiner",
+              "url": "https://www.elefun.no/kategori-1441/radiostyrt-fly-turbinmotor"
+            },
+            {
+              "id": 1442,
+              "name": "Turbin tilbehør",
+              "url": "https://www.elefun.no/kategori-1442/radiostyrt-fly-turbinmotor-tilbehor"
+            }
+          ]
+        },
+        {
+          "id": 624,
+          "name": "Bensinmotor & tilb.",
+          "url": "https://www.elefun.no/kategori-624",
+          "children": [
+            {
+              "id": 155,
+              "name": "Bensinmotorer",
+              "url": "https://www.elefun.no/filter-155/radiostyrt-bensinmotor"
+            },
+            {
+              "id": 683,
+              "name": "Tennplugger",
+              "url": "https://www.elefun.no/kategori-683/motor-tilbehor-tennplugger-bensin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1550,
+      "name": "Outlet",
+      "icon": "badge-percent",
+      "url": "https://www.elefun.no/outlet",
+      "children": [
+        {
+          "id": 1297,
+          "name": "Demovarer",
+          "url": "https://www.elefun.no/kategori-1297/outlet-demovare",
+          "icon": "badge-percent"
+        },
+        {
+          "id": 1579,
+          "name": "3D-Print",
+          "url": "https://www.elefun.no/kategori-1579/outlet-3d-print",
+          "icon": "badge-percent"
+        },
+        {
+          "id": 1000,
+          "name": "Batteri og ladere",
+          "url": "https://www.elefun.no/kategori-1000/outlet",
+          "icon": "badge-percent"
+        },
+        {
+          "id": 1001,
+          "name": "Bil & tilbehør",
+          "url": "https://www.elefun.no/kategori-1001/outlet-bil",
+          "icon": "badge-percent"
+        },
+        {
+          "id": 1039,
+          "name": "DJI",
+          "url": "https://www.elefun.no/kategori-1039/outlet-dji",
+          "icon": "badge-percent"
+        },
+        {
+          "id": 1239,
+          "name": "Drone/FPV Race",
+          "url": "https://www.elefun.no/kategori-1239/outlet-drone",
+          "icon": "badge-percent"
+        },
+        {
+          "id": 1003,
+          "name": "Fly & tilbehør",
+          "url": "https://www.elefun.no/kategori-1003/outlet-fly",
+          "icon": "badge-percent"
+        },
+        {
+          "id": 1009,
+          "name": "Øvrig",
+          "url": "https://www.elefun.no/kategori-1009/outlet",
+          "icon": "badge-percent"
+        }
+      ]
+    },
+    {
+      "id": 323,
+      "name": "Radioutstyr",
+      "url": "https://www.elefun.no/radioutstyr",
+      "children": [
+        {
+          "id": 869,
+          "name": "Sendere",
+          "url": "https://www.elefun.no/kategori-869",
+          "group": "Radioutstyr",
+          "children": [
+            {
+              "id": 871,
+              "name": "For bil/båt",
+              "url": "https://www.elefun.no/kategori-871",
+              "children": [
+                {
+                  "id": 480,
+                  "name": "Futaba",
+                  "url": "https://www.elefun.no/kategori-480/radioutstyr-sender"
+                },
+                {
+                  "id": 719,
+                  "name": "Sanwa",
+                  "url": "https://www.elefun.no/kategori-719/radioutstyr-sender"
+                },
+                {
+                  "id": 543,
+                  "name": "Spektrum",
+                  "url": "https://www.elefun.no/kategori-543/radioutstyr-sender"
+                },
+                {
+                  "id": 622,
+                  "name": "Øvrige",
+                  "url": "https://www.elefun.no/kategori-622/radioutstyr-sender"
+                }
+              ]
+            },
+            {
+              "id": 870,
+              "name": "For fly/heli/drone",
+              "url": "https://www.elefun.no/kategori-870",
+              "children": [
+                {
+                  "id": 1157,
+                  "name": "FrSky",
+                  "url": "https://www.elefun.no/kategori-1157/radioutstyr-sender"
+                },
+                {
+                  "id": 118,
+                  "name": "Futaba",
+                  "url": "https://www.elefun.no/kategori-118/radioutstyr-sender"
+                },
+                {
+                  "id": 1153,
+                  "name": "Jeti",
+                  "url": "https://www.elefun.no/kategori-1153/radioutstyr-sender"
+                },
+                {
+                  "id": 1485,
+                  "name": "Radiomaster",
+                  "url": "https://www.elefun.no/kategori-1485/radioutstyr-sender"
+                },
+                {
+                  "id": 199,
+                  "name": "Spektrum",
+                  "url": "https://www.elefun.no/kategori-199/radioutstyr-sender"
+                },
+                {
+                  "id": 895,
+                  "name": "Øvrige",
+                  "url": "https://www.elefun.no/kategori-895/radioutstyr-sender"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 375,
+          "name": "Mottakere",
+          "url": "https://www.elefun.no/kategori-375",
+          "group": "Radioutstyr",
+          "children": [
+            {
+              "id": 481,
+              "name": "Bil & båtmottakere",
+              "url": "https://www.elefun.no/kategori-481/radioutstyr-mottakere"
+            },
+            {
+              "id": 121,
+              "name": "Diverse mottakere",
+              "url": "https://www.elefun.no/kategori-121/radioutstyr-mottakere"
+            },
+            {
+              "id": 1599,
+              "name": "ELRS mottakere",
+              "url": "https://www.elefun.no/filter-1599/radioutstyr-ELRS-mottakere"
+            },
+            {
+              "id": 1158,
+              "name": "FrSky",
+              "url": "https://www.elefun.no/kategori-1158/radioutstyr-mottakere"
+            },
+            {
+              "id": 35,
+              "name": "Futaba",
+              "url": "https://www.elefun.no/kategori-35/radioutstyr-mottakere"
+            },
+            {
+              "id": 122,
+              "name": "Hitec",
+              "url": "https://www.elefun.no/kategori-122/radioutstyr-mottakere"
+            },
+            {
+              "id": 530,
+              "name": "Jeti Duplex Mottakere",
+              "url": "https://www.elefun.no/kategori-530/radioutstyr-mottakere"
+            },
+            {
+              "id": 228,
+              "name": "Spektrum",
+              "url": "https://www.elefun.no/kategori-228/radioutstyr-mottakere"
+            }
+          ]
+        },
+        {
+          "id": 373,
+          "name": "Servoer",
+          "url": "https://www.elefun.no/kategori-373",
+          "icon": "servo",
+          "group": "Radioutstyr",
+          "children": [
+            {
+              "id": 617,
+              "name": "Align",
+              "url": "https://www.elefun.no/kategori-617/radioutstyr-servo",
+              "group": "Servoer"
+            },
+            {
+              "id": 38,
+              "name": "Diverse",
+              "url": "https://www.elefun.no/kategori-38/radioutstyr-servo",
+              "group": "Servoer"
+            },
+            {
+              "id": 1382,
+              "name": "Dualsky",
+              "url": "https://www.elefun.no/kategori-1382/radioutstyr-servo",
+              "group": "Servoer"
+            },
+            {
+              "id": 125,
+              "name": "Futaba",
+              "url": "https://www.elefun.no/kategori-125/radioutstyr-servo",
+              "group": "Servoer"
+            },
+            {
+              "id": 126,
+              "name": "Hitec",
+              "url": "https://www.elefun.no/kategori-126/radioutstyr-servo",
+              "group": "Servoer"
+            },
+            {
+              "id": 743,
+              "name": "KST",
+              "url": "https://www.elefun.no/kategori-743/radioutstyr-servo",
+              "group": "Servoer"
+            },
+            {
+              "id": 269,
+              "name": "Power HD",
+              "url": "https://www.elefun.no/kategori-269/radioutstyr-servo",
+              "group": "Servoer"
+            },
+            {
+              "id": 938,
+              "name": "Sanwa",
+              "url": "https://www.elefun.no/kategori-938/radioutstyr-servo",
+              "group": "Servoer"
+            },
+            {
+              "id": 680,
+              "name": "Savöx",
+              "url": "https://www.elefun.no/kategori-680/radioutstyr-servo",
+              "group": "Servoer"
+            },
+            {
+              "id": 105,
+              "name": "Girsett for servoer",
+              "url": "https://www.elefun.no/kategori-105/radioutstyr-servo",
+              "group": "Servotilbehør"
+            },
+            {
+              "id": 308,
+              "name": "Power HD Servotilbehør",
+              "url": "https://www.elefun.no/kategori-308/radioutstyr-servo",
+              "group": "Servotilbehør"
+            },
+            {
+              "id": 161,
+              "name": "Servohorn & skruer",
+              "url": "https://www.elefun.no/kategori-161/radioutstyr-servo-servohorn-skruer",
+              "group": "Servotilbehør"
+            },
+            {
+              "id": 363,
+              "name": "Servohus",
+              "url": "https://www.elefun.no/kategori-363/radioutstyr-servo-servohus",
+              "group": "Servotilbehør"
+            }
+          ]
+        },
+        {
+          "id": 100,
+          "name": "Sendepult/nakkestropp",
+          "url": "https://www.elefun.no/kategori-100/radioutstyr-sendepulter-sendervotter-og-nakkestropper",
+          "icon": "inbox-in",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 1258,
+          "name": "Sender/mottaker batterier",
+          "url": "https://www.elefun.no/kategori-1258",
+          "icon": "battery-full",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 359,
+              "name": "Senderbatteri NiMh",
+              "url": "https://www.elefun.no/kategori-359/batteri-sender-nimh"
+            },
+            {
+              "id": 1259,
+              "name": "Senderbatteri LiPo",
+              "url": "https://www.elefun.no/kategori-1259/batteri-sender-lipo"
+            },
+            {
+              "id": 526,
+              "name": "Senderbatteri LiFe",
+              "url": "https://www.elefun.no/kategori-526/batteri-sender-life"
+            },
+            {
+              "id": 142,
+              "name": "Mottakerbatteri NiMh",
+              "url": "https://www.elefun.no/kategori-142/batteri-mottaker-nimh"
+            },
+            {
+              "id": 1260,
+              "name": "Mottakerbatteri LiPo",
+              "url": "https://www.elefun.no/kategori-1260/batteri-mottaker-lipo"
+            },
+            {
+              "id": 527,
+              "name": "Mottakerbatteri LiFe",
+              "url": "https://www.elefun.no/kategori-527/batteri-mottaker-life"
+            },
+            {
+              "id": 4,
+              "name": "Batterier (løse celler)",
+              "url": "https://www.elefun.no/kategori-4/batteri-nimh"
+            }
+          ]
+        },
+        {
+          "id": 1505,
+          "name": "Simulator",
+          "url": "https://www.elefun.no/kategori-1505",
+          "icon": "desktop",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 264,
+              "name": "Simulator",
+              "url": "https://www.elefun.no/kategori-264/radioutstyr-simulator",
+              "icon": "desktop"
+            },
+            {
+              "id": 36,
+              "name": "Interface/ledninger",
+              "url": "https://www.elefun.no/kategori-36/radioutstyr-simulator-interface",
+              "icon": "plug"
+            }
+          ]
+        },
+        {
+          "id": 723,
+          "name": "Telemetri",
+          "url": "https://www.elefun.no/kategori-723",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 1213,
+              "name": "FrSky",
+              "url": "https://www.elefun.no/kategori-1213/radioutstyr-telemetri"
+            },
+            {
+              "id": 925,
+              "name": "Futaba",
+              "url": "https://www.elefun.no/kategori-925/radioutstyr-telemetri"
+            },
+            {
+              "id": 1149,
+              "name": "Jeti",
+              "url": "https://www.elefun.no/kategori-1149/radioutstyr-telemetri"
+            },
+            {
+              "id": 924,
+              "name": "Spektrum",
+              "url": "https://www.elefun.no/kategori-924/radioutstyr-telemetri"
+            }
+          ]
+        },
+        {
+          "id": 548,
+          "name": "Servokabler",
+          "url": "https://www.elefun.no/kategori-548",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 139,
+              "name": "Servoforlengere",
+              "url": "https://www.elefun.no/kategori-139/radioutstyr-servokabler-forlengere"
+            },
+            {
+              "id": 549,
+              "name": "Y-kabler",
+              "url": "https://www.elefun.no/kategori-549/radioutstyr-servokabler-y"
+            },
+            {
+              "id": 550,
+              "name": "Servoledning og kontakter",
+              "url": "https://www.elefun.no/kategori-550/radioutstyr-servokabler-servoledning-kontakter"
+            }
+          ]
+        },
+        {
+          "id": 839,
+          "name": "Heliutstyr",
+          "url": "https://www.elefun.no/kategori-839",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 114,
+              "name": "Governor",
+              "url": "https://www.elefun.no/kategori-114/radiostyrt-helikopter-governor"
+            },
+            {
+              "id": 68,
+              "name": "Gyro",
+              "url": "https://www.elefun.no/kategori-68/radiostyrt-helikopter-gyro"
+            },
+            {
+              "id": 296,
+              "name": "Flybarless",
+              "url": "https://www.elefun.no/kategori-296/radiostyrt-helikopter-flybarless"
+            }
+          ]
+        },
+        {
+          "id": 377,
+          "name": "Øvrig radioutstyr",
+          "url": "https://www.elefun.no/kategori-377",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 39,
+              "name": "Annet radioutstyr",
+              "url": "https://www.elefun.no/kategori-39/radioutstyr-tilbehor"
+            },
+            {
+              "id": 153,
+              "name": "Antenner",
+              "url": "https://www.elefun.no/kategori-153/radioutstyr-antenner"
+            },
+            {
+              "id": 89,
+              "name": "Antennerør",
+              "url": "https://www.elefun.no/kategori-89/radioutstyr-antenneror"
+            },
+            {
+              "id": 361,
+              "name": "Brytere",
+              "url": "https://www.elefun.no/kategori-361/radioutstyr-brytere"
+            },
+            {
+              "id": 681,
+              "name": "Futaba S.Bus",
+              "url": "https://www.elefun.no/kategori-681/radioutstyr-futaba-sbus"
+            },
+            {
+              "id": 915,
+              "name": "Gyrostabilisering for bil",
+              "url": "https://www.elefun.no/kategori-915/radiostyrt-bil-gyro"
+            },
+            {
+              "id": 937,
+              "name": "Gyrostabilisering for fly",
+              "url": "https://www.elefun.no/kategori-937/radioutstyr-gyrostabilisering-fly"
+            },
+            {
+              "id": 1411,
+              "name": "Immersion Ghost",
+              "url": "https://www.elefun.no/kategori-1411/radioutstyr-immersion-ghost"
+            },
+            {
+              "id": 1151,
+              "name": "Jeti BOX",
+              "url": "https://www.elefun.no/kategori-1151/radioutstyr-jeti-box"
+            },
+            {
+              "id": 1150,
+              "name": "Jeti Koblinger/Ledninger",
+              "url": "https://www.elefun.no/kategori-1150/radioutstyr-jeti-koblinger"
+            },
+            {
+              "id": 1148,
+              "name": "Jeti Radiotilbehør",
+              "url": "https://www.elefun.no/kategori-1148/radioutstyr-jeti-tilbehor"
+            },
+            {
+              "id": 522,
+              "name": "Moduler",
+              "url": "https://www.elefun.no/kategori-522/radioutstyr-moduler"
+            },
+            {
+              "id": 238,
+              "name": "Radiosenderdeler",
+              "url": "https://www.elefun.no/kategori-238/radioutstyr-senderdeler"
+            },
+            {
+              "id": 150,
+              "name": "Regulator RX",
+              "url": "https://www.elefun.no/kategori-150/radioutstyr-regulator-rx"
+            },
+            {
+              "id": 176,
+              "name": "Senderkofferter",
+              "url": "https://www.elefun.no/kategori-176/feltutstyr-senderkofferter"
+            },
+            {
+              "id": 1336,
+              "name": "TBS Crossfire",
+              "url": "https://www.elefun.no/kategori-1336/radioutstyr-tbs-crossfire"
+            },
+            {
+              "id": 140,
+              "name": "Trainerkabel",
+              "url": "https://www.elefun.no/kategori-140/radioutstyr-trainerkabel"
+            },
+            {
+              "id": 172,
+              "name": "Strømsystemer",
+              "url": "https://www.elefun.no/kategori-172/radioutstyr-stromsystemer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1527,
+      "name": "Raketter",
+      "icon": "rocket",
+      "url": "https://www.elefun.no/modellraketter",
+      "children": [
+        {
+          "id": 302,
+          "name": "Rakett Startsett",
+          "url": "https://www.elefun.no/kategori-302/modellrakett-startsett",
+          "icon": "rocket",
+          "group": "Raketter"
+        },
+        {
+          "id": 303,
+          "name": "Raketter - Singelmotor",
+          "url": "https://www.elefun.no/kategori-303/raketter-singelmotor",
+          "icon": "rocket-launch",
+          "group": "Raketter"
+        },
+        {
+          "id": 1228,
+          "name": "Raketter - Multimotor",
+          "url": "https://www.elefun.no/kategori-1228/raketter-multimotor",
+          "icon": "rocket-launch",
+          "group": "Raketter"
+        },
+        {
+          "id": 614,
+          "name": "Luft/strikkraketter",
+          "url": "https://www.elefun.no/kategori-614/modellrakett-luft-strikkraketter",
+          "group": "Raketter"
+        },
+        {
+          "id": 305,
+          "name": "Vannraketter",
+          "url": "https://www.elefun.no/kategori-305/modellrakett-vannrakett",
+          "group": "Raketter"
+        },
+        {
+          "id": 1613,
+          "name": "Fyrverkeri",
+          "url": "https://www.elefun.no/filter-1613/fyrverkeri",
+          "icon": "explosion",
+          "group": "Raketter"
+        },
+        {
+          "id": 893,
+          "name": "Fallskjermer",
+          "url": "https://www.elefun.no/kategori-893/modellrakett-fallskjerm",
+          "icon": "parachute-box",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 1161,
+          "name": "Høydemåler",
+          "url": "https://www.elefun.no/kategori-1161/modellrakett-hoydemaler",
+          "icon": "gauge-high",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 892,
+          "name": "Motorer",
+          "url": "https://www.elefun.no/filter-892/modellrakett-motorer",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 301,
+          "name": "Rakettutstyr",
+          "url": "https://www.elefun.no/kategori-301/modellrakett-utstyr",
+          "group": "Tilbehør"
+        },
+        {
+          "id": 868,
+          "name": "Røyksystemer",
+          "url": "https://www.elefun.no/kategori-868",
+          "icon": "smoke",
+          "group": "Tilbehør",
+          "children": [
+            {
+              "id": 615,
+              "name": "Oljebasert",
+              "url": "https://www.elefun.no/kategori-615/royksystem"
+            },
+            {
+              "id": 306,
+              "name": "Røykenheter",
+              "url": "https://www.elefun.no/kategori-306/roykpatron",
+              "icon": "smoke"
+            }
+          ]
+        },
+        {
+          "id": 894,
+          "name": "Tennere & lunter",
+          "url": "https://www.elefun.no/kategori-894/modellrakett-tennere",
+          "group": "Tilbehør"
+        }
+      ]
+    },
+    {
+      "id": 1539,
+      "name": "Solenergi",
+      "icon": "solar-panel",
+      "url": "https://www.elefun.no/solenergi",
+      "children": [
+        {
+          "id": 1454,
+          "name": "Pakkeløsninger",
+          "url": "https://www.elefun.no/filter-1454/solcellepanel-pakkelosninger",
+          "icon": "boxes-packing"
+        },
+        {
+          "id": 1460,
+          "name": "Solcellepanel",
+          "url": "https://www.elefun.no/kategori-1460",
+          "icon": "solar-panel",
+          "children": [
+            {
+              "id": 1451,
+              "name": "Fastmontert",
+              "url": "https://www.elefun.no/filter-1451/solcellepanel"
+            },
+            {
+              "id": 1461,
+              "name": "Mobilt",
+              "url": "https://www.elefun.no/filter-740/?f=|cba19_e127|"
+            }
+          ]
+        },
+        {
+          "id": 1462,
+          "name": "Invertere",
+          "url": "https://www.elefun.no/kategori-1462",
+          "icon": "server",
+          "children": [
+            {
+              "id": 1450,
+              "name": "Alle invertere",
+              "url": "https://www.elefun.no/filter-1450/solcelle-inverter"
+            },
+            {
+              "id": 1463,
+              "name": "1-fas 230V IT",
+              "url": "https://www.elefun.no/filter-1450/?f=|cba20_e129|"
+            },
+            {
+              "id": 1572,
+              "name": "1-fas 400V TN",
+              "url": "https://www.elefun.no/filter-1450/?f=|cba20_e231|"
+            },
+            {
+              "id": 1464,
+              "name": "3-fas 230V IT",
+              "url": "https://www.elefun.no/filter-1450/?f=|cba20_e130|"
+            },
+            {
+              "id": 1465,
+              "name": "3-fas 400V TN",
+              "url": "https://www.elefun.no/filter-1450/?f=|cba20_e131|"
+            },
+            {
+              "id": 1601,
+              "name": "12V DC - 230V AC",
+              "url": "https://www.elefun.no/filter-1450/?f=|cba20_e420|"
+            },
+            {
+              "id": 1600,
+              "name": "Off-grid",
+              "url": "https://www.elefun.no/filter-1450/?f=|cba20_e419|"
+            }
+          ]
+        },
+        {
+          "id": 1466,
+          "name": "Festemateriell",
+          "url": "https://www.elefun.no/kategori-1466",
+          "icon": "screwdriver",
+          "children": [
+            {
+              "id": 1452,
+              "name": "Alt festemateriell",
+              "url": "https://www.elefun.no/filter-1452/solcelle-festemateriell"
+            },
+            {
+              "id": 1470,
+              "name": "Flatt tak",
+              "url": "https://www.elefun.no/filter-1452/?f=|cba21_e135|"
+            },
+            {
+              "id": 1469,
+              "name": "Skråtak metall",
+              "url": "https://www.elefun.no/filter-1452/?f=|cba21_e134|"
+            },
+            {
+              "id": 1468,
+              "name": "Skråtak takpapp",
+              "url": "https://www.elefun.no/filter-1452/?f=|cba21_e133|"
+            },
+            {
+              "id": 1467,
+              "name": "Skråtak tegl",
+              "url": "https://www.elefun.no/filter-1452/?f=|cba21_e132|"
+            }
+          ]
+        },
+        {
+          "id": 1473,
+          "name": "Batteribank",
+          "url": "https://www.elefun.no/kategori-1473",
+          "icon": "car-battery",
+          "children": [
+            {
+              "id": 740,
+              "name": "Bærbar strømbank",
+              "url": "https://www.elefun.no/filter-740/strombank?f=|cba19_e125|",
+              "icon": "plug-circle-bolt"
+            },
+            {
+              "id": 1491,
+              "name": "Strømlagring",
+              "url": "https://www.elefun.no/filter-1491/batteribank-for-stromlagring",
+              "icon": "car-battery"
+            }
+          ]
+        },
+        {
+          "id": 1574,
+          "name": "Elbillader",
+          "url": "https://www.elefun.no/filter-1574/solcelle-elbillader"
+        },
+        {
+          "id": 1476,
+          "name": "Tilbehør",
+          "url": "https://www.elefun.no/kategori-1476",
+          "children": [
+            {
+              "id": 1453,
+              "name": "Kabler og plugger",
+              "url": "https://www.elefun.no/filter-1453/solcelle-kabler-plugger"
+            },
+            {
+              "id": 1486,
+              "name": "Optimizere",
+              "url": "https://www.elefun.no/filter-1486/solcelle-optimizer"
+            },
+            {
+              "id": 1478,
+              "name": "Sikkerhetsbrytere",
+              "url": "https://www.elefun.no/filter-1478/solcelle-sikkerhetsbrytere"
+            },
+            {
+              "id": 1483,
+              "name": "Skilt og merking",
+              "url": "https://www.elefun.no/filter-1483/solcelle-skilt-merking"
+            },
+            {
+              "id": 1480,
+              "name": "Tilbehør batteribank",
+              "url": "https://www.elefun.no/filter-740/?f=|cba19_e126|cba19_e128|cba19_e127|"
+            },
+            {
+              "id": 1479,
+              "name": "Tilbehør inverter",
+              "url": "https://www.elefun.no/filter-1479/solcelle-inverter-tilbehor"
+            },
+            {
+              "id": 1555,
+              "name": "Tilbehør solcelle",
+              "url": "https://www.elefun.no/filter-1555/solcelle-tilbehor"
+            },
+            {
+              "id": 1477,
+              "name": "Verktøy",
+              "url": "https://www.elefun.no/filter-1477/solcelle-verktoy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1508,
+      "name": "Sparkesykler & elkjøretøy",
+      "icon": "scooter",
+      "url": "https://www.elefun.no/elkjoretoy",
+      "children": [
+        {
+          "id": 1320,
+          "name": "Elektrisk sparkesykkel",
+          "url": "https://www.elefun.no/kategori-1320/elkjoretoy-elektrisk-sparkesykkel",
+          "icon": "scooter"
+        },
+        {
+          "id": 1573,
+          "name": "GoKart",
+          "url": "https://www.elefun.no/filter-1573/elkjoretoy-gokart",
+          "icon": "flag-checkered"
+        },
+        {
+          "id": 1261,
+          "name": "Elektrisk longboard",
+          "url": "https://www.elefun.no/kategori-1261/elkjoretoy-elektrisk-longboard",
+          "icon": "skate"
+        }
+      ]
+    },
+    {
+      "id": 1507,
+      "name": "Sport, spill & hobby",
+      "icon": "thumbs-up",
+      "url": "https://www.elefun.no/hobby-lek-og-moro",
+      "children": [
+        {
+          "id": 1490,
+          "name": "Bengalske fakler",
+          "url": "https://www.elefun.no/kategori-1490/bengalsk-fakkel",
+          "icon": "sun"
+        },
+        {
+          "id": 1618,
+          "name": "Dart",
+          "url": "https://www.elefun.no/filter-1618/dart",
+          "icon": "bullseye-arrow"
+        },
+        {
+          "id": 1448,
+          "name": "Frisbeegolf",
+          "url": "https://www.elefun.no/kategori-1448",
+          "icon": "flying-disc",
+          "children": [
+            {
+              "id": 1446,
+              "name": "Disker",
+              "url": "https://www.elefun.no/filter-1446/frisbeegolf-disk",
+              "icon": "flying-disc"
+            },
+            {
+              "id": 1447,
+              "name": "Tilbehør",
+              "url": "https://www.elefun.no/filter-1447/frisbeegolf-tilbehor",
+              "icon": "backpack"
+            }
+          ]
+        },
+        {
+          "id": 1387,
+          "name": "Magnetfiske",
+          "url": "https://www.elefun.no/kategori-1387/magnetfiske",
+          "icon": "magnet"
+        },
+        {
+          "id": 1347,
+          "name": "Metalldetektorer",
+          "url": "https://www.elefun.no/kategori-1347",
+          "icon": "detector",
+          "children": [
+            {
+              "id": 1344,
+              "name": "Metalldetektorer",
+              "url": "https://www.elefun.no/kategori-1344/metalldetektor",
+              "icon": "detector"
+            },
+            {
+              "id": 1345,
+              "name": "Metalldetektor tilbehør",
+              "url": "https://www.elefun.no/kategori-1345/metalldetektor-tilbehor"
+            }
+          ]
+        },
+        {
+          "id": 1582,
+          "name": "Miniatyrspill",
+          "url": "https://www.elefun.no/kategori-1582",
+          "icon": "warhammer",
+          "children": [
+            {
+              "id": 1581,
+              "name": "Spill og startsett",
+              "url": "https://www.elefun.no/filter-1581/miniatyrspill?f=|cba40_e316|cba40_e319|",
+              "icon": "warhammer"
+            },
+            {
+              "id": 1583,
+              "name": "Figurer",
+              "url": "https://www.elefun.no/filter-1581/?f=|cba40_e320|",
+              "icon": "warhammer"
+            },
+            {
+              "id": 1584,
+              "name": "Maling",
+              "url": "https://www.elefun.no/filter-218/miniatyrspill-maling?f=|cba0_eb693|cba0_eb712|",
+              "icon": "fill-drip"
+            },
+            {
+              "id": 1585,
+              "name": "Pensler",
+              "url": "https://www.elefun.no/filter-692/?f=|cba0_eb693|cba0_eb712|",
+              "icon": "paintbrush-fine"
+            },
+            {
+              "id": 1586,
+              "name": "Spray",
+              "url": "https://www.elefun.no/filter-1167/?f=|cba0_eb693|",
+              "icon": "spray-can"
+            },
+            {
+              "id": 1587,
+              "name": "Verktøy & utstyr",
+              "url": "https://www.elefun.no/filter-1587/miniatyrspill-verktoy-utstyr",
+              "icon": "scissors"
+            }
+          ]
+        },
+        {
+          "id": 1576,
+          "name": "Raspberry Pi",
+          "url": "https://www.elefun.no/aspx/produsent.aspx?pid=686",
+          "icon": "raspberry-pi"
+        },
+        {
+          "id": 1230,
+          "name": "Roboter",
+          "url": "https://www.elefun.no/kategori-1230/roboter",
+          "icon": "robot"
+        },
+        {
+          "id": 1615,
+          "name": "Robotstøvsuger",
+          "url": "https://www.elefun.no/filter-1615/robotstovsuger",
+          "icon": "vacuum-robot"
+        },
+        {
+          "id": 306,
+          "name": "Røykenheter",
+          "url": "https://www.elefun.no/kategori-306/roykpatron",
+          "icon": "smoke"
+        },
+        {
+          "id": 1235,
+          "name": "Solbriller",
+          "url": "https://www.elefun.no/kategori-1235/solbriller",
+          "icon": "glasses"
+        },
+        {
+          "id": 1226,
+          "name": "Tenkespill & fidgets",
+          "url": "https://www.elefun.no/kategori-1226/tenkespill-fidgets",
+          "icon": "solid"
+        },
+        {
+          "id": 1237,
+          "name": "VR-Briller for telefon",
+          "url": "https://www.elefun.no/kategori-1237/vr-briller",
+          "icon": "head-side-goggles"
+        },
+        {
+          "id": 1575,
+          "name": "Walkie Talkie",
+          "url": "https://www.elefun.no/filter-1575/walkie-talkie",
+          "icon": "walkie-talkie"
+        }
+      ]
+    },
+    {
+      "id": 1506,
+      "name": "Verktøy, utstyr & tilbehør",
+      "icon": "screwdriver-wrench",
+      "url": "https://www.elefun.no/hobbyverktoy-og-utstyr",
+      "children": [
+        {
+          "id": 883,
+          "name": "Verktøy & utstyr",
+          "url": "https://www.elefun.no/kategori-883",
+          "icon": "screwdriver-wrench",
+          "children": [
+            {
+              "id": 516,
+              "name": "Elektrisk verktøy",
+              "url": "https://www.elefun.no/kategori-516",
+              "children": [
+                {
+                  "id": 285,
+                  "name": "Dremel",
+                  "url": "https://www.elefun.no/kategori-285/verktoy-dremel"
+                },
+                {
+                  "id": 290,
+                  "name": "Dremel tilbehør",
+                  "url": "https://www.elefun.no/kategori-290/verktoy-dremel"
+                }
+              ]
+            },
+            {
+              "id": 390,
+              "name": "Håndverktøy og spesialverktøy",
+              "url": "https://www.elefun.no/kategori-390",
+              "children": [
+                {
+                  "id": 1216,
+                  "name": "Startsett modellbygging",
+                  "url": "https://www.elefun.no/kategori-1216/modellbygging-verktoy-sett"
+                },
+                {
+                  "id": 1219,
+                  "name": "Klemmer & klyper",
+                  "url": "https://www.elefun.no/kategori-1219/verktoy-klemme-klype"
+                },
+                {
+                  "id": 1215,
+                  "name": "Kniver",
+                  "url": "https://www.elefun.no/kategori-1215/verktoy-kniv"
+                },
+                {
+                  "id": 1594,
+                  "name": "Kuttematter",
+                  "url": "https://www.elefun.no/filter-1594/"
+                },
+                {
+                  "id": 1218,
+                  "name": "Måleverktøy",
+                  "url": "https://www.elefun.no/kategori-1218/verktoy-maleverktoy"
+                },
+                {
+                  "id": 210,
+                  "name": "Måleverktøy el.",
+                  "url": "https://www.elefun.no/kategori-210/verktoy-maleverktoy"
+                },
+                {
+                  "id": 1221,
+                  "name": "Pinsetter",
+                  "url": "https://www.elefun.no/kategori-1221/verktoy-pinsett"
+                },
+                {
+                  "id": 109,
+                  "name": "Skrujern & umbraco",
+                  "url": "https://www.elefun.no/kategori-109/verktoy"
+                },
+                {
+                  "id": 518,
+                  "name": "Spesialverktøy bil",
+                  "url": "https://www.elefun.no/kategori-518/radiostyrt-bil-verktoy"
+                },
+                {
+                  "id": 519,
+                  "name": "Spesialverktøy fly",
+                  "url": "https://www.elefun.no/kategori-519/radiostyrt-fly-verktoy"
+                },
+                {
+                  "id": 520,
+                  "name": "Spesialverktøy heli",
+                  "url": "https://www.elefun.no/kategori-520/radiostyrt-helikopter-verktoy"
+                },
+                {
+                  "id": 1220,
+                  "name": "Tenger",
+                  "url": "https://www.elefun.no/kategori-1220/verktoy-tenger"
+                },
+                {
+                  "id": 168,
+                  "name": "Propell- og bladbalanserere",
+                  "url": "https://www.elefun.no/kategori-168/radiostyrt-fly-propellbalanserer"
+                },
+                {
+                  "id": 1222,
+                  "name": "Øvrig byggeutstyr",
+                  "url": "https://www.elefun.no/kategori-1222/modellbygging-byggeutstyr"
+                }
+              ]
+            },
+            {
+              "id": 260,
+              "name": "Loddeutstyr",
+              "url": "https://www.elefun.no/kategori-260/verktoy-loddeutstyr"
+            }
+          ]
+        },
+        {
+          "id": 1595,
+          "name": "Brannsikkerhet",
+          "url": "https://www.elefun.no/kategori-1595",
+          "icon": "fire-extinguisher",
+          "children": [
+            {
+              "id": 1596,
+              "name": "Røykvarslere",
+              "url": "https://www.elefun.no/kategori-1596/",
+              "icon": "sensor-on"
+            },
+            {
+              "id": 523,
+              "name": "Sikker ladebag for LiPo",
+              "url": "https://www.elefun.no/kategori-523/sikker-ladebag",
+              "icon": "dumpster-fire"
+            },
+            {
+              "id": 1274,
+              "name": "Spesialbrannslukkere",
+              "url": "https://www.elefun.no/kategori-1274/brannslukker",
+              "icon": "fire-extinguisher"
+            }
+          ]
+        },
+        {
+          "id": 405,
+          "name": "Feltutstyr",
+          "url": "https://www.elefun.no/kategori-405",
+          "icon": "briefcase",
+          "children": [
+            {
+              "id": 101,
+              "name": "Feltbokser, bag og oppbevaring",
+              "url": "https://www.elefun.no/kategori-101/verktoy-utstyr-tilbehor-feltutstyr-feltbokser-bag-og-oppbevaring"
+            },
+            {
+              "id": 103,
+              "name": "Powerpanel",
+              "url": "https://www.elefun.no/kategori-103/feltutstyr-powerpanel"
+            },
+            {
+              "id": 176,
+              "name": "Senderkofferter",
+              "url": "https://www.elefun.no/kategori-176/feltutstyr-senderkofferter"
+            },
+            {
+              "id": 113,
+              "name": "Temperaturmåler",
+              "url": "https://www.elefun.no/kategori-113/feltutstyr-temperaturmaler"
+            },
+            {
+              "id": 85,
+              "name": "Fuelslanger & ventiler",
+              "url": "https://www.elefun.no/kategori-85/glowmotor-fuelslanger-ventiler"
+            },
+            {
+              "id": 84,
+              "name": "Fylleflasker",
+              "url": "https://www.elefun.no/kategori-84/glowmotor-fylleflaske"
+            },
+            {
+              "id": 87,
+              "name": "Glødere",
+              "url": "https://www.elefun.no/kategori-87/glowmotor-gloder"
+            },
+            {
+              "id": 46,
+              "name": "Pumper",
+              "url": "https://www.elefun.no/kategori-46/glowmotor-pumper"
+            },
+            {
+              "id": 1602,
+              "name": "Krybber og stativer",
+              "url": "https://www.elefun.no/kategori-1602/"
+            },
+            {
+              "id": 1174,
+              "name": "Race porter",
+              "url": "https://www.elefun.no/kategori-1174/fpv-race-drone-port",
+              "icon": "u"
+            },
+            {
+              "id": 100,
+              "name": "Sendepult/nakkestropp",
+              "url": "https://www.elefun.no/kategori-100/radioutstyr-sendepulter-sendervotter-og-nakkestropper",
+              "icon": "inbox-in"
+            }
+          ]
+        },
+        {
+          "id": 396,
+          "name": "Fuel",
+          "url": "https://www.elefun.no/kategori-396",
+          "icon": "gas-pump",
+          "children": [
+            {
+              "id": 297,
+              "name": "Fuel - Bestillingsskjema",
+              "url": "https://www.elefun.no/rc/fuel.aspx"
+            },
+            {
+              "id": 57,
+              "name": "Fuel - Kun i butikk",
+              "url": "https://www.elefun.no/kategori-57/fuel"
+            }
+          ]
+        },
+        {
+          "id": 80,
+          "name": "Kulelager",
+          "url": "https://www.elefun.no/kategori-80/kulelager",
+          "icon": "bearing"
+        },
+        {
+          "id": 1535,
+          "name": "Lakkering og maling",
+          "url": "https://www.elefun.no/kategori-1535",
+          "icon": "spray-can",
+          "children": [
+            {
+              "id": 1597,
+              "name": "Airbrush & utstyr",
+              "url": "https://www.elefun.no/filter-1597/verktoy-airbrush-og-utstyr"
+            },
+            {
+              "id": 311,
+              "name": "Dekalark & maskering",
+              "url": "https://www.elefun.no/kategori-311/dekalark-maskering",
+              "icon": "tape"
+            },
+            {
+              "id": 127,
+              "name": "Lakk: For isopor/depron",
+              "url": "https://www.elefun.no/kategori-127/lakk-isopor-depron",
+              "icon": "spray-can"
+            },
+            {
+              "id": 1167,
+              "name": "Lakk: For plast",
+              "url": "https://www.elefun.no/filter-1167/lakk-for-plast",
+              "icon": "spray-can"
+            },
+            {
+              "id": 918,
+              "name": "Lakk: Tamiya",
+              "url": "https://www.elefun.no/kategori-918/lakk",
+              "icon": "spray-can"
+            },
+            {
+              "id": 218,
+              "name": "Maling",
+              "url": "https://www.elefun.no/filter-218/modellbygging-byggesett-maling-hobby-akrylmaling",
+              "icon": "fill-drip"
+            },
+            {
+              "id": 1598,
+              "name": "Maling - For airbrush",
+              "url": "https://www.elefun.no/filter-1598/maling-for-airbrush"
+            },
+            {
+              "id": 692,
+              "name": "Pensler",
+              "url": "https://www.elefun.no/filter-692/verktoy-pensler",
+              "icon": "paintbrush"
+            }
+          ]
+        },
+        {
+          "id": 392,
+          "name": "Lim",
+          "url": "https://www.elefun.no/kategori-392",
+          "icon": "bottle-droplet",
+          "children": [
+            {
+              "id": 124,
+              "name": "Aktivator/Kicker",
+              "url": "https://www.elefun.no/kategori-124/lim-aktivator"
+            },
+            {
+              "id": 47,
+              "name": "Diverse Lim",
+              "url": "https://www.elefun.no/kategori-47/lim"
+            },
+            {
+              "id": 1,
+              "name": "Epoxy",
+              "url": "https://www.elefun.no/kategori-1/lim-epoxy"
+            },
+            {
+              "id": 241,
+              "name": "Gjengelim",
+              "url": "https://www.elefun.no/kategori-241/lim-threadlock"
+            },
+            {
+              "id": 28,
+              "name": "Isopor/Depronlim",
+              "url": "https://www.elefun.no/kategori-28/lim-isopor-depron"
+            },
+            {
+              "id": 271,
+              "name": "Lynlim",
+              "url": "https://www.elefun.no/kategori-271/lim-lynlim"
+            }
+          ]
+        },
+        {
+          "id": 842,
+          "name": "Materialer",
+          "url": "https://www.elefun.no/kategori-842",
+          "icon": "pallet",
+          "children": [
+            {
+              "id": 75,
+              "name": "Pianotråd",
+              "url": "https://www.elefun.no/kategori-75/materialer-pianotrad"
+            },
+            {
+              "id": 789,
+              "name": "Treverk",
+              "url": "https://www.elefun.no/kategori-789",
+              "children": [
+                {
+                  "id": 786,
+                  "name": "Balsa",
+                  "url": "https://www.elefun.no/filter-786/materialer-tre-balsa"
+                },
+                {
+                  "id": 45,
+                  "name": "Finer",
+                  "url": "https://www.elefun.no/kategori-45/materialer-tre-finer"
+                },
+                {
+                  "id": 788,
+                  "name": "Rundstav",
+                  "url": "https://www.elefun.no/kategori-788/materialer-tre-rundstav"
+                }
+              ]
+            },
+            {
+              "id": 785,
+              "name": "Metall",
+              "url": "https://www.elefun.no/kategori-785",
+              "children": [
+                {
+                  "id": 75,
+                  "name": "Pianotråd",
+                  "url": "https://www.elefun.no/kategori-75/materialer-pianotrad"
+                },
+                {
+                  "id": 784,
+                  "name": "Plater",
+                  "url": "https://www.elefun.no/kategori-784/materialer-metall-plater"
+                },
+                {
+                  "id": 780,
+                  "name": "Rør",
+                  "url": "https://www.elefun.no/kategori-780/materialer-metall-ror"
+                },
+                {
+                  "id": 781,
+                  "name": "Spesialrør",
+                  "url": "https://www.elefun.no/kategori-781/materialer-metall-spesialror"
+                },
+                {
+                  "id": 782,
+                  "name": "Stenger",
+                  "url": "https://www.elefun.no/kategori-782/materialer-metall-stenger"
+                },
+                {
+                  "id": 783,
+                  "name": "Vinkler og profiler",
+                  "url": "https://www.elefun.no/kategori-783/materialer-metall-vinkler-profiler"
+                }
+              ]
+            },
+            {
+              "id": 752,
+              "name": "Karbon",
+              "url": "https://www.elefun.no/kategori-752",
+              "children": [
+                {
+                  "id": 754,
+                  "name": "Karbonlister",
+                  "url": "https://www.elefun.no/kategori-754/materialer-karbon-list"
+                },
+                {
+                  "id": 751,
+                  "name": "Karbonplater",
+                  "url": "https://www.elefun.no/kategori-751/materialer-karbon-plate"
+                },
+                {
+                  "id": 753,
+                  "name": "Karbonrør",
+                  "url": "https://www.elefun.no/kategori-753/materialer-karbon-ror"
+                },
+                {
+                  "id": 76,
+                  "name": "Karbonstenger",
+                  "url": "https://www.elefun.no/kategori-76/materialer-karbon-stang"
+                }
+              ]
+            },
+            {
+              "id": 1614,
+              "name": "Lexan",
+              "url": "https://www.elefun.no/filter-1614/lexan"
+            }
+          ]
+        },
+        {
+          "id": 830,
+          "name": "Olje",
+          "url": "https://www.elefun.no/kategori-830",
+          "icon": "oil-can",
+          "children": [
+            {
+              "id": 901,
+              "name": "2-taktsolje",
+              "url": "https://www.elefun.no/kategori-901/olje-2-taktsolje"
+            },
+            {
+              "id": 900,
+              "name": "After run olje",
+              "url": "https://www.elefun.no/kategori-900/olje-after-run"
+            },
+            {
+              "id": 141,
+              "name": "Diff- og demperolje",
+              "url": "https://www.elefun.no/kategori-141/olje-diff-og-demper"
+            },
+            {
+              "id": 899,
+              "name": "Luftfilterolje",
+              "url": "https://www.elefun.no/kategori-899/olje-luftfilterolje"
+            },
+            {
+              "id": 902,
+              "name": "Smøring",
+              "url": "https://www.elefun.no/kategori-902/olje-smoreolje"
+            },
+            {
+              "id": 58,
+              "name": "Øvrig olje",
+              "url": "https://www.elefun.no/kategori-58/olje"
+            }
+          ]
+        },
+        {
+          "id": 90,
+          "name": "Produktkataloger",
+          "url": "https://www.elefun.no/kategori-90/produktkatalog",
+          "icon": "book"
+        },
+        {
+          "id": 86,
+          "name": "Profilartikler",
+          "url": "https://www.elefun.no/kategori-86/",
+          "icon": "shirt"
+        },
+        {
+          "id": 884,
+          "name": "Skruer",
+          "url": "https://www.elefun.no/kategori-884",
+          "icon": "bolt",
+          "children": [
+            {
+              "id": 881,
+              "name": "Muttere og skiver",
+              "url": "https://www.elefun.no/filter-881/skruer-nylon-locknuts"
+            },
+            {
+              "id": 878,
+              "name": "Skruer",
+              "url": "https://www.elefun.no/filter-878/skruer"
+            },
+            {
+              "id": 493,
+              "name": "Skruesett til bil",
+              "url": "https://www.elefun.no/kategori-493/radiostyrt-bil-skruesett"
+            }
+          ]
+        },
+        {
+          "id": 34,
+          "name": "Reservedeler",
+          "url": "https://www.elefun.no/reservedeler/reservedeler.aspx",
+          "icon": "gears"
+        }
+      ]
+    }
+  ]
+}
