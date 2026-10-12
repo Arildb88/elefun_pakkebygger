@@ -148,3 +148,20 @@ The portable build runs Vinext directly without a host `timeout` command. The ma
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)
 - [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+
+## Katalog og pakkebygger – oktober 2026
+
+Utvalget er nå avgrenset til fem elektrobiler (buggy), fem elektrobåter, fem kameradroner og fem elektrofly (warbirds). Produktnavn, prisøyeblikksbilder og bilder er hentet fra Elefun. Prisene er ikke sanntidspriser, og prototypen påstår ikke live lagerstatus.
+
+- `data/catalog-snapshot.json`: katalog og kilde-URL per produkt.
+- `data/model-accessories.json`: gjennomgåtte modell–batteri–lader-koblinger med nødvendige kabler og forbehold.
+- `lib/compatibility.ts`: matching og beregning av pakken, inkludert riktig antall batterier.
+- `docs/research/elefun-sources.md`: kilder og vurderinger.
+
+Kategorimeny, lokalt søk, prissortering, pakkedialog og demo-handlevogn fungerer lokalt. Demo-handlevognen bruker localStorage; ingen ordre sendes til Elefun. BNF/PNP-fly kan kreve sender/mottaker i tillegg, og dette opplyses i pakkedialogen.
+
+Databasen oppdateres én gang per katalogrevisjon i én transaksjon (`D1.batch`). Kun tidligere kjente demovarer deaktiveres. Ved manglende D1 eller databasefeil vises kildeøyeblikksbildet; grensesnittet påstår derfor ikke at database er tilkoblet.
+
+Kontroller: `node --test tests/catalog.test.cjs`, `node node_modules/typescript/bin/tsc --noEmit`, `npm run build`.
+
+Produktbildene hentes fra Elefuns egne bilde-URL-er. DJI 65W-laderen er teknisk kompatibel, men ikke lenger lagerført hos Elefun; historisk pris brukes eksplisitt bare for demo. Siden kan ikke brukes som en oppdatert kjøps- eller lageroversikt.
