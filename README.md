@@ -157,11 +157,13 @@ Utvalget er nå avgrenset til fem elektrobiler (buggy), fem elektrobåter, fem k
 - `data/model-accessories.json`: gjennomgåtte modell–batteri–lader-koblinger med nødvendige kabler og forbehold.
 - `lib/compatibility.ts`: matching og beregning av pakken, inkludert riktig antall batterier.
 - `docs/research/elefun-sources.md`: kilder og vurderinger.
+- `data/elefun-menu.json`: Elefuns ekte kategoritre (20 hovedkategorier, 774 kategorier) for megamenyen. Lenkene går til elefun.no. Oppdateres med `node scripts/scrape-elefun-menu.mjs`.
+- `data/elefun-shelves.json`: et begrenset, ekte produktutvalg for `/sortiment`-sidene. Opptil 4 underkategorier per hovedkategori og 12 varer i hver, med varer på lager først og spredt på merker. Hentes med `node scripts/scrape-elefun-shelves.mjs` etter menyen. Bilbane og Solenergi mangler, fordi Elefun laster de produktene med JavaScript.
 
 Kategorimeny, lokalt søk, prissortering, pakkedialog og demo-handlevogn fungerer lokalt. Demo-handlevognen bruker localStorage; ingen ordre sendes til Elefun. BNF/PNP-fly kan kreve sender/mottaker i tillegg, og dette opplyses i pakkedialogen.
 
 Databasen oppdateres én gang per katalogrevisjon i én transaksjon (`D1.batch`). Kun tidligere kjente demovarer deaktiveres. Ved manglende D1 eller databasefeil vises kildeøyeblikksbildet; grensesnittet påstår derfor ikke at database er tilkoblet.
 
-Kontroller: `node --test tests/catalog.test.cjs`, `node node_modules/typescript/bin/tsc --noEmit`, `npm run build`.
+Kontroller: `node --test tests/catalog.test.cjs tests/elefun-menu.test.cjs`, `node node_modules/typescript/bin/tsc --noEmit`, `npm run build`.
 
 Produktbildene hentes fra Elefuns egne bilde-URL-er. DJI 65W-laderen er teknisk kompatibel, men ikke lenger lagerført hos Elefun; historisk pris brukes eksplisitt bare for demo. Siden kan ikke brukes som en oppdatert kjøps- eller lageroversikt.

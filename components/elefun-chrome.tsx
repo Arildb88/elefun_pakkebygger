@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { ArrowUpRight, Flag, Handshake, Headset, Search, ShoppingCart, Truck, UserRound } from "lucide-react";
-import CategoryBar from "./category-bar";
+import MegaMenu from "./mega-menu";
 import { CartCount } from "./cart-controls";
 import { CATEGORIES } from "@/lib/store";
+import { megaMenu } from "@/lib/elefun-menu";
 
 const ELEFUN="https://www.elefun.no/";
 
@@ -39,7 +40,7 @@ export default function ElefunChrome({children}:{children:React.ReactNode}){
           </nav>
         </div>
       </header>
-      <CategoryBar/>
+      <MegaMenu categories={megaMenu()}/>
 
       <div id="innhold" className="page">{children}</div>
 
@@ -57,6 +58,7 @@ export default function ElefunChrome({children}:{children:React.ReactNode}){
             <h2>Handle</h2>
             <ul>
               <li><Link href="/">Pakkebygger</Link></li>
+              <li><Link href="/sortiment">Hele sortimentet</Link></li>
               {CATEGORIES.map(c=><li key={c.slug}><a href={`/kategori/${c.slug}`}>{c.title}</a></li>)}
             </ul>
           </nav>

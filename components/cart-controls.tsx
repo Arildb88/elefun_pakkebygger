@@ -15,7 +15,7 @@ export function CartCount(){
   return count>0?<i className="cart-count" aria-label={`${count} i handlevognen`}>{count}</i>:null;
 }
 
-export function AddToCart({product,variant="compact"}:{product:CatalogProduct;variant?:"compact"|"full"}){
+export function AddToCart({product,variant="compact"}:{product:Pick<CatalogProduct,"id"|"name"|"price">;variant?:"compact"|"full"}){
   const [added,setAdded]=useState(false);
   function add(){
     const name=cleanName(product.name);
