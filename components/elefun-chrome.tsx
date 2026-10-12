@@ -58,6 +58,7 @@ export default function ElefunChrome({children}:{children:React.ReactNode}){
             <h2>Handle</h2>
             <ul>
               <li><Link href="/">Pakkebygger</Link></li>
+              <li><Link href="/sortiment">Hele sortimentet</Link></li>
               {CATEGORIES.map(c=><li key={c.slug}><a href={`/kategori/${c.slug}`}>{c.title}</a></li>)}
             </ul>
           </nav>

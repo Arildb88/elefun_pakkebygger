@@ -2,34 +2,15 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  Activity, BadgePercent, Battery, BatteryFull, Blocks, BookOpen, Bot, Box, Boxes, Briefcase, Camera, Car, CarFront, Cctv, ChevronDown, ChevronLeft, ChevronRight,
-  CircleArrowRight, CircleDot, CloudSun, Cog, Container, Disc, Drill, Drone, Droplet, Eye, Fan, Fish, Flag, Flame, FlameKindling, Forklift, Fuel, Gauge,
-  Gem, Glasses, Hammer, HardDrive, Heart, Helicopter, House, Lightbulb, Magnet, Mic, Package, PaintBucket, Paintbrush, Pipette, Plane, Plug, PlugZap,
-  Printer, Puzzle, Radar, Radio, Rocket, Route, Sailboat, SatelliteDish, ScanLine, Scooter, Send, Server, Shield, ShieldCheck, Ship, Shirt, Sun,
-  Target, ThumbsUp, Train, TrainTrack, Trees, Truck, Usb, Video, Wrench, Zap, type LucideIcon,
-} from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, CircleArrowRight } from "lucide-react";
 import type { MegaCategory } from "@/lib/elefun-menu";
+import { CategoryIcon } from "./category-icons";
 
-/** Elefun tags categories with Font Awesome names; these are the closest Lucide shapes. */
-const ICONS:Record<string,LucideIcon>={
-  "3dprint":Printer,"print":Printer,"scanner-gun":ScanLine,"bore-hole":Drill,"lazer":Zap,"compact-disc":Disc,"bottle-water":Droplet,
-  "bolt":Zap,"battery-full":BatteryFull,"car-battery":Battery,"charging-station":PlugZap,"plug":Plug,"plug-circle-bolt":PlugZap,"shield-check":ShieldCheck,
-  "fire-extinguisher":Flame,"dumpster-fire":FlameKindling,"smoke":CloudSun,"car-tilt":CarFront,"road":Route,"truck-monster":Truck,"car-side":Car,
-  "forklift":Forklift,"truck-moving":Container,"tank":Shield,"boat":Ship,"ship":Ship,"sailboat":Sailboat,"fishing-rod":Fish,"drone":Drone,
-  "drone-front":Drone,"dji":Drone,"suitcase":Briefcase,"briefcase":Briefcase,"inbox-in":Box,"sun-cloud":CloudSun,"propeller":Fan,"propeller3":Fan,
-  "plane":Plane,"paper-plane":Send,"paper-plane-top":Send,"helicopter":Helicopter,"helicopter-symbol":Helicopter,"lightbulb-on":Lightbulb,
-  "user-pilot":Glasses,"head-side-goggles":Glasses,"desktop":Gauge,"video":Video,"camera-security":Camera,"camera-cctv":Cctv,"microphone":Mic,
-  "sd-card":HardDrive,"usb-drive":Usb,"satellite-dish":SatelliteDish,"block-brick":Blocks,"warhammer":Hammer,"tree-christmas":Trees,
-  "eye-dropper":Pipette,"fill-drip":PaintBucket,"square-heart":Heart,"train":Train,"train-track":TrainTrack,"traincar":Train,"house":House,
-  "trees":Trees,"gear":Cog,"gears":Cog,"engine":Cog,"servo":Activity,"explosion":Flame,"parachute-box":Package,"gauge-high":Gauge,"boxes-packing":Boxes,
-  "server":Server,"screwdriver":Wrench,"screwdriver-wrench":Wrench,"flag-checkered":Flag,"skate":Scooter,"scooter":Scooter,"thumbs-up":ThumbsUp,
-  "sun":Sun,"solar-panel":Sun,"bullseye-arrow":Target,"flying-disc":CircleDot,"magnet":Magnet,"detector":Radar,"raspberry-pi":Puzzle,"robot":Bot,
-  "vacuum-robot":Bot,"glasses":Glasses,"walkie-talkie":Radio,"gas-pump":Fuel,"bearing":CircleDot,"spray-can":Paintbrush,"bottle-droplet":Droplet,
-  "pallet":Boxes,"oil-can":Droplet,"book":BookOpen,"shirt":Shirt,"badge-percent":BadgePercent,"rocket":Rocket,"rocket-launch":Rocket,"sensor-on":Eye,
-  "ribbon":Gem,
-};
-const iconFor=(name?:string,fallback?:string)=>ICONS[name??""]??ICONS[fallback??""]??Box;
+function MenuAnchor({href,className,children}:{href:string;className?:string;children:React.ReactNode}){
+  return href.startsWith("/")
+    ?<Link href={href} className={className}>{children}</Link>
+    :<a href={href} className={className} target="_blank" rel="noreferrer">{children}</a>;
+}
 
 const OPEN_DELAY=120;
 const CLOSE_DELAY=220;
@@ -83,11 +64,12 @@ export default function MegaMenu({categories}:{categories:MegaCategory[]}){
       {overflow.left&&<button type="button" className="mega-scroll mega-scroll-left" aria-label="Bla til forrige kategorier" tabIndex={-1} onClick={()=>scrollBar(-1)}><ChevronLeft size={18} aria-hidden/></button>}
       <ul ref={listRef}>
         <li><Link href="/" aria-current={path==="/"?"page":undefined}>Pakkebygger</Link></li>
+        <li><Link href="/sortiment" aria-current={path==="/sortiment"?"page":undefined}>Sortiment</Link></li>
         {categories.map(c=>{
           const expanded=c.id===openId;
           return <li key={c.id}>
             <button type="button" data-cat={c.id} aria-expanded={expanded} aria-controls={expanded?panelId:undefined}
-              data-current={c.local&&path.startsWith(c.local.href)?"":undefined}
+              data-current={(c.local&&path.startsWith(c.local.href))||(c.internal&&(path===c.url||path.startsWith(`${c.url}/`)))?"":undefined}
               onPointerEnter={e=>{if(e.pointerType==="mouse") schedule(c.id,openId===null?OPEN_DELAY:0);}}
               onClick={()=>{cancel();setOpenId(expanded?null:c.id);}}>
               {c.name}<ChevronDown size={14} aria-hidden/>
@@ -102,22 +84,21 @@ export default function MegaMenu({categories}:{categories:MegaCategory[]}){
       <div className="mega-inner">
         <div className="mega-grid">
           {open.columns.map(col=>{
-            const Icon=iconFor(col.icon,open.icon);
             return <section key={col.key} className="mega-col">
               <h3>
-                <Icon size={18} aria-hidden/>
-                {col.url?<a href={col.url} target="_blank" rel="noreferrer">{col.title}</a>:<span>{col.title}</span>}
+                <CategoryIcon name={col.icon} fallback={open.icon} size={18}/>
+                {col.url?<MenuAnchor href={col.url}>{col.title}</MenuAnchor>:<span>{col.title}</span>}
               </h3>
               <ul>
-                {col.links.map(l=><li key={l.url}><a href={l.url} target="_blank" rel="noreferrer">{l.name}</a></li>)}
-                {col.more>0&&<li><a className="mega-more" href={col.url??open.url} target="_blank" rel="noreferrer">Vis {col.more} til</a></li>}
+                {col.links.map(l=><li key={l.url}><MenuAnchor href={l.url} className={l.internal?"mega-internal":undefined}>{l.name}</MenuAnchor></li>)}
+                {col.more>0&&<li><MenuAnchor className="mega-more" href={col.url??open.url}>Vis {col.more} til</MenuAnchor></li>}
               </ul>
             </section>;
           })}
         </div>
         <div className="mega-foot">
           {open.local&&<Link className="mega-local" href={open.local.href}>{open.local.label}</Link>}
-          <a className="mega-all" href={open.url} target="_blank" rel="noreferrer">Se alt innen {open.name} <CircleArrowRight size={20} aria-hidden/></a>
+          <MenuAnchor className="mega-all" href={open.url}>Se alt innen {open.name} <CircleArrowRight size={20} aria-hidden/></MenuAnchor>
         </div>
       </div>
     </div>}

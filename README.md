@@ -158,6 +158,7 @@ Utvalget er nå avgrenset til fem elektrobiler (buggy), fem elektrobåter, fem k
 - `lib/compatibility.ts`: matching og beregning av pakken, inkludert riktig antall batterier.
 - `docs/research/elefun-sources.md`: kilder og vurderinger.
 - `data/elefun-menu.json`: Elefuns ekte kategoritre (20 hovedkategorier, 774 kategorier) for megamenyen. Lenkene går til elefun.no. Oppdateres med `node scripts/scrape-elefun-menu.mjs`.
+- `data/elefun-shelves.json`: et begrenset, ekte produktutvalg for `/sortiment`-sidene. Opptil 4 underkategorier per hovedkategori og 12 varer i hver, med varer på lager først og spredt på merker. Hentes med `node scripts/scrape-elefun-shelves.mjs` etter menyen. Bilbane og Solenergi mangler, fordi Elefun laster de produktene med JavaScript.
 
 Kategorimeny, lokalt søk, prissortering, pakkedialog og demo-handlevogn fungerer lokalt. Demo-handlevognen bruker localStorage; ingen ordre sendes til Elefun. BNF/PNP-fly kan kreve sender/mottaker i tillegg, og dette opplyses i pakkedialogen.
 

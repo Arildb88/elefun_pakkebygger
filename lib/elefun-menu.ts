@@ -1,9 +1,11 @@
 import menu from "@/data/elefun-menu.json";
+import { INTERNAL_HREF } from "./elefun-shelves";
 
 export type ElefunMenuNode={id:number;name:string;url:string;icon?:string;group?:string;children?:ElefunMenuNode[]};
-export type MenuLink={name:string;url:string};
+/** `internal` links go to a page in this store; the rest open elefun.no. */
+export type MenuLink={name:string;url:string;internal?:boolean};
 export type MenuColumn={key:string;title:string;url?:string;icon?:string;links:MenuLink[];more:number};
-export type MegaCategory={id:number;name:string;url:string;icon?:string;local?:{href:string;label:string};columns:MenuColumn[]};
+export type MegaCategory={id:number;name:string;url:string;internal?:boolean;icon?:string;local?:{href:string;label:string};columns:MenuColumn[]};
 
 const MAX_LINKS=9;
 
@@ -17,7 +19,10 @@ const LOCAL:Record<string,{href:string;label:string}>={
   "Radioutstyr":{href:"/kategori/kontrollere",label:"Se sendere og kontrollere i butikken"},
 };
 
-const link=(n:ElefunMenuNode):MenuLink=>({name:n.name,url:n.url});
+const link=(n:ElefunMenuNode):MenuLink=>{
+  const href=INTERNAL_HREF.get(n.id);
+  return href?{name:n.name,url:href,internal:true}:{name:n.name,url:n.url};
+};
 
 /**
  * Subcategories with their own children become a column each. Elefun lists the rest as loose
@@ -43,9 +48,10 @@ export function columnsFor(top:ElefunMenuNode):MenuColumn[]{
 }
 
 export function megaMenu():MegaCategory[]{
-  return (menu.categories as ElefunMenuNode[]).map(top=>({
-    id:top.id,name:top.name,url:top.url,icon:top.icon,local:LOCAL[top.name],columns:columnsFor(top),
-  }));
+  return (menu.categories as ElefunMenuNode[]).map(top=>{
+    const href=INTERNAL_HREF.get(top.id);
+    return {id:top.id,name:top.name,url:href??top.url,internal:!!href,icon:top.icon,local:LOCAL[top.name],columns:columnsFor(top)};
+  });
 }
 
 export const MENU_SOURCE={url:menu.source,fetchedAt:menu.fetchedAt};
