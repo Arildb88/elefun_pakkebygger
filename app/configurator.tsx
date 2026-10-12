@@ -1,48 +1,143 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import type { CatalogProduct } from "@/lib/catalog-types";
-import { batteryReasons, chargingReasons, packageLines, rules } from "@/lib/compatibility";
-import { BatteryCharging, Check, ChevronRight, ExternalLink, PackageCheck, Search, ShoppingCart, X, Zap } from "lucide-react";
-const money=(n:number)=>new Intl.NumberFormat("nb-NO",{style:"currency",currency:"NOK",maximumFractionDigits:0}).format(n);
+import { batteryReasons, chargingReasons, controllerIdsFor, defaultControllerKey, packageLines, rules } from "@/lib/compatibility";
+import { readCart, writeCart, type SavedPackage } from "@/lib/cart";
+import { batteryVolts, cleanName, discountFor, discountLine, money, optionFacts, productHref, shortTitle, specsFor, tierPackages, type DefaultPackage } from "@/lib/store";
+import PackageSelect, { type PackageOption } from "@/components/package-select";
+import PackageTiers from "@/components/package-tiers";
+import { ProductCard, SpecRail } from "@/components/store-ui";
+import { ArrowDown, ArrowRight, ArrowUpRight, BatteryCharging, CircleAlert, Gamepad2, PackageCheck, Search, ShoppingCart, X, Zap } from "lucide-react";
 const categories=[['car','Elektrobiler'],['boat','Elektrobåter'],['drone','Droner med kamera'],['plane','Elektrofly']] as const;
-type SavedPackage={id:string;name:string;total:number;lines:{id:string;name:string;quantity:number;price:number}[]};
 export default function Configurator({products}:{products:CatalogProduct[]}){
  const [category,setCategory]=useState('car');const [query,setQuery]=useState('');const [sort,setSort]=useState('default');
- const [vehicleId,setVehicleId]=useState<string>();const [batteryId,setBatteryId]=useState<string>();const [chargerId,setChargerId]=useState<string>();
- const [showAll,setShowAll]=useState(false);const [cart,setCart]=useState<SavedPackage[]>([]);const [cartOpen,setCartOpen]=useState(false);const [notice,setNotice]=useState('');
+ const [vehicleId,setVehicleId]=useState<string>();const [batteryId,setBatteryId]=useState<string>();const [chargerId,setChargerId]=useState<string>();const [batterySets,setBatterySets]=useState(1);const [controllerKey,setControllerKey]=useState('none');
+ // The ready-made package the builder was opened from. The discount only holds while nothing is changed.
+ const [origin,setOrigin]=useState<{vehicleId:string;batteryId?:string;chargerId?:string;controllerKey:string;tier:string}|null>(null);
+ const [cart,setCart]=useState<SavedPackage[]>([]);const [cartOpen,setCartOpen]=useState(false);const [notice,setNotice]=useState('');
  const dialog=useRef<HTMLDialogElement>(null);const cartDialog=useRef<HTMLDialogElement>(null);
- useEffect(()=>{try{const parsed=JSON.parse(localStorage.getItem('elefun-packages-v2')??'[]');if(Array.isArray(parsed)&&parsed.every(p=>typeof p?.total==='number'&&Array.isArray(p.lines)))setCart(parsed);}catch{}
- const route=()=>{const c=location.hash.slice(1);if(categories.some(([id])=>id===c)||c==='accessories'){setCategory(c);setQuery('');}if(c==='cart')setCartOpen(true);};const click=(e:MouseEvent)=>{if((e.target as Element).closest('a[href="#cart"]')){e.preventDefault();setCartOpen(true);}};route();window.addEventListener('hashchange',route);document.addEventListener('click',click);return()=>{window.removeEventListener('hashchange',route);document.removeEventListener('click',click);};},[]);
+ useEffect(()=>{setCart(readCart());
+ const route=()=>{const c=location.hash.slice(1);if(categories.some(([id])=>id===c)||c==='accessories'){setCategory(c);setQuery('');}if(c==='cart')setCartOpen(true);};
+ const click=(e:MouseEvent)=>{if((e.target as Element).closest('a[href$="#cart"]')){e.preventDefault();setCartOpen(true);}};
+ const sync=(e:Event)=>{if(typeof (e as CustomEvent).detail==='number')setCart(readCart());};
+ route();
+ // Deep link from product and category pages: /?modell=<id>#<type> opens the builder for that model.
+ const model=new URLSearchParams(location.search).get('modell');const v=products.find(p=>p.id===model&&p.kind==='vehicle');
+ if(v){setCategory(v.vehicleType??'car');choose(v);history.replaceState(null,'',`/#${v.vehicleType}`);}
+ window.addEventListener('hashchange',route);document.addEventListener('click',click);window.addEventListener('elefun-cart',sync);
+ return()=>{window.removeEventListener('hashchange',route);document.removeEventListener('click',click);window.removeEventListener('elefun-cart',sync);};
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ },[]);
  useEffect(()=>{if(vehicleId)dialog.current?.showModal();else dialog.current?.close();},[vehicleId]);
  useEffect(()=>{if(cartOpen)cartDialog.current?.showModal();else cartDialog.current?.close();},[cartOpen]);
- function saveCart(next:SavedPackage[]){setCart(next);try{localStorage.setItem('elefun-packages-v2',JSON.stringify(next));}catch{}window.dispatchEvent(new CustomEvent('elefun-cart',{detail:next.length}));}
+ function saveCart(next:SavedPackage[]){setCart(next);writeCart(next);}
  const vehicle=products.find(p=>p.id===vehicleId);const rule=vehicle?rules[vehicle.id]:undefined;
  const battery=products.find(p=>p.id===batteryId);const charger=products.find(p=>p.id===chargerId);
- const lines=vehicle?packageLines(products,vehicle,battery,charger):[];const total=lines.reduce((s,l)=>s+l.quantity*l.product.price,0);
+ const ctrl=rule?.controller;const controllerIds=controllerIdsFor(rule,controllerKey);
+ const lines=vehicle?packageLines(products,vehicle,battery,charger,{sets:batterySets,controllerIds}):[];const total=lines.reduce((s,l)=>s+l.quantity*l.product.price,0);
  const reasons=vehicle?chargingReasons(vehicle,battery,charger):[];
- function choose(v:CatalogProduct){const r=rules[v.id];setVehicleId(v.id);setBatteryId(r?.batteryIds[0]);setChargerId(r?.includedCharger?undefined:r?.chargerIds[0]);setShowAll(false);setNotice('');}
- function add(){if(!vehicle||reasons.length)return;saveCart([...cart,{id:crypto.randomUUID(),name:vehicle.name,total,lines:lines.map(l=>({id:l.product.id,name:l.product.name,quantity:l.quantity,price:l.product.price}))}]);setNotice('Pakken er lagt i demo-handlevognen.');}
+ const documented=vehicle&&rule?rule.batteryIds.map(id=>products.find(p=>p.id===id)).filter((p):p is CatalogProduct=>!!p):[];
+ const volts=documented[0]?batteryVolts(documented[0]):null;
+ // Other batteries at the same voltage stay visible with their price difference, but cannot be chosen.
+ const others=vehicle&&volts?products.filter(p=>p.kind==='battery'&&!rule?.batteryIds.includes(p.id)&&batteryVolts(p)===volts):[];
+ // Each documented battery comes as one set or two sets (an extra set for double run time). Prices are for the whole choice.
+ const n=vehicle?.batteryCount??1;const count=(sets:number)=>n*sets>1?`${n*sets} × `:'';
+ const batteryOptions:PackageOption[]=vehicle?[...documented.flatMap(b=>[1,2].map(sets=>({key:`${b.id}:${sets}`,title:`${count(sets)}${shortTitle(b)}`,facts:sets>1?`Ekstra sett, dobbel kjøretid · ${optionFacts(b)}`:optionFacts(b),price:b.price*n*sets,disabled:batteryReasons(vehicle,b).length>0,reason:batteryReasons(vehicle,b)[0]}))).sort((a,b)=>a.price-b.price),...others.sort((a,b)=>a.price-b.price).map(b=>({key:b.id,title:`${count(1)}${shortTitle(b)}`,facts:optionFacts(b),price:b.price*n,disabled:true,reason:'Ikke dokumentert for denne modellen',group:'Samme spenning, ikke dokumentert for modellen'}))]:[];
+ const setOption=(ids:string[],i:number):PackageOption=>{const items=ids.map(id=>products.find(p=>p.id===id)).filter((p):p is CatalogProduct=>!!p);return {key:String(i),title:items.map(p=>cleanName(p.name)).join(' + '),facts:[...specsFor(items[0]).slice(1),...(items.length>1?['med mottaker']:[])].join(' · '),price:items.reduce((s,p)=>s+p.price,0)};};
+ const noneOption:PackageOption[]=ctrl?.included?[{key:'none',title:ctrl.unconfirmed?'Medfølgende radio (ikke bekreftet)':'Radio som følger med',facts:ctrl.included,price:0,priceLabel:ctrl.unconfirmed?'–':'Inkludert'}]
+  :ctrl?.noneLabel?[{key:'none',title:ctrl.noneLabel,facts:ctrl.noneFacts??'Ingen sender i pakken',price:0,priceLabel:'0 kr'}]:[];
+ const controllerOptions:PackageOption[]=ctrl?.sets?(ctrl.included||ctrl.defaultNone?[...noneOption,...ctrl.sets.map(setOption)]:[...ctrl.sets.map(setOption),...noneOption]):[];
+ const chargerPending=!!(rule?.chargingPending||rule?.needsPowerSupply);
+ const chargerOptions:PackageOption[]=rule?[...(rule.includedCharger?[{key:'included',title:'Lader som følger med',facts:'Følger med modellen',price:0,priceLabel:'Inkludert'}]:[]),...rule.chargerIds.map(id=>products.find(p=>p.id===id)).filter((p):p is CatalogProduct=>!!p).map(c=>({key:c.id,title:shortTitle(c),facts:chargerPending?'Trenger bekreftelse eller ekstra tilbehør':optionFacts(c),price:c.price}))]:[];
+ const leads=rule?rule.leadIds.map(id=>products.find(p=>p.id===id)).filter((p):p is CatalogProduct=>!!p):[];
+ function choose(v:CatalogProduct,controller?:string,tier?:string){const r=rules[v.id];const start={vehicleId:v.id,batteryId:r?.batteryIds[0],chargerId:r?.includedCharger?undefined:r?.chargerIds[0],controllerKey:controller??defaultControllerKey(r)};
+  setVehicleId(start.vehicleId);setBatteryId(start.batteryId);setBatterySets(1);setControllerKey(start.controllerKey);setChargerId(start.chargerId);setNotice('');setOrigin(tier?{...start,tier}:null);}
+ function resetToTier(){if(!origin)return;setBatteryId(origin.batteryId);setBatterySets(1);setChargerId(origin.chargerId);setControllerKey(origin.controllerKey);setNotice('');}
+ const fromTier=!!origin&&origin.vehicleId===vehicleId;
+ const discountActive=fromTier&&batteryId===origin.batteryId&&batterySets===1&&chargerId===origin.chargerId&&controllerKey===origin.controllerKey;
+ const discount=discountActive?discountFor(total):0;
+ function add(){if(!vehicle||reasons.length)return;saveCart([...cart,{id:crypto.randomUUID(),name:cleanName(vehicle.name),total:total-discount,lines:[...lines.map(l=>({id:l.product.id,name:cleanName(l.product.name),quantity:l.quantity,price:l.product.price})),...(discount?[discountLine(discount)]:[])]}]);setNotice('Pakken er lagt i demo-handlevognen.');}
+ function addReady(p:DefaultPackage){const d=discountFor(p.total);saveCart([...cart,{id:crypto.randomUUID(),name:cleanName(p.vehicle.name),total:p.total-d,lines:[...p.lines.map(l=>({id:l.product.id,name:cleanName(l.product.name),quantity:l.quantity,price:l.product.price})),discountLine(d)]}]);}
+ function pick(id:string){setCategory(id);location.hash=id;setQuery('');}
  const filtered=products.filter(p=>(category==='accessories'?p.kind!=='vehicle':p.kind==='vehicle'&&p.vehicleType===category)&&`${p.name} ${p.brand}`.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>sort==='low'?a.price-b.price:sort==='high'?b.price-a.price:0);
- return <main>
-  <div className="breadcrumbs">Forside <ChevronRight size={14}/> Radiostyrt hobby <ChevronRight size={14}/> {categories.find(([id])=>id===category)?.[1]??'Batterier og ladere'}</div>
-  <section className="catalog-intro"><div><span className="eyebrow">MER HOBBY. MINDRE GJETTING.</span><h1>Finn modellen.<br/>Bygg din pakke.</h1><p>Velg en modell og få batterier og ladere samlet på ett sted. Vi viser hva som passer, hva som følger med og hva som mangler.</p><a href="#catalog" className="primary-link">Utforsk modellene <ChevronRight size={18}/></a></div><div className="intro-visual"><img src={products.find(p=>p.id==='50807')?.imageUrl??''} alt="ARRMA Typhon radiostyrt buggy"/><span><PackageCheck size={20}/> Tilbehør til akkurat din modell</span></div></section>
-  <section id="catalog" className="vehicle-section">
-   <div className="category-picker" aria-label="Produktkategori">{categories.map(([id,label])=><button key={id} className={category===id?'selected':''} onClick={()=>{setCategory(id);location.hash=id;setQuery('');}}>{label}<small>5 modeller</small></button>)}<button className={category==='accessories'?'selected':''} onClick={()=>{setCategory('accessories');location.hash='accessories';setQuery('');}}>Batterier & ladere<small>Tilbehør</small></button></div>
-   <div className="catalog-toolbar"><div><h2>{categories.find(([id])=>id===category)?.[1]??'Batterier, ladere og tilbehør'}</h2><span>{filtered.length} produkter · Priser fra kildeøyeblikksbilder</span></div><label className="catalog-search"><Search size={18}/><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Søk i utvalget" aria-label="Søk i utvalget"/></label><select aria-label="Sorter produkter" value={sort} onChange={e=>setSort(e.target.value)}><option value="default">Anbefalt rekkefølge</option><option value="low">Pris: lav til høy</option><option value="high">Pris: høy til lav</option></select></div>
-   <div className="vehicle-grid">{filtered.map(v=><article key={v.id} className="vehicle-card catalog-card"><div className="vehicle-image"><img src={v.imageUrl??''} alt={v.name} loading="lazy"/><span className="product-category">{v.kind==='vehicle'?'MODELL':v.kind==='battery'?'BATTERI':v.kind==='charger'?'LADER':'TILBEHØR'}</span></div><div className="vehicle-info"><small>{v.brand}</small><h3>{v.name}</h3><p>{v.description}</p><div className="vehicle-price"><strong>{money(v.price)}</strong><small>Prisøyeblikksbilde</small></div>{v.kind==='vehicle'?<button className="build-button" onClick={()=>choose(v)}>Bygg pakke <ChevronRight size={17}/></button>:<a className="source-link" href={v.sourceUrl??'#'} target="_blank" rel="noreferrer">Se spesifikasjoner hos Elefun <ExternalLink size={14}/></a>}</div></article>)}</div>{filtered.length===0&&<p className="empty-state">Ingen produkter matcher søket. Prøv et annet navn.</p>}
+ const heroModel=products.find(p=>p.id==='50807');
+ const tiers=category==='accessories'?[]:tierPackages(products,category);
+ const title=categories.find(([id])=>id===category)?.[1]??'Batterier, ladere og tilbehør';
+ return <main className="builder-main">
+  <section className="hero" aria-labelledby="hero-title">
+   <div className="hero-inner">
+    <div className="hero-copy">
+     <h1 id="hero-title">Finn modellen.<br/>Bygg pakken.</h1>
+     <p>Velg en radiostyrt modell, så setter vi sammen batteri, lader og kablene den trenger. Det som ikke passer, får du vite hvorfor.</p>
+     <a href="#katalog" className="btn-build btn-build-hero">Velg en modell <ArrowDown size={19} aria-hidden/></a>
+    </div>
+    {heroModel&&<a className="hero-visual" href={productHref(heroModel)}>
+     <span className="hero-visual-media"><img src={heroModel.imageUrl??''} alt={cleanName(heroModel.name)}/></span>
+     <span className="hero-tag"><strong>{cleanName(heroModel.name)}</strong><span>{money(heroModel.price)}</span></span>
+    </a>}
+   </div>
+   <ol className="hero-steps">
+    <li><strong>Velg modell</strong><span>20 modeller fra Elefun</span></li>
+    <li><strong>Batteri som passer</strong><span>Riktig kontakt og celler</span></li>
+    <li><strong>Lader og kabler</strong><span>Overganger legges til selv</span></li>
+   </ol>
   </section>
-  <div className="catalog-footnote"><PackageCheck/><p>Modellspesifikke batterier og ladeoppsett. Uavklarte kombinasjoner blir markert og kan ikke legges til som en ferdig pakke.</p><button onClick={()=>setCartOpen(true)}><ShoppingCart size={18}/> Demo-handlevogn ({cart.length})</button></div>
-  <dialog ref={dialog} className="builder-dialog" onCancel={()=>setVehicleId(undefined)} onClose={()=>setVehicleId(undefined)}>
-   {vehicle&&rule&&<><header className="dialog-header"><div><span className="eyebrow">DIN PAKKE</span><h2>{vehicle.name}</h2></div><button className="icon-button" aria-label="Lukk pakkebygger" onClick={()=>setVehicleId(undefined)}><X/></button></header><div className="dialog-grid"><section className="builder-options"><div className="model-overview"><img src={vehicle.imageUrl??''} alt={vehicle.name}/><div><strong>{money(vehicle.price)}</strong><p>{rule.note}</p><a className="source-link" href={vehicle.sourceUrl??'#'} target="_blank" rel="noreferrer">Modell og kilde hos Elefun <ExternalLink size={14}/></a></div></div>
-   <div className="option-title"><h3><span className="step">1</span> Batteri {vehicle.batteryCount>1?`(${vehicle.batteryCount} stk.)`:'(ekstra)'}</h3><label><input type="checkbox" checked={showAll} onChange={e=>setShowAll(e.target.checked)}/> Vis andre batterier</label></div>
-   {products.filter(p=>p.kind==='battery'&&(showAll||rule.batteryIds.includes(p.id))).map(b=>{const why=batteryReasons(vehicle,b);const blocked=why.length>0;return <div className={`option-card ${batteryId===b.id?'selected':''} ${blocked?'blocked':''}`} key={b.id}><button disabled={blocked} onClick={()=>{setBatteryId(b.id);setNotice('');}}><BatteryCharging/><div><strong>{b.name}</strong><small>{blocked?why[0]:'Modellspesifikt batteri fra Elefuns anbefalinger'}</small></div><b>{money(b.price)}</b>{batteryId===b.id&&!blocked&&<Check size={17}/>}</button><a className="source-link" href={b.sourceUrl??'#'} target="_blank" rel="noreferrer">Produktspesifikasjoner <ExternalLink size={12}/></a></div>})}
-   <h3 className="option-title"><span className="step">2</span> Lader og nødvendig kabling</h3>
-   {rule.includedCharger&&<><div className="included-note"><Check size={18}/><span>Egnet lader følger med modellen. Ekstra lader er valgfritt for dette batterioppsettet.</span></div><button className="source-link" onClick={()=>{setChargerId(undefined);setNotice('');}}>Bruk bare medfølgende lader</button></>}
-   {rule.chargerIds.map(id=>{const c=products.find(p=>p.id===id);return c?<div className={`option-card ${chargerId===id?'selected':''}`} key={id}><button onClick={()=>{setChargerId(id);setNotice('');}}><Zap/><div><strong>{c.name}</strong><small>{rule.chargingPending||rule.needsPowerSupply?'Oppsettet trenger bekreftelse / ekstra tilbehør':'Lader til valgt batterioppsett'}</small></div><b>{money(c.price)}</b></button><a className="source-link" href={c.sourceUrl??'#'} target="_blank" rel="noreferrer">Kontroller ladeegenskaper <ExternalLink size={12}/></a></div>:null;})}
-   {rule.leadIds.map(id=>{const p=products.find(p=>p.id===id);return p?<div className="included-note" key={id}><Check size={18}/><span>{vehicle.batteryCount} × {p.name} legges til automatisk.<br/>{p.description}</span></div>:null;})}
-   {reasons.length>0&&<div className="pending-note"><strong>Må avklares før pakken er komplett</strong><ul>{reasons.map(r=><li key={r}>{r}</li>)}</ul></div>}
-   </section><aside className="package-summary"><span className={`package-status ${reasons.length?'pending':''}`}>{reasons.length?'Trenger avklaring':'Batteri og lading passer'}</span><h3>Dette får du i pakken</h3>{lines.map(l=><div className="summary-row" key={l.product.id}><span>{l.quantity} × {l.product.name}</span><b>{money(l.quantity*l.product.price)}</b></div>)}{rule.includedCharger&&<div className="summary-row"><span>Lader som følger med</span><b>Inkludert</b></div>}<div className="summary-total"><span>Sum for valgte varer</span><strong>{money(total)}</strong><small>Demopriser · inkl. mva. · frakt ikke beregnet</small></div><button className="build-button" disabled={reasons.length>0} onClick={add}><ShoppingCart size={18}/> Legg i demo-handlevogn</button><p className="builder-disclaimer">{vehicle.vehicleType==='plane'?'Sender og eventuelt mottaker kommer i tillegg. Pakken er ikke et komplett flyklart sett.':'Kontroller hva som følger med, og eventuelle batterier til senderen.'}</p><div aria-live="polite" className="success-notice">{notice}</div></aside></div></>}
+
+  <section id="katalog" className="builder-catalog" aria-labelledby="catalog-title">
+   <div className="segmented" role="tablist" aria-label="Produktkategori">{categories.map(([id,label])=><button role="tab" aria-selected={category===id} key={id} onClick={()=>pick(id)}>{label}<small>5 modeller</small></button>)}<button role="tab" aria-selected={category==='accessories'} onClick={()=>pick('accessories')}>Batterier og ladere<small>Tilbehør</small></button></div>
+   <PackageTiers tiers={tiers} onAdd={addReady} onCustomize={(p,tier)=>choose(p.vehicle,p.controllerKey,tier)}/>
+   <div className="toolbar">
+    <div><h2 id="catalog-title">{title}</h2><p>{filtered.length} produkter <span>· Prisene er øyeblikksbilder fra elefun.no</span></p></div>
+    <div className="toolbar-controls">
+     <label className="field-search"><Search size={18} aria-hidden/><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Søk i utvalget" aria-label="Søk i utvalget"/></label>
+     <label className="select"><span>Sorter</span><select value={sort} onChange={e=>setSort(e.target.value)}><option value="default">Anbefalt</option><option value="low">Pris: lav til høy</option><option value="high">Pris: høy til lav</option></select></label>
+    </div>
+   </div>
+   {filtered.length===0?<div className="empty"><h3>Ingen produkter matcher søket</h3><p>Prøv et annet navn eller merke.</p></div>:
+   <div className="product-grid product-grid-5">{filtered.map((v,i)=><ProductCard key={v.id} product={v} priority={i<5} action={v.kind==='vehicle'?<button type="button" className="btn-build btn-build-compact" onClick={()=>choose(v)}>Bygg pakke <ArrowRight size={16} aria-hidden/></button>:<a className="text-link" href={productHref(v)}>Detaljer</a>}/>)}</div>}
+  </section>
+
+  <aside className="builder-note"><PackageCheck size={22} aria-hidden/><p>Pakkene bygger på modellspesifikke batterier og ladeoppsett. Kombinasjoner som ikke er avklart, blir markert og kan ikke legges i handlevognen som ferdig pakke.</p><button type="button" className="btn-secondary" onClick={()=>setCartOpen(true)}><ShoppingCart size={18} aria-hidden/> Demo-handlevogn ({cart.length})</button></aside>
+
+  <dialog ref={dialog} className="sheet builder-sheet" aria-labelledby="builder-title" onCancel={()=>setVehicleId(undefined)} onClose={()=>setVehicleId(undefined)}>
+   {vehicle&&rule&&<><header className="sheet-head pb-head"><div><h2 id="builder-title">{cleanName(vehicle.name)}</h2><p>Sett sammen pakken med batteri, lader, kabler og kontroll</p></div><button className="icon-button" aria-label="Lukk pakkebygger" onClick={()=>setVehicleId(undefined)}><X/></button></header>
+   <div className="pb-body">
+    <section className="pb-model" aria-label="Modellen">
+     <div className="pb-model-media"><img src={vehicle.imageUrl??''} alt=""/></div>
+     <SpecRail specs={specsFor(vehicle)}/>
+     <p className="pb-note">{rule.note}</p>
+     <a className="source-link" href={productHref(vehicle)}>Om modellen <ArrowRight size={14} aria-hidden/></a>
+    </section>
+    <section className="pb-config" aria-labelledby="pb-config-title">
+     <h3 id="pb-config-title">Din pakke</h3>
+     <p className="pb-hint">Bytt batteri, lader eller kontroll i menyene. Prisene der viser hva byttet koster eller sparer.</p>
+     <div className="pb-rows">
+      <div className="pb-row"><span className="pb-row-label">Modell</span><div className="pb-static"><span><strong>{cleanName(vehicle.name)}</strong></span><span className="price">{money(vehicle.price)}</span></div></div>
+      {batteryOptions.length>1?<PackageSelect label={vehicle.batteryCount>1?`Batteri · ${vehicle.batteryCount} stk. trengs`:'Batteri'} icon={<BatteryCharging size={20}/>} value={`${batteryId}:${batterySets}`} onChange={k=>{const [id,sets]=k.split(':');setBatteryId(id);setBatterySets(Number(sets)||1);setNotice('');}} options={batteryOptions}/>:batteryOptions[0]&&<div className="pb-row"><span className="pb-row-label">{vehicle.batteryCount>1?`Batteri · ${vehicle.batteryCount} stk. trengs`:'Batteri'}</span><div className="pb-static"><span><strong>{batteryOptions[0].title}</strong><small>{batteryOptions[0].facts}</small></span><span className="price">{money(batteryOptions[0].price)}</span></div></div>}
+      {chargerOptions.length>1?<PackageSelect label="Lader" icon={<Zap size={20}/>} value={chargerId??'included'} onChange={k=>{setChargerId(k==='included'?undefined:k);setNotice('');}} options={chargerOptions}/>
+      :chargerOptions.length===1&&<div className="pb-row"><span className="pb-row-label">Lader</span><div className="pb-static"><span><strong>{chargerOptions[0].title}</strong><small>{chargerOptions[0].facts}</small></span><span className="price">{chargerOptions[0].price?money(chargerOptions[0].price):'Inkludert'}</span></div></div>}
+      {controllerOptions.length>0?<div className="pb-row"><PackageSelect label="Kontroll" icon={<Gamepad2 size={20}/>} value={controllerKey} onChange={k=>{setControllerKey(k);setNotice('');}} options={controllerOptions}/>{ctrl?.note&&<p className="pb-row-note">{ctrl.note}</p>}</div>
+      :ctrl?.included&&<div className="pb-row"><span className="pb-row-label">Kontroll</span><div className={`pb-static${ctrl.unconfirmed?' pb-static-warn':''}`}><span><strong>{ctrl.unconfirmed?'Ikke bekreftet':'Følger med modellen'}</strong><small>{ctrl.included}</small></span><span className="price">{ctrl.unconfirmed?'–':'Inkludert'}</span></div></div>}
+      {leads.length>0&&<div className="pb-row"><span className="pb-row-label">Kabler · legges til automatisk</span>{leads.map(l=><div className="pb-static" key={l.id}><span><strong>{vehicle.batteryCount} × {cleanName(l.name)}</strong><small>{l.description!=='Tilbehør fra Elefuns produktkatalog.'?l.description:'Trengs for å lade batteriet'}</small></span><span className="price">{money(l.price*vehicle.batteryCount)}</span></div>)}</div>}
+     </div>
+     {fromTier&&!discountActive&&<div className="note note-warn"><CircleAlert size={18} aria-hidden/><div><strong>Pakkerabatten gjelder ikke lenger</strong><p>Du har endret ferdigpakken {origin?.tier}, så 15 % rabatt blir ikke gitt. <button className="link-button" onClick={resetToTier}>Gå tilbake til ferdigpakken</button></p></div></div>}
+     {reasons.length>0&&<div className="note note-warn"><CircleAlert size={18} aria-hidden/><div><strong>Må avklares før pakken er komplett</strong><ul>{reasons.map(r=><li key={r}>{r}</li>)}</ul></div></div>}
+     <div className="pb-total">
+      {discountActive&&<p className="pb-discount"><span className="discount-badge">−15 %</span> Ferdigpakke {origin?.tier}: du sparer {money(discount)}</p>}
+      <div className="pb-sum"><span>Sum for pakken</span><span className="pb-sum-price">{discount>0&&<s className="price">{money(total)}</s>}<strong className="price">{money(total-discount)}</strong></span></div>
+      <p className="pb-sum-split">Modell {money(vehicle.price)} · tilbehør {money(total-vehicle.price)} · demopriser inkl. mva., frakt ikke beregnet</p>
+      <span className={`status ${reasons.length?'status-warn':'status-ok'}`}>{reasons.length?'Trenger avklaring før kjøp':'Batteri og lading passer'}</span>
+      <button className="btn-buy btn-buy-full" disabled={reasons.length>0} onClick={add}><ShoppingCart size={18} aria-hidden/> Legg i demo-handlevogn</button>
+      <p className="fine-print">{vehicle.vehicleType==='plane'?'Sender og eventuelt mottaker kommer i tillegg. Pakken er ikke et komplett flyklart sett.':'Kontroller hva som følger med, og eventuelle batterier til senderen.'}</p>
+      <div aria-live="polite" className="success-notice">{notice}</div>
+     </div>
+    </section>
+   </div></>}
   </dialog>
-  <dialog ref={cartDialog} className="cart-dialog" onCancel={()=>setCartOpen(false)} onClose={()=>setCartOpen(false)}><header className="dialog-header"><h2>Demo-handlevogn</h2><button className="icon-button" aria-label="Lukk handlevogn" onClick={()=>setCartOpen(false)}><X/></button></header><p>Lagres på denne enheten. Ingen ekte ordre eller betaling.</p>{cart.length===0?<p className="empty-state">Handlevognen er tom. Velg en modell og bygg en pakke.</p>:cart.map(p=><article className="cart-package" key={p.id}><h3>{p.name}</h3>{p.lines.map(l=><div className="summary-row" key={l.id}><span>{l.quantity} × {l.name}</span><b>{money(l.price*l.quantity)}</b></div>)}<div className="summary-row"><b>{money(p.total)}</b><button onClick={()=>saveCart(cart.filter(c=>c.id!==p.id))}>Fjern pakken</button></div></article>)}<h3>Totalt: {money(cart.reduce((s,p)=>s+p.total,0))}</h3></dialog>
+  <dialog ref={cartDialog} className="sheet cart-sheet" aria-labelledby="cart-title" onCancel={()=>setCartOpen(false)} onClose={()=>setCartOpen(false)}><header className="sheet-head"><div><h2 id="cart-title">Demo-handlevogn</h2><p>Lagres bare på denne enheten. Ingen ekte ordre eller betaling.</p></div><button className="icon-button" aria-label="Lukk handlevogn" onClick={()=>setCartOpen(false)}><X/></button></header>
+   <div className="cart-body">{cart.length===0?<div className="empty"><h3>Handlevognen er tom</h3><p>Velg en modell og bygg en pakke, eller legg til tilbehør fra en kategori.</p></div>:cart.map(p=><article className="cart-package" key={p.id}><h3>{p.name}</h3>{p.lines.map(l=><div className="summary-row" key={l.id}><span>{l.quantity} × {l.name}</span><b>{money(l.price*l.quantity)}</b></div>)}<div className="cart-package-foot"><button className="link-button" onClick={()=>saveCart(cart.filter(c=>c.id!==p.id))}>Fjern</button><strong className="price">{money(p.total)}</strong></div></article>)}
+   {cart.length>0&&<div className="cart-total"><span>Totalt</span><strong className="price">{money(cart.reduce((s,p)=>s+p.total,0))}</strong></div>}
+   <a className="source-link" href="https://www.elefun.no/" target="_blank" rel="noreferrer">Handle på ekte hos Elefun <ArrowUpRight size={15} aria-hidden/></a></div>
+  </dialog>
  </main>;
 }

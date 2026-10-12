@@ -79,3 +79,31 @@ Dette er en kuratert katalog, ikke en universell kompatibilitetsmotor for vilkå
 Alle 55 bildekilder er kontrollert mot produktgalleriet og visuelt gjennomgått. Bildene bruker originale JPG-filer under `/bilder/produktbilder/`, uten Elefuns `aspx/resize.aspx`-endepunkt eller metadata for deling. Pris og produktdetaljer rendres separat i grensesnittet. MJX 73081 bruker bilde 19, som viser produktet uten den ekstra skalaetiketten i bilde 3. Kildesporingen ligger i `data/product-image-sources.json`. Firecrawl-verktøyet var ikke tilgjengelig; HTML og bilder ble hentet direkte fra Elefun.
 
 En egen bildekilderevisjon oppdaterer kun `image_url` i eksisterende D1-kataloger, i én transaksjon. Den endrer ikke priser eller kompatibilitetsdata.
+
+## Flere batterier og kontrollere – 12. oktober 2026
+
+Hentet direkte fra Elefuns produktsider (HTML), fanen «Anbefalt tilbehør» på hver modell. Prisene er øyeblikksbilder fra 12. oktober 2026. Alle nye bilder er originale gallerifiler, visuelt kontrollert uten pris- eller kampanjemerking.
+
+**Ekstra batterier.** Et batteri legges bare til når Elefun anbefaler det på modellens side **og** det har samme kontakt og celletall som det allerede dokumenterte batteriet, slik at lader og kabler er uendret.
+
+- WLToys RSR 144001: [Etop 2S 1500mAh Deans](https://www.elefun.no/vare-46359/batteri-lipo-2s-1500mah-35c-etop-deans)
+- ARRMA Typhon 6S: [Sunpadow 6S 6000mAh EC5](https://www.elefun.no/vare-51228/batteri-lipo-6s-6000mah-60c-sunpadow-ec5), 155 × 58 × 42 mm
+- E-Flite Corsair: Spektrum 3S 3200mAh IC3 (fantes i katalogen fra før)
+- Traxxas Disruptor: [Traxxas 4S 5000mAh iD](https://www.elefun.no/vare-41084/batteri-lipo-4s-5000mah-25c-traxxas-id), 155 × 34 × 45 mm
+- FMS Zero: [Gens Ace Tattu 4S 2300mAh XT60](https://www.elefun.no/vare-59317/batteri-lipo-4s-2300mah-75c-gens-ace-tattu-xt60)
+- DJI Lito X1: [DJI Lito Series Intelligent Flight Battery Plus](https://www.elefun.no/vare-73090/fpv-drone-dji-tilbehor-lito-series-intelligent-flight-battery-plus)
+
+Ikke lagt til, selv om Elefun anbefaler dem: 4S-batterier på 3S-fly (Mustang, S.E.5a), ikke-Smart iEC2-batterier til Grom-bilene (medfølgende lader er Spektrum Smart), 3S til MJX og Grom 223S (medfølgende lader er 2S), og Typhons oppsett med 2 × 3S.
+
+I tillegg kan hvert dokumenterte batteri velges som to sett (ekstra sett for dobbel kjøretid). Det endrer ikke lader eller kabler.
+
+**Kontrollere.**
+
+- BNF-fly (Corsair, Mustang, S.E.5a) har Spektrum-mottaker og trenger DSMX-sender: [Spektrum DXS](https://www.elefun.no/vare-49801/radioutstyr-sender-spektrum-dxs-dsmx), [NX7e+](https://www.elefun.no/vare-65482/radioutstyr-sender-spektrum-nx7e-plus-dsmx-smart), [NX8+](https://www.elefun.no/vare-65263/radioutstyr-sender-spektrum-nx8-plus-dsmx-smart). NX7e+ og NX8+ står som anbefalt tilbehør på Mustang og S.E.5a.
+- PNP-fly (Zero, Spitfire) trenger sender og mottaker: [FrSky Twin X14](https://www.elefun.no/vare-64293/radioutstyr-sender-frsky-twin-x14-black) + [Archer Plus R10+](https://www.elefun.no/vare-61097/radioutstyr-mottakere-frsky-archer-plus-r10) (anbefalt på Spitfire), eller NX7e+ + [AR8020T](https://www.elefun.no/vare-50392/radioutstyr-mottakere-spektrum-ar8020t-8ch-telemetry-receiver). Antall kanaler modellen trenger er ikke kontrollert mot manualen.
+- DJI Neo 2 (Drone Only) kan flys uten kontroll ifølge Elefun. [DJI RC-N3](https://www.elefun.no/vare-65699/drone-tilbehor-dji-rc-n3-remote-controller) krever [Neo 2 Digital Transreceiver](https://www.elefun.no/vare-70941/dji-neo-2-digital-transreceiver).
+- Biler, båter og øvrige droner: Elefuns beskrivelse sier at radio eller DJI-kontroller følger med. Joysway Alpha V2 (ARTR) sier ikke om sender følger med, og vises derfor som ikke bekreftet.
+
+**Bytte av medfølgende radio (biler og båter).** Komplette Spektrum-sett med egen mottaker, fra Elefuns kategori for bil- og båtradioer: [DX3 m/SR315](https://www.elefun.no/vare-47635/radioutstyr-sender-spektrum-dx3-dsmr-3ch-radio-med-sr315-mottaker), [DXC+ m/SR615](https://www.elefun.no/vare-70671/radioutstyr-sender-spektrum-dxc-plus-12-kanaler-radio-dsmr-m-sr615) og [DX Pro+ m/SR2100](https://www.elefun.no/vare-71786/radioutstyr-sender-spektrum-dx-pro-plus-12-kanaler-radio-dsmr-m-sr2100). Mottakeren monteres i modellen i stedet for den originale. Dronene får ikke bytte: Elefun oppgir bare at DJI RC 2 passer til «Air 3», ikke til dronene i utvalget.
+
+**Kontroll per nivå i Ferdige pakker.** Budsjett får det billigste kontrollvalget, Medium det midterste og Premium det dyreste. Medfølgende radio teller som et valg til 0 kr. «Jeg har allerede…» velges aldri automatisk.

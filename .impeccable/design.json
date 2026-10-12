@@ -1,0 +1,626 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-12T07:41:10.948521+00:00",
+  "title": "Design System: Elefun",
+  "extensions": {
+    "colorMeta": {
+      "elefun-blue": {
+        "role": "primary",
+        "displayName": "Elefun Blue",
+        "canonical": "#116ba0",
+        "tonalRamp": [
+          "#062537",
+          "#0b4465",
+          "#106698",
+          "#168bcf",
+          "#3daaea",
+          "#7ec7f1",
+          "#bae1f8",
+          "#e8f5fd"
+        ]
+      },
+      "blue-deep": {
+        "role": "primary",
+        "displayName": "Deep Blue",
+        "canonical": "#0b5383",
+        "tonalRamp": [
+          "#052438",
+          "#094268",
+          "#0d629b",
+          "#1286d4",
+          "#39a6ee",
+          "#7bc4f4",
+          "#b8dff9",
+          "#e7f4fd"
+        ]
+      },
+      "blue-ink": {
+        "role": "primary",
+        "displayName": "Blue Ink",
+        "canonical": "#083d61",
+        "tonalRamp": [
+          "#052439",
+          "#094168",
+          "#0d629b",
+          "#1185d4",
+          "#39a5ef",
+          "#7bc3f4",
+          "#b8dff9",
+          "#e7f4fd"
+        ]
+      },
+      "blue-wash": {
+        "role": "primary",
+        "displayName": "Blue Wash",
+        "canonical": "#e9f2f8",
+        "tonalRamp": [
+          "#0f222e",
+          "#1b3e55",
+          "#295d80",
+          "#377fae",
+          "#5d9fcb",
+          "#93bfdd",
+          "#c5dded",
+          "#ecf4f9"
+        ]
+      },
+      "elefun-yellow": {
+        "role": "secondary",
+        "displayName": "Elefun Yellow",
+        "canonical": "#f8bd1e",
+        "tonalRamp": [
+          "#3b2c02",
+          "#6d5003",
+          "#a37805",
+          "#dfa407",
+          "#f9c22f",
+          "#fbd675",
+          "#fde9b5",
+          "#fef8e6"
+        ]
+      },
+      "yellow-hover": {
+        "role": "secondary",
+        "displayName": "Yellow Hover",
+        "canonical": "#ffca3a",
+        "tonalRamp": [
+          "#3d2d00",
+          "#705200",
+          "#a87b00",
+          "#e6a800",
+          "#ffc529",
+          "#ffd970",
+          "#ffeab2",
+          "#fff8e5"
+        ]
+      },
+      "yellow-deep": {
+        "role": "secondary",
+        "displayName": "Deep Yellow (focus)",
+        "canonical": "#e69500",
+        "tonalRamp": [
+          "#3d2800",
+          "#704900",
+          "#a86d00",
+          "#e69500",
+          "#ffb429",
+          "#ffcd70",
+          "#ffe4b2",
+          "#fff6e5"
+        ]
+      },
+      "buy-green": {
+        "role": "tertiary",
+        "displayName": "Buy Green",
+        "canonical": "#157a27",
+        "tonalRamp": [
+          "#093411",
+          "#10601f",
+          "#19902e",
+          "#22c43f",
+          "#48e063",
+          "#85ea97",
+          "#bef4c7",
+          "#e9fbec"
+        ]
+      },
+      "buy-green-hover": {
+        "role": "tertiary",
+        "displayName": "Buy Green Hover",
+        "canonical": "#10651f",
+        "tonalRamp": [
+          "#083510",
+          "#0f611e",
+          "#17912d",
+          "#1fc63d",
+          "#46e262",
+          "#84eb96",
+          "#bdf5c7",
+          "#e9fcec"
+        ]
+      },
+      "stripe-black": {
+        "role": "neutral",
+        "displayName": "Stripe Black",
+        "canonical": "#0f1418",
+        "tonalRamp": [
+          "#181f26",
+          "#2b3a45",
+          "#415668",
+          "#58768d",
+          "#7b97ad",
+          "#a7b9c8",
+          "#d0dae2",
+          "#eff3f5"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#16232d",
+        "tonalRamp": [
+          "#142029",
+          "#253b4b",
+          "#375871",
+          "#4b789a",
+          "#6f99b9",
+          "#9fbbd0",
+          "#ccdae6",
+          "#eef3f7"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Ink 2",
+        "canonical": "#4a5c6a",
+        "tonalRamp": [
+          "#191f24",
+          "#2e3942",
+          "#455663",
+          "#5e7587",
+          "#8196a7",
+          "#abb9c4",
+          "#d2dae0",
+          "#f0f3f5"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Ink 3",
+        "canonical": "#6b7c89",
+        "tonalRamp": [
+          "#1b1f22",
+          "#31393f",
+          "#4a565e",
+          "#657581",
+          "#8796a1",
+          "#afb9c0",
+          "#d4d9dd",
+          "#f1f2f4"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "canonical": "#dbe3e9",
+        "tonalRamp": [
+          "#172026",
+          "#2b3a46",
+          "#405768",
+          "#57778e",
+          "#7a98ae",
+          "#a6bac9",
+          "#d0dae2",
+          "#eff3f5"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Line Strong",
+        "canonical": "#c3d2dc",
+        "tonalRamp": [
+          "#172027",
+          "#293b47",
+          "#3e596a",
+          "#557991",
+          "#789ab0",
+          "#a5bbca",
+          "#cfdbe3",
+          "#eff3f6"
+        ]
+      },
+      "well": {
+        "role": "neutral",
+        "displayName": "Well",
+        "canonical": "#f2f6f9",
+        "tonalRamp": [
+          "#13202a",
+          "#233b4d",
+          "#355973",
+          "#48799d",
+          "#6c9abb",
+          "#9dbbd2",
+          "#cbdbe7",
+          "#eef3f7"
+        ]
+      },
+      "well-2": {
+        "role": "neutral",
+        "displayName": "Well 2",
+        "canonical": "#e6eef3",
+        "tonalRamp": [
+          "#142129",
+          "#243d4c",
+          "#375b72",
+          "#4a7c9b",
+          "#6e9dba",
+          "#9fbdd1",
+          "#cbdce6",
+          "#eef3f7"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#1f1f1f",
+          "#383838",
+          "#545454",
+          "#737373",
+          "#949494",
+          "#b8b8b8",
+          "#d9d9d9",
+          "#f2f2f2"
+        ]
+      },
+      "ok-bg": {
+        "role": "status",
+        "displayName": "OK Background",
+        "canonical": "#ebf6ed",
+        "tonalRamp": [
+          "#132a17",
+          "#234d2b",
+          "#347440",
+          "#479e57",
+          "#6bbd7a",
+          "#9dd3a6",
+          "#cae7d0",
+          "#edf7ef"
+        ]
+      },
+      "ok-ink": {
+        "role": "status",
+        "displayName": "OK Ink",
+        "canonical": "#1d5e2a",
+        "tonalRamp": [
+          "#0e2f15",
+          "#1a5626",
+          "#288139",
+          "#36af4e",
+          "#5bcc72",
+          "#92dda1",
+          "#c5edcd",
+          "#ecf9ee"
+        ]
+      },
+      "warn-bg": {
+        "role": "status",
+        "displayName": "Warn Background",
+        "canonical": "#fff5dc",
+        "tonalRamp": [
+          "#3d2c00",
+          "#705000",
+          "#a87800",
+          "#e6a400",
+          "#ffc229",
+          "#ffd670",
+          "#ffe9b2",
+          "#fff8e5"
+        ]
+      },
+      "warn-line": {
+        "role": "status",
+        "displayName": "Warn Line",
+        "canonical": "#efd38c",
+        "tonalRamp": [
+          "#362907",
+          "#624b0e",
+          "#947015",
+          "#c9981c",
+          "#e5b743",
+          "#eecf82",
+          "#f6e5bc",
+          "#fcf6e9"
+        ]
+      },
+      "warn-ink": {
+        "role": "status",
+        "displayName": "Warn Ink",
+        "canonical": "#6b4a00",
+        "tonalRamp": [
+          "#3d2a00",
+          "#704e00",
+          "#a87400",
+          "#e69f00",
+          "#ffbd29",
+          "#ffd370",
+          "#ffe7b2",
+          "#fff7e5"
+        ]
+      },
+      "destructive": {
+        "role": "status",
+        "displayName": "Destructive",
+        "canonical": "#c42b22",
+        "tonalRamp": [
+          "#340b09",
+          "#601511",
+          "#8f1f19",
+          "#c42b22",
+          "#df5148",
+          "#ea8b85",
+          "#f4c1be",
+          "#fbeae9"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero H1 only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Category page heads; product names at clamp(28px,3vw,40px)."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Section, toolbar, sheet and footer heads."
+      },
+      "card-title": {
+        "displayName": "Card title",
+        "purpose": "Product names on cards, two-line clamp, in Signika."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text; 15px under 640px."
+      },
+      "price": {
+        "displayName": "Price",
+        "purpose": "All prices: 21px card, 42px product, 32px package total."
+      },
+      "spec-label": {
+        "displayName": "Spec label",
+        "purpose": "Spec rail text; 15px large variant, 11.5px on phones."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-lift",
+        "value": "0 12px 28px -16px rgb(8 61 97 / .38)",
+        "purpose": "Product card hover with a 3px rise."
+      },
+      {
+        "name": "buy-box",
+        "value": "0 10px 30px -22px rgb(8 61 97 / .45)",
+        "purpose": "Product page price panel."
+      },
+      {
+        "name": "masthead-float",
+        "value": "0 8px 20px -10px rgb(4 30 50 / .55)",
+        "purpose": "Search field on the blue masthead."
+      },
+      {
+        "name": "stage",
+        "value": "0 24px 50px -24px rgb(4 30 50 / .6)",
+        "purpose": "Hero image stage on blue."
+      },
+      {
+        "name": "yellow-action",
+        "value": "0 6px 14px -6px rgb(160 100 0 / .55)",
+        "purpose": "Yellow primary buttons; 0 3px 8px -4px on press."
+      },
+      {
+        "name": "pop",
+        "value": "0 30px 80px -24px rgb(8 30 50 / .55)",
+        "purpose": "Sheets (dialogs) over a blurred rgb(6 22 36 / .6) backdrop."
+      },
+      {
+        "name": "field-focus",
+        "value": "0 0 0 3px rgb(17 107 160 / .18)",
+        "purpose": "Bordered field focus halo."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "All movement: card lift, arrow nudge, image scale, sheet entrance."
+      },
+      {
+        "name": "state",
+        "value": "0.15s",
+        "purpose": "Color, background and border transitions."
+      },
+      {
+        "name": "lift",
+        "value": "0.25s",
+        "purpose": "Card lift; image scale 0.4s (hero 0.6s)."
+      },
+      {
+        "name": "sheet-in",
+        "value": "0.4s, from opacity 0 and translateY 18px",
+        "purpose": "The single entrance animation, on opening dialogs."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "durations forced to .01ms",
+        "purpose": "prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide",
+        "value": "1240px"
+      },
+      {
+        "name": "desktop",
+        "value": "1100px"
+      },
+      {
+        "name": "tablet",
+        "value": "900px"
+      },
+      {
+        "name": "phone",
+        "value": "640px"
+      }
+    ],
+    "theming": {
+      "selection": "background #f8bd1e, color #16232d",
+      "caret": "#116ba0",
+      "focusVisible": "3px solid #e69500, offset 2px, radius 4px",
+      "scrollbar": "#9fb4c3 on #f2f6f9"
+    },
+    "sanctionedExceptions": [
+      {
+        "rule": "border-accent-on-rounded",
+        "files": [
+          "app/globals.css"
+        ],
+        "reason": "Elefun's black stripe with a 3px yellow edge is the pinned brand signature (category bar, spec rail, hero tag and steps, sheet header, footer); radii sit only on corners opposite the stripe."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Build Button (primary)",
+      "kind": "button",
+      "refersTo": "button-build",
+      "description": "Yellow primary action for choosing a model and building a package.",
+      "html": "<button class=\"ds-btn-build\">Bygg pakke <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></button>",
+      "css": ".ds-btn-build{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:8px;background:var(--yellow,#f8bd1e);color:var(--ink,#16232d);font:700 16px Signika,Arial,sans-serif;padding:13px 20px;box-shadow:0 6px 14px -6px rgb(160 100 0 / .55);cursor:pointer;transition:background .15s,translate .15s cubic-bezier(.16,1,.3,1),box-shadow .15s}.ds-btn-build:hover{background:var(--yellow-hover,#ffca3a)}.ds-btn-build svg{transition:translate .2s cubic-bezier(.16,1,.3,1)}.ds-btn-build:hover svg{translate:3px 0}.ds-btn-build:active{translate:0 1px;box-shadow:0 3px 8px -4px rgb(160 100 0 / .55)}.ds-btn-build:focus-visible{outline:3px solid var(--yellow-deep,#e69500);outline-offset:2px}"
+    },
+    {
+      "name": "Buy Button",
+      "kind": "button",
+      "refersTo": "button-buy",
+      "description": "Green add-to-cart action; green is reserved for buying.",
+      "html": "<button class=\"ds-btn-buy\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"8\" cy=\"21\" r=\"1\"/><circle cx=\"19\" cy=\"21\" r=\"1\"/><path d=\"M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12\"/></svg>Legg i handlevogn</button>",
+      "css": ".ds-btn-buy{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:8px;background:var(--green-buy,#157a27);color:#fff;font:700 16px Signika,Arial,sans-serif;min-height:52px;padding:0 24px;cursor:pointer;transition:background .15s}.ds-btn-buy:hover{background:var(--green-buy-hover,#10651f)}.ds-btn-buy:disabled{background:var(--well-2,#e6eef3);color:var(--ink-3,#6b7c89);cursor:not-allowed}.ds-btn-buy:focus-visible{outline:3px solid var(--yellow-deep,#e69500);outline-offset:2px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Bordered white button for non-primary actions such as opening the demo cart.",
+      "html": "<button class=\"ds-btn-secondary\">Demo-handlevogn (0)</button>",
+      "css": ".ds-btn-secondary{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line-strong,#c3d2dc);background:#fff;color:var(--blue-deep,#0b5383);font:600 16px Signika,Arial,sans-serif;padding:10px 16px;border-radius:8px;cursor:pointer;transition:border-color .15s,background .15s}.ds-btn-secondary:hover{border-color:var(--blue,#116ba0);background:var(--blue-wash,#e9f2f8)}.ds-btn-secondary:focus-visible{outline:3px solid var(--yellow-deep,#e69500);outline-offset:2px}"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Bordered 42px field with a blue focus halo.",
+      "html": "<label class=\"ds-field\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/></svg><input placeholder=\"Søk i utvalget\"></label>",
+      "css": ".ds-field{display:flex;align-items:center;gap:8px;height:42px;padding:0 12px;border:1px solid var(--line-strong,#c3d2dc);border-radius:8px;background:#fff;color:var(--ink-3,#6b7c89);width:240px}.ds-field:focus-within{border-color:var(--blue,#116ba0);box-shadow:0 0 0 3px rgb(17 107 160 / .18)}.ds-field input{border:0;outline:0;background:transparent;flex:1;font:16px Signika,Arial,sans-serif;color:var(--ink,#16232d);caret-color:var(--blue,#116ba0)}"
+    },
+    {
+      "name": "Category Bar",
+      "kind": "nav",
+      "refersTo": "category-bar",
+      "description": "Elefun's black stripe with a 3px yellow top edge, now the category navigation.",
+      "html": "<nav class=\"ds-catbar\"><a href=\"#\" aria-current=\"page\">Pakkebygger</a><a href=\"#\">Biler</a><a href=\"#\">Båter</a><a href=\"#\">Droner</a><a href=\"#\">Fly</a></nav>",
+      "css": ".ds-catbar{display:flex;background:var(--black,#0f1418);border-top:3px solid var(--yellow,#f8bd1e);padding:0 12px}.ds-catbar a{display:block;padding:13px 14px 12px;font:600 15px Signika,Arial,sans-serif;color:#e9eff3;text-decoration:none;box-shadow:inset 0 -3px 0 transparent;transition:color .15s,box-shadow .2s cubic-bezier(.16,1,.3,1),background .15s}.ds-catbar a:hover{color:#fff;background:rgb(255 255 255 / .07)}.ds-catbar a[aria-current=page]{color:#fff;box-shadow:inset 0 -3px 0 var(--yellow,#f8bd1e)}.ds-catbar a:focus-visible{outline:3px solid var(--yellow-deep,#e69500);outline-offset:-3px}"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Pill toggle for spec filters such as cell count or connector.",
+      "html": "<div class=\"ds-chips\"><button class=\"ds-chip\" aria-pressed=\"true\">3S</button><button class=\"ds-chip\" aria-pressed=\"false\">4S</button><button class=\"ds-chip\" aria-pressed=\"false\">XT60</button></div>",
+      "css": ".ds-chips{display:flex;gap:6px}.ds-chip{min-width:48px;padding:6px 12px;border:1px solid var(--line-strong,#c3d2dc);border-radius:99px;background:#fff;color:var(--ink,#16232d);font:700 14px Play,sans-serif;cursor:pointer;transition:background .15s,border-color .15s,color .15s}.ds-chip:hover{border-color:var(--blue,#116ba0)}.ds-chip[aria-pressed=true]{background:var(--blue,#116ba0);border-color:var(--blue,#116ba0);color:#fff}.ds-chip:focus-visible{outline:3px solid var(--yellow-deep,#e69500);outline-offset:2px}"
+    },
+    {
+      "name": "Spec Rail",
+      "kind": "custom",
+      "refersTo": "spec-rail",
+      "description": "Signature: black band with a 3px yellow top edge carrying real specs in Play with tabular numerals.",
+      "html": "<ul class=\"ds-spec-rail\"><li>1/8</li><li>4WD</li><li>6S</li><li>Børsteløs</li><li>RTR</li></ul>",
+      "css": ".ds-spec-rail{display:flex;flex-wrap:wrap;list-style:none;margin:0;padding:11px 16px;gap:4px 0;background:var(--black,#0f1418);border-top:3px solid var(--yellow,#f8bd1e);border-radius:0 0 8px 8px;color:#fff;font:700 15px/1.3 Play,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em}.ds-spec-rail li{padding:0 10px;border-left:1px solid rgb(255 255 255 / .22)}.ds-spec-rail li:first-child{padding-left:0;border-left:0}"
+    },
+    {
+      "name": "Product Card",
+      "kind": "card",
+      "refersTo": "product-card",
+      "description": "Bordered card: well image, spec rail, Signika name, Play price, action; lifts on hover.",
+      "html": "<article class=\"ds-pcard\"><div class=\"ds-pcard-media\"></div><ul class=\"ds-pcard-rail\"><li>1/14</li><li>4WD</li><li>Børsteløs</li></ul><div class=\"ds-pcard-body\"><h3>MJX Hyper GO Brushless 1/14 4WD Truggy</h3><div class=\"ds-pcard-foot\"><strong>2 195 kr</strong><button>Bygg pakke</button></div></div></article>",
+      "css": ".ds-pcard{width:240px;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line,#dbe3e9);border-radius:12px;overflow:hidden;color:var(--ink,#16232d);transition:box-shadow .25s cubic-bezier(.16,1,.3,1),translate .25s cubic-bezier(.16,1,.3,1),border-color .2s}.ds-pcard:hover{box-shadow:0 12px 28px -16px rgb(8 61 97 / .38);translate:0 -3px;border-color:var(--line-strong,#c3d2dc)}.ds-pcard-media{aspect-ratio:4/3;background:var(--well,#f2f6f9)}.ds-pcard-rail{display:flex;list-style:none;margin:0;padding:7px 12px;background:var(--black,#0f1418);border-top:3px solid var(--yellow,#f8bd1e);color:#fff;font:700 12.5px/1.3 Play,sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden}.ds-pcard-rail li{padding:0 10px;border-left:1px solid rgb(255 255 255 / .22)}.ds-pcard-rail li:first-child{padding-left:0;border-left:0}.ds-pcard-body{padding:12px 14px 14px}.ds-pcard h3{font:600 15.5px/1.35 Signika,sans-serif;margin:0 0 14px}.ds-pcard-foot{display:flex;align-items:center;justify-content:space-between;gap:8px}.ds-pcard-foot strong{font:700 21px Play,sans-serif;font-variant-numeric:tabular-nums}.ds-pcard-foot button{border:0;border-radius:7px;background:var(--yellow,#f8bd1e);color:var(--ink,#16232d);font:700 14px Signika,sans-serif;padding:8px 12px;box-shadow:0 6px 14px -6px rgb(160 100 0 / .55);cursor:pointer}.ds-pcard-foot button:hover{background:var(--yellow-hover,#ffca3a)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Spec Stripe",
+    "overview": "**Creative North Star: \"The Spec Stripe\"**\n\nElefun's own shop, made modern. The blue masthead, the black stripe with its yellow edge and the green buy button are the store's inherited identity, kept at full strength; what is new is that the stripe now does work. It runs under the masthead as the category bar, under every product image as the spec rail, across the bottom of the hero as the three steps, under the dialog header and over the footer. Wherever it appears it carries something real: navigation, or the specs a hobby buyer actually reads (scale, drive, cells, mAh, connector, watt).\n\nThe rest of the page stays quiet so the stripe and the products can speak. Ground is white; product photography sits on a cool blue-grey well and multiplies into it. Neutrals lean toward the brand blue rather than grey. Density is retail-normal: a 1320px container, 18px card gaps, 12px card radii, borders at 1px. Headings and every number are Play; running text is Signika. Depth is soft and blue-shadowed, never hard-edged.",
+    "keyCharacteristics": [
+      "Full-bleed Elefun blue masthead and hero; white page ground; cool wells for imagery.",
+      "The black band with a 3px yellow top edge as the one recurring signature, always carrying content.",
+      "Yellow fills primary actions with near-black text; green is spent only on buying.",
+      "Play for headings, prices and specs with tabular numerals; Signika for text.",
+      "Soft, negative-spread blue shadows; radii 6–16px; pills only for chips, counts and status."
+    ],
+    "rules": [
+      {
+        "name": "The Green Is Money Rule",
+        "body": "Green appears only on actions that put something in the cart. Building, choosing and navigating are yellow or blue.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tinted Neutral Rule",
+        "body": "No pure greys. Every neutral, border and shadow leans toward the brand blue (shadows are `rgb(8 61 97 / …)` or `rgb(4 30 50 / …)`, never black).",
+        "section": "colors"
+      },
+      {
+        "name": "The Yellow Carries Dark Text Rule",
+        "body": "Yellow fills always take ink text, never white.",
+        "section": "colors"
+      },
+      {
+        "name": "The Numbers Are Play Rule",
+        "body": "Every price, count, spec and step number is set in Play with tabular numerals.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Kicker Rule",
+        "body": "No eyebrow labels above headings. A heading stands on its own; supporting text goes under it.",
+        "section": "typography"
+      },
+      {
+        "name": "The Soft Offset Rule",
+        "body": "Shadows always blur and spread negative, tinted blue or amber. No hard, unblurred offset shadows.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Square Stripe Rule",
+        "body": "Wherever the black band sits under a 3px yellow top edge, the top corners stay square and only the corners opposite the stripe round (`0 0 8px 8px`, `0 0 6px 6px`). The stripe reads as a continuous edge, not a pill. This is a sanctioned brand exception: the detector rule `border-accent-on-rounded` is suppressed for `app/globals.css` in `.impeccable/config.json` for this reason.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** put real specs or navigation in every black band with a yellow 3px top edge; keep its top corners square.",
+      "**Do** use Elefun yellow with ink text for build and choose actions, and buy green only for adding to the cart.",
+      "**Do** set prices, counts and specs in Play with tabular numerals.",
+      "**Do** place product images on the well color with `mix-blend-mode: multiply` and `object-fit: contain`.",
+      "**Do** tint shadows and neutrals toward the brand blue; keep shadows soft with negative spread.",
+      "**Do** theme the small things: yellow selection, blue caret, 3px deep-yellow focus outline, blue-grey scrollbar on the well.",
+      "**Do** keep motion to short state transitions (0.15–0.25s) on `cubic-bezier(.16,1,.3,1)`, the one sheet entrance, and honor reduced motion."
+    ],
+    "donts": [
+      "**Don't** add eyebrow or kicker labels above headings.",
+      "**Don't** use green for anything but buying, or white text on yellow.",
+      "**Don't** use hard, unblurred offset shadows, gradient buttons or bevelled fields.",
+      "**Don't** use the stripe as decoration with nothing in it.",
+      "**Don't** introduce pure greys or radii outside 4–16px (pills and circles excepted)."
+    ]
+  }
+}

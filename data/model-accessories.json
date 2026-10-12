@@ -1,7 +1,8 @@
 {
   "47308": {
     "batteryIds": [
-      "48962"
+      "48962",
+      "46359"
     ],
     "chargerIds": [],
     "leadIds": [],
@@ -9,11 +10,27 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "Batteri og USB-lader følger med. Ekstrabatteri er valgfritt."
+    "note": "Batteri og USB-lader følger med. Ekstrabatteri er valgfritt.",
+    "controller": {
+      "included": "2,4 GHz rattradio følger med. Trenger 4 × AA.",
+      "sets": [
+        [
+          "47635"
+        ],
+        [
+          "70671"
+        ],
+        [
+          "71786"
+        ]
+      ],
+      "note": "En ny radio har egen mottaker, som monteres i modellen i stedet for den originale."
+    }
   },
   "50807": {
     "batteryIds": [
-      "64260"
+      "64260",
+      "51228"
     ],
     "chargerIds": [
       "63967"
@@ -25,11 +42,27 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "Valgt oppsett: ett 6S-batteri. Bilens alternative oppsett med to batterier vises ikke her."
+    "note": "Valgt oppsett: ett 6S-batteri. Bilens alternative oppsett med to batterier vises ikke her.",
+    "controller": {
+      "included": "Radio følger med.",
+      "sets": [
+        [
+          "47635"
+        ],
+        [
+          "70671"
+        ],
+        [
+          "71786"
+        ]
+      ],
+      "note": "En ny radio har egen mottaker, som monteres i modellen i stedet for den originale."
+    }
   },
   "56850": {
     "batteryIds": [
-      "46951"
+      "46951",
+      "47264"
     ],
     "chargerIds": [
       "63967"
@@ -41,7 +74,22 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "BNF: kompatibel sender kommer i tillegg. XT60–EC3 ladekabel legges til for IC3-batteriet med separat balanseringskontakt."
+    "note": "BNF: kompatibel sender kommer i tillegg. XT60–EC3 ladekabel legges til for IC3-batteriet med separat balanseringskontakt.",
+    "controller": {
+      "sets": [
+        [
+          "49801"
+        ],
+        [
+          "65482"
+        ],
+        [
+          "65263"
+        ]
+      ],
+      "noneLabel": "Jeg har allerede en DSMX-sender",
+      "note": "BNF: modellen har Spektrum-mottaker og trenger en DSMX-sender."
+    }
   },
   "63624": {
     "batteryIds": [
@@ -57,7 +105,22 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "4S-batteri med EC5. Ladekabel legges automatisk i pakken."
+    "note": "4S-batteri med EC5. Ladekabel legges automatisk i pakken.",
+    "controller": {
+      "included": "Radio følger med (RTR).",
+      "sets": [
+        [
+          "47635"
+        ],
+        [
+          "70671"
+        ],
+        [
+          "71786"
+        ]
+      ],
+      "note": "En ny radio har egen mottaker, som monteres i modellen i stedet for den originale."
+    }
   },
   "63738": {
     "batteryIds": [
@@ -69,7 +132,22 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "Batteri, radio og Spektrum S120 USB-lader følger med."
+    "note": "Batteri, radio og Spektrum S120 USB-lader følger med.",
+    "controller": {
+      "included": "Radio følger med.",
+      "sets": [
+        [
+          "47635"
+        ],
+        [
+          "70671"
+        ],
+        [
+          "71786"
+        ]
+      ],
+      "note": "En ny radio har egen mottaker, som monteres i modellen i stedet for den originale."
+    }
   },
   "63838": {
     "batteryIds": [
@@ -81,7 +159,22 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "2S-batteri og Smart USB-lader følger med. Bruk den medfølgende laderen; USB-C strømforsyning kan komme i tillegg."
+    "note": "2S-batteri og Smart USB-lader følger med. Bruk den medfølgende laderen; USB-C strømforsyning kan komme i tillegg.",
+    "controller": {
+      "included": "Rattradio følger med.",
+      "sets": [
+        [
+          "47635"
+        ],
+        [
+          "70671"
+        ],
+        [
+          "71786"
+        ]
+      ],
+      "note": "En ny radio har egen mottaker, som monteres i modellen i stedet for den originale."
+    }
   },
   "65767": {
     "batteryIds": [
@@ -95,7 +188,10 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "Originalt Air 3S-batteri. DJI 65W-laderen kobles til dronen for lading av batteriet i dronen. Ikke lenger lagerført; historisk demopris. Ekstern ladehub er ikke inkludert."
+    "note": "Originalt Air 3S-batteri. DJI 65W-laderen kobles til dronen for lading av batteriet i dronen. Ikke lenger lagerført; historisk demopris. Ekstern ladehub er ikke inkludert.",
+    "controller": {
+      "included": "DJI RC-N3 følger med."
+    }
   },
   "67191": {
     "batteryIds": [
@@ -107,11 +203,27 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "2S-batteri og Smart USB-lader følger med. Medfølgende lader er for 2S. 3S krever et annet ladeoppsett."
+    "note": "2S-batteri og Smart USB-lader følger med. Medfølgende lader er for 2S. 3S krever et annet ladeoppsett.",
+    "controller": {
+      "included": "Spektrum SLT2-radio følger med.",
+      "sets": [
+        [
+          "47635"
+        ],
+        [
+          "70671"
+        ],
+        [
+          "71786"
+        ]
+      ],
+      "note": "En ny radio har egen mottaker, som monteres i modellen i stedet for den originale."
+    }
   },
   "67353": {
     "batteryIds": [
-      "35205"
+      "35205",
+      "41084"
     ],
     "chargerIds": [
       "41726"
@@ -121,7 +233,22 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "4S-batteri med Traxxas iD. Valgt iD-lader støtter 4S."
+    "note": "4S-batteri med Traxxas iD. Valgt iD-lader støtter 4S.",
+    "controller": {
+      "included": "Radio følger med. Trenger AA-batterier.",
+      "sets": [
+        [
+          "47635"
+        ],
+        [
+          "70671"
+        ],
+        [
+          "71786"
+        ]
+      ],
+      "note": "En ny radio har egen mottaker, som monteres i modellen i stedet for den originale."
+    }
   },
   "67428": {
     "batteryIds": [
@@ -137,7 +264,10 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "Originalt batteri og modellspesifikk ladehub. Teknisk kompatibel DJI 65W USB-C-lader med kabel er lagt til (ikke lenger lagerført hos Elefun; historisk demopris)."
+    "note": "Originalt batteri og modellspesifikk ladehub. Teknisk kompatibel DJI 65W USB-C-lader med kabel er lagt til (ikke lenger lagerført hos Elefun; historisk demopris).",
+    "controller": {
+      "included": "DJI RC 2 følger med."
+    }
   },
   "67486": {
     "batteryIds": [
@@ -153,11 +283,27 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "BNF: DSMX-sender kreves. XT60–EC3 overgang til modellens IC3-kontakt legges til. Batteriet kobles direkte til XT60-laderen ved lading."
+    "note": "BNF: DSMX-sender kreves. XT60–EC3 overgang til modellens IC3-kontakt legges til. Batteriet kobles direkte til XT60-laderen ved lading.",
+    "controller": {
+      "sets": [
+        [
+          "49801"
+        ],
+        [
+          "65482"
+        ],
+        [
+          "65263"
+        ]
+      ],
+      "noneLabel": "Jeg har allerede en DSMX-sender",
+      "note": "BNF: modellen har Spektrum-mottaker og trenger en DSMX-sender."
+    }
   },
   "68350": {
     "batteryIds": [
-      "61452"
+      "61452",
+      "59317"
     ],
     "chargerIds": [
       "63967"
@@ -169,7 +315,21 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "PNP: radio og mottaker kreves. XT60–EC5 overgang til modellen legges til. Batteriet kobles direkte til XT60-laderen ved lading."
+    "note": "PNP: radio og mottaker kreves. XT60–EC5 overgang til modellen legges til. Batteriet kobles direkte til XT60-laderen ved lading.",
+    "controller": {
+      "sets": [
+        [
+          "64293",
+          "61097"
+        ],
+        [
+          "65482",
+          "50392"
+        ]
+      ],
+      "noneLabel": "Jeg har allerede sender og mottaker",
+      "note": "PNP: sender og mottaker kreves. Kontroller at mottakeren har nok kanaler til modellens funksjoner."
+    }
   },
   "68443": {
     "batteryIds": [
@@ -185,7 +345,22 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "BNF: kompatibel sender kommer i tillegg. XT60–EC3 ladekabel legges til for IC3-batteriet med separat balanseringskontakt."
+    "note": "BNF: kompatibel sender kommer i tillegg. XT60–EC3 ladekabel legges til for IC3-batteriet med separat balanseringskontakt.",
+    "controller": {
+      "sets": [
+        [
+          "49801"
+        ],
+        [
+          "65482"
+        ],
+        [
+          "65263"
+        ]
+      ],
+      "noneLabel": "Jeg har allerede en DSMX-sender",
+      "note": "BNF: modellen har Spektrum-mottaker og trenger en DSMX-sender."
+    }
   },
   "70251": {
     "batteryIds": [
@@ -201,7 +376,10 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "Originalt batteri og modellspesifikk ladehub. Teknisk kompatibel DJI 65W USB-C-lader med kabel er lagt til (ikke lenger lagerført hos Elefun; historisk demopris)."
+    "note": "Originalt batteri og modellspesifikk ladehub. Teknisk kompatibel DJI 65W USB-C-lader med kabel er lagt til (ikke lenger lagerført hos Elefun; historisk demopris).",
+    "controller": {
+      "included": "DJI RC-N3 følger med."
+    }
   },
   "70935": {
     "batteryIds": [
@@ -217,7 +395,19 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "Originalt batteri og modellspesifikk ladehub. Teknisk kompatibel DJI 65W USB-C-lader med kabel er lagt til (ikke lenger lagerført hos Elefun; historisk demopris)."
+    "note": "Originalt batteri og modellspesifikk ladehub. Teknisk kompatibel DJI 65W USB-C-lader med kabel er lagt til (ikke lenger lagerført hos Elefun; historisk demopris).",
+    "controller": {
+      "sets": [
+        [
+          "65699",
+          "70941"
+        ]
+      ],
+      "noneLabel": "Uten kontroll",
+      "noneFacts": "Neo 2 kan flys uten kontroll",
+      "defaultNone": true,
+      "note": "DJI-kontroller krever Neo 2 Digital Transreceiver."
+    }
   },
   "71458": {
     "batteryIds": [
@@ -232,7 +422,21 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "PNP: radio og mottaker kreves. Batteri og lader bruker XT60."
+    "note": "PNP: radio og mottaker kreves. Batteri og lader bruker XT60.",
+    "controller": {
+      "sets": [
+        [
+          "64293",
+          "61097"
+        ],
+        [
+          "65482",
+          "50392"
+        ]
+      ],
+      "noneLabel": "Jeg har allerede sender og mottaker",
+      "note": "PNP: sender og mottaker kreves. Kontroller at mottakeren har nok kanaler til modellens funksjoner."
+    }
   },
   "73081": {
     "batteryIds": [
@@ -248,11 +452,27 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "2S-batteri og USB-lader følger med. Denne pakken viser bare 2S-oppsettet."
+    "note": "2S-batteri og USB-lader følger med. Denne pakken viser bare 2S-oppsettet.",
+    "controller": {
+      "included": "Radio følger med. Trenger 4 × AA.",
+      "sets": [
+        [
+          "47635"
+        ],
+        [
+          "70671"
+        ],
+        [
+          "71786"
+        ]
+      ],
+      "note": "En ny radio har egen mottaker, som monteres i modellen i stedet for den originale."
+    }
   },
   "73082": {
     "batteryIds": [
-      "73092"
+      "73092",
+      "73090"
     ],
     "chargerIds": [
       "73093"
@@ -264,7 +484,10 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "Originalt batteri og modellspesifikk ladehub. Teknisk kompatibel DJI 65W USB-C-lader med kabel er lagt til (ikke lenger lagerført hos Elefun; historisk demopris)."
+    "note": "Originalt batteri og modellspesifikk ladehub. Teknisk kompatibel DJI 65W USB-C-lader med kabel er lagt til (ikke lenger lagerført hos Elefun; historisk demopris).",
+    "controller": {
+      "included": "DJI RC-N3 følger med."
+    }
   },
   "73874": {
     "batteryIds": [
@@ -280,7 +503,23 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "To like 3S-batterier gir 6S totalt. Enkanalsladeren lader ett batteri om gangen."
+    "note": "To like 3S-batterier gir 6S totalt. Enkanalsladeren lader ett batteri om gangen.",
+    "controller": {
+      "included": "Ikke oppgitt i Elefuns beskrivelse om sender følger med (ARTR). Sjekk med Elefun.",
+      "unconfirmed": true,
+      "sets": [
+        [
+          "47635"
+        ],
+        [
+          "70671"
+        ],
+        [
+          "71786"
+        ]
+      ],
+      "note": "En ny radio har egen mottaker, som monteres i modellen i stedet for den originale."
+    }
   },
   "75083": {
     "batteryIds": [
@@ -296,6 +535,21 @@
     "chargingPending": false,
     "needsPowerSupply": false,
     "batteryPending": false,
-    "note": "Krever to like 4S-batterier, minst 100C. Pakken inkluderer to ladekabler til dobbel lader."
+    "note": "Krever to like 4S-batterier, minst 100C. Pakken inkluderer to ladekabler til dobbel lader.",
+    "controller": {
+      "included": "Radio følger med (RTR).",
+      "sets": [
+        [
+          "47635"
+        ],
+        [
+          "70671"
+        ],
+        [
+          "71786"
+        ]
+      ],
+      "note": "En ny radio har egen mottaker, som monteres i modellen i stedet for den originale."
+    }
   }
 }
