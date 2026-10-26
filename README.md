@@ -2,6 +2,27 @@
 
 Prototype for å bygge kompatible RC-pakker med biler, båter, batterier og ladere.
 
+## Kom i gang første gang (Windows PowerShell)
+
+Du trenger Git og Node.js `>=22.13.0`. Sjekk Node-versjonen med `node --version`. Installer eller oppdater Node.js hvis versjonen er eldre.
+
+Åpne PowerShell-terminalen i Visual Studio Code, og kjør:
+
+```powershell
+git clone https://github.com/Arildb88/elefun_pakkebygger.git
+cd elefun_pakkebygger
+corepack pnpm install
+corepack pnpm dev
+```
+
+Når serveren viser at den kjører, åpne adressen som står i terminalen. Utviklingsserveren starter vanligvis på [http://localhost:5173](http://localhost:5173). La terminalen stå åpen mens du bruker nettsiden. Stopp serveren med `Ctrl+C`.
+
+Prosjektet bruker pnpm og låser pakkebehandleren til versjonen i `package.json`. Bruk derfor `corepack pnpm install` ved første installasjon (ikke `npm install`), og ikke kjør `pnpm self-update` gjennom Corepack.
+
+Hvis du allerede har klonet prosjektet, hopp over `git clone` og bruk `cd` til prosjektmappen før installasjon. Hvis installasjonen er ferdig fra før, kan du starte nettsiden direkte med `corepack pnpm dev`.
+
+Ved lokal innlogging i utviklingsmiljøet kan du bruke `seedy@sites.test`.
+
 ## Funksjoner
 
 - Elefun-inspirert grensesnitt med Elefun-logo/banner
