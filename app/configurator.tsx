@@ -10,7 +10,7 @@ import { ProductCard, SpecRail } from "@/components/store-ui";
 import { ArrowDown, ArrowRight, ArrowUpRight, BatteryCharging, CircleAlert, Gamepad2, PackageCheck, Search, ShoppingCart, X, Zap } from "lucide-react";
 const categories=[['car','Elektrobiler'],['boat','Elektrobåter'],['drone','Droner med kamera'],['plane','Elektrofly']] as const;
 export default function Configurator({products}:{products:CatalogProduct[]}){
- const [category,setCategory]=useState('car');const [query,setQuery]=useState('');const [sort,setSort]=useState('default');
+ const [category,setCategory]=useState('car');const [experience,setExperience]=useState<'beginner'|'experienced'>('beginner');const [query,setQuery]=useState('');const [sort,setSort]=useState('default');
  const [vehicleId,setVehicleId]=useState<string>();const [batteryId,setBatteryId]=useState<string>();const [chargerId,setChargerId]=useState<string>();const [batterySets,setBatterySets]=useState(1);const [controllerKey,setControllerKey]=useState('none');
  // The ready-made package the builder was opened from. The discount only holds while nothing is changed.
  const [origin,setOrigin]=useState<{vehicleId:string;batteryId?:string;chargerId?:string;controllerKey:string;tier:string}|null>(null);
@@ -63,9 +63,10 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
  function add(){if(!vehicle||blocked)return;saveCart([...cart,{id:crypto.randomUUID(),name:cleanName(vehicle.name),total:total-discount,lines:[...lines.map(l=>({id:l.product.id,name:cleanName(l.product.name),quantity:l.quantity,price:l.product.price})),...(discount?[discountLine(discount)]:[])]}]);setNotice('Pakken er lagt i demo-handlevognen.');}
  function addReady(p:DefaultPackage){const d=discountFor(p.total);saveCart([...cart,{id:crypto.randomUUID(),name:cleanName(p.vehicle.name),total:p.total-d,lines:[...p.lines.map(l=>({id:l.product.id,name:cleanName(l.product.name),quantity:l.quantity,price:l.product.price})),discountLine(d)]}]);}
  function pick(id:string){setCategory(id);location.hash=id;setQuery('');}
- const filtered=products.filter(p=>(category==='accessories'?p.kind!=='vehicle':p.kind==='vehicle'&&p.vehicleType===category)&&`${p.name} ${p.brand}`.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>sort==='low'?a.price-b.price:sort==='high'?b.price-a.price:0);
+ const filtered=products.filter(p=>(category==='accessories'?p.kind!=='vehicle':p.kind==='vehicle'&&p.vehicleType===category)&&(category!=='car'||p.tags.includes(`experience:${experience}`))&&`${p.name} ${p.brand}`.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>sort==='low'?a.price-b.price:sort==='high'?b.price-a.price:0);
  const heroModel=products.find(p=>p.id==='50807');
- const tiers=category==='accessories'?[]:tierPackages(products,category);
+ const tierProducts=products.filter(p=>p.kind!=='vehicle'||category!=='car'||p.tags.includes(`experience:${experience}`));
+ const tiers=category==='accessories'?[]:tierPackages(tierProducts,category);
  const title=categories.find(([id])=>id===category)?.[1]??'Batterier, ladere og tilbehør';
  return <main className="builder-main">
   <section className="hero" aria-labelledby="hero-title">
@@ -81,14 +82,15 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
     </a>}
    </div>
    <ol className="hero-steps">
-    <li><strong>Velg modell</strong><span>20 modeller fra Elefun</span></li>
+    <li><strong>Velg modell</strong><span>24 modeller fra Elefun</span></li>
     <li><strong>Batteri som passer</strong><span>Riktig kontakt og celler</span></li>
     <li><strong>Lader og kabler</strong><span>Overganger legges til selv</span></li>
    </ol>
   </section>
 
   <section id="katalog" className="builder-catalog" aria-labelledby="catalog-title">
-   <div className="segmented" role="tablist" aria-label="Produktkategori">{categories.map(([id,label])=><button role="tab" aria-selected={category===id} key={id} onClick={()=>pick(id)}>{label}<small>5 modeller</small></button>)}<button role="tab" aria-selected={category==='accessories'} onClick={()=>pick('accessories')}>Batterier og ladere<small>Tilbehør</small></button></div>
+   <div className="segmented" role="tablist" aria-label="Produktkategori">{categories.map(([id,label])=><button role="tab" aria-selected={category===id} key={id} onClick={()=>pick(id)}>{label}<small>{products.filter(p=>p.kind==='vehicle'&&p.vehicleType===id&&(id!=='car'||p.tags.includes(`experience:${experience}`))).length} modeller</small></button>)}<button role="tab" aria-selected={category==='accessories'} onClick={()=>pick('accessories')}>Batterier og ladere<small>Tilbehør</small></button></div>
+   {category==='car'&&<div className="experience-toggle" role="group" aria-label="Erfaringsnivå"><span>Erfaringsnivå</span><button type="button" aria-pressed={experience==='beginner'} onClick={()=>setExperience('beginner')}>Nybegynner</button><button type="button" aria-pressed={experience==='experienced'} onClick={()=>setExperience('experienced')}>Erfaren</button><p>{experience==='beginner'?'Modeller med enklere eller mer kontrollert oppsett.':'Modeller med høyere ytelse eller flere avanserte valg.'}</p></div>}
    <PackageTiers tiers={tiers} onAdd={addReady} onCustomize={(p,tier)=>choose(p.vehicle,p.controllerKey,tier)}/>
    <div className="toolbar">
     <div><h2 id="catalog-title">{title}</h2><p>{filtered.length} produkter <span>· Prisene er øyeblikksbilder fra elefun.no</span></p></div>
