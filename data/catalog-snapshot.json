@@ -589,7 +589,9 @@
     "maxCells": null,
     "batteryCount": 1,
     "tags": [
-      "Elektrofly"
+      "Elektrofly",
+      "experience:beginner",
+      "experience:experienced"
     ]
   },
   {
@@ -880,7 +882,9 @@
     "maxCells": null,
     "batteryCount": 1,
     "tags": [
-      "Elektrobåt"
+      "Elektrobåt",
+      "experience:beginner",
+      "experience:experienced"
     ]
   },
   {
@@ -904,7 +908,9 @@
     "maxCells": null,
     "batteryCount": 1,
     "tags": [
-      "Elektrobåt"
+      "Elektrobåt",
+      "experience:beginner",
+      "experience:experienced"
     ]
   },
   {
@@ -1157,7 +1163,8 @@
     "maxCells": null,
     "batteryCount": 1,
     "tags": [
-      "Kameradrone"
+      "Kameradrone",
+      "experience:experienced"
     ]
   },
   {
@@ -1233,7 +1240,8 @@
     "maxCells": null,
     "batteryCount": 1,
     "tags": [
-      "Elektrobåt"
+      "Elektrobåt",
+      "experience:experienced"
     ]
   },
   {
@@ -1257,7 +1265,9 @@
     "maxCells": null,
     "batteryCount": 1,
     "tags": [
-      "Kameradrone"
+      "Kameradrone",
+      "experience:beginner",
+      "experience:experienced"
     ]
   },
   {
@@ -1329,7 +1339,9 @@
     "maxCells": null,
     "batteryCount": 1,
     "tags": [
-      "Elektrofly"
+      "Elektrofly",
+      "experience:beginner",
+      "experience:experienced"
     ]
   },
   {
@@ -1353,7 +1365,8 @@
     "maxCells": null,
     "batteryCount": 1,
     "tags": [
-      "Elektrofly"
+      "Elektrofly",
+      "experience:experienced"
     ]
   },
   {
@@ -1377,7 +1390,9 @@
     "maxCells": null,
     "batteryCount": 1,
     "tags": [
-      "Elektrofly"
+      "Elektrofly",
+      "experience:beginner",
+      "experience:experienced"
     ]
   },
   {
@@ -1425,7 +1440,9 @@
     "maxCells": null,
     "batteryCount": 1,
     "tags": [
-      "Kameradrone"
+      "Kameradrone",
+      "experience:beginner",
+      "experience:experienced"
     ]
   },
   {
@@ -1598,7 +1615,9 @@
     "maxCells": null,
     "batteryCount": 1,
     "tags": [
-      "Kameradrone"
+      "Kameradrone",
+      "experience:beginner",
+      "experience:experienced"
     ]
   },
   {
@@ -1696,7 +1715,8 @@
     "maxCells": null,
     "batteryCount": 1,
     "tags": [
-      "Elektrofly"
+      "Elektrofly",
+      "experience:experienced"
     ]
   },
   {
@@ -1824,7 +1844,8 @@
     "maxCells": null,
     "batteryCount": 1,
     "tags": [
-      "Kameradrone"
+      "Kameradrone",
+      "experience:beginner"
     ]
   },
   {
@@ -1920,7 +1941,8 @@
     "maxCells": null,
     "batteryCount": 2,
     "tags": [
-      "Elektrobåt"
+      "Elektrobåt",
+      "experience:experienced"
     ]
   },
   {
@@ -1944,7 +1966,8 @@
     "maxCells": null,
     "batteryCount": 2,
     "tags": [
-      "Elektrobåt"
+      "Elektrobåt",
+      "experience:experienced"
     ]
   }
 ]
