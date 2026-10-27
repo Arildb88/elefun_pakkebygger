@@ -4,7 +4,7 @@ import snapshot from "@/data/catalog-snapshot.json";
 import type { CatalogProduct } from "./catalog-types";
 export type { CatalogProduct } from "./catalog-types";
 const seed=snapshot as CatalogProduct[];
-const revision="elefun-20-models-controllers-2026-10-12-v2";
+const revision="elefun-car-experience-catalog-2026-10-27-v1";
 const imageRevision="elefun-product-gallery-images-2026-10-10-v2";
 export async function loadCatalog():Promise<CatalogProduct[]>{
   try {
