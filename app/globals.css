@@ -671,6 +671,11 @@ a.rating-badge:hover{color:var(--blue-deep);text-decoration:underline;text-under
   .footer-inner{grid-template-columns:1fr;gap:32px;padding:44px 16px 32px}
   .footer-legal p{padding:16px}
 }
+.experience-toggle{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:20px 0 6px;padding:14px 16px;border:1px solid var(--line,#dedede);border-radius:12px;background:var(--surface,#fff)}
+.experience-toggle>span{font-size:13px;font-weight:700;margin-right:8px}
+.experience-toggle button{border:1px solid var(--line,#d2d2d2);border-radius:999px;background:transparent;padding:8px 14px;font:inherit;font-size:13px;font-weight:650;cursor:pointer}
+.experience-toggle button[aria-pressed="true"]{background:#ed6d20;border-color:#ed6d20;color:#fff}
+.experience-toggle p{flex-basis:100%;margin:0;color:var(--muted,#666);font-size:13px}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }

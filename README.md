@@ -29,6 +29,7 @@ Ved lokal innlogging i utviklingsmiljøet kan du bruke `seedy@sites.test`.
 - produkter lagret i Cloudflare D1/SQLite
 - ekte eksempelmodeller fra Elefun og tydelig lenke til kilden
 - batterifilter for kontakttype, celleantall og fysiske mål
+- modellutvalg med bryter for nybegynner- og erfarennivå
 - forklaring på hvorfor et batteri ikke passer
 - automatisk beregning av pakkepris og antall batterier
 
@@ -38,7 +39,7 @@ Elefuns produktmaster før løsningen tas i produksjon.
 ## Datamodell
 
 Tabellen `products` inneholder både modeller, batterier og ladere. Modeller
-lagrer krav til kontakt, spenning, antall batterier og maksimal størrelse.
+lagrer krav til kontakt, spenning, antall batterier, maksimal størrelse og nivåtagger for pakkebyggerens nybegynner-/erfarenfilter.
 Batterier lagrer celleantall, kapasitet, kontakt og mål i millimeter.
 
 ---
@@ -172,7 +173,7 @@ The portable build runs Vinext directly without a host `timeout` command. The ma
 
 ## Katalog og pakkebygger – oktober 2026
 
-Utvalget er nå avgrenset til fem elektrobiler (buggy), fem elektrobåter, fem kameradroner og fem elektrofly (warbirds). Produktnavn, prisøyeblikksbilder og bilder er hentet fra Elefun. Prisene er ikke sanntidspriser, og prototypen påstår ikke live lagerstatus.
+Utvalget inneholder nå ni elektrobiler (buggy/truggy), fem elektrobåter, fem kameradroner og fem elektrofly (warbirds). Alle fire modellkategoriene kan filtreres etter erfaringsnivå: nybegynner eller erfaren. Nivåene er kuraterte demotagger basert på ytelse, medfølgende utstyr, stabiliserings-/hjelpemoduser og dokumenterte krav til oppsett. Produktnavn, prisøyeblikksbilder og bilder er hentet fra Elefun. Prisene er ikke sanntidspriser, og prototypen påstår ikke live lagerstatus.
 
 - `data/catalog-snapshot.json`: katalog og kilde-URL per produkt.
 - `data/model-accessories.json`: gjennomgåtte modell–batteri–lader-koblinger med nødvendige kabler og forbehold.
@@ -180,6 +181,12 @@ Utvalget er nå avgrenset til fem elektrobiler (buggy), fem elektrobåter, fem k
 - `docs/research/elefun-sources.md`: kilder og vurderinger.
 - `data/elefun-menu.json`: Elefuns ekte kategoritre (20 hovedkategorier, 774 kategorier) for megamenyen. Lenkene går til elefun.no. Oppdateres med `node scripts/scrape-elefun-menu.mjs`.
 - `data/elefun-shelves.json`: et begrenset, ekte produktutvalg for `/sortiment`-sidene. Opptil 4 underkategorier per hovedkategori og 12 varer i hver, med varer på lager først og spredt på merker. Hentes med `node scripts/scrape-elefun-shelves.mjs` etter menyen. Bilbane og Solenergi mangler, fordi Elefun laster de produktene med JavaScript.
+
+### Kompatibilitet for bilpakker
+
+Første bilversjon vurderer bil, batteri, lader og sender-/mottakersett mot de gjennomgåtte koblingene i `data/model-accessories.json`. `lib/compatibility.ts` returnerer statusene `compatible`, `conditional`, `incompatible` eller `unknown`; ukjente radiooppsett merkes som ukjente og avvises som bekreftede pakker. Tester ligger i `tests/catalog.test.cjs`.
+
+Dette er en regelbasert prototype med katalogøyeblikksbildet i dette repoet. Den er ikke koblet til Elefuns produksjonsdatabase eller en språkmodell. Strukturerte data og et godkjent Elefun-grensesnitt må på plass før løsningen kan gi anbefalinger fra hele den virkelige katalogen.
 
 Kategorimeny, lokalt søk, prissortering, pakkedialog og demo-handlevogn fungerer lokalt. Demo-handlevognen bruker localStorage; ingen ordre sendes til Elefun. BNF/PNP-fly kan kreve sender/mottaker i tillegg, og dette opplyses i pakkedialogen.
 

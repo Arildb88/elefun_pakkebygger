@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import type { CatalogProduct } from "@/lib/catalog-types";
-import { batteryReasons, chargingReasons, controllerIdsFor, defaultControllerKey, packageLines, rules } from "@/lib/compatibility";
+import { batteryReasons, chargingReasons, controllerIdsFor, defaultControllerKey, evaluateCarPackage, packageLines, rules } from "@/lib/compatibility";
 import { readCart, writeCart, type SavedPackage } from "@/lib/cart";
 import { batteryVolts, cleanName, discountFor, discountLine, money, optionFacts, productHref, shortTitle, specsFor, tierPackages, type DefaultPackage } from "@/lib/store";
 import PackageSelect, { type PackageOption } from "@/components/package-select";
@@ -10,7 +10,7 @@ import { ProductCard, SpecRail } from "@/components/store-ui";
 import { ArrowDown, ArrowRight, ArrowUpRight, BatteryCharging, CircleAlert, Gamepad2, PackageCheck, Search, ShoppingCart, X, Zap } from "lucide-react";
 const categories=[['car','Elektrobiler'],['boat','Elektrobåter'],['drone','Droner med kamera'],['plane','Elektrofly']] as const;
 export default function Configurator({products}:{products:CatalogProduct[]}){
- const [category,setCategory]=useState('car');const [query,setQuery]=useState('');const [sort,setSort]=useState('default');
+ const [category,setCategory]=useState('car');const [experience,setExperience]=useState<'beginner'|'experienced'>('beginner');const [query,setQuery]=useState('');const [sort,setSort]=useState('default');
  const [vehicleId,setVehicleId]=useState<string>();const [batteryId,setBatteryId]=useState<string>();const [chargerId,setChargerId]=useState<string>();const [batterySets,setBatterySets]=useState(1);const [controllerKey,setControllerKey]=useState('none');
  // The ready-made package the builder was opened from. The discount only holds while nothing is changed.
  const [origin,setOrigin]=useState<{vehicleId:string;batteryId?:string;chargerId?:string;controllerKey:string;tier:string}|null>(null);
@@ -35,7 +35,11 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
  const battery=products.find(p=>p.id===batteryId);const charger=products.find(p=>p.id===chargerId);
  const ctrl=rule?.controller;const controllerIds=controllerIdsFor(rule,controllerKey);
  const lines=vehicle?packageLines(products,vehicle,battery,charger,{sets:batterySets,controllerIds}):[];const total=lines.reduce((s,l)=>s+l.quantity*l.product.price,0);
- const reasons=vehicle?chargingReasons(vehicle,battery,charger):[];
+ const compatibility=vehicle?.vehicleType==='car'?evaluateCarPackage(vehicle,battery,charger,controllerIds):undefined;
+ const radioCaveat=compatibility?.status==='conditional'?compatibility.reasons.find(r=>/sender|mottaker|radio/i.test(r)):undefined;
+ const radioBlockers=compatibility?.status==='incompatible'?compatibility.reasons.filter(r=>/sender|mottaker|radio/i.test(r)):[];
+ const reasons=vehicle?[...chargingReasons(vehicle,battery,charger),...radioBlockers]:[];
+ const blocked=reasons.length>0||compatibility?.status==='unknown'||compatibility?.status==='incompatible';
  const documented=vehicle&&rule?rule.batteryIds.map(id=>products.find(p=>p.id===id)).filter((p):p is CatalogProduct=>!!p):[];
  const volts=documented[0]?batteryVolts(documented[0]):null;
  // Other batteries at the same voltage stay visible with their price difference, but cannot be chosen.
@@ -56,12 +60,13 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
  const fromTier=!!origin&&origin.vehicleId===vehicleId;
  const discountActive=fromTier&&batteryId===origin.batteryId&&batterySets===1&&chargerId===origin.chargerId&&controllerKey===origin.controllerKey;
  const discount=discountActive?discountFor(total):0;
- function add(){if(!vehicle||reasons.length)return;saveCart([...cart,{id:crypto.randomUUID(),name:cleanName(vehicle.name),total:total-discount,lines:[...lines.map(l=>({id:l.product.id,name:cleanName(l.product.name),quantity:l.quantity,price:l.product.price})),...(discount?[discountLine(discount)]:[])]}]);setNotice('Pakken er lagt i demo-handlevognen.');}
+ function add(){if(!vehicle||blocked)return;saveCart([...cart,{id:crypto.randomUUID(),name:cleanName(vehicle.name),total:total-discount,lines:[...lines.map(l=>({id:l.product.id,name:cleanName(l.product.name),quantity:l.quantity,price:l.product.price})),...(discount?[discountLine(discount)]:[])]}]);setNotice('Pakken er lagt i demo-handlevognen.');}
  function addReady(p:DefaultPackage){const d=discountFor(p.total);saveCart([...cart,{id:crypto.randomUUID(),name:cleanName(p.vehicle.name),total:p.total-d,lines:[...p.lines.map(l=>({id:l.product.id,name:cleanName(l.product.name),quantity:l.quantity,price:l.product.price})),discountLine(d)]}]);}
- function pick(id:string){setCategory(id);location.hash=id;setQuery('');}
- const filtered=products.filter(p=>(category==='accessories'?p.kind!=='vehicle':p.kind==='vehicle'&&p.vehicleType===category)&&`${p.name} ${p.brand}`.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>sort==='low'?a.price-b.price:sort==='high'?b.price-a.price:0);
+ function pick(id:string){setCategory(id);history.replaceState(null,'',`#${id}`);setQuery('');}
+ const filtered=products.filter(p=>(category==='accessories'?p.kind!=='vehicle':p.kind==='vehicle'&&p.vehicleType===category&&p.tags.includes(`experience:${experience}`))&&`${p.name} ${p.brand}`.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>sort==='low'?a.price-b.price:sort==='high'?b.price-a.price:0);
  const heroModel=products.find(p=>p.id==='50807');
- const tiers=category==='accessories'?[]:tierPackages(products,category);
+ const tierProducts=products.filter(p=>p.kind!=='vehicle'||p.tags.includes(`experience:${experience}`));
+ const tiers=category==='accessories'?[]:tierPackages(tierProducts,category);
  const title=categories.find(([id])=>id===category)?.[1]??'Batterier, ladere og tilbehør';
  return <main className="builder-main">
   <section className="hero" aria-labelledby="hero-title">
@@ -77,14 +82,15 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
     </a>}
    </div>
    <ol className="hero-steps">
-    <li><strong>Velg modell</strong><span>20 modeller fra Elefun</span></li>
+    <li><strong>Velg modell</strong><span>24 modeller fra Elefun</span></li>
     <li><strong>Batteri som passer</strong><span>Riktig kontakt og celler</span></li>
     <li><strong>Lader og kabler</strong><span>Overganger legges til selv</span></li>
    </ol>
   </section>
 
   <section id="katalog" className="builder-catalog" aria-labelledby="catalog-title">
-   <div className="segmented" role="tablist" aria-label="Produktkategori">{categories.map(([id,label])=><button role="tab" aria-selected={category===id} key={id} onClick={()=>pick(id)}>{label}<small>5 modeller</small></button>)}<button role="tab" aria-selected={category==='accessories'} onClick={()=>pick('accessories')}>Batterier og ladere<small>Tilbehør</small></button></div>
+   <div className="segmented" role="tablist" aria-label="Produktkategori">{categories.map(([id,label])=><button role="tab" aria-selected={category===id} key={id} onClick={()=>pick(id)}>{label}<small>{products.filter(p=>p.kind==='vehicle'&&p.vehicleType===id&&(p.tags.includes(`experience:${experience}`))).length} modeller</small></button>)}<button role="tab" aria-selected={category==='accessories'} onClick={()=>pick('accessories')}>Batterier og ladere<small>Tilbehør</small></button></div>
+   {category!=='accessories'&&<div className="experience-toggle" role="group" aria-label="Erfaringsnivå"><span>Erfaringsnivå</span><button type="button" aria-pressed={experience==='beginner'} onClick={()=>setExperience('beginner')}>Nybegynner</button><button type="button" aria-pressed={experience==='experienced'} onClick={()=>setExperience('experienced')}>Erfaren</button><p>{experience==='beginner'?'Modeller med enklere oppsett, stabilisering eller medfølgende utstyr som kan gjøre starten lettere.':'Modeller med høyere ytelse eller større krav til utstyr, oppsett eller fly-/kjøreerfaring.'}</p></div>}
    <PackageTiers tiers={tiers} onAdd={addReady} onCustomize={(p,tier)=>choose(p.vehicle,p.controllerKey,tier)}/>
    <div className="toolbar">
     <div><h2 id="catalog-title">{title}</h2><p>{filtered.length} produkter <span>· Prisene er øyeblikksbilder fra elefun.no</span></p></div>
@@ -122,12 +128,13 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
      </div>
      {fromTier&&!discountActive&&<div className="note note-warn"><CircleAlert size={18} aria-hidden/><div><strong>Pakkerabatten gjelder ikke lenger</strong><p>Du har endret ferdigpakken {origin?.tier}, så 15 % rabatt blir ikke gitt. <button className="link-button" onClick={resetToTier}>Gå tilbake til ferdigpakken</button></p></div></div>}
      {reasons.length>0&&<div className="note note-warn"><CircleAlert size={18} aria-hidden/><div><strong>Må avklares før pakken er komplett</strong><ul>{reasons.map(r=><li key={r}>{r}</li>)}</ul></div></div>}
+     {radioCaveat&&<div className="note note-warn"><CircleAlert size={18} aria-hidden/><div><strong>Radiooppsettet har et forbehold</strong><p>{radioCaveat}</p></div></div>}
      <div className="pb-total">
       {discountActive&&<p className="pb-discount"><span className="discount-badge">−15 %</span> Ferdigpakke {origin?.tier}: du sparer {money(discount)}</p>}
       <div className="pb-sum"><span>Sum for pakken</span><span className="pb-sum-price">{discount>0&&<s className="price">{money(total)}</s>}<strong className="price">{money(total-discount)}</strong></span></div>
       <p className="pb-sum-split">Modell {money(vehicle.price)} · tilbehør {money(total-vehicle.price)} · demopriser inkl. mva., frakt ikke beregnet</p>
-      <span className={`status ${reasons.length?'status-warn':'status-ok'}`}>{reasons.length?'Trenger avklaring før kjøp':'Batteri og lading passer'}</span>
-      <button className="btn-buy btn-buy-full" disabled={reasons.length>0} onClick={add}><ShoppingCart size={18} aria-hidden/> Legg i demo-handlevogn</button>
+      <span className={`status ${blocked||compatibility?.status==='conditional'?'status-warn':'status-ok'}`}>{blocked?'Trenger avklaring før pakken er komplett':compatibility?.status==='conditional'?'Passer med forbehold':'Dokumentert bilpakke'}</span>
+      <button className="btn-buy btn-buy-full" disabled={blocked} onClick={add}><ShoppingCart size={18} aria-hidden/> Legg i demo-handlevogn</button>
       <p className="fine-print">{vehicle.vehicleType==='plane'?'Sender og eventuelt mottaker kommer i tillegg. Pakken er ikke et komplett flyklart sett.':'Kontroller hva som følger med, og eventuelle batterier til senderen.'}</p>
       <div aria-live="polite" className="success-notice">{notice}</div>
      </div>

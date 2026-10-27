@@ -176,6 +176,21 @@
       "note": "En ny radio har egen mottaker, som monteres i modellen i stedet for den originale."
     }
   },
+  "64801": {
+    "batteryIds": [
+      "63433"
+    ],
+    "chargerIds": [],
+    "leadIds": [],
+    "includedCharger": true,
+    "chargingPending": false,
+    "needsPowerSupply": false,
+    "batteryPending": false,
+    "note": "2S-batteri, rattradio og USB-C-lader følger med.",
+    "controller": {
+      "included": "Rattradio følger med."
+    }
+  },
   "65767": {
     "batteryIds": [
       "65764"
@@ -218,6 +233,21 @@
         ]
       ],
       "note": "En ny radio har egen mottaker, som monteres i modellen i stedet for den originale."
+    }
+  },
+  "67219": {
+    "batteryIds": [
+      "63433"
+    ],
+    "chargerIds": [],
+    "leadIds": [],
+    "includedCharger": true,
+    "chargingPending": false,
+    "needsPowerSupply": false,
+    "batteryPending": false,
+    "note": "Medfølgende 2S-batteri og USB-C-lader. 3S-oppsett er ikke lagt inn som valg før kompatible mål og ladeoppsett er verifisert.",
+    "controller": {
+      "included": "Spektrum SLT2-radio følger med."
     }
   },
   "67353": {
@@ -381,6 +411,24 @@
       "included": "DJI RC-N3 følger med."
     }
   },
+  "70925": {
+    "batteryIds": [
+      "51506",
+      "51514"
+    ],
+    "chargerIds": [
+      "55951"
+    ],
+    "leadIds": [],
+    "includedCharger": false,
+    "chargingPending": false,
+    "needsPowerSupply": false,
+    "batteryPending": false,
+    "note": "2S- eller 3S-oppsett med Spektrum IC5-batteri. SLT3 sender/mottaker følger med.",
+    "controller": {
+      "included": "Spektrum SLT3-radio og mottaker følger med."
+    }
+  },
   "70935": {
     "batteryIds": [
       "70944"
@@ -436,6 +484,21 @@
       ],
       "noneLabel": "Jeg har allerede sender og mottaker",
       "note": "PNP: sender og mottaker kreves. Kontroller at mottakeren har nok kanaler til modellens funksjoner."
+    }
+  },
+  "72438": {
+    "batteryIds": [
+      "72437"
+    ],
+    "chargerIds": [],
+    "leadIds": [],
+    "includedCharger": true,
+    "chargingPending": false,
+    "needsPowerSupply": false,
+    "batteryPending": false,
+    "note": "Komplettpakken inneholder 3S-batteri og S22 USB-C-lader. Separat 65W USB-C-strømforsyning anbefales for laderen.",
+    "controller": {
+      "included": "Spektrum SLT2-radio følger med."
     }
   },
   "73081": {
