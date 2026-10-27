@@ -52,7 +52,8 @@ export function evaluateCarPackage(
     const charging=chargingReasons(vehicle,battery,charger);
     if(charging.length){
       reasons.push(...charging);
-      status=rule.batteryPending||rule.chargingPending||rule.needsPowerSupply?'conditional':'incompatible';
+      const definiteChargerFailure=(!charger&&!rule.includedCharger)||(!!charger&&!rule.chargerIds.includes(charger.id));
+      status=definiteChargerFailure?'incompatible':rule.batteryPending||rule.chargingPending||rule.needsPowerSupply?'conditional':'incompatible';
     }
   }
 
