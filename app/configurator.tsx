@@ -63,9 +63,9 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
  function add(){if(!vehicle||blocked)return;saveCart([...cart,{id:crypto.randomUUID(),name:cleanName(vehicle.name),total:total-discount,lines:[...lines.map(l=>({id:l.product.id,name:cleanName(l.product.name),quantity:l.quantity,price:l.product.price})),...(discount?[discountLine(discount)]:[])]}]);setNotice('Pakken er lagt i demo-handlevognen.');}
  function addReady(p:DefaultPackage){const d=discountFor(p.total);saveCart([...cart,{id:crypto.randomUUID(),name:cleanName(p.vehicle.name),total:p.total-d,lines:[...p.lines.map(l=>({id:l.product.id,name:cleanName(l.product.name),quantity:l.quantity,price:l.product.price})),discountLine(d)]}]);}
  function pick(id:string){setCategory(id);location.hash=id;setQuery('');}
- const filtered=products.filter(p=>(category==='accessories'?p.kind!=='vehicle':p.kind==='vehicle'&&p.vehicleType===category)&&(category!=='car'||p.tags.includes(`experience:${experience}`))&&`${p.name} ${p.brand}`.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>sort==='low'?a.price-b.price:sort==='high'?b.price-a.price:0);
+ const filtered=products.filter(p=>(category==='accessories'?p.kind!=='vehicle':p.kind==='vehicle'&&p.vehicleType===category&&p.tags.includes(`experience:${experience}`))&&`${p.name} ${p.brand}`.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>sort==='low'?a.price-b.price:sort==='high'?b.price-a.price:0);
  const heroModel=products.find(p=>p.id==='50807');
- const tierProducts=products.filter(p=>p.kind!=='vehicle'||category!=='car'||p.tags.includes(`experience:${experience}`));
+ const tierProducts=products.filter(p=>p.kind!=='vehicle'||p.tags.includes(`experience:${experience}`));
  const tiers=category==='accessories'?[]:tierPackages(tierProducts,category);
  const title=categories.find(([id])=>id===category)?.[1]??'Batterier, ladere og tilbehør';
  return <main className="builder-main">
@@ -89,8 +89,8 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
   </section>
 
   <section id="katalog" className="builder-catalog" aria-labelledby="catalog-title">
-   <div className="segmented" role="tablist" aria-label="Produktkategori">{categories.map(([id,label])=><button role="tab" aria-selected={category===id} key={id} onClick={()=>pick(id)}>{label}<small>{products.filter(p=>p.kind==='vehicle'&&p.vehicleType===id&&(id!=='car'||p.tags.includes(`experience:${experience}`))).length} modeller</small></button>)}<button role="tab" aria-selected={category==='accessories'} onClick={()=>pick('accessories')}>Batterier og ladere<small>Tilbehør</small></button></div>
-   {category==='car'&&<div className="experience-toggle" role="group" aria-label="Erfaringsnivå"><span>Erfaringsnivå</span><button type="button" aria-pressed={experience==='beginner'} onClick={()=>setExperience('beginner')}>Nybegynner</button><button type="button" aria-pressed={experience==='experienced'} onClick={()=>setExperience('experienced')}>Erfaren</button><p>{experience==='beginner'?'Modeller med enklere eller mer kontrollert oppsett.':'Modeller med høyere ytelse eller flere avanserte valg.'}</p></div>}
+   <div className="segmented" role="tablist" aria-label="Produktkategori">{categories.map(([id,label])=><button role="tab" aria-selected={category===id} key={id} onClick={()=>pick(id)}>{label}<small>{products.filter(p=>p.kind==='vehicle'&&p.vehicleType===id&&(p.tags.includes(`experience:${experience}`))).length} modeller</small></button>)}<button role="tab" aria-selected={category==='accessories'} onClick={()=>pick('accessories')}>Batterier og ladere<small>Tilbehør</small></button></div>
+   {category!=='accessories'&&<div className="experience-toggle" role="group" aria-label="Erfaringsnivå"><span>Erfaringsnivå</span><button type="button" aria-pressed={experience==='beginner'} onClick={()=>setExperience('beginner')}>Nybegynner</button><button type="button" aria-pressed={experience==='experienced'} onClick={()=>setExperience('experienced')}>Erfaren</button><p>{experience==='beginner'?'Modeller med enklere oppsett, stabilisering eller medfølgende utstyr som kan gjøre starten lettere.':'Modeller med høyere ytelse eller større krav til utstyr, oppsett eller fly-/kjøreerfaring.'}</p></div>}
    <PackageTiers tiers={tiers} onAdd={addReady} onCustomize={(p,tier)=>choose(p.vehicle,p.controllerKey,tier)}/>
    <div className="toolbar">
     <div><h2 id="catalog-title">{title}</h2><p>{filtered.length} produkter <span>· Prisene er øyeblikksbilder fra elefun.no</span></p></div>
