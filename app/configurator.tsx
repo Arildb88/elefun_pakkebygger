@@ -62,7 +62,7 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
  const discount=discountActive?discountFor(total):0;
  function add(){if(!vehicle||blocked)return;saveCart([...cart,{id:crypto.randomUUID(),name:cleanName(vehicle.name),total:total-discount,lines:[...lines.map(l=>({id:l.product.id,name:cleanName(l.product.name),quantity:l.quantity,price:l.product.price})),...(discount?[discountLine(discount)]:[])]}]);setNotice('Pakken er lagt i demo-handlevognen.');}
  function addReady(p:DefaultPackage){const d=discountFor(p.total);saveCart([...cart,{id:crypto.randomUUID(),name:cleanName(p.vehicle.name),total:p.total-d,lines:[...p.lines.map(l=>({id:l.product.id,name:cleanName(l.product.name),quantity:l.quantity,price:l.product.price})),discountLine(d)]}]);}
- function pick(id:string){setCategory(id);location.hash=id;setQuery('');}
+ function pick(id:string){setCategory(id);history.replaceState(null,'',`#${id}`);setQuery('');}
  const filtered=products.filter(p=>(category==='accessories'?p.kind!=='vehicle':p.kind==='vehicle'&&p.vehicleType===category&&p.tags.includes(`experience:${experience}`))&&`${p.name} ${p.brand}`.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>sort==='low'?a.price-b.price:sort==='high'?b.price-a.price:0);
  const heroModel=products.find(p=>p.id==='50807');
  const tierProducts=products.filter(p=>p.kind!=='vehicle'||p.tags.includes(`experience:${experience}`));
