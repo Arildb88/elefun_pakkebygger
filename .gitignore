@@ -44,3 +44,7 @@ next-env.d.ts
 /.codex/
 /outputs/
 /work/
+
+# Impeccable local review screenshots and hook cache
+.impeccable/review/
+.impeccable/hook.cache.json

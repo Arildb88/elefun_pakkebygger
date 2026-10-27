@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "app/globals.css"
+        ],
+        "createdAt": "2026-10-12T07:33:59.341Z",
+        "reason": "Pinned brief: Elefun's black stripe with yellow edge (catbar, spec rail, hero tag/steps, dialog header) kept as brand signature per the user's request to keep Elefun's colors and feel; radii sit only on the corners opposite the stripe"
+      }
+    ]
+  }
+}

@@ -1,102 +1,87 @@
-import {
-  Car,
-  Fan,
-  Flag,
-  Handshake,
-  Headset,
-  Menu,
-  Plane,
-  Printer,
-  RectangleHorizontal,
-  Search,
-  Ship,
-  ShoppingCart,
-  Star,
-  Truck,
-  UserRound,
-  Video,
-  Zap,
-} from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, Flag, Handshake, Headset, Search, ShoppingCart, Truck, UserRound } from "lucide-react";
+import MegaMenu from "./mega-menu";
+import { CartCount } from "./cart-controls";
+import { CATEGORIES } from "@/lib/store";
+import { megaMenu } from "@/lib/elefun-menu";
 
-const CATEGORIES=[
-  {label:"3D-print",href:"https://www.elefun.no/",Icon:Printer},
-  {label:"Batteri & ladere",href:"https://www.elefun.no/",Icon:Zap},
-  {label:"Bilbane",href:"https://www.elefun.no/",Icon:RectangleHorizontal},
-  {label:"Biler",href:"https://www.elefun.no/",Icon:Car},
-  {label:"Båter",href:"https://www.elefun.no/",Icon:Ship},
-  {label:"Droner",href:"https://www.elefun.no/",Icon:Fan},
-  {label:"Droner for FPV",href:"https://www.elefun.no/",Icon:Video},
-  {label:"Fly",href:"https://www.elefun.no/",Icon:Plane},
-];
+const ELEFUN="https://www.elefun.no/";
 
 export default function ElefunChrome({children}:{children:React.ReactNode}){
   return (
     <div className="site-shell">
-      <div className="prototype-bar"><strong>PROTOTYPE</strong><span>Produktdata lagres i database – ingen ekte bestilling</span></div>
-      <header className="store-header">
-        <div className="header-main">
-          <a className="elefun-logo" href="https://www.elefun.no/" target="_blank" rel="noreferrer">
-            <img src="/brand/elefun-logo-white.svg" alt="Elefun"/>
-          </a>
-          <button className="header-menu" type="button"><Menu/><span>Meny</span></button>
-          <form className="search" action="https://www.elefun.no/" method="get" target="_blank">
-            <input name="search_text" placeholder="Søk blant våre 30.000 produkter" aria-label="Søk blant våre 30.000 produkter"/>
-            <button type="submit"><Search/><span>Søk</span></button>
-          </form>
-          <nav className="header-actions">
-            <a href="https://www.elefun.no/" target="_blank" rel="noreferrer"><Headset/><span>Kundeservice</span></a>
-            <a href="https://www.elefun.no/" target="_blank" rel="noreferrer"><UserRound/><span>Logg inn</span></a>
-            <a href="https://www.elefun.no/" target="_blank" rel="noreferrer"><ShoppingCart/><span>Handlevogn</span></a>
-          </nav>
-        </div>
-        <div className="header-stripe"/>
-      </header>
-
-      <nav className="category-nav" aria-label="Kategorier">
-        {CATEGORIES.map(({label,href,Icon})=>(
-          <a key={label} href={href} target="_blank" rel="noreferrer">
-            <Icon/>
-            <span>{label}</span>
-          </a>
-        ))}
-      </nav>
-
-      <div className="hero-card">
-        <img className="hero-banner" src="/brand/elefun-logo-white.svg" alt="Elefun"/>
-        <div className="trust-strip">
-          <a href="https://www.elefun.no/" target="_blank" rel="noreferrer"><Flag/><b><em>100%</em> norsk nettbutikk</b><small>Om oss</small></a>
-          <a href="https://www.elefun.no/" target="_blank" rel="noreferrer"><Truck/><b>Lynrask levering</b><small>Les mer</small></a>
-          <a href="https://www.elefun.no/" target="_blank" rel="noreferrer"><Handshake/><b>60 dager bytterett</b><small>Gå til bytte og retur</small></a>
-          <a href="https://www.prisjakt.no/shop.php?f=18260" target="_blank" rel="noreferrer">
-            <span className="prisjakt"><img src="/brand/prisjakt.png" alt=""/> <Star/><Star/><Star/><Star/><Star/></span>
-            <b>Kundeomtale på prisjakt</b><small>Les våre omtaler</small>
-          </a>
+      <a className="skip-link" href="#innhold">Hopp til innholdet</a>
+      <div className="utility-bar">
+        <div className="utility-inner">
+          <p><strong>Studentprosjekt</strong> Ikke Elefuns offisielle nettbutikk. Prisene er øyeblikksbilder, og ingen bestillinger sendes.</p>
+          <ul aria-label="Elefun lover">
+            <li><Flag size={14} aria-hidden/> 100% norsk nettbutikk</li>
+            <li><Truck size={14} aria-hidden/> Lynrask levering</li>
+            <li><Handshake size={14} aria-hidden/> 60 dager bytterett</li>
+          </ul>
         </div>
       </div>
+      <header className="masthead">
+        <div className="masthead-inner">
+          <Link className="brand" href="/" aria-label="Elefun – til forsiden">
+            <img src="/brand/elefun-logo-white.svg" alt="Elefun" width={176} height={46}/>
+          </Link>
+          <form className="site-search" action="https://www.elefun.no/" method="get" target="_blank" role="search">
+            <Search className="site-search-icon" size={19} aria-hidden/>
+            <input name="search_text" type="search" placeholder="Søk blant 30 000 produkter" aria-label="Søk i Elefuns sortiment"/>
+            <button type="submit">Søk</button>
+          </form>
+          <nav className="masthead-actions" aria-label="Konto og handlevogn">
+            <a href={ELEFUN} target="_blank" rel="noreferrer"><Headset size={22} aria-hidden/><span>Kundeservice</span></a>
+            <a href={ELEFUN} target="_blank" rel="noreferrer"><UserRound size={22} aria-hidden/><span>Logg inn</span></a>
+            {/* Plain anchor: the builder intercepts #cart clicks to open its cart dialog. */}
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            <a href="/#cart" className="cart-link"><ShoppingCart size={22} aria-hidden/><span>Handlevogn</span><CartCount/></a>
+          </nav>
+        </div>
+      </header>
+      <MegaMenu categories={megaMenu()}/>
 
-      {children}
+      <div id="innhold" className="page">{children}</div>
 
-      <footer className="store-footer">
-        <div className="footer-subscribe">
-          <span>Motta tilbud og nyheter først!</span>
-          <div>
-            <input type="email" placeholder="Din e-post" aria-label="Din e-post"/>
-            <a href="https://www.elefun.no/" target="_blank" rel="noreferrer">Meld meg på</a>
+      <footer className="site-footer">
+        <div className="footer-inner">
+          <div className="footer-brand">
+            <img src="/brand/elefun-logo-white.svg" alt="Elefun" width={168} height={44}/>
+            <p>Radiostyrt, hobby og fritid. En moderne skisse av Elefuns nettbutikk, laget som studentprosjekt.</p>
+            <a className="prisjakt-link" href="https://www.prisjakt.no/shop.php?f=18260" target="_blank" rel="noreferrer">
+              <img src="/brand/prisjakt.png" alt="" width={22} height={22}/>
+              <span>Les Elefuns kundeomtaler på Prisjakt</span>
+            </a>
+          </div>
+          <nav aria-label="Handle">
+            <h2>Handle</h2>
+            <ul>
+              <li><Link href="/">Pakkebygger</Link></li>
+              <li><Link href="/sortiment">Hele sortimentet</Link></li>
+              {CATEGORIES.map(c=><li key={c.slug}><a href={`/kategori/${c.slug}`}>{c.title}</a></li>)}
+            </ul>
+          </nav>
+          <nav aria-label="Kundeservice hos Elefun">
+            <h2>Kundeservice</h2>
+            <ul>
+              {["Kontakt oss","Frakt og levering","Bytte og retur","Garanti","Kjøpsvilkår","Personvern"].map(l=><li key={l}><a href={ELEFUN} target="_blank" rel="noreferrer">{l}</a></li>)}
+            </ul>
+          </nav>
+          <div className="footer-news">
+            <h2>Tilbud og nyheter først</h2>
+            <p>Nyhetsbrevet og alle bestillinger håndteres av Elefun.</p>
+            <a className="btn-outline-light" href={ELEFUN} target="_blank" rel="noreferrer">Meld deg på hos Elefun <ArrowUpRight size={16} aria-hidden/></a>
+            <div className="footer-pay" aria-label="Betalingsmåter hos Elefun">
+              <img src="/brand/vipps.png" alt="Vipps"/>
+              <img src="/brand/visa.png" alt="Visa"/>
+              <img src="/brand/mastercard.png" alt="Mastercard"/>
+            </div>
           </div>
         </div>
-        <div className="footer-pay">
-          <img src="/brand/vipps.png" alt="Vipps"/>
-          <img src="/brand/visa.png" alt="Visa"/>
-          <img src="/brand/mastercard.png" alt="Mastercard"/>
+        <div className="footer-legal">
+          <p>Logo, produktnavn og produktbilder tilhører Elefun AS. Studentprosjekt 2026, uten tilknytning til Elefun.</p>
         </div>
-        <nav className="footer-links">
-          <a href="https://www.elefun.no/" target="_blank" rel="noreferrer">Hovedsiden</a>
-          <a href="https://www.elefun.no/" target="_blank" rel="noreferrer">Om oss</a>
-          <a href="https://www.elefun.no/" target="_blank" rel="noreferrer">Kontakt oss</a>
-          <a href="https://www.elefun.no/" target="_blank" rel="noreferrer">Kjøpsvilkår</a>
-          <a href="https://www.elefun.no/" target="_blank" rel="noreferrer">Personvern</a>
-        </nav>
-        <p>Elefun AS © 2003 – 2026</p>
       </footer>
     </div>
   );

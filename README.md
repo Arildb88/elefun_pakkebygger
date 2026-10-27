@@ -2,12 +2,34 @@
 
 Prototype for å bygge kompatible RC-pakker med biler, båter, batterier og ladere.
 
+## Kom i gang første gang (Windows PowerShell)
+
+Du trenger Git og Node.js `>=22.13.0`. Sjekk Node-versjonen med `node --version`. Installer eller oppdater Node.js hvis versjonen er eldre.
+
+Åpne PowerShell-terminalen i Visual Studio Code, og kjør:
+
+```powershell
+git clone https://github.com/Arildb88/elefun_pakkebygger.git
+cd elefun_pakkebygger
+corepack pnpm install
+corepack pnpm dev
+```
+
+Når serveren viser at den kjører, åpne adressen som står i terminalen. Utviklingsserveren starter vanligvis på [http://localhost:5173](http://localhost:5173). La terminalen stå åpen mens du bruker nettsiden. Stopp serveren med `Ctrl+C`.
+
+Prosjektet bruker pnpm og låser pakkebehandleren til versjonen i `package.json`. Bruk derfor `corepack pnpm install` ved første installasjon (ikke `npm install`), og ikke kjør `pnpm self-update` gjennom Corepack.
+
+Hvis du allerede har klonet prosjektet, hopp over `git clone` og bruk `cd` til prosjektmappen før installasjon. Hvis installasjonen er ferdig fra før, kan du starte nettsiden direkte med `corepack pnpm dev`.
+
+Ved lokal innlogging i utviklingsmiljøet kan du bruke `seedy@sites.test`.
+
 ## Funksjoner
 
 - Elefun-inspirert grensesnitt med Elefun-logo/banner
 - produkter lagret i Cloudflare D1/SQLite
 - ekte eksempelmodeller fra Elefun og tydelig lenke til kilden
 - batterifilter for kontakttype, celleantall og fysiske mål
+- modellutvalg med bryter for nybegynner- og erfarennivå
 - forklaring på hvorfor et batteri ikke passer
 - automatisk beregning av pakkepris og antall batterier
 
@@ -17,7 +39,7 @@ Elefuns produktmaster før løsningen tas i produksjon.
 ## Datamodell
 
 Tabellen `products` inneholder både modeller, batterier og ladere. Modeller
-lagrer krav til kontakt, spenning, antall batterier og maksimal størrelse.
+lagrer krav til kontakt, spenning, antall batterier, maksimal størrelse og nivåtagger for pakkebyggerens nybegynner-/erfarenfilter.
 Batterier lagrer celleantall, kapasitet, kontakt og mål i millimeter.
 
 ---
@@ -148,3 +170,28 @@ The portable build runs Vinext directly without a host `timeout` command. The ma
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)
 - [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+
+## Katalog og pakkebygger – oktober 2026
+
+Utvalget inneholder nå ni elektrobiler (buggy/truggy), fem elektrobåter, fem kameradroner og fem elektrofly (warbirds). Alle fire modellkategoriene kan filtreres etter erfaringsnivå: nybegynner eller erfaren. Nivåene er kuraterte demotagger basert på ytelse, medfølgende utstyr, stabiliserings-/hjelpemoduser og dokumenterte krav til oppsett. Produktnavn, prisøyeblikksbilder og bilder er hentet fra Elefun. Prisene er ikke sanntidspriser, og prototypen påstår ikke live lagerstatus.
+
+- `data/catalog-snapshot.json`: katalog og kilde-URL per produkt.
+- `data/model-accessories.json`: gjennomgåtte modell–batteri–lader-koblinger med nødvendige kabler og forbehold.
+- `lib/compatibility.ts`: matching og beregning av pakken, inkludert riktig antall batterier.
+- `docs/research/elefun-sources.md`: kilder og vurderinger.
+- `data/elefun-menu.json`: Elefuns ekte kategoritre (20 hovedkategorier, 774 kategorier) for megamenyen. Lenkene går til elefun.no. Oppdateres med `node scripts/scrape-elefun-menu.mjs`.
+- `data/elefun-shelves.json`: et begrenset, ekte produktutvalg for `/sortiment`-sidene. Opptil 4 underkategorier per hovedkategori og 12 varer i hver, med varer på lager først og spredt på merker. Hentes med `node scripts/scrape-elefun-shelves.mjs` etter menyen. Bilbane og Solenergi mangler, fordi Elefun laster de produktene med JavaScript.
+
+### Kompatibilitet for bilpakker
+
+Første bilversjon vurderer bil, batteri, lader og sender-/mottakersett mot de gjennomgåtte koblingene i `data/model-accessories.json`. `lib/compatibility.ts` returnerer statusene `compatible`, `conditional`, `incompatible` eller `unknown`; ukjente radiooppsett merkes som ukjente og avvises som bekreftede pakker. Tester ligger i `tests/catalog.test.cjs`.
+
+Dette er en regelbasert prototype med katalogøyeblikksbildet i dette repoet. Den er ikke koblet til Elefuns produksjonsdatabase eller en språkmodell. Strukturerte data og et godkjent Elefun-grensesnitt må på plass før løsningen kan gi anbefalinger fra hele den virkelige katalogen.
+
+Kategorimeny, lokalt søk, prissortering, pakkedialog og demo-handlevogn fungerer lokalt. Demo-handlevognen bruker localStorage; ingen ordre sendes til Elefun. BNF/PNP-fly kan kreve sender/mottaker i tillegg, og dette opplyses i pakkedialogen.
+
+Databasen oppdateres én gang per katalogrevisjon i én transaksjon (`D1.batch`). Kun tidligere kjente demovarer deaktiveres. Ved manglende D1 eller databasefeil vises kildeøyeblikksbildet; grensesnittet påstår derfor ikke at database er tilkoblet.
+
+Kontroller: `node --test tests/catalog.test.cjs tests/elefun-menu.test.cjs`, `node node_modules/typescript/bin/tsc --noEmit`, `npm run build`.
+
+Produktbildene hentes fra Elefuns egne bilde-URL-er. DJI 65W-laderen er teknisk kompatibel, men ikke lenger lagerført hos Elefun; historisk pris brukes eksplisitt bare for demo. Siden kan ikke brukes som en oppdatert kjøps- eller lageroversikt.

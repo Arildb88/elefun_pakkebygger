@@ -1,0 +1,1020 @@
+{
+ "source": "Kundeanmeldelser hentet fra produktsidene på elefun.no 2026-10-12. count og stars er Elefuns egen totalvurdering (avrundet til halve stjerner); reviews er de tre første anmeldelsene Elefun viser. Navn er forkortet til fornavn og initial.",
+ "products": {
+  "25886": {
+   "sourceUrl": "https://www.elefun.no/vare-25886/sikker-ladebag-bronto-lipo-safe-bag-185x75x60mm-s",
+   "count": 1,
+   "stars": 1,
+   "reviews": [
+    {
+     "rating": 1,
+     "headline": "It is basically useless",
+     "author": "Daniel",
+     "date": "2021-06-16",
+     "text": "It won´t hold its shape. You can´t close it without leaving a big opening even with the flaps. Batteries will just fly out.\n\n[EDIT: Elefun 17.06.2021]\nBatteribaggen holder veldig godt på de fleste batterier, men hvis du har veldig små batterier(indoordroner e.l.) kan jeg skjønne at det kan bli et problem. Da er nok Bronto (L) eller Torvol-bagene med deres lukkemekanismer være bedre egnet.",
+     "helpful": 7,
+     "notHelpful": 4
+    }
+   ]
+  },
+  "35205": {
+   "sourceUrl": "https://www.elefun.no/vare-35205/batteri-lipo-4s-6700mah-25c-traxxas-id",
+   "count": 5,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "Perfekt til UDR",
+     "author": "GøranØ",
+     "date": "2023-08-30",
+     "text": "Har prøvd litt forskjellige komboer i udr. Alt fra 3s til 6s. 4s 6700 synes jeg er helt perfekt til udr. Akkurat passe fart til den type bil. Beveger seg realistisk, men har samtidig kraft nok til å ha det litt ekstra moro. \nGod kvalitet på batteriet, og ikke noe tull her.",
+     "helpful": 9,
+     "notHelpful": 1
+    },
+    {
+     "rating": 3,
+     "headline": "Traxxas iD batteri",
+     "author": "Ronny S.",
+     "date": "2022-09-21",
+     "text": "Veldig fornøyde med det produkte bilen går mye bedre",
+     "helpful": 8,
+     "notHelpful": 2
+    },
+    {
+     "rating": 5,
+     "headline": "Traxxas Maxx S8",
+     "author": "Ole-Harald",
+     "date": "2020-07-09",
+     "text": "Super service som alltid !",
+     "helpful": 7,
+     "notHelpful": 4
+    }
+   ]
+  },
+  "41084": {
+   "sourceUrl": "https://www.elefun.no/vare-41084/batteri-lipo-4s-5000mah-25c-traxxas-id",
+   "count": 2,
+   "stars": 4,
+   "reviews": [
+    {
+     "rating": 4,
+     "headline": "Greie batterier.",
+     "author": "Kjell O.",
+     "date": "2020-06-02",
+     "text": "Helt ok batterier, grei kjøretid med disse i x-maxx. Eneste minuset er det her traxxas-plugg opplegget.",
+     "helpful": 3,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "litt for korte litt for smale",
+     "author": "Morten",
+     "date": "2023-04-06",
+     "text": "men funker helt topp \nskulle følt med mellomlegg",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "41726": {
+   "sourceUrl": "https://www.elefun.no/vare-41726/computerlader-traxxas-ez-peak-live-dual-26a-nimh-lipo-id-lader",
+   "count": 4,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "Traxxas Maxx S8",
+     "author": "Ole-Harald",
+     "date": "2020-08-17",
+     "text": "Kjempe bra lader, fungerer helt etter beskrivelsen og holder det den lover ;)",
+     "helpful": 5,
+     "notHelpful": 0
+    },
+    {
+     "rating": 4,
+     "headline": "Bra nok.",
+     "author": "EspenL",
+     "date": "2019-05-25",
+     "text": "Må ha app for å få utnyttet laderen skikkelig så last den ned først som sist. Appen viser bare ett desimaltall på volt og det er dumt. Den viser 3.9v og 4.2v lenge når den balanserer. Men laderen fungerer helt fint, men det finnes nok billigere som gjør samme jobben. Kjøpte den for å gjøre det enkelt for ungene å lade selv.",
+     "helpful": 4,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "God lader",
+     "author": "Kenneth",
+     "date": "2022-08-01",
+     "text": "God lader som lader Traxxas Id batteriene fort. Oversiktlig app som linkes opp mot laderen. Anbefales.",
+     "helpful": 2,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "46359": {
+   "sourceUrl": "https://www.elefun.no/vare-46359/batteri-lipo-2s-1500mah-35c-etop-deans",
+   "count": 5,
+   "stars": 4,
+   "reviews": [
+    {
+     "rating": 4,
+     "headline": "Rimelig og solid",
+     "author": "Ole E.",
+     "date": "2026-08-25",
+     "text": "Solid bil. Tåler mye juling. God styring.",
+     "helpful": 0,
+     "notHelpful": 1
+    },
+    {
+     "rating": 1,
+     "headline": "Skuffet",
+     "author": "Ida N.",
+     "date": "2026-05-21",
+     "text": "Vi har tre barn som har fått nye rc biler og vi gleda oss til å kjøre nå i langhelgen. Men dere har sendt feil str på batteriene så de får vi ikke brukt.. dobbeltsjekket på ordren.",
+     "helpful": 0,
+     "notHelpful": 2
+    },
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Jørn I.",
+     "date": "2026-09-10",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "46951": {
+   "sourceUrl": "https://www.elefun.no/vare-46951/batteri-lipo-3s-2200mah-50c-spektrum-ic3",
+   "count": 5,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "Tipp Topp!!",
+     "author": "Alf T.",
+     "date": "2025-11-07",
+     "text": "Som spec....",
+     "helpful": 0,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "God og hurtig service",
+     "author": "Erik S.",
+     "date": "2023-11-04",
+     "text": "Fik et forkert batteri leveret i første omgang, men det blev byttet hurtigt og problemfrit",
+     "helpful": 0,
+     "notHelpful": 1
+    },
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Elefun-kunde",
+     "date": "2026-09-19",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "47264": {
+   "sourceUrl": "https://www.elefun.no/vare-47264/batteri-lipo-3s-3200mah-30c-spektrum-ic3",
+   "count": 2,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "Spektrum LiPo IC3",
+     "author": "Mats",
+     "date": "2026-04-03",
+     "text": "Mycket bra batteri, väldigt nöjd.",
+     "helpful": 0,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Trond",
+     "date": "2024-06-04",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "47308": {
+   "sourceUrl": "https://www.elefun.no/vare-47308/radiostyrt-bil-elektro-buggy-wltoys-rsr-144001-green-1-14-4wd-komplett",
+   "count": 36,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 4,
+     "headline": "Topp førstegangs bil.",
+     "author": "Vegard T.",
+     "date": "2020-07-24",
+     "text": "Ikke kjørt RC-bil siden 90-tallet! Bilen var klar for action etter 1,5 time lading, til stor glede for meg og 11-åringen.\nDen går som et uvær og virker veldig hissig! \nBilen virker solid, mens kontrollen fremstår noen pinglete i lett plast. \nFint å kunne justere effekten på motoren og kalibrere styring fra kontrollen. \n\nSikkert brukt feil benevnelser på alt, beklager det. Hilsen nybegynner.",
+     "helpful": 82,
+     "notHelpful": 13
+    },
+    {
+     "rating": 4,
+     "headline": "Dette er morro",
+     "author": "Eirik",
+     "date": "2020-08-01",
+     "text": "Jeg kjøpte først en av disse så en til for guttungen da det er litt vanskelig å få flydd mine kjære freestyle droner med det ustabile været vi har. Jeg hadde ikke store forventningene når jeg bestilte etter å ha sett priser på de litt større bilene. Gjett om jeg ble overrasket når jeg åpnet pakken fra Elefun, jeg ble raskt sikker på at dette kom til å bli moro og det ble det. Dette er en solid kar med fart som tåler mye og for hva det koster er dette ganske utrolig. Som sant skal sies så er dette min første RC bil så jeg er rimelig \"noob\" på området, jeg liker meg best i lufta.\n\nEt par ting å være klar over: Motoren på den første bilen gikk rimelig kjapt i biter, men det er ikke noe problem, Elefun har en fantastisk service så det ble ordnet i en fart. Jeg tror det bare var en mandagsmotor. Guttungen har ikke hatt noe problemer med sin i det heletatt. Hvis du vil bruke denne og mer eller mindre serieskifte batteri etter som de går tom så vil jeg foreslå å skaffe et par 5v vifter i 30x30mm og koble de til led uttaket på ESC og finne en måte å feste disse over ESC og motor, begge blir så varme etter et par batteri at du må ta noen minutter pause eller ha aktiv kjøling. Den bilen jeg kjører har fått en børsteløs oppgradering jeg kjøpte her på Elefun og kjøpte da også en ny radio med en gyromottaker noe som gjør dette enda mer moro, fart og muligheten til å virkelig få det meste ut av modellen.\n\nUansett så er denne bilen fantastisk moro helt standard og hvis du ikke er sikker så ta en titt på youtube og søk opp denne bilen, alle som legger ut filmer om den har ikke noe vondt å si om den, det er rett og slett billig moro.",
+     "helpful": 50,
+     "notHelpful": 6
+    },
+    {
+     "rating": 5,
+     "headline": "Bra kvalitet, rask og gøy!",
+     "author": "Tom R.",
+     "date": "2021-09-20",
+     "text": "Mye for pengene! Med dual-rate på hastigheten går det greit for jentene mine på 7 og 8 å kjøre disse, men også gøy for oss voksne på full hastighet!:)",
+     "helpful": 27,
+     "notHelpful": 6
+    }
+   ]
+  },
+  "49718": {
+   "sourceUrl": "https://www.elefun.no/vare-49718/batteri-lipo-4s-5000mah-100c-spektrum-hc-ic5",
+   "count": 2,
+   "stars": 4,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "4s 5000mAh -100C - Spektrum LiPo HC IC5",
+     "author": "Ole-Harald",
+     "date": "2022-02-04",
+     "text": "Batteri som holder hva det lover",
+     "helpful": 2,
+     "notHelpful": 0
+    },
+    {
+     "rating": 4,
+     "headline": "Elefun gjør jobben sin",
+     "author": "Petter A.",
+     "date": "2025-08-06",
+     "text": "Det gjør imidlertid ikke Bring... Skulle hatt mulighet til å velge andre transportører.",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "49801": {
+   "sourceUrl": "https://www.elefun.no/vare-49801/radioutstyr-sender-spektrum-dxs-dsmx",
+   "count": 2,
+   "stars": 4,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "Trainer radio",
+     "author": "Aron",
+     "date": "2025-02-15",
+     "text": "Kan denne radioen brukes som trainer radio sammen med IX14+ trådløst?",
+     "helpful": 4,
+     "notHelpful": 1
+    },
+    {
+     "rating": 4,
+     "headline": "",
+     "author": "Eirik N.",
+     "date": "2026-10-06",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "50392": {
+   "sourceUrl": "https://www.elefun.no/vare-50392/radioutstyr-mottakere-spektrum-ar8020t-8ch-telemetry-receiver",
+   "count": 4,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "Bra service!",
+     "author": "Kjell B.",
+     "date": "2023-04-10",
+     "text": "Produkten fungerar \nutmärkt.",
+     "helpful": 1,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "Spektrum mottagare",
+     "author": "Jan O.",
+     "date": "2022-10-27",
+     "text": "En utmärkt mottagare!",
+     "helpful": 1,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "Spektrum AR8020T 8ch Telemetry Receiver",
+     "author": "EinarE",
+     "date": "2025-03-15",
+     "text": "Fungerer utmerket",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "50807": {
+   "sourceUrl": "https://www.elefun.no/vare-50807/radiostyrt-bil-elektro-buggy-arrma-typhon-6s-v5-blx-bl-4wd-rtr",
+   "count": 8,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "Fantastisk bil",
+     "author": "JoonN",
+     "date": "2022-05-23",
+     "text": "Kjører denne sammen med eldstemann på 5 og utrolig hvor holdbar den er. Supert at man også kan sette ned farten til 50% rett fra kontrollen. Dette er egentlig mer enn fort nok uansett:)",
+     "helpful": 11,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "Fartbuggy blant elite!",
+     "author": "Frode",
+     "date": "2021-10-20",
+     "text": "Jeg har nå testet denne fartbuggyen til Arrma og jeg oppgraderte motorgiret. OG det ga virkelig utslag! Hele 118km/t! Virkelig gøy på flate omgivelser.",
+     "helpful": 11,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "King of bashers",
+     "author": "Mats",
+     "date": "2021-05-18",
+     "text": "Typhoon 6S med proline badland dekk, råeste basher buggy out there.",
+     "helpful": 11,
+     "notHelpful": 1
+    }
+   ]
+  },
+  "51228": {
+   "sourceUrl": "https://www.elefun.no/vare-51228/batteri-lipo-6s-6000mah-60c-sunpadow-ec5",
+   "count": 5,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "Perfekt for større fly",
+     "author": "Anders",
+     "date": "2022-12-20",
+     "text": "Litt tungt, men har til gjengjeld ekstremt lav indremotstand/Høy C. Måler fortsatt rundt 2mOhm per celle etter 1 års bruk, og lading på 3C. De leverer meget godt.",
+     "helpful": 3,
+     "notHelpful": 0
+    },
+    {
+     "rating": 4,
+     "headline": "Bra for basher racing",
+     "author": "Bjørn",
+     "date": "2022-06-07",
+     "text": "Litt stort og tungt for hopping men for basher racing offroad/grus/asfalt helt ok. Er vel for stort for Typhon så sjekk dimensjonen og mål hva det er plass til i den bilen. For prisen et helt greit batteri.",
+     "helpful": 2,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "Sunpadown",
+     "author": "Steinar",
+     "date": "2022-12-27",
+     "text": "Et godt batteri med god ytelse. Det passer godt der flykroppen er smal.",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "51644": {
+   "sourceUrl": "https://www.elefun.no/vare-51644/batteri-lipo-3s-1300mah-30c-spektrum-ic3",
+   "count": 2,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Frode",
+     "date": "2025-07-04",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Marcel S.",
+     "date": "2025-01-06",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "56850": {
+   "sourceUrl": "https://www.elefun.no/vare-56850/radiostyrt-fly-elektro-pakke-e-flite-f4u-4-corsair-12m-bnf-basic-as3x-safe",
+   "count": 1,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "Flott Corsair",
+     "author": "Jon S.",
+     "date": "2024-07-14",
+     "text": "Denne flyr som en drøm, og lander som en drøm. Takeoff er litt vrient de første turene. Du må være jevn på throttle og bruke godt med sideror da den drar veldig til venstre, hvis du punsher throttle. Fantastisk fly, som ser rå ut mot himmelen. Anbefales!",
+     "helpful": 5,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "57050": {
+   "sourceUrl": "https://www.elefun.no/vare-57050/drone-tilbehor-dji-usb-c-portable-charger-65w",
+   "count": 3,
+   "stars": 5.0,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "Rask service",
+     "author": "Per",
+     "date": "2024-04-29",
+     "text": "Måtte erstatte laderen min da jeg greide å skade ledningen. Bestilte ny original DJI-lader fra Elefun som pakket og sendte meg varen raskt og effektivt.",
+     "helpful": 2,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "Denne var bra",
+     "author": "Stian T.",
+     "date": "2023-03-10",
+     "text": "Super bra forsyning",
+     "helpful": 0,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Ronny",
+     "date": "2025-04-22",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "57840": {
+   "sourceUrl": "https://www.elefun.no/vare-57840/batteri-lipo-3s-2200mah-40c-cnhl-xt60-black-edition",
+   "count": 11,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 2,
+     "headline": "Dålig effekt och litet energiinnehåll",
+     "author": "Per O.",
+     "date": "2024-06-25",
+     "text": "Ganska missnöjd med dessa, har några ZIPPY 3s 1800mah 40c som ger mera effekt och längre flygtider",
+     "helpful": 12,
+     "notHelpful": 1
+    },
+    {
+     "rating": 5,
+     "headline": "FMS super EZ v4",
+     "author": "Tor K.",
+     "date": "2025-07-31",
+     "text": "Veldig fornøyd :)",
+     "helpful": 1,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "Lipo batteri",
+     "author": "Vidar",
+     "date": "2025-04-10",
+     "text": "Bra batteri bra pris ingen grunn til å bestille fra Cina",
+     "helpful": 1,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "59317": {
+   "sourceUrl": "https://www.elefun.no/vare-59317/batteri-lipo-4s-2300mah-75c-gens-ace-tattu-xt60",
+   "count": 4,
+   "stars": 4,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "Supert batteri med god ytelse",
+     "author": "Arild",
+     "date": "2026-06-17",
+     "text": "Svarer godt opp mot forventning",
+     "helpful": 0,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "Lipo",
+     "author": "Anders",
+     "date": "2025-02-24",
+     "text": "Bra kvalitet o pris. Passar mycket bra för jet med 4s. Bara att köpa. Pacman",
+     "helpful": 0,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "Hög och jämn kvalitet.",
+     "author": "Johan",
+     "date": "2024-11-11",
+     "text": "Alltid mitt första val om möjligt. Har fungerat bra.",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "61097": {
+   "sourceUrl": "https://www.elefun.no/vare-61097/radioutstyr-mottakere-frsky-archer-plus-r10",
+   "count": 3,
+   "stars": 4,
+   "reviews": [
+    {
+     "rating": 3,
+     "headline": "Inte 10 kanaler med acct D16",
+     "author": "Per K.",
+     "date": "2024-10-04",
+     "text": "Framgår inte tydligt att det bara går att få 8 kanaler om man kör D16 protokollet\nFunkar fint annars",
+     "helpful": 0,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Roland A.",
+     "date": "2026-07-14",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Jan P.",
+     "date": "2024-12-12",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "61367": {
+   "sourceUrl": "https://www.elefun.no/vare-61367/batteri-lipo-3s-5000mah-60c-gens-ace-bashing-g-tech-xt90",
+   "count": 6,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Piotr G.",
+     "date": "2026-03-23",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Johnny",
+     "date": "2025-04-11",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Kim",
+     "date": "2025-04-09",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "61373": {
+   "sourceUrl": "https://www.elefun.no/vare-61373/batteri-lipo-4s-5000mah-60c-gens-ace-bashing-g-tech-ec5",
+   "count": 4,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Halvard",
+     "date": "2026-05-05",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Sebastian B.",
+     "date": "2026-04-22",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Elefun-kunde",
+     "date": "2026-02-04",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "61452": {
+   "sourceUrl": "https://www.elefun.no/vare-61452/batteri-lipo-4s-2700mah-40c-cnhl-xt60",
+   "count": 10,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "Bra",
+     "author": "Per G.",
+     "date": "2026-10-08",
+     "text": "Har inte använt dom så länge men hittills funkar dom bra Får se i längden hur kvalitén är \nBra pris",
+     "helpful": 0,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "Stabilt Og Kraftig Batteri.",
+     "author": "Jimmy",
+     "date": "2026-03-06",
+     "text": "Bra batteripakke som takler mye amper ut av batteriet. Skal brukes sammen med FMS Futura 64mm EDF. Batteriet har også en god pris.",
+     "helpful": 0,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "Ok",
+     "author": "Jan O.",
+     "date": "2025-09-29",
+     "text": "Ingenting å klage på.",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "61453": {
+   "sourceUrl": "https://www.elefun.no/vare-61453/batteri-lipo-4s-3300mah-40c-cnhl-xt60",
+   "count": 10,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "Super bra!!",
+     "author": "Emil",
+     "date": "2024-07-03",
+     "text": "Jeg er veldig fornøyd med dette batteriet. Jeg ble litt usikker på batteriet pga dårlig tilbakemelding, men jeg tok sjansen å kjøpte to stykk. Når jeg prøvde de var det ingen ting med de og nå er det en stund siden jeg kjøpte de, men synes de er like bra som ny og da mener jeg at de er super bra. Mye for pengene!!!",
+     "helpful": 2,
+     "notHelpful": 0
+    },
+    {
+     "rating": 1,
+     "headline": "Forferdelig produkt",
+     "author": "Torbjørn J.",
+     "date": "2024-04-29",
+     "text": "Det absolutt dårligste produktet som er tatt inn på norsk jord. Jeg tar batteriene i bruk i går 28.04.2024 etter at det er noen måneder siden de ble kjøpt. 0 effekt selv med 57% kapasitet på batteriet. Jeg vet at dette ikke er engangstilfelle, da jeg har 2 stk. som er helt like.\nDet skulle vært obligatorisk erstatning med annet produkt med samme kapasitet. Synd det ikke går å sette 0 stjerner.\nHvis dere på elefun leser dette forventer jeg en reaksjon fra dere.",
+     "helpful": 2,
+     "notHelpful": 13
+    },
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Eirik N.",
+     "date": "2026-08-27",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "62012": {
+   "sourceUrl": "https://www.elefun.no/vare-62012/computerlader-skyrc-d100-neo-dobbel-ac100w",
+   "count": 4,
+   "stars": 4,
+   "reviews": [
+    {
+     "rating": 4,
+     "headline": "svakere enn antatt",
+     "author": "Ove",
+     "date": "2025-08-26",
+     "text": "Gikk fra en god gammel SkyRC E680 12/220V 80W Computerlader til denne, \nog den har færre valgmuligheter, \nog lader faktisk litt saktere enn E680. \nKjøpte den for å kunne lade 2 batteri samtidig, men skulle heller kjøpt en til E680. \nStor og god kjølevifte, så det er et pluss, \nsamt enkel meny og god skjerm, \nmen syns at den framstilles som kraftigere enn den faktisk er.",
+     "helpful": 4,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Elefun-kunde",
+     "date": "2026-07-02",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Otto N.",
+     "date": "2024-05-16",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "63433": {
+   "sourceUrl": "https://www.elefun.no/vare-63433/batteri-lipo-2s-1400mah-30c-spektrum-g2-ic2",
+   "count": 1,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Kjell",
+     "date": "2025-05-21",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "63624": {
+   "sourceUrl": "https://www.elefun.no/vare-63624/radiostyrt-bat-pro-boat-jetstream-1-6-rtr-mojo",
+   "count": 1,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "Reservdelar",
+     "author": "Emil",
+     "date": "2024-06-02",
+     "text": "Trimplanen spricker sönder lätt samt hörnet bak lossna när man slog emot sidan bak. Vart hittar jag reservdelar?",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "63967": {
+   "sourceUrl": "https://www.elefun.no/vare-63967/computerlader-skyrc-s100-neo-ac100w-dc200w",
+   "count": 7,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "skyrc s100 neo lader",
+     "author": "Joar",
+     "date": "2024-12-11",
+     "text": "Liten hendig lader med flere funksjoner.Anbefaler denne !",
+     "helpful": 5,
+     "notHelpful": 1
+    },
+    {
+     "rating": 5,
+     "headline": "Flott lader .",
+     "author": "Simen S.",
+     "date": "2026-08-04",
+     "text": "Kjempe kjekk lader . Som gjør det letter og holde kontroll på\nNår batteri er ferdig ladet . Ikke minst trykt . \nMener det er et must produkt når man lader rc batteri . \n\n100%verdt pengene",
+     "helpful": 1,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "Det er godt laderen.",
+     "author": "Roman",
+     "date": "2024-12-21",
+     "text": "Virker bra.",
+     "helpful": 4,
+     "notHelpful": 3
+    }
+   ]
+  },
+  "64260": {
+   "sourceUrl": "https://www.elefun.no/vare-64260/batteri-lipo-6s-5000mah-45c-gens-ace-g-tech-ec5",
+   "count": 2,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "\"Slitesterke\"",
+     "author": "Jan P.",
+     "date": "2026-02-27",
+     "text": "Jeg har brukt dette batteriet i flere år og det fremstår som slitesterkt hvis det behandles godt. Balanserer bra med liten intern motstand selv over tid.\nElefun er en av de raskeste nettbutikkene, og alltid utmerket service!",
+     "helpful": 0,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Alexander",
+     "date": "2026-02-19",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "64293": {
+   "sourceUrl": "https://www.elefun.no/vare-64293/radioutstyr-sender-frsky-twin-x14-black",
+   "count": 1,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "Beste radioen under 4K?",
+     "author": "Simon B.",
+     "date": "2026-01-27",
+     "text": "Nå har jeg hatt denne radioen i 1 1/2år. Den ble kjøpt som skole radio/backup til X20 Pro´en min. Den blir brukt som elev radio når jeg skoler elever. Det fungere knirkefritt med trådløs BT kobling mellom radioene. Den blir også brukt mye av meg selv. Spesielt på vinteren da kassa på X20 Pro´en er laget av aluminium og er meget kald å holde i... X14 har samme software, antall kanaler og funksjoner som X20 Pro`en min. Eneste X14 ikke har er 868mhz. Så den er helt lik å bruke med unntak av et par brytere mindre og ingen touch skjerm. Når det er sagt, så savner jeg ikke touch på X14. Jeg bruker stort sett alltid knapper og trille hjulet når jeg programmere X20 Pro, så det går sømløst mellom radioene. Modell oppsett/filer går også fint mellom radioen. Som forøvrig kan overføres trådløst mellom radioen. Er man i markedet for en god radio som folk flest ikke vokser ut av, og som ikke koster allverdens. Så er X14 et godt bud på en god radio. Den har 24 kanaler og to forskejllige radio linker. ACCESS 2.4G og Twin 2.4G. Den siste er \"long range\". Jeg har testet Twin protokollen på racing droner. Det fungere fint. Det er også mulig å sette et \"4 in 1\" modul bak på radioen så man kan bruke masse forskjellige mottakere. Si at man har noen Spektrum mottakere, så vil et slikt modul gjøre at man kan bruke de mottakerne på X14 radioen. Jeg bruker selv \"4 in 1\" modul, ExpressLRS og TBS Crossfire moduler på radio. Det fungere kjempe fint. Man får på en måte det \"beste\" av to verdener. Altså den radio protokollen man vil ha og Ethos operativ systemet, som er mye enklere å programmere enn EdgeTX. Ethos softwaren er forholdsvis enkel å lære seg. Det er mange bra Ethos videoer på Youtube.",
+     "helpful": 5,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "65263": {
+   "sourceUrl": "https://www.elefun.no/vare-65263/radioutstyr-sender-spektrum-nx8-plus-dsmx-smart",
+   "count": 1,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Elefun-kunde",
+     "date": "2025-08-25",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "65699": {
+   "sourceUrl": "https://www.elefun.no/vare-65699/drone-tilbehor-dji-rc-n3-remote-controller",
+   "count": 1,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Ketil V.",
+     "date": "2025-01-23",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "67191": {
+   "sourceUrl": "https://www.elefun.no/vare-67191/radiostyrt-bil-elektro-buggy-arrma-typhon-grom-223s-blx-4wd-blue-black-rtr",
+   "count": 4,
+   "stars": 3,
+   "reviews": [
+    {
+     "rating": 1,
+     "headline": "Styr unna!!",
+     "author": "Jan",
+     "date": "2025-06-24",
+     "text": "Denne bilen er det umulig og få deler til. Jeg har nå på 1 mnd kjørt bilen litt. Som nevnt over her virket ikke medfølgende lader. Etter anmeldelsen blir jeg kontaktet av elefun som sender en ny lader og oppfordrer til og endre anmeldelsen siden den er dårlig og i følge elefun skader salg av varen. Sannheten er at etter ny lader kom fikk jeg kjørt bilen litt til og så ryker aksling pinnen mellom driv og hjul. Denne delen får man ikke tak i og arma bekrefter levering i november!!! Altså 3000kr rett ut vinduet! SKAM DERE ELEFUN \n\n[EDIT: Elefun 24.06.2025]\nHei, beklager at lader ikke har fungert, men håper du er fornøyd med at vi løste det for deg. Dette er en ny bil/chassis og dessverre er leverandør tom for noen deler, vi jobber mot leverandør for at de skal bli bedre på dette. Du har etterspurt oss om ett «Dogbone» som leverandør oppgir at ventes inn i midten av juli og dette er også den informasjonen vi har oversendt til deg.",
+     "helpful": 17,
+     "notHelpful": 8
+    },
+    {
+     "rating": 5,
+     "headline": "100 prosent gøy faktor.",
+     "author": "Kjell-CatoN",
+     "date": "2026-07-21",
+     "text": "Kjøp denne med 3 cell batteri. Går som ei kanonkula på steroider. Det her skal mye til før å ha det kjedelig med?..",
+     "helpful": 1,
+     "notHelpful": 0
+    },
+    {
+     "rating": 1,
+     "headline": "kom i posten, batteriet lader ikke",
+     "author": "Jan",
+     "date": "2025-05-23",
+     "text": "fikk kjørt denne bilen i ca 5 minutter etter 2 timers lading. Så Etter 4 timers lading igjen kjørte den noen meter før den var tom. Hadde gledet meg til og bruke den i helgen og hadde lagt planer men det blir uten denne. Dette burde vært forhånds testa av elefun for kvalitets sikring. utrolig skuffet!",
+     "helpful": 6,
+     "notHelpful": 8
+    }
+   ]
+  },
+  "67434": {
+   "sourceUrl": "https://www.elefun.no/vare-67434/drone-tilbehor-dji-flip-intelligent-flight-battery",
+   "count": 1,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "DJI Flip",
+     "author": "Universalprosjekt A.",
+     "date": "2025-04-07",
+     "text": "Fungerer veldig bra. Stilte inn på høyeste oppløsning på bilder som gir et fantastisk godt resultat.",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "68350": {
+   "sourceUrl": "https://www.elefun.no/vare-68350/radiostyrt-fly-elektro-pakke-fms-a6m3-zero-1400mm-green-pnp",
+   "count": 2,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "Lock öppnad",
+     "author": "Jonas",
+     "date": "2025-10-02",
+     "text": "Ser fin, ut precis som förväntat.\nHar endast öppnat & checkat modellen.\nMonteras i vinter för take off till våren - 26",
+     "helpful": 0,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "",
+     "author": "Mattias",
+     "date": "2025-09-16",
+     "text": "",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "70941": {
+   "sourceUrl": "https://www.elefun.no/vare-70941/dji-neo-2-digital-transreceiver",
+   "count": 1,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "DJI Neo 2 Digital Transreceiver",
+     "author": "Pawel P.",
+     "date": "2026-08-27",
+     "text": "ok",
+     "helpful": 0,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "73081": {
+   "sourceUrl": "https://www.elefun.no/vare-73081/radiostyrt-bil-elektro-buggy-mjx-hyper-go-brushless-1-14-4wd-truggy",
+   "count": 6,
+   "stars": 5,
+   "reviews": [
+    {
+     "rating": 5,
+     "headline": "Superfornøyd 14 åring.",
+     "author": "Petter",
+     "date": "2026-07-27",
+     "text": "Veldig fornøyd med valg av bil til en på 14 år. Solid bygd og går mer enn fort nok.",
+     "helpful": 7,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "Mye bil for pengene",
+     "author": "Frode",
+     "date": "2026-08-18",
+     "text": "Tåler utrolig mye juling mtp. pris :)",
+     "helpful": 6,
+     "notHelpful": 0
+    },
+    {
+     "rating": 5,
+     "headline": "Funker utmerket!",
+     "author": "Remi B.",
+     "date": "2026-07-29",
+     "text": "Funker utmerket!",
+     "helpful": 6,
+     "notHelpful": 0
+    }
+   ]
+  },
+  "73874": {
+   "sourceUrl": "https://www.elefun.no/vare-73874/radiostyrt-bat-joysway-alpha-v2-106cm-80km-t-24g-artr",
+   "count": 1,
+   "stars": 4,
+   "reviews": [
+    {
+     "rating": 4,
+     "headline": "Perfekt, men ett fel",
+     "author": "Carl T.",
+     "date": "2026-07-22",
+     "text": "Kolla motorkopplingen innan ni kör. Min va sne så det vobblade nått fruktansvärt. Kör man så har man ingen båt kvar efter ett par rundor. Bytte kopplingen direkt och nu är det helt rakt. Jättegrym båt annars",
+     "helpful": 2,
+     "notHelpful": 3
+    }
+   ]
+  }
+ }
+}
