@@ -29,7 +29,7 @@ Ved lokal innlogging i utviklingsmiljøet kan du bruke `seedy@sites.test`.
 - produkter lagret i Cloudflare D1/SQLite
 - ekte eksempelmodeller fra Elefun og tydelig lenke til kilden
 - batterifilter for kontakttype, celleantall og fysiske mål
-- bilutvalg med bryter for nybegynner- og erfarennivå
+- modellutvalg med bryter for nybegynner- og erfarennivå
 - forklaring på hvorfor et batteri ikke passer
 - automatisk beregning av pakkepris og antall batterier
 
@@ -173,7 +173,7 @@ The portable build runs Vinext directly without a host `timeout` command. The ma
 
 ## Katalog og pakkebygger – oktober 2026
 
-Utvalget inneholder nå ni elektrobiler (buggy/truggy), fem elektrobåter, fem kameradroner og fem elektrofly (warbirds). Bilene kan filtreres etter erfaringsnivå: nybegynner eller erfaren. Nivåene er kuraterte demotagger basert på ytelse, medfølgende utstyr og dokumenterte kjøremoduser. Produktnavn, prisøyeblikksbilder og bilder er hentet fra Elefun. Prisene er ikke sanntidspriser, og prototypen påstår ikke live lagerstatus.
+Utvalget inneholder nå ni elektrobiler (buggy/truggy), fem elektrobåter, fem kameradroner og fem elektrofly (warbirds). Alle fire modellkategoriene kan filtreres etter erfaringsnivå: nybegynner eller erfaren. Nivåene er kuraterte demotagger basert på ytelse, medfølgende utstyr, stabiliserings-/hjelpemoduser og dokumenterte krav til oppsett. Produktnavn, prisøyeblikksbilder og bilder er hentet fra Elefun. Prisene er ikke sanntidspriser, og prototypen påstår ikke live lagerstatus.
 
 - `data/catalog-snapshot.json`: katalog og kilde-URL per produkt.
 - `data/model-accessories.json`: gjennomgåtte modell–batteri–lader-koblinger med nødvendige kabler og forbehold.
