@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import type { CatalogProduct } from "@/lib/catalog-types";
-import { batteryReasons, chargingReasons, controllerIdsFor, defaultControllerKey, packageLines, rules } from "@/lib/compatibility";
+import { batteryReasons, chargingReasons, controllerIdsFor, defaultControllerKey, evaluateCarPackage, packageLines, rules } from "@/lib/compatibility";
 import { readCart, writeCart, type SavedPackage } from "@/lib/cart";
 import { batteryVolts, cleanName, discountFor, discountLine, money, optionFacts, productHref, shortTitle, specsFor, tierPackages, type DefaultPackage } from "@/lib/store";
 import PackageSelect, { type PackageOption } from "@/components/package-select";
@@ -35,7 +35,11 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
  const battery=products.find(p=>p.id===batteryId);const charger=products.find(p=>p.id===chargerId);
  const ctrl=rule?.controller;const controllerIds=controllerIdsFor(rule,controllerKey);
  const lines=vehicle?packageLines(products,vehicle,battery,charger,{sets:batterySets,controllerIds}):[];const total=lines.reduce((s,l)=>s+l.quantity*l.product.price,0);
- const reasons=vehicle?chargingReasons(vehicle,battery,charger):[];
+ const compatibility=vehicle?.vehicleType==='car'?evaluateCarPackage(vehicle,battery,charger,controllerIds):undefined;
+ const radioCaveat=compatibility?.status==='conditional'?compatibility.reasons.find(r=>/sender|mottaker|radio/i.test(r)):undefined;
+ const radioBlockers=compatibility?.status==='incompatible'?compatibility.reasons.filter(r=>/sender|mottaker|radio/i.test(r)):[];
+ const reasons=vehicle?[...chargingReasons(vehicle,battery,charger),...radioBlockers]:[];
+ const blocked=reasons.length>0||compatibility?.status==='unknown'||compatibility?.status==='incompatible';
  const documented=vehicle&&rule?rule.batteryIds.map(id=>products.find(p=>p.id===id)).filter((p):p is CatalogProduct=>!!p):[];
  const volts=documented[0]?batteryVolts(documented[0]):null;
  // Other batteries at the same voltage stay visible with their price difference, but cannot be chosen.
@@ -56,7 +60,7 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
  const fromTier=!!origin&&origin.vehicleId===vehicleId;
  const discountActive=fromTier&&batteryId===origin.batteryId&&batterySets===1&&chargerId===origin.chargerId&&controllerKey===origin.controllerKey;
  const discount=discountActive?discountFor(total):0;
- function add(){if(!vehicle||reasons.length)return;saveCart([...cart,{id:crypto.randomUUID(),name:cleanName(vehicle.name),total:total-discount,lines:[...lines.map(l=>({id:l.product.id,name:cleanName(l.product.name),quantity:l.quantity,price:l.product.price})),...(discount?[discountLine(discount)]:[])]}]);setNotice('Pakken er lagt i demo-handlevognen.');}
+ function add(){if(!vehicle||blocked)return;saveCart([...cart,{id:crypto.randomUUID(),name:cleanName(vehicle.name),total:total-discount,lines:[...lines.map(l=>({id:l.product.id,name:cleanName(l.product.name),quantity:l.quantity,price:l.product.price})),...(discount?[discountLine(discount)]:[])]}]);setNotice('Pakken er lagt i demo-handlevognen.');}
  function addReady(p:DefaultPackage){const d=discountFor(p.total);saveCart([...cart,{id:crypto.randomUUID(),name:cleanName(p.vehicle.name),total:p.total-d,lines:[...p.lines.map(l=>({id:l.product.id,name:cleanName(l.product.name),quantity:l.quantity,price:l.product.price})),discountLine(d)]}]);}
  function pick(id:string){setCategory(id);location.hash=id;setQuery('');}
  const filtered=products.filter(p=>(category==='accessories'?p.kind!=='vehicle':p.kind==='vehicle'&&p.vehicleType===category)&&`${p.name} ${p.brand}`.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>sort==='low'?a.price-b.price:sort==='high'?b.price-a.price:0);
@@ -122,12 +126,13 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
      </div>
      {fromTier&&!discountActive&&<div className="note note-warn"><CircleAlert size={18} aria-hidden/><div><strong>Pakkerabatten gjelder ikke lenger</strong><p>Du har endret ferdigpakken {origin?.tier}, så 15 % rabatt blir ikke gitt. <button className="link-button" onClick={resetToTier}>Gå tilbake til ferdigpakken</button></p></div></div>}
      {reasons.length>0&&<div className="note note-warn"><CircleAlert size={18} aria-hidden/><div><strong>Må avklares før pakken er komplett</strong><ul>{reasons.map(r=><li key={r}>{r}</li>)}</ul></div></div>}
+     {radioCaveat&&<div className="note note-warn"><CircleAlert size={18} aria-hidden/><div><strong>Radiooppsettet har et forbehold</strong><p>{radioCaveat}</p></div></div>}
      <div className="pb-total">
       {discountActive&&<p className="pb-discount"><span className="discount-badge">−15 %</span> Ferdigpakke {origin?.tier}: du sparer {money(discount)}</p>}
       <div className="pb-sum"><span>Sum for pakken</span><span className="pb-sum-price">{discount>0&&<s className="price">{money(total)}</s>}<strong className="price">{money(total-discount)}</strong></span></div>
       <p className="pb-sum-split">Modell {money(vehicle.price)} · tilbehør {money(total-vehicle.price)} · demopriser inkl. mva., frakt ikke beregnet</p>
-      <span className={`status ${reasons.length?'status-warn':'status-ok'}`}>{reasons.length?'Trenger avklaring før kjøp':'Batteri og lading passer'}</span>
-      <button className="btn-buy btn-buy-full" disabled={reasons.length>0} onClick={add}><ShoppingCart size={18} aria-hidden/> Legg i demo-handlevogn</button>
+      <span className={`status ${blocked||compatibility?.status==='conditional'?'status-warn':'status-ok'}`}>{blocked?'Trenger avklaring før pakken er komplett':compatibility?.status==='conditional'?'Passer med forbehold':'Dokumentert bilpakke'}</span>
+      <button className="btn-buy btn-buy-full" disabled={blocked} onClick={add}><ShoppingCart size={18} aria-hidden/> Legg i demo-handlevogn</button>
       <p className="fine-print">{vehicle.vehicleType==='plane'?'Sender og eventuelt mottaker kommer i tillegg. Pakken er ikke et komplett flyklart sett.':'Kontroller hva som følger med, og eventuelle batterier til senderen.'}</p>
       <div aria-live="polite" className="success-notice">{notice}</div>
      </div>
