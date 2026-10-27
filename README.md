@@ -181,6 +181,12 @@ Utvalget er nå avgrenset til fem elektrobiler (buggy), fem elektrobåter, fem k
 - `data/elefun-menu.json`: Elefuns ekte kategoritre (20 hovedkategorier, 774 kategorier) for megamenyen. Lenkene går til elefun.no. Oppdateres med `node scripts/scrape-elefun-menu.mjs`.
 - `data/elefun-shelves.json`: et begrenset, ekte produktutvalg for `/sortiment`-sidene. Opptil 4 underkategorier per hovedkategori og 12 varer i hver, med varer på lager først og spredt på merker. Hentes med `node scripts/scrape-elefun-shelves.mjs` etter menyen. Bilbane og Solenergi mangler, fordi Elefun laster de produktene med JavaScript.
 
+### Kompatibilitet for bilpakker
+
+Første bilversjon vurderer bil, batteri, lader og sender-/mottakersett mot de gjennomgåtte koblingene i `data/model-accessories.json`. `lib/compatibility.ts` returnerer statusene `compatible`, `conditional`, `incompatible` eller `unknown`; ukjente radiooppsett merkes som ukjente og avvises som bekreftede pakker. Tester ligger i `tests/catalog.test.cjs`.
+
+Dette er en regelbasert prototype med katalogøyeblikksbildet i dette repoet. Den er ikke koblet til Elefuns produksjonsdatabase eller en språkmodell. Strukturerte data og et godkjent Elefun-grensesnitt må på plass før løsningen kan gi anbefalinger fra hele den virkelige katalogen.
+
 Kategorimeny, lokalt søk, prissortering, pakkedialog og demo-handlevogn fungerer lokalt. Demo-handlevognen bruker localStorage; ingen ordre sendes til Elefun. BNF/PNP-fly kan kreve sender/mottaker i tillegg, og dette opplyses i pakkedialogen.
 
 Databasen oppdateres én gang per katalogrevisjon i én transaksjon (`D1.batch`). Kun tidligere kjente demovarer deaktiveres. Ved manglende D1 eller databasefeil vises kildeøyeblikksbildet; grensesnittet påstår derfor ikke at database er tilkoblet.
