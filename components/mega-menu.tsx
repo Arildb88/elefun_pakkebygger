@@ -7,9 +7,10 @@ import type { MegaCategory } from "@/lib/elefun-menu";
 import { CategoryIcon } from "./category-icons";
 
 function MenuAnchor({href,className,children}:{href:string;className?:string;children:React.ReactNode}){
-  return href.startsWith("/")
-    ?<Link href={href} className={className}>{children}</Link>
-    :<a href={href} className={className} target="_blank" rel="noreferrer">{children}</a>;
+  if(href.startsWith("/")) return <Link href={href} className={className}>{children}</Link>;
+  return <span className={[`mega-placeholder-link`,className].filter(Boolean).join(" ")} aria-disabled="true">
+    {children} <span className="mega-placeholder-label">(placeholder)</span>
+  </span>;
 }
 
 const OPEN_DELAY=120;
