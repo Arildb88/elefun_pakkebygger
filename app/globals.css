@@ -679,3 +679,10 @@ a.rating-badge:hover{color:var(--blue-deep);text-decoration:underline;text-under
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
+
+.mega-col h3 .mega-placeholder-link{color:inherit}
+.mega-col li .mega-placeholder-link{display:block;padding:2px 0;font-size:13.5px;line-height:1.45;color:var(--ink-2);white-space:normal}
+.mega-placeholder-link{cursor:default}
+.mega-placeholder-label{font-size:.88em;font-weight:400;opacity:.72;white-space:nowrap}
+.mega-col li .mega-placeholder-link.mega-more{color:var(--blue-deep);font-weight:600}
+.mega-col li .mega-placeholder-link.mega-more .mega-placeholder-label{font-weight:400}
