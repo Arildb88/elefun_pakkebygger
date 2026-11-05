@@ -7,9 +7,10 @@ import type { MegaCategory } from "@/lib/elefun-menu";
 import { CategoryIcon } from "./category-icons";
 
 function MenuAnchor({href,className,children}:{href:string;className?:string;children:React.ReactNode}){
-  return href.startsWith("/")
-    ?<Link href={href} className={className}>{children}</Link>
-    :<a href={href} className={className} target="_blank" rel="noreferrer">{children}</a>;
+  if(href.startsWith("/")) return <Link href={href} className={className}>{children}</Link>;
+  return <span className={[`mega-placeholder-link`,className].filter(Boolean).join(" ")} aria-disabled="true">
+    {children} <span className="mega-placeholder-label">(placeholder)</span>
+  </span>;
 }
 
 const OPEN_DELAY=120;
@@ -26,7 +27,8 @@ export default function MegaMenu({categories}:{categories:MegaCategory[]}){
   const listRef=useRef<HTMLUListElement>(null);
   const [overflow,setOverflow]=useState({left:false,right:false});
   const panelId=useId();
-  const open=categories.find(c=>c.id===openId);
+  const visibleCategories=categories.filter(c=>["Biler","Båter","Droner","Batteri & ladere"].includes(c.name));
+  const open=visibleCategories.find(c=>c.id===openId);
 
   const schedule=useCallback((next:number|null,delay:number)=>{
     if(timer.current) clearTimeout(timer.current);
@@ -64,8 +66,7 @@ export default function MegaMenu({categories}:{categories:MegaCategory[]}){
       {overflow.left&&<button type="button" className="mega-scroll mega-scroll-left" aria-label="Bla til forrige kategorier" tabIndex={-1} onClick={()=>scrollBar(-1)}><ChevronLeft size={18} aria-hidden/></button>}
       <ul ref={listRef}>
         <li><Link href="/" aria-current={path==="/"?"page":undefined}>Pakkebygger</Link></li>
-        <li><Link href="/sortiment" aria-current={path==="/sortiment"?"page":undefined}>Sortiment</Link></li>
-        {categories.map(c=>{
+        {visibleCategories.map(c=>{
           const expanded=c.id===openId;
           return <li key={c.id}>
             <button type="button" data-cat={c.id} aria-expanded={expanded} aria-controls={expanded?panelId:undefined}
