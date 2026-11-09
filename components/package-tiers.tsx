@@ -4,6 +4,7 @@ import { Check, ShoppingCart, SlidersHorizontal } from "lucide-react";
 import { cleanName, discountFor, money, productHref, shortTitle, type DefaultPackage, type TIERS } from "@/lib/store";
 import { reviewsFor } from "@/lib/reviews";
 import { RatingBadge } from "./reviews";
+import PackageStatus from "./package-status";
 
 type Tier={tier:(typeof TIERS)[number];pkg:DefaultPackage};
 
@@ -25,6 +26,7 @@ export default function PackageTiers({tiers,onAdd,onCustomize}:{tiers:Tier[];onA
         return <article key={tier.id} className={`tier tier-${tier.id}`} aria-labelledby={`tier-${tier.id}`}>
           <header className="tier-head">
             <h3 id={`tier-${tier.id}`}>{tier.name} <Level level={tier.level}/></h3>
+            <p className="tier-purpose">{tier.purpose}</p>
             <p>{tier.blurb}</p>
           </header>
           <a className="tier-media" href={productHref(v)} tabIndex={-1} aria-hidden="true">{v.imageUrl&&<img src={v.imageUrl} alt="" loading="lazy"/>}</a>
@@ -39,7 +41,8 @@ export default function PackageTiers({tiers,onAdd,onCustomize}:{tiers:Tier[];onA
             <span>Hele pakken <span className="discount-badge">−15 %</span></span>
             <span className="tier-price"><s className="price">{money(pkg.total)}</s><strong className="price">{money(pkg.total-discountFor(pkg.total))}</strong></span>
           </div>
-          <p className="tier-save">Du sparer {money(discountFor(pkg.total))} når du kjøper pakken slik den er.</p>
+          <p className="tier-save">Du sparer {money(discountFor(pkg.total))}.</p>
+          <div className="tier-status"><PackageStatus evaluation={pkg.evaluation}/></div>
           <div className="tier-actions">
             <button type="button" className="btn-buy btn-buy-full" onClick={()=>{onAdd(pkg);setAdded(tier.id);}}>
               {added===tier.id?<><Check size={18} aria-hidden/> Lagt i handlevognen</>:<><ShoppingCart size={18} aria-hidden/> Legg pakken i handlevogn</>}
@@ -49,6 +52,6 @@ export default function PackageTiers({tiers,onAdd,onCustomize}:{tiers:Tier[];onA
         </article>;
       })}
     </div>
-    <p className="tiers-note" aria-live="polite">{added?"Pakken er lagt i demo-handlevognen.":"Nivåene er sortert etter totalpris i kategorien. Pakkerabatten på 15 % gjelder bare uendrede ferdigpakker, og er et forslag i dette studentprosjektet, ikke et tilbud fra Elefun. Demopriser inkl. mva."}</p>
+    <p className="tiers-note" aria-live="polite">{added?"Pakken er lagt i demo-handlevognen.":"Nivåene og balansen mellom delene er et forslag fra dette studentprosjektet. Pakkerabatten på 15 % gjelder ferdigpakker, også om du bytter deler, og er et forslag i dette studentprosjektet, ikke et tilbud fra Elefun. Demopriser inkl. mva."}</p>
   </section>;
 }

@@ -3,12 +3,26 @@ import { useEffect, useId, useRef, useState, type KeyboardEvent, type ReactNode 
 import { Check, ChevronDown } from "lucide-react";
 import { money } from "@/lib/store";
 
-export type PackageOption={key:string;title:string;facts:string;price:number;priceLabel?:string;disabled?:boolean;reason?:string;group?:string};
+export type PackageOption={key:string;title:string;facts:string;price:number;priceLabel?:string;disabled?:boolean;reason?:string;group?:string;imageUrl?:string|null};
 
 /** Price shown relative to the current choice: "+400 kr", "−320 kr". */
 export function priceDelta(diff:number){
   if(diff===0) return "Samme pris";
   return `${diff>0?"+":"−"}${money(Math.abs(diff))}`;
+}
+
+/** Product photo, or the part's icon when it has no product of its own (an included charger or radio). */
+function PartThumb({src,icon}:{src?:string|null;icon?:ReactNode}){
+  return <span className="part-thumb" aria-hidden>{src?<img src={src} alt="" loading="lazy"/>:icon}</span>;
+}
+
+/** A package part that cannot be changed. Shares its columns with the PackageSelect trigger. */
+export function PackagePart({label,src,icon,title,facts,price,warn}:{label:string;src?:string|null;icon?:ReactNode;title:string;facts?:string;price:string;warn?:boolean}){
+  return <div className={`part-row${warn?" part-row-warn":""}`}>
+    <PartThumb src={src} icon={icon}/>
+    <span className="part-text"><span className="part-label">{label}</span><strong>{title}</strong>{facts&&<small>{facts}</small>}</span>
+    <span className="price part-price">{price}</span>
+  </div>;
 }
 
 export default function PackageSelect({label,icon,options,value,onChange,quantity=1}:{label:string;icon:ReactNode;options:PackageOption[];value:string;onChange:(key:string)=>void;quantity?:number}){
@@ -47,14 +61,13 @@ export default function PackageSelect({label,icon,options,value,onChange,quantit
   }
 
   return <div className="psel" ref={root}>
-    <span className="psel-label" id={`${id}-label`}>{label}</span>
-    <button ref={trigger} type="button" className="psel-trigger" aria-haspopup="listbox" aria-expanded={open} aria-labelledby={`${id}-label ${id}-value`} onClick={()=>open?close():show()} onKeyDown={e=>{if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();show();}}}>
-      <span className="psel-icon" aria-hidden>{icon}</span>
-      <span className="psel-value" id={`${id}-value`}>
-        <strong>{current.title}{quantity>1&&<span className="psel-qty"> × {quantity}</span>}</strong>
-        <small>{current.facts}</small>
+    <button ref={trigger} type="button" className="part-row psel-trigger" aria-haspopup="listbox" aria-expanded={open} aria-labelledby={`${id}-label ${id}-value`} onClick={()=>open?close():show()} onKeyDown={e=>{if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();show();}}}>
+      <PartThumb src={current.imageUrl} icon={icon}/>
+      <span className="part-text">
+        <span className="part-label" id={`${id}-label`}>{label}</span>
+        <span id={`${id}-value`}><strong>{current.title}{quantity>1&&<span className="psel-qty"> × {quantity}</span>}</strong><small>{current.facts}</small></span>
       </span>
-      <span className="price psel-price">{current.priceLabel??money(current.price*quantity)}</span>
+      <span className="price part-price">{current.priceLabel??money(current.price*quantity)}</span>
       <ChevronDown className="psel-chevron" size={20} aria-hidden/>
     </button>
     {open&&<ul ref={list} className="psel-list" role="listbox" tabIndex={-1} aria-labelledby={`${id}-label`} aria-activedescendant={`${id}-${active}`} onKeyDown={onListKey}>
@@ -62,6 +75,7 @@ export default function PackageSelect({label,icon,options,value,onChange,quantit
         const header=o.group&&o.group!==options[i-1]?.group?<li role="presentation" className="psel-group" key={`g-${o.group}`}>{o.group}</li>:null;
         const selected=o.key===value;const diff=(o.price-current.price)*quantity;
         return [header,<li key={o.key} id={`${id}-${o.key}`} role="option" aria-selected={selected} aria-disabled={o.disabled||undefined} className={`psel-option${o.key===active?" is-active":""}`} onPointerEnter={()=>!o.disabled&&setActive(o.key)} onClick={()=>!o.disabled&&choose(o.key)}>
+          <PartThumb src={o.imageUrl} icon={icon}/>
           <span className="psel-option-text"><strong>{o.title}</strong><small>{o.disabled&&o.reason&&!o.group?o.reason:o.facts}</small></span>
           <span className={`psel-delta${diff<0?" is-less":""}`}>{selected?<><Check size={16} aria-hidden/> Valgt</>:priceDelta(diff)}</span>
         </li>];

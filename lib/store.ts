@@ -1,5 +1,5 @@
 import type { CatalogProduct } from "./catalog-types";
-import { chargingReasons, controllerIdsFor, defaultControllerKey, packageLines, rules } from "./compatibility";
+import { chargingReasons, controllerIdsFor, defaultControllerKey, evaluatePackage, packageLines, rules } from "./compatibility";
 
 export const money=(n:number)=>new Intl.NumberFormat("nb-NO",{style:"currency",currency:"NOK",maximumFractionDigits:0}).format(n);
 
@@ -13,6 +13,9 @@ export const CATEGORIES:StoreCategory[]=[
   {slug:"batterier-og-ladere",label:"Batteri & ladere",title:"Batterier, ladere og kabler",intro:"LiPo-batterier, computerladere og overganger som passer modellene i utvalget.",match:p=>p.kind!=="vehicle"&&p.kind!=="controller"},
   {slug:"kontrollere",label:"Kontrollere",title:"Sendere og kontrollere",intro:"Sendere og mottakere for fly som leveres uten radio, og kontroller til drone.",match:p=>p.kind==="controller"},
 ];
+
+/** Product kinds within "Batterier og ladere", used by its filter and by the menu. */
+export const ACCESSORY_KINDS=[["battery","Batterier"],["charger","Ladere"],["accessory","Kabler og tilbehør"]] as const;
 
 export const categoryOf=(p:CatalogProduct)=>CATEGORIES.find(c=>c.match(p))??CATEGORIES[CATEGORIES.length-1];
 export const productHref=(p:CatalogProduct)=>`/produkt/${p.id}`;
@@ -112,44 +115,58 @@ export function modelsUsing(products:CatalogProduct[],item:CatalogProduct){
 }
 
 /** The documented default package for a model: first battery, first charger (or the included one), required cables. */
-export function defaultPackage(products:CatalogProduct[],vehicle:CatalogProduct,controllerKey?:string){
+export function defaultPackage(products:CatalogProduct[],vehicle:CatalogProduct,controllerKey?:string,batteryId?:string){
   const r=rules[vehicle.id];
-  const battery=r?products.find(p=>p.id===r.batteryIds[0]):undefined;
+  const battery=r?products.find(p=>p.id===(batteryId??r.batteryIds[0])):undefined;
   const charger=r&&!r.includedCharger?products.find(p=>p.id===r.chargerIds[0]):undefined;
   const key=controllerKey??defaultControllerKey(r);
   const controllerIds=controllerIdsFor(r,key);
   const lines=packageLines(products,vehicle,battery,charger,{controllerIds});
-  return {vehicle,battery,charger,controllerKey:key,controllerIds,controllerIncluded:key==='none'&&!!r?.controller?.included&&!r.controller.unconfirmed,includedCharger:!!r?.includedCharger,lines,total:lines.reduce((s,l)=>s+l.quantity*l.product.price,0),reasons:chargingReasons(vehicle,battery,charger)};
+  return {vehicle,battery,charger,controllerKey:key,controllerIds,controllerIncluded:key==='none'&&!!r?.controller?.included&&!r.controller.unconfirmed,includedCharger:!!r?.includedCharger,lines,total:lines.reduce((s,l)=>s+l.quantity*l.product.price,0),reasons:chargingReasons(vehicle,battery,charger),evaluation:evaluatePackage(vehicle,battery,charger,controllerIds)};
 }
 export type DefaultPackage=ReturnType<typeof defaultPackage>;
 
-/** Package discount on a ready-made package bought exactly as shown. A proposal in this prototype, not an Elefun offer. */
+/** Package discount on a ready-made package, also when its parts are changed. A proposal in this prototype, not an Elefun offer. */
 export const PACKAGE_DISCOUNT=0.15;
 export const discountFor=(total:number)=>Math.round(total*PACKAGE_DISCOUNT);
 export const discountLine=(amount:number)=>({id:"pakkerabatt",name:"Pakkerabatt 15 %",quantity:1,price:-amount});
 
 export const TIERS=[
-  {id:"budsjett",name:"Budsjett",level:1,blurb:"Lavest totalpris. Et rimelig sted å begynne."},
-  {id:"medium",name:"Medium",level:2,blurb:"Midt i prisklassen, når du vil ha litt mer."},
-  {id:"premium",name:"Premium",level:3,blurb:"Toppmodellen i utvalget, med høyest totalpris."},
+  {id:"budsjett",name:"Budsjett",level:1,purpose:"Kom i gang",blurb:"Laveste totalpris for en komplett pakke, med det rimeligste batteriet som passer."},
+  {id:"medium",name:"Medium",level:2,purpose:"Balansert",blurb:"Midt i prisklassen, med oppgraderinger som står i forhold til modellen."},
+  {id:"premium",name:"Premium",level:3,purpose:"Mest ytelse",blurb:"Toppmodellen i utvalget, med det største batteriet som er dokumentert for den."},
 ] as const;
 
-/** Budget, medium and premium = cheapest, middle and most expensive complete package in a category. */
+/** A tier never pays more for an optional radio than this share of the model's price. A student proposal. */
+export const CONTROLLER_PRICE_CAP=0.6;
+
+const tierIndex=<T,>(list:T[],tier:number)=>list[[0,Math.floor((list.length-1)/2),list.length-1][tier]];
+
+/** Budget takes the cheapest documented battery, medium the model's standard one, premium the largest. */
+export function tierBatteryId(products:CatalogProduct[],vehicle:CatalogProduct,tier:number){
+  const r=rules[vehicle.id];const all=(r?.batteryIds??[]).map(id=>products.find(p=>p.id===id)).filter((p):p is CatalogProduct=>!!p);
+  if(tier===1||!all.length) return r?.batteryIds[0];
+  const sorted=[...all].sort((a,b)=>tier===0?a.price-b.price:(b.capacityMah??0)-(a.capacityMah??0)||b.price-a.price);
+  return sorted[0].id;
+}
+
+/** Budget, medium and premium = cheapest, middle and most expensive package that fits without caveats, each built for its purpose. */
 export function tierPackages(products:CatalogProduct[],vehicleType:string){
   const ready=products.filter(p=>p.kind==="vehicle"&&p.vehicleType===vehicleType)
-    .map(v=>defaultPackage(products,v)).filter(p=>p.reasons.length===0).sort((a,b)=>a.total-b.total);
+    .map(v=>defaultPackage(products,v)).filter(p=>p.evaluation.canAddToCart&&p.evaluation.status!=="CONDITIONAL").sort((a,b)=>a.total-b.total);
   if(!ready.length) return [];
   const picks=[ready[0],ready[Math.floor((ready.length-1)/2)],ready[ready.length-1]];
-  // Each tier also gets the controller at its price level: cheapest, middle or most expensive choice.
-  return TIERS.map((t,i)=>({tier:t,pkg:defaultPackage(products,picks[i].vehicle,tierControllerKey(products,picks[i].vehicle,i))}))
+  return TIERS.map((t,i)=>({tier:t,pkg:defaultPackage(products,picks[i].vehicle,tierControllerKey(products,picks[i].vehicle,i),tierBatteryId(products,picks[i].vehicle,i))}))
     .filter((x,i,all)=>all.findIndex(y=>y.pkg.vehicle.id===x.pkg.vehicle.id)===i);
 }
 
-/** Controller choice for tier 0, 1 or 2. "Jeg har allerede…" is never picked; the radio in the box is. */
+/** Controller choice for tier 0, 1 or 2, within the price cap. "Jeg har allerede…" is never picked; the radio in the box is. */
 export function tierControllerKey(products:CatalogProduct[],vehicle:CatalogProduct,tier:number){
   const c=rules[vehicle.id]?.controller;
   if(!c?.sets) return defaultControllerKey(rules[vehicle.id]);
   const price=(key:string)=>controllerIdsFor(rules[vehicle.id],key).reduce((s,id)=>s+(products.find(p=>p.id===id)?.price??0),0);
   const keys=[...(c.included||c.defaultNone?["none"]:[]),...c.sets.map((_,i)=>String(i))].sort((a,b)=>price(a)-price(b));
-  return keys[[0,Math.floor((keys.length-1)/2),keys.length-1][tier]];
+  const affordable=keys.filter(k=>price(k)<=vehicle.price*CONTROLLER_PRICE_CAP);
+  // A model that cannot be used without a radio still gets the cheapest one.
+  return tierIndex(affordable.length?affordable:keys.slice(0,1),tier);
 }

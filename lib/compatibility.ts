@@ -1,4 +1,5 @@
 import mappings from "@/data/model-accessories.json";
+import evidenceLinks from "@/data/compatibility-evidence.json";
 import type { CatalogProduct } from "./catalog-types";
 /** How the model is controlled: a sender in the box, or sets (sender + receiver) to choose from. */
 export type ControllerRule={included?:string;unconfirmed?:boolean;sets?:string[][];noneLabel?:string;noneFacts?:string;defaultNone?:boolean;note?:string};
@@ -26,57 +27,84 @@ export function chargingReasons(vehicle:CatalogProduct,battery:CatalogProduct|un
   return [...new Set(reasons)];
 }
 
-export type CompatibilityStatus='compatible'|'conditional'|'incompatible'|'unknown';
-export type CompatibilityEvaluation={status:CompatibilityStatus;reasons:string[]};
+export type PackageStatus='CONFIRMED'|'RULE_DERIVED'|'CONDITIONAL'|'UNKNOWN'|'INCOMPATIBLE';
+export type EvidenceKind='manufacturer'|'elefun'|'review';
+export type EvidenceLink={part:string;kind:EvidenceKind;url:string|null};
+export type PackageEvaluation={status:PackageStatus;reasons:string[];evidence:EvidenceLink[];canAddToCart:boolean};
+
+export const STATUS_LABELS:Record<PackageStatus,{label:string;help:string;tone:'ok'|'warn'}>={
+  CONFIRMED:{label:'Bekreftet av kilde',help:'Alle delene er oppgitt for denne modellen av Elefun eller produsenten.',tone:'ok'},
+  RULE_DERIVED:{label:'Gjennomgått oppsett',help:'Delene er gjennomgått i dette studentprosjektet. Minst én kobling er ikke oppgitt direkte av Elefun eller produsenten.',tone:'ok'},
+  CONDITIONAL:{label:'Passer med forbehold',help:'Pakken kan brukes, men noe må du sjekke selv.',tone:'warn'},
+  UNKNOWN:{label:'Ikke bekreftet',help:'Vi har ikke nok opplysninger til å si om dette passer.',tone:'warn'},
+  INCOMPATIBLE:{label:'Passer ikke',help:'Minst én del er ikke dokumentert for denne modellen.',tone:'warn'},
+};
+export const EVIDENCE_LABELS:Record<EvidenceKind,string>={manufacturer:'Oppgitt av produsenten',elefun:'Oppgitt av Elefun',review:'Gjennomgått av studentgruppa'};
+
+const evidenceFor=(vehicle:CatalogProduct,id:string,part:string,fallback:EvidenceKind):EvidenceLink=>{
+  const link=(evidenceLinks as Record<string,{kind:EvidenceKind;url?:string}>)[`${vehicle.id}:${id}`];
+  const kind=link?.kind??fallback;
+  return {part,kind,url:link?.url??(kind==='review'?null:vehicle.sourceUrl)};
+};
 
 /**
- * Evaluates a car package against reviewed, explicit relationships in model-accessories.json.
- * Unknown radio or component combinations fail closed instead of being guessed from product text.
+ * Evaluates a package for any model against the reviewed relationships in model-accessories.json.
+ * Unknown combinations fail closed instead of being guessed from product text.
  */
-export function evaluateCarPackage(
+export function evaluatePackage(
   vehicle:CatalogProduct,
   battery:CatalogProduct|undefined,
   charger:CatalogProduct|undefined,
   controllerIds:string[]=[]
-):CompatibilityEvaluation{
-  if(vehicle.kind!=='vehicle'||vehicle.vehicleType!=='car') return {status:'unknown',reasons:['Denne kontrollen gjelder bare RC-biler.']};
-  const rule=rules[vehicle.id];
-  if(!rule) return {status:'unknown',reasons:['Bilen mangler gjennomgåtte kompatibilitetsdata.']};
+):PackageEvaluation{
+  const rule=vehicle.kind==='vehicle'?rules[vehicle.id]:undefined;
+  if(!rule) return {status:'UNKNOWN',reasons:['Modellen mangler gjennomgåtte kompatibilitetsdata.'],evidence:[],canAddToCart:false};
 
-  const reasons:string[]=[];
-  let status:CompatibilityStatus='compatible';
+  const reasons:string[]=[];const evidence:EvidenceLink[]=[];
+  let problem:'INCOMPATIBLE'|'UNKNOWN'|'CONDITIONAL'|undefined;
+  // Only a harder problem may replace an earlier one.
+  const raise=(next:NonNullable<typeof problem>)=>{const order=['CONDITIONAL','UNKNOWN','INCOMPATIBLE'];if(!problem||order.indexOf(next)>order.indexOf(problem))problem=next;};
+
+  const charging=chargingReasons(vehicle,battery,charger);
   if(!battery||!rule.batteryIds.includes(battery.id)){
-    status='incompatible';
-    reasons.push(!battery?'Velg et dokumentert batteri.':'Dette batteriet er ikke dokumentert for bilen.');
+    raise('INCOMPATIBLE');
+    reasons.push(!battery?'Velg et dokumentert batteri.':'Dette batteriet er ikke dokumentert for modellen.');
   }else{
-    const charging=chargingReasons(vehicle,battery,charger);
+    evidence.push(evidenceFor(vehicle,battery.id,'Batteri','elefun'));
     if(charging.length){
       reasons.push(...charging);
       const definiteChargerFailure=(!charger&&!rule.includedCharger)||(!!charger&&!rule.chargerIds.includes(charger.id));
-      status=definiteChargerFailure?'incompatible':rule.batteryPending||rule.chargingPending||rule.needsPowerSupply?'conditional':'incompatible';
+      raise(definiteChargerFailure?'INCOMPATIBLE':'CONDITIONAL');
     }
+    if(charger) evidence.push(evidenceFor(vehicle,charger.id,'Lader','review'));
+    else if(rule.includedCharger) evidence.push({part:'Lader som følger med',kind:'elefun',url:vehicle.sourceUrl});
+    evidence.push(...rule.leadIds.map(id=>evidenceFor(vehicle,id,'Kabel','review')));
   }
 
   const radio=rule.controller;
   if(controllerIds.length){
     const documented=radio?.sets?.some(set=>set.length===controllerIds.length&&set.every(id=>controllerIds.includes(id)));
     if(!documented){
-      status='incompatible';
-      reasons.push('Sender- og mottakersettet er ikke dokumentert som kompatibelt med bilen.');
-    }
+      raise('INCOMPATIBLE');
+      reasons.push('Sender- og mottakersettet er ikke dokumentert som kompatibelt med modellen.');
+    }else evidence.push(...controllerIds.map(id=>evidenceFor(vehicle,id,'Kontroll','review')));
   }else if(radio?.included){
     if(radio.unconfirmed){
-      if(status==='compatible') status='conditional';
-      reasons.push('Det er ikke bekreftet hvilken sender og mottaker som følger med bilen.');
-    }
+      raise('CONDITIONAL');
+      reasons.push('Det er ikke bekreftet hvilken sender og mottaker som følger med modellen.');
+    }else evidence.push({part:'Kontroll som følger med',kind:'elefun',url:vehicle.sourceUrl});
+  }else if(radio?.defaultNone){
+    evidence.push({part:'Bruk uten kontroll',kind:'elefun',url:vehicle.sourceUrl});
   }else if(radio?.noneLabel){
-    if(status==='compatible') status='conditional';
+    raise('CONDITIONAL');
     reasons.push('Du oppgir at du har senderutstyr fra riktig system. Den konkrete senderen og mottakeren er ikke kontrollert.');
   }else{
-    if(status==='compatible') status='unknown';
-    reasons.push('Bilen mangler dokumentert sender- og mottakeroppsett.');
+    raise('UNKNOWN');
+    reasons.push('Modellen mangler dokumentert sender- og mottakeroppsett.');
   }
-  return {status,reasons:[...new Set(reasons)]};
+
+  const status:PackageStatus=problem??(evidence.every(e=>e.kind!=='review')?'CONFIRMED':'RULE_DERIVED');
+  return {status,reasons:[...new Set(reasons)],evidence,canAddToCart:status!=='INCOMPATIBLE'&&status!=='UNKNOWN'&&charging.length===0};
 }
 
 /** Package lines. `sets` buys extra full battery sets; `controllerIds` adds a sender (and receiver). */

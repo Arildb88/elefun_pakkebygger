@@ -3,34 +3,26 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, ChevronLeft, ChevronRight, CircleArrowRight } from "lucide-react";
-import type { MegaCategory } from "@/lib/elefun-menu";
+import type { MenuCategory } from "@/lib/site-menu";
 import { CategoryIcon } from "./category-icons";
-
-function MenuAnchor({href,className,children}:{href:string;className?:string;children:React.ReactNode}){
-  if(href.startsWith("/")) return <Link href={href} className={className}>{children}</Link>;
-  return <span className={[`mega-placeholder-link`,className].filter(Boolean).join(" ")} aria-disabled="true">
-    {children} <span className="mega-placeholder-label">(placeholder)</span>
-  </span>;
-}
 
 const OPEN_DELAY=120;
 const CLOSE_DELAY=220;
 
-export default function MegaMenu({categories}:{categories:MegaCategory[]}){
+export default function MegaMenu({categories}:{categories:MenuCategory[]}){
   const path=usePathname()??"/";
   // The panel belongs to the page it was opened on, so navigating closes it.
-  const [state,setState]=useState<{id:number;path:string}|null>(null);
+  const [state,setState]=useState<{id:string;path:string}|null>(null);
   const openId=state?.path===path?state.id:null;
-  const setOpenId=useCallback((id:number|null)=>setState(id===null?null:{id,path}),[path]);
+  const setOpenId=useCallback((id:string|null)=>setState(id===null?null:{id,path}),[path]);
   const timer=useRef<ReturnType<typeof setTimeout>|null>(null);
   const navRef=useRef<HTMLElement>(null);
   const listRef=useRef<HTMLUListElement>(null);
   const [overflow,setOverflow]=useState({left:false,right:false});
   const panelId=useId();
-  const visibleCategories=categories.filter(c=>["Biler","Båter","Droner","Batteri & ladere"].includes(c.name));
-  const open=visibleCategories.find(c=>c.id===openId);
+  const open=categories.find(c=>c.slug===openId);
 
-  const schedule=useCallback((next:number|null,delay:number)=>{
+  const schedule=useCallback((next:string|null,delay:number)=>{
     if(timer.current) clearTimeout(timer.current);
     timer.current=setTimeout(()=>setOpenId(next),delay);
   },[setOpenId]);
@@ -66,13 +58,17 @@ export default function MegaMenu({categories}:{categories:MegaCategory[]}){
       {overflow.left&&<button type="button" className="mega-scroll mega-scroll-left" aria-label="Bla til forrige kategorier" tabIndex={-1} onClick={()=>scrollBar(-1)}><ChevronLeft size={18} aria-hidden/></button>}
       <ul ref={listRef}>
         <li><Link href="/" aria-current={path==="/"?"page":undefined}>Pakkebygger</Link></li>
-        {visibleCategories.map(c=>{
-          const expanded=c.id===openId;
-          return <li key={c.id}>
-            <button type="button" data-cat={c.id} aria-expanded={expanded} aria-controls={expanded?panelId:undefined}
-              data-current={(c.local&&path.startsWith(c.local.href))||(c.internal&&(path===c.url||path.startsWith(`${c.url}/`)))?"":undefined}
-              onPointerEnter={e=>{if(e.pointerType==="mouse") schedule(c.id,openId===null?OPEN_DELAY:0);}}
-              onClick={()=>{cancel();setOpenId(expanded?null:c.id);}}>
+        {categories.map(c=>{
+          const current=path===c.href;
+          if(!c.columns.length) return <li key={c.slug}>
+            <Link href={c.href} aria-current={current?"page":undefined} onPointerEnter={e=>{if(e.pointerType==="mouse") schedule(null,CLOSE_DELAY);}}>{c.name}</Link>
+          </li>;
+          const expanded=c.slug===openId;
+          return <li key={c.slug}>
+            <button type="button" data-cat={c.slug} aria-expanded={expanded} aria-controls={expanded?panelId:undefined}
+              data-current={current?"":undefined}
+              onPointerEnter={e=>{if(e.pointerType==="mouse") schedule(c.slug,openId===null?OPEN_DELAY:0);}}
+              onClick={()=>{cancel();setOpenId(expanded?null:c.slug);}}>
               {c.name}<ChevronDown size={14} aria-hidden/>
             </button>
           </li>;
@@ -84,22 +80,13 @@ export default function MegaMenu({categories}:{categories:MegaCategory[]}){
     {open&&<div id={panelId} className="mega-panel" role="region" aria-label={open.name}>
       <div className="mega-inner">
         <div className="mega-grid">
-          {open.columns.map(col=>{
-            return <section key={col.key} className="mega-col">
-              <h3>
-                <CategoryIcon name={col.icon} fallback={open.icon} size={18}/>
-                {col.url?<MenuAnchor href={col.url}>{col.title}</MenuAnchor>:<span>{col.title}</span>}
-              </h3>
-              <ul>
-                {col.links.map(l=><li key={l.url}><MenuAnchor href={l.url} className={l.internal?"mega-internal":undefined}>{l.name}</MenuAnchor></li>)}
-                {col.more>0&&<li><MenuAnchor className="mega-more" href={col.url??open.url}>Vis {col.more} til</MenuAnchor></li>}
-              </ul>
-            </section>;
-          })}
+          {open.columns.map(col=><section key={col.title} className="mega-col">
+            <h3><CategoryIcon name={col.icon} size={18}/><span>{col.title}</span></h3>
+            <ul>{col.links.map(l=><li key={l.href}><Link href={l.href}>{l.name}</Link></li>)}</ul>
+          </section>)}
         </div>
         <div className="mega-foot">
-          {open.local&&<Link className="mega-local" href={open.local.href}>{open.local.label}</Link>}
-          <MenuAnchor className="mega-all" href={open.url}>Se alt innen {open.name} <CircleArrowRight size={20} aria-hidden/></MenuAnchor>
+          <Link className="mega-all" href={open.href}>Se alt innen {open.name} <CircleArrowRight size={20} aria-hidden/></Link>
         </div>
       </div>
     </div>}
