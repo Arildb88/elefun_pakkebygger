@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useId, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
-import { Check, ChevronDown } from "lucide-react";
+import { Check, ChevronDown, Minus, Plus } from "lucide-react";
 import { money } from "@/lib/store";
 
 export type PackageOption={key:string;title:string;facts:string;price:number;priceLabel?:string;disabled?:boolean;reason?:string;group?:string;imageUrl?:string|null};
@@ -22,6 +22,19 @@ export function PackagePart({label,src,icon,title,facts,price,warn}:{label:strin
     <PartThumb src={src} icon={icon}/>
     <span className="part-text"><span className="part-label">{label}</span><strong>{title}</strong>{facts&&<small>{facts}</small>}</span>
     <span className="price part-price">{price}</span>
+  </div>;
+}
+
+/** Plus and minus buttons for how many batteries the package holds. `step` is the number the model uses at once. */
+export function QuantityStepper({value,step,max,onChange}:{value:number;step:number;max:number;onChange:(next:number)=>void}){
+  return <div className="qty-row" role="group" aria-label="Antall batterier">
+    <span className="part-label">Antall</span>
+    <span className="qty">
+      <button type="button" aria-label="Færre batterier" disabled={value<=step} onClick={()=>onChange(value-step)}><Minus size={16} aria-hidden/></button>
+      <output aria-live="polite">{value}</output>
+      <button type="button" aria-label="Flere batterier" disabled={value>=max} onClick={()=>onChange(value+step)}><Plus size={16} aria-hidden/></button>
+    </span>
+    {step>1&&<small>i sett på {step}</small>}
   </div>;
 }
 
@@ -65,7 +78,7 @@ export default function PackageSelect({label,icon,options,value,onChange,quantit
       <PartThumb src={current.imageUrl} icon={icon}/>
       <span className="part-text">
         <span className="part-label" id={`${id}-label`}>{label}</span>
-        <span id={`${id}-value`}><strong>{current.title}{quantity>1&&<span className="psel-qty"> × {quantity}</span>}</strong><small>{current.facts}</small></span>
+        <span id={`${id}-value`}><strong>{current.title}</strong><small>{current.facts}</small></span>
       </span>
       <span className="price part-price">{current.priceLabel??money(current.price*quantity)}</span>
       <ChevronDown className="psel-chevron" size={20} aria-hidden/>

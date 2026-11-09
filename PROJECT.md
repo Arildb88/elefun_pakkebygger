@@ -44,7 +44,7 @@ The customer starts with the model, and the shop works out the rest:
 
 **Ready-made packages** come in three tiers: Budsjett, Medium and Premium. They are the cheapest, middle and most expensive complete packages in the category.
 
-**Customizing a package** lets the customer change the battery, add a second battery set, and swap the charger or transmitter.
+**Customizing a package** lets the customer change the battery, set the number of batteries with + and -, and swap the charger or transmitter. For display, unreviewed batteries at the model's voltage can also be picked, and the package is then marked with a caveat.
 
 **The 15 % package discount** applies to ready-made packages, and stays when the customer changes parts. A model opened from the product list gets no discount.
 
@@ -81,7 +81,7 @@ Use `corepack pnpm`, not `npm install`, because the project pins its pnpm versio
 
 **Stack:** vinext (the Next.js App Router API on Vite), React 19, Tailwind 4 with shadcn components, deployed as a Cloudflare Worker with an optional D1 database through Drizzle.
 
-**Catalog:** 79 products, made up of 24 models (9 cars, 5 boats, 5 drones, 5 planes), 27 batteries, 9 chargers, 11 controllers and 8 cables and accessories. `lib/catalog.ts` syncs the snapshot into D1 once per catalog revision. If D1 is missing or fails, the site uses the snapshot directly, so it runs without a database.
+**Catalog:** 87 products, made up of 24 models (9 cars, 5 boats, 5 drones, 5 planes), 35 batteries, 9 chargers, 11 controllers and 8 cables and accessories. `lib/catalog.ts` syncs the snapshot into D1 once per catalog revision. If D1 is missing or fails, the site uses the snapshot directly, so it runs without a database.
 
 **Compatibility:** `lib/compatibility.ts` checks a package against the rule for its model.
 
