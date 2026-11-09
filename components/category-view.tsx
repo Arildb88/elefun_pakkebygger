@@ -2,18 +2,17 @@
 import { useMemo, useState } from "react";
 import { ArrowRight, SlidersHorizontal } from "lucide-react";
 import type { CatalogProduct } from "@/lib/catalog-types";
-import { builderHref, displayBrand } from "@/lib/store";
+import { ACCESSORY_KINDS, builderHref, displayBrand } from "@/lib/store";
 import { ProductCard } from "./store-ui";
 import { AddToCart } from "./cart-controls";
 
-const KINDS=[["battery","Batterier"],["charger","Ladere"],["accessory","Kabler og tilbehør"]] as const;
-
 function toggle<T>(list:T[],value:T){return list.includes(value)?list.filter(v=>v!==value):[...list,value];}
 
-export default function CategoryView({products,accessories}:{products:CatalogProduct[];accessories:boolean}){
+/** `initialKinds` and `initialCells` come from the URL, so menu links open the page already filtered. */
+export default function CategoryView({products,accessories,initialKinds=[],initialCells=[]}:{products:CatalogProduct[];accessories:boolean;initialKinds?:string[];initialCells?:number[]}){
   const [brands,setBrands]=useState<string[]>([]);
-  const [kinds,setKinds]=useState<string[]>([]);
-  const [cells,setCells]=useState<number[]>([]);
+  const [kinds,setKinds]=useState<string[]>(initialKinds);
+  const [cells,setCells]=useState<number[]>(initialCells);
   const [sort,setSort]=useState("default");
 
   const brandOptions=useMemo(()=>[...new Set(products.map(displayBrand))].sort((a,b)=>a.localeCompare(b,"nb")),[products]);
@@ -32,7 +31,7 @@ export default function CategoryView({products,accessories}:{products:CatalogPro
     <details className="filters" open>
       <summary><SlidersHorizontal size={18} aria-hidden/> Filtrer{active>0&&<span className="filter-count">{active}</span>}</summary>
       <div className="filters-body">
-        {accessories&&<fieldset><legend>Type</legend>{KINDS.map(([k,l])=><label key={k} className="check"><input type="checkbox" checked={kinds.includes(k)} onChange={()=>setKinds(toggle(kinds,k))}/><span>{l}</span><small>{count(p=>p.kind===k)}</small></label>)}</fieldset>}
+        {accessories&&<fieldset><legend>Type</legend>{ACCESSORY_KINDS.map(([k,l])=><label key={k} className="check"><input type="checkbox" checked={kinds.includes(k)} onChange={()=>setKinds(toggle(kinds,k))}/><span>{l}</span><small>{count(p=>p.kind===k)}</small></label>)}</fieldset>}
         {cellOptions.length>0&&<fieldset><legend>Celler</legend><div className="chips">{cellOptions.map(c=><button type="button" key={c} className="chip" aria-pressed={cells.includes(c)} onClick={()=>setCells(toggle(cells,c))}>{c}S</button>)}</div></fieldset>}
         <fieldset><legend>Merke</legend>{brandOptions.map(b=><label key={b} className="check"><input type="checkbox" checked={brands.includes(b)} onChange={()=>setBrands(toggle(brands,b))}/><span>{b}</span><small>{count(p=>displayBrand(p)===b)}</small></label>)}</fieldset>
         {active>0&&<button type="button" className="link-button" onClick={reset}>Nullstill filtre</button>}

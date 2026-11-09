@@ -1,4 +1,5 @@
 import "server-only";
+import { cache } from "react";
 import { env } from "cloudflare:workers";
 import snapshot from "@/data/catalog-snapshot.json";
 import type { CatalogProduct } from "./catalog-types";
@@ -6,7 +7,8 @@ export type { CatalogProduct } from "./catalog-types";
 const seed=snapshot as CatalogProduct[];
 const revision="elefun-car-experience-catalog-2026-10-27-v1";
 const imageRevision="elefun-product-gallery-images-2026-10-10-v2";
-export async function loadCatalog():Promise<CatalogProduct[]>{
+// Cached per request: the layout (menu) and the page both read the catalog.
+export const loadCatalog=cache(async function loadCatalog():Promise<CatalogProduct[]>{
   try {
     const db=env.DB;
     if(!db) return seed;
@@ -34,4 +36,4 @@ export async function loadCatalog():Promise<CatalogProduct[]>{
     const ids=new Set(seed.map(p=>p.id));
     return result.results.filter(r=>ids.has(String(r.id))).map(r=>({id:String(r.id),kind:r.kind as CatalogProduct['kind'],vehicleType:r.vehicle_type as string|null,name:String(r.name),brand:String(r.brand),description:String(r.description),price:Number(r.price),stock:Number(r.stock),sourceUrl:r.source_url as string|null,imageUrl:r.image_url as string|null,connector:r.connector as string|null,cells:r.cells as number|null,capacityMah:r.capacity_mah as number|null,lengthMm:r.length_mm as number|null,widthMm:r.width_mm as number|null,heightMm:r.height_mm as number|null,minCells:r.min_cells as number|null,maxCells:r.max_cells as number|null,batteryCount:Number(r.battery_count),tags:JSON.parse(String(r.tags_json))}));
   } catch { return seed; }
-}
+});

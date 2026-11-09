@@ -3,11 +3,13 @@ import { ArrowUpRight, Flag, Handshake, Headset, Search, ShoppingCart, Truck, Us
 import MegaMenu from "./mega-menu";
 import { CartCount } from "./cart-controls";
 import { CATEGORIES } from "@/lib/store";
-import { megaMenu } from "@/lib/elefun-menu";
+import { loadCatalog } from "@/lib/catalog";
+import { siteMenu } from "@/lib/site-menu";
 
 const ELEFUN="https://www.elefun.no/";
 
-export default function ElefunChrome({children}:{children:React.ReactNode}){
+export default async function ElefunChrome({children}:{children:React.ReactNode}){
+  const menu=siteMenu(await loadCatalog());
   return (
     <div className="site-shell">
       <a className="skip-link" href="#innhold">Hopp til innholdet</a>
@@ -40,7 +42,7 @@ export default function ElefunChrome({children}:{children:React.ReactNode}){
           </nav>
         </div>
       </header>
-      <MegaMenu categories={megaMenu()}/>
+      <MegaMenu categories={menu}/>
 
       <div id="innhold" className="page">{children}</div>
 
