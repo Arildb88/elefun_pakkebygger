@@ -1,5 +1,5 @@
 import type { CatalogProduct } from "./catalog-types";
-import { chargingReasons, controllerIdsFor, defaultControllerKey, evaluatePackage, packageLines, rules } from "./compatibility";
+import { batteryVolts, chargingReasons, controllerIdsFor, defaultControllerKey, evaluatePackage, packageLines, rules } from "./compatibility";
 
 export const money=(n:number)=>new Intl.NumberFormat("nb-NO",{style:"currency",currency:"NOK",maximumFractionDigits:0}).format(n);
 
@@ -32,13 +32,7 @@ export function displayBrand(p:CatalogProduct){
 
 const num=(n:number,digits=0)=>new Intl.NumberFormat("nb-NO",{maximumFractionDigits:digits}).format(n);
 
-/** LiPo voltage from Elefun's "3s 2200mAh" naming (3.7 V per cell), or an explicit "7.4V". */
-export function batteryVolts(p:CatalogProduct){
-  const cells=Number(cleanName(p.name).match(/^(\d)s\b/i)?.[1]);
-  if(cells) return cells*3.7;
-  const v=p.name.match(/(\d+(?:\.\d)?)V\b/)?.[1];
-  return v?Number(v):null;
-}
+export { batteryVolts };
 
 /** Short option title for the package builder: brand plus the size that matters. */
 export function shortTitle(p:CatalogProduct){
@@ -132,9 +126,9 @@ export const discountFor=(total:number)=>Math.round(total*PACKAGE_DISCOUNT);
 export const discountLine=(amount:number)=>({id:"pakkerabatt",name:"Pakkerabatt 15 %",quantity:1,price:-amount});
 
 export const TIERS=[
-  {id:"budsjett",name:"Budsjett",level:1,purpose:"Kom i gang",blurb:"Laveste totalpris for en komplett pakke, med det rimeligste batteriet som passer."},
-  {id:"medium",name:"Medium",level:2,purpose:"Balansert",blurb:"Midt i prisklassen, med oppgraderinger som står i forhold til modellen."},
-  {id:"premium",name:"Premium",level:3,purpose:"Mest ytelse",blurb:"Toppmodellen i utvalget, med det største batteriet som er dokumentert for den."},
+  {id:"budsjett",name:"Budsjett",purpose:"Kom i gang"},
+  {id:"medium",name:"Medium",purpose:"Balansert"},
+  {id:"premium",name:"Premium",purpose:"Mest ytelse"},
 ] as const;
 
 /** A tier never pays more for an optional radio than this share of the model's price. A student proposal. */

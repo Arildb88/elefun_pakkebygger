@@ -1,15 +1,16 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import type { CatalogProduct } from "@/lib/catalog-types";
-import { batteryReasons, controllerIdsFor, defaultControllerKey, evaluatePackage, packageLines, rules } from "@/lib/compatibility";
+import { batteryReasons, controllerIdsFor, defaultControllerKey, evaluatePackage, isDemoBattery, packageLines, rules } from "@/lib/compatibility";
 import { readCart, writeCart, type SavedPackage } from "@/lib/cart";
-import { batteryVolts, cleanName, discountFor, discountLine, money, optionFacts, productHref, shortTitle, specsFor, tierPackages, type DefaultPackage } from "@/lib/store";
-import PackageSelect, { PackagePart, type PackageOption } from "@/components/package-select";
+import { cleanName, discountFor, discountLine, money, optionFacts, productHref, shortTitle, specsFor, tierPackages, type DefaultPackage } from "@/lib/store";
+import PackageSelect, { PackagePart, QuantityStepper, type PackageOption } from "@/components/package-select";
 import PackageTiers from "@/components/package-tiers";
 import PackageStatus from "@/components/package-status";
 import BeginnerGuide from "@/components/beginner-guide";
 import { ProductCard, SpecRail } from "@/components/store-ui";
-import { ArrowDown, ArrowRight, ArrowUpRight, BatteryCharging, CircleAlert, Gamepad2, PackageCheck, Search, ShoppingCart, X, Zap } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BatteryCharging, CircleAlert, Gamepad2, PackageCheck, Search, ShoppingCart, X, Zap } from "lucide-react";
+const MAX_BATTERY_SETS=4;
 const categories=[['car','Elektrobiler'],['boat','Elektrobåter'],['drone','Droner med kamera'],['plane','Elektrofly']] as const;
 export default function Configurator({products}:{products:CatalogProduct[]}){
  const [category,setCategory]=useState('car');const [experience,setExperience]=useState<'beginner'|'experienced'>('beginner');const [query,setQuery]=useState('');const [sort,setSort]=useState('default');
@@ -37,17 +38,16 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
  const battery=products.find(p=>p.id===batteryId);const charger=products.find(p=>p.id===chargerId);
  const ctrl=rule?.controller;const controllerIds=controllerIdsFor(rule,controllerKey);
  const lines=vehicle?packageLines(products,vehicle,battery,charger,{sets:batterySets,controllerIds}):[];const total=lines.reduce((s,l)=>s+l.quantity*l.product.price,0);
- const evaluation=vehicle?evaluatePackage(vehicle,battery,charger,controllerIds):undefined;
+ const evaluation=vehicle?evaluatePackage(vehicle,battery,charger,controllerIds,products):undefined;
  const blocked=!!evaluation&&!evaluation.canAddToCart;
  const reasons=blocked?evaluation.reasons:[];
- const radioCaveat=!blocked&&evaluation?.status==='CONDITIONAL'?evaluation.reasons[0]:undefined;
+ const caveats=!blocked&&evaluation?.status==='CONDITIONAL'?evaluation.reasons:[];
  const documented=vehicle&&rule?rule.batteryIds.map(id=>products.find(p=>p.id===id)).filter((p):p is CatalogProduct=>!!p):[];
- const volts=documented[0]?batteryVolts(documented[0]):null;
- // Other batteries at the same voltage stay visible with their price difference, but cannot be chosen.
- const others=vehicle&&volts?products.filter(p=>p.kind==='battery'&&!rule?.batteryIds.includes(p.id)&&batteryVolts(p)===volts):[];
- // Each documented battery comes as one set or two sets (an extra set for double run time). Prices are for the whole choice.
- const n=vehicle?.batteryCount??1;const count=(sets:number)=>n*sets>1?`${n*sets} × `:'';
- const batteryOptions:PackageOption[]=vehicle?[...documented.flatMap(b=>[1,2].map(sets=>({key:`${b.id}:${sets}`,title:`${count(sets)}${shortTitle(b)}`,facts:sets>1?`Ekstra sett, dobbel kjøretid · ${optionFacts(b)}`:optionFacts(b),price:b.price*n*sets,imageUrl:b.imageUrl,disabled:batteryReasons(vehicle,b).length>0,reason:batteryReasons(vehicle,b)[0]}))).sort((a,b)=>a.price-b.price),...others.sort((a,b)=>a.price-b.price).map(b=>({key:b.id,title:`${count(1)}${shortTitle(b)}`,facts:optionFacts(b),price:b.price*n,imageUrl:b.imageUrl,disabled:true,reason:'Ikke dokumentert for denne modellen',group:'Samme spenning, ikke dokumentert for modellen'}))]:[];
+ // Unreviewed batteries at the model's voltage can be picked for display, with a caveat from evaluatePackage.
+ const others=vehicle?products.filter(p=>isDemoBattery(vehicle,p,products)):[];
+ // Option prices are per battery. The quantity stepper decides how many the package holds.
+ const n=vehicle?.batteryCount??1;const batteryQuantity=n*batterySets;
+ const batteryOptions:PackageOption[]=vehicle?[...documented.map(b=>({key:b.id,title:shortTitle(b),facts:optionFacts(b),price:b.price,imageUrl:b.imageUrl,disabled:batteryReasons(vehicle,b).length>0,reason:batteryReasons(vehicle,b)[0]})).sort((a,b)=>a.price-b.price),...others.sort((a,b)=>a.price-b.price).map(b=>({key:b.id,title:shortTitle(b),facts:optionFacts(b),price:b.price,imageUrl:b.imageUrl,group:'Kun til visning: samme spenning, ikke kontrollert'}))]:[];
  const setOption=(ids:string[],i:number):PackageOption=>{const items=ids.map(id=>products.find(p=>p.id===id)).filter((p):p is CatalogProduct=>!!p);return {key:String(i),title:items.map(p=>cleanName(p.name)).join(' + '),facts:[...specsFor(items[0]).slice(1),...(items.length>1?['med mottaker']:[])].join(' · '),price:items.reduce((s,p)=>s+p.price,0),imageUrl:items[0]?.imageUrl};};
  const noneOption:PackageOption[]=ctrl?.included?[{key:'none',title:ctrl.unconfirmed?'Medfølgende radio (ikke bekreftet)':'Radio som følger med',facts:ctrl.included,price:0,priceLabel:ctrl.unconfirmed?'–':'Inkludert'}]
   :ctrl?.noneLabel?[{key:'none',title:ctrl.noneLabel,facts:ctrl.noneFacts??'Ingen sender i pakken',price:0,priceLabel:'0 kr'}]:[];
@@ -62,33 +62,21 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
  function addReady(p:DefaultPackage){const d=discountFor(p.total);saveCart([...cart,{id:crypto.randomUUID(),name:cleanName(p.vehicle.name),total:p.total-d,lines:[...p.lines.map(l=>({id:l.product.id,name:cleanName(l.product.name),quantity:l.quantity,price:l.product.price})),discountLine(d)]}]);}
  function pick(id:string){setCategory(id);history.replaceState(null,'',`#${id}`);setQuery('');}
  const filtered=products.filter(p=>p.kind==='vehicle'&&p.vehicleType===category&&p.tags.includes(`experience:${experience}`)&&`${p.name} ${p.brand}`.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>sort==='low'?a.price-b.price:sort==='high'?b.price-a.price:0);
- const heroModel=products.find(p=>p.id==='50807');
  const tierProducts=products.filter(p=>p.kind!=='vehicle'||p.tags.includes(`experience:${experience}`));
  const tiers=tierPackages(tierProducts,category);
  const title=categories.find(([id])=>id===category)?.[1];
  return <main className="builder-main">
-  <section className="hero" aria-labelledby="hero-title">
-   <div className="hero-inner">
-    <div className="hero-copy">
-     <h1 id="hero-title">Finn modellen.<br/>Bygg pakken.</h1>
-     <p>Velg en radiostyrt modell, så setter vi sammen batteri, lader og kablene den trenger. Det som ikke passer, får du vite hvorfor.</p>
-     <a href="#katalog" className="btn-build btn-build-hero">Velg en modell <ArrowDown size={19} aria-hidden/></a>
+  <section className="pick" aria-labelledby="pick-title">
+   <div className="pick-inner">
+    <h1 id="pick-title">Finn modellen. Bygg pakken.</h1>
+    <div className="pick-steps">
+     <div className="pick-step pick-step-grow"><h2 className="step-label"><span className="step-num"><span className="sr-only">Steg </span>1</span>Velg type</h2><div className="segmented" role="tablist" aria-label="Produktkategori">{categories.map(([id,label])=><button role="tab" aria-selected={category===id} key={id} onClick={()=>pick(id)}>{label}</button>)}</div></div>
+     <div className="pick-step"><h2 className="step-label"><span className="step-num"><span className="sr-only">Steg </span>2</span>Velg nivå</h2><div className="experience-toggle" role="group" aria-label="Erfaringsnivå"><button type="button" aria-pressed={experience==='beginner'} onClick={()=>setExperience('beginner')}>Nybegynner</button><button type="button" aria-pressed={experience==='experienced'} onClick={()=>setExperience('experienced')}>Erfaren</button></div></div>
     </div>
-    {heroModel&&<a className="hero-visual" href={productHref(heroModel)}>
-     <span className="hero-visual-media"><img src={heroModel.imageUrl??''} alt={cleanName(heroModel.name)}/></span>
-     <span className="hero-tag"><strong>{cleanName(heroModel.name)}</strong><span>{money(heroModel.price)}</span></span>
-    </a>}
    </div>
-   <ol className="hero-steps">
-    <li><strong>Velg modell</strong><span>24 modeller fra Elefun</span></li>
-    <li><strong>Batteri som passer</strong><span>Riktig kontakt og celler</span></li>
-    <li><strong>Lader og kabler</strong><span>Overganger legges til selv</span></li>
-   </ol>
   </section>
 
   <section id="katalog" className="builder-catalog" aria-labelledby="catalog-title">
-   <div className="segmented" role="tablist" aria-label="Produktkategori">{categories.map(([id,label])=><button role="tab" aria-selected={category===id} key={id} onClick={()=>pick(id)}>{label}<small>{products.filter(p=>p.kind==='vehicle'&&p.vehicleType===id&&(p.tags.includes(`experience:${experience}`))).length} modeller</small></button>)}</div>
-   <div className="experience-toggle" role="group" aria-label="Erfaringsnivå"><span>Erfaringsnivå</span><button type="button" aria-pressed={experience==='beginner'} onClick={()=>setExperience('beginner')}>Nybegynner</button><button type="button" aria-pressed={experience==='experienced'} onClick={()=>setExperience('experienced')}>Erfaren</button><p>{experience==='beginner'?'Modeller med enklere oppsett, stabilisering eller medfølgende utstyr som kan gjøre starten lettere.':'Modeller med høyere ytelse eller større krav til utstyr, oppsett eller fly-/kjøreerfaring.'}</p></div>
    <PackageTiers tiers={tiers} onAdd={addReady} onCustomize={(p,tier)=>choose(p.vehicle,p.controllerKey,tier,p.battery?.id)}/>
    <div className="toolbar">
     <div><h2 id="catalog-title">{title}</h2><p>{filtered.length} produkter <span>· Prisene er øyeblikksbilder fra elefun.no</span></p></div>
@@ -117,7 +105,7 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
      <h3 id="pb-config-title">Din pakke</h3>
      <div className="pb-rows">
       <PackagePart label="Modell" src={vehicle.imageUrl} title={cleanName(vehicle.name)} price={money(vehicle.price)}/>
-      {batteryOptions.length>1?<PackageSelect label={vehicle.batteryCount>1?`Batteri · ${vehicle.batteryCount} stk. trengs`:'Batteri'} icon={<BatteryCharging size={20}/>} value={`${batteryId}:${batterySets}`} onChange={k=>{const [id,sets]=k.split(':');setBatteryId(id);setBatterySets(Number(sets)||1);setNotice('');}} options={batteryOptions}/>:batteryOptions[0]&&<PackagePart label={vehicle.batteryCount>1?`Batteri · ${vehicle.batteryCount} stk. trengs`:'Batteri'} src={batteryOptions[0].imageUrl} icon={<BatteryCharging size={20}/>} title={batteryOptions[0].title} facts={batteryOptions[0].facts} price={money(batteryOptions[0].price)}/>}
+      {batteryOptions.length>0&&<div>{batteryOptions.length>1?<PackageSelect label={vehicle.batteryCount>1?`Batteri · ${vehicle.batteryCount} stk. trengs`:'Batteri'} icon={<BatteryCharging size={20}/>} value={batteryId??''} quantity={batteryQuantity} onChange={k=>{setBatteryId(k);setNotice('');}} options={batteryOptions}/>:<PackagePart label={vehicle.batteryCount>1?`Batteri · ${vehicle.batteryCount} stk. trengs`:'Batteri'} src={batteryOptions[0].imageUrl} icon={<BatteryCharging size={20}/>} title={batteryOptions[0].title} facts={batteryOptions[0].facts} price={money(batteryOptions[0].price*batteryQuantity)}/>}<QuantityStepper value={batteryQuantity} step={n} max={n*MAX_BATTERY_SETS} onChange={q=>{setBatterySets(q/n);setNotice('');}}/></div>}
       {chargerOptions.length>1?<PackageSelect label="Lader" icon={<Zap size={20}/>} value={chargerId??'included'} onChange={k=>{setChargerId(k==='included'?undefined:k);setNotice('');}} options={chargerOptions}/>
       :chargerOptions.length===1&&<PackagePart label="Lader" src={chargerOptions[0].imageUrl} icon={<Zap size={20}/>} title={chargerOptions[0].title} facts={chargerOptions[0].facts} price={chargerOptions[0].price?money(chargerOptions[0].price):'Inkludert'}/>}
       {controllerOptions.length>0?<div><PackageSelect label="Kontroll" icon={<Gamepad2 size={20}/>} value={controllerKey} onChange={k=>{setControllerKey(k);setNotice('');}} options={controllerOptions}/>{ctrl?.note&&<p className="pb-row-note">{ctrl.note}</p>}</div>
@@ -125,7 +113,7 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
       {leads.map(l=><PackagePart key={l.id} label="Kabel · legges til automatisk" src={l.imageUrl} title={`${vehicle.batteryCount} × ${cleanName(l.name)}`} facts={l.description!=='Tilbehør fra Elefuns produktkatalog.'?l.description:'Trengs for å lade batteriet'} price={money(l.price*vehicle.batteryCount)}/>)}
      </div>
      {reasons.length>0&&<div className="note note-warn"><CircleAlert size={18} aria-hidden/><div><strong>Må avklares før pakken er komplett</strong><ul>{reasons.map(r=><li key={r}>{r}</li>)}</ul></div></div>}
-     {radioCaveat&&<div className="note note-warn"><CircleAlert size={18} aria-hidden/><div><strong>Radiooppsettet har et forbehold</strong><p>{radioCaveat}</p></div></div>}
+     {caveats.length>0&&<div className="note note-warn"><CircleAlert size={18} aria-hidden/><div><strong>Pakken har forbehold</strong><ul>{caveats.map(r=><li key={r}>{r}</li>)}</ul></div></div>}
      <div className="pb-total">
       {fromTier&&<p className="pb-discount"><span className="discount-badge">−15 %</span> Ferdigpakke {origin?.tier}: du sparer {money(discount)}</p>}
       <div className="pb-sum"><span>Sum for pakken</span><span className="pb-sum-price">{discount>0&&<s className="price">{money(total)}</s>}<strong className="price">{money(total-discount)}</strong></span></div>
