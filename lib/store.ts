@@ -1,5 +1,6 @@
 import type { CatalogProduct } from "./catalog-types";
 import { batteryVolts, chargingReasons, controllerIdsFor, defaultControllerKey, evaluatePackage, packageLines, rules } from "./compatibility";
+import { FPV_CLASSES, fpvClassOf, fpvSpec, videoSystemOf, type FpvClass } from "./flight-time";
 
 export const money=(n:number)=>new Intl.NumberFormat("nb-NO",{style:"currency",currency:"NOK",maximumFractionDigits:0}).format(n);
 
@@ -9,8 +10,9 @@ export const CATEGORIES:StoreCategory[]=[
   {slug:"biler",label:"Biler",title:"Elektrobiler",intro:"Buggyer og truggyer fra 1/14 til 1/8, klare til kjøring.",match:p=>p.kind==="vehicle"&&p.vehicleType==="car"},
   {slug:"baater",label:"Båter",title:"Elektrobåter",intro:"Fra lette deep-vee-båter til raske katamaraner på 4S og 6S.",match:p=>p.kind==="vehicle"&&p.vehicleType==="boat"},
   {slug:"droner",label:"Droner",title:"Droner med kamera",intro:"Kameradroner fra DJI, med originale batterier og ladehuber.",match:p=>p.kind==="vehicle"&&p.vehicleType==="drone"},
+  {slug:"fpv",label:"FPV",title:"FPV-droner",intro:"Whoop, freestyle og longrange fra iFlight, BetaFPV, Happymodel og EMAX. Hver pakke har drone, radio, briller, batteri og lader.",match:p=>(p.kind==="vehicle"&&p.vehicleType==="fpv")||p.kind==="goggles"},
   {slug:"fly",label:"Fly",title:"Elektrofly",intro:"Warbirds og skalafly i BNF- og PNP-utgaver.",match:p=>p.kind==="vehicle"&&p.vehicleType==="plane"},
-  {slug:"batterier-og-ladere",label:"Batteri & ladere",title:"Batterier, ladere og kabler",intro:"LiPo-batterier, computerladere og overganger som passer modellene i utvalget.",match:p=>p.kind!=="vehicle"&&p.kind!=="controller"},
+  {slug:"batterier-og-ladere",label:"Batteri & ladere",title:"Batterier, ladere og kabler",intro:"LiPo-batterier, computerladere og overganger som passer modellene i utvalget.",match:p=>p.kind!=="vehicle"&&p.kind!=="controller"&&p.kind!=="goggles"},
   {slug:"kontrollere",label:"Kontrollere",title:"Sendere og kontrollere",intro:"Sendere og mottakere for fly som leveres uten radio, og kontroller til drone.",match:p=>p.kind==="controller"},
 ];
 
@@ -58,13 +60,19 @@ export function optionFacts(p:CatalogProduct){
   return specsFor(p).join(" · ")||kindLabel(p);
 }
 
-export const kindLabel=(p:CatalogProduct)=>p.kind==="vehicle"?(p.tags[0]??"Modell"):p.kind==="battery"?"Batteri":p.kind==="charger"?"Lader":p.kind==="controller"?(p.tags[1]??"Kontroller"):"Kabel og tilbehør";
+export const kindLabel=(p:CatalogProduct)=>p.kind==="vehicle"?(p.tags[0]??"Modell"):p.kind==="goggles"?"FPV-briller":p.kind==="battery"?"Batteri":p.kind==="charger"?"Lader":p.kind==="controller"?(p.tags[1]??"Kontroller"):"Kabel og tilbehør";
 
 /** Spec chips derived from the catalog fields and Elefun's own product names. */
 export function specsFor(p:CatalogProduct):string[]{
   const n=cleanName(p.name);const out:string[]=[];
   const push=(v:string|undefined|null)=>{if(v&&!out.includes(v))out.push(v);};
-  if(p.kind==="vehicle"){
+  if(p.kind==="vehicle"&&p.vehicleType==="fpv"){
+    const cls=FPV_CLASSES.find(c=>c.id===fpvClassOf(p));
+    push(cls?.label);push(p.cells?`${p.cells}S`:null);push(videoSystemOf(p.id)==="analog"?"Analog":videoSystemOf(p.id));
+    push(/ELRS/i.test(n)?"ELRS":null);push(/BNF/.test(n)?"BNF":null);
+  }else if(p.kind==="goggles"){
+    for(const t of p.tags.slice(1)) push(t);
+  }else if(p.kind==="vehicle"){
     push(n.match(/\b1\/\d+\b/)?.[0]);
     push(n.match(/\b[24]WD\b/i)?.[0].toUpperCase());
     push(n.match(/\b(\d)s\b/i)?.[1]?`${n.match(/\b(\d)s\b/i)![1]}S`:null);
@@ -109,20 +117,33 @@ export function modelsUsing(products:CatalogProduct[],item:CatalogProduct){
 }
 
 /** The documented default package for a model: first battery, first charger (or the included one), required cables. */
-export function defaultPackage(products:CatalogProduct[],vehicle:CatalogProduct,controllerKey?:string,batteryId?:string){
+export function defaultPackage(products:CatalogProduct[],vehicle:CatalogProduct,controllerKey?:string,batteryId?:string,gogglesId?:string){
   const r=rules[vehicle.id];
   const battery=r?products.find(p=>p.id===(batteryId??r.batteryIds[0])):undefined;
   const charger=r&&!r.includedCharger?products.find(p=>p.id===r.chargerIds[0]):undefined;
   const key=controllerKey??defaultControllerKey(r);
   const controllerIds=controllerIdsFor(r,key);
-  const lines=packageLines(products,vehicle,battery,charger,{controllerIds});
-  return {vehicle,battery,charger,controllerKey:key,controllerIds,controllerIncluded:key==='none'&&!!r?.controller?.included&&!r.controller.unconfirmed,includedCharger:!!r?.includedCharger,lines,total:lines.reduce((s,l)=>s+l.quantity*l.product.price,0),reasons:chargingReasons(vehicle,battery,charger),evaluation:evaluatePackage(vehicle,battery,charger,controllerIds)};
+  // FPV: the first documented goggles, or the ones the customer chose.
+  const goggles=r?.gogglesIds?products.find(p=>p.id===(gogglesId??r.gogglesIds![0])):undefined;
+  const lines=packageLines(products,vehicle,battery,charger,{controllerIds,goggles});
+  return {vehicle,battery,charger,goggles,controllerKey:key,controllerIds,controllerIncluded:key==='none'&&!!r?.controller?.included&&!r.controller.unconfirmed,includedCharger:!!r?.includedCharger,lines,total:lines.reduce((s,l)=>s+l.quantity*l.product.price,0),reasons:chargingReasons(vehicle,battery,charger),evaluation:evaluatePackage(vehicle,battery,charger,controllerIds,undefined,goggles)};
 }
 export type DefaultPackage=ReturnType<typeof defaultPackage>;
 
 /** Package discount on a ready-made package, also when its parts are changed. A proposal in this prototype, not an Elefun offer. */
 export const PACKAGE_DISCOUNT=0.15;
 export const discountFor=(total:number)=>Math.round(total*PACKAGE_DISCOUNT);
+/** The three main FPV packages, one per class: the cheapest drone in the class that can be bought, with its documented parts. */
+export function fpvPackages(products:CatalogProduct[]){
+  return FPV_CLASSES.flatMap(cls=>{
+    const options=products.filter(p=>p.kind==="vehicle"&&p.vehicleType==="fpv"&&fpvClassOf(p)===cls.id)
+      .map(v=>defaultPackage(products,v)).filter(p=>p.evaluation.canAddToCart).sort((a,b)=>a.total-b.total);
+    return options.length?[{cls,pkg:options[0],count:options.length}]:[];
+  });
+}
+export type FpvPackage=ReturnType<typeof fpvPackages>[number];
+export type { FpvClass };
+export const fpvDroneSpec=fpvSpec;
 export const discountLine=(amount:number)=>({id:"pakkerabatt",name:"Pakkerabatt 15 %",quantity:1,price:-amount});
 
 export const TIERS=[

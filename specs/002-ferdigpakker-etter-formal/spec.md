@@ -5,7 +5,7 @@ Status: utkast, ikke godkjent av gruppa.
 ## Mål
 Ferdigpakkene skal settes sammen for et formål og ha balanse mellom delene, ikke bare sorteres etter pris.
 
-Utenfor scope: nye produkter, FPV-briller, egne nivåer per enkeltmodell.
+Utenfor scope: nye produkter, egne nivåer per enkeltmodell. FPV-briller er tatt inn i den egne FPV-kategorien (13. november 2026), der pakkene deles etter klasse (Whoop, Freestyle, Longrange) og ikke etter nivå.
 
 ## Funksjonelle krav
 - FR-01: Budsjett, Medium og Premium har hvert sitt formål: «Kom i gang», «Balansert» og «Mest ytelse».

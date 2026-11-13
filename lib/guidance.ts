@@ -16,6 +16,9 @@ export const GLOSSARY:GlossaryEntry[]=[
   {term:"Kontakt (XT60, EC5, IC3, Deans)",match:/\b(XT60|XT90|EC3|EC5|IC2|IC3|IC5|Deans|T-Plugg)\b/i,text:"Pluggen mellom batteri og modell eller lader. Den må passe nøyaktig, eller så trengs det en overgang. Overganger modellen trenger legges i pakken."},
   {term:"Børsteløs motor",match:/brushless|\bBLX\b/i,text:"Motortype med mer kraft og mindre slitasje. Modellene går ofte fortere og krever mer kontroll."},
   {term:"Computerlader",match:/computerlader/i,text:"Lader som balanserer cellene i batteriet, slik at de lades jevnt og trygt."},
+  {term:"ELRS",match:/ELRS/,text:"ExpressLRS, radiosystemet mellom senderen og dronen. Radioen og dronen må bruke ELRS på samme frekvens, her 2,4 GHz."},
+  {term:"FPV-briller og videosystem",match:/FPV Briller|Goggles|O4|Analog/i,text:"Dronens kamera sender bildet direkte til brillene. Analogt og digitalt (DJI O4) kan ikke blandes: brillene må passe til dronens videosystem."},
+  {term:"Whoop, freestyle og longrange",match:/whoop|freestyle|longrange|CineLR/i,text:"Whoop er liten og trygg for innendørs. Freestyle er 5 tommer for triks utendørs. Longrange er 7 tommer for lang rekkevidde og lang flytid."},
   {term:"Sender og mottaker",match:/sender|mottaker|DSMX|DSMR/i,text:"Senderen er kontrollen du holder i hendene. Mottakeren sitter i modellen. De må bruke samme radiosystem."},
 ];
 

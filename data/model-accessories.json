@@ -91,6 +91,36 @@
       "note": "BNF: modellen har Spektrum-mottaker og trenger en DSMX-sender."
     }
   },
+  "61677": {
+    "batteryIds": [],
+    "chargerIds": [],
+    "leadIds": [],
+    "includedCharger": true,
+    "chargingPending": false,
+    "needsPowerSupply": false,
+    "batteryPending": false,
+    "includedBattery": "2 × 650 mAh 1S HV-batterier",
+    "gogglesIds": [
+      "63240",
+      "62114"
+    ],
+    "cautions": [
+      "Elefun oppgir ELRS, men ikke hvilket frekvensbånd. Sjekk at radioen bruker samme bånd (2,4 GHz)."
+    ],
+    "note": "To 650 mAh batterier og en USB-lader med fire plasser følger med. Analoge briller kreves.",
+    "controller": {
+      "sets": [
+        [
+          "60929"
+        ],
+        [
+          "65198"
+        ]
+      ],
+      "noneLabel": "Jeg har allerede en ELRS-radio på 2,4 GHz",
+      "note": "Dronen bruker ELRS. Radioen må også bruke ELRS på 2,4 GHz. Batterier til radioen (2 × 18650) kommer i tillegg."
+    }
+  },
   "63624": {
     "batteryIds": [
       "61373"
@@ -330,6 +360,42 @@
       "note": "BNF: modellen har Spektrum-mottaker og trenger en DSMX-sender."
     }
   },
+  "67564": {
+    "batteryIds": [
+      "72405",
+      "69200"
+    ],
+    "chargerIds": [
+      "63893",
+      "46578"
+    ],
+    "leadIds": [],
+    "includedCharger": false,
+    "chargingPending": false,
+    "needsPowerSupply": false,
+    "batteryPending": false,
+    "gogglesIds": [
+      "66909",
+      "63480"
+    ],
+    "cautions": [
+      "Elefun og DJI oppgir at brillene passer til «O4 Air Unit Series». Om O4 Pro er med, står ikke i kildene. Bekreft før du kjøper.",
+      "Elefun oppgir ikke hvilken kontakt laderen har på utgangen. Sjekk at XT60-batteriet kan kobles til, eller kjøp en ladekabel."
+    ],
+    "note": "6S XT60-batteri på 3300 mAh eller mer anbefales av Elefun for lang flytid. Digitale DJI-briller kreves (O4).",
+    "controller": {
+      "sets": [
+        [
+          "60929"
+        ],
+        [
+          "65198"
+        ]
+      ],
+      "noneLabel": "Jeg har allerede en ELRS-radio på 2,4 GHz",
+      "note": "Dronen bruker ELRS. Radioen må også bruke ELRS på 2,4 GHz. Batterier til radioen (2 × 18650) kommer i tillegg."
+    }
+  },
   "68350": {
     "batteryIds": [
       "61452",
@@ -409,6 +475,73 @@
     "note": "Originalt batteri og modellspesifikk ladehub. Teknisk kompatibel DJI 65W USB-C-lader med kabel er lagt til (ikke lenger lagerført hos Elefun; historisk demopris).",
     "controller": {
       "included": "DJI RC-N3 følger med."
+    }
+  },
+  "70433": {
+    "batteryIds": [
+      "69200",
+      "72405"
+    ],
+    "chargerIds": [
+      "63893",
+      "46578"
+    ],
+    "leadIds": [],
+    "includedCharger": false,
+    "chargingPending": false,
+    "needsPowerSupply": false,
+    "batteryPending": false,
+    "gogglesIds": [
+      "66909",
+      "63480"
+    ],
+    "cautions": [
+      "Elefun og DJI oppgir at brillene passer til «O4 Air Unit Series». Om O4 Pro er med, står ikke i kildene. Bekreft før du kjøper.",
+      "Elefun oppgir ikke hvilken kontakt laderen har på utgangen. Sjekk at XT60-batteriet kan kobles til, eller kjøp en ladekabel.",
+      "Elefun oppgir ELRS, men ikke hvilket frekvensbånd. Sjekk at radioen bruker samme bånd (2,4 GHz)."
+    ],
+    "note": "6S XT60-batterier på 1300–1500 mAh anbefales av Elefun. Digitale DJI-briller kreves (O4).",
+    "controller": {
+      "sets": [
+        [
+          "60929"
+        ],
+        [
+          "65198"
+        ]
+      ],
+      "noneLabel": "Jeg har allerede en ELRS-radio på 2,4 GHz",
+      "note": "Dronen bruker ELRS. Radioen må også bruke ELRS på 2,4 GHz. Batterier til radioen (2 × 18650) kommer i tillegg."
+    }
+  },
+  "70501": {
+    "batteryIds": [],
+    "chargerIds": [],
+    "leadIds": [],
+    "includedCharger": true,
+    "chargingPending": false,
+    "needsPowerSupply": false,
+    "batteryPending": false,
+    "includedBattery": "1 × 750 mAh 1S HV-batteri (EM2.0)",
+    "gogglesIds": [
+      "63240",
+      "62114"
+    ],
+    "cautions": [
+      "Elefun oppgir ELRS, men ikke hvilket frekvensbånd. Sjekk at radioen bruker samme bånd (2,4 GHz)."
+    ],
+    "note": "Ett 750 mAh batteri og en USB-lader for seks batterier følger med. Analoge briller kreves.",
+    "controller": {
+      "sets": [
+        [
+          "60929"
+        ],
+        [
+          "65198"
+        ]
+      ],
+      "noneLabel": "Jeg har allerede en ELRS-radio på 2,4 GHz",
+      "note": "Dronen bruker ELRS. Radioen må også bruke ELRS på 2,4 GHz. Batterier til radioen (2 × 18650) kommer i tillegg."
     }
   },
   "70925": {
@@ -550,6 +683,71 @@
     "note": "Originalt batteri og modellspesifikk ladehub. Teknisk kompatibel DJI 65W USB-C-lader med kabel er lagt til (ikke lenger lagerført hos Elefun; historisk demopris).",
     "controller": {
       "included": "DJI RC-N3 følger med."
+    }
+  },
+  "73234": {
+    "batteryIds": [
+      "63188"
+    ],
+    "chargerIds": [
+      "61728"
+    ],
+    "leadIds": [],
+    "includedCharger": false,
+    "chargingPending": false,
+    "needsPowerSupply": false,
+    "batteryPending": false,
+    "gogglesIds": [
+      "63240",
+      "62114"
+    ],
+    "cautions": [
+      "Batteriet har A30-kontakt. Laderen er oppgitt for PH2.0, BT2.0 og GNB27, ikke A30. Du trenger en A30-adapter eller en lader som støtter A30. Dette er ikke bekreftet.",
+      "Elefun oppgir ELRS, men ikke hvilket frekvensbånd. Sjekk at radioen bruker samme bånd (2,4 GHz)."
+    ],
+    "note": "Analog 1S-whoop med A30-kontakt. Analoge briller kreves.",
+    "controller": {
+      "sets": [
+        [
+          "60929"
+        ],
+        [
+          "65198"
+        ]
+      ],
+      "noneLabel": "Jeg har allerede en ELRS-radio på 2,4 GHz",
+      "note": "Dronen bruker ELRS. Radioen må også bruke ELRS på 2,4 GHz. Batterier til radioen (2 × 18650) kommer i tillegg."
+    }
+  },
+  "73850": {
+    "batteryIds": [
+      "73773",
+      "72957"
+    ],
+    "chargerIds": [
+      "61728"
+    ],
+    "leadIds": [],
+    "includedCharger": false,
+    "chargingPending": false,
+    "needsPowerSupply": false,
+    "batteryPending": false,
+    "gogglesIds": [
+      "63240",
+      "62114"
+    ],
+    "note": "Analog 1S-whoop. BT2.0-batterier og VIFLY-ladebrettet bruker samme kontakt. Analoge briller kreves.",
+    "controller": {
+      "sets": [
+        [
+          "60929"
+        ],
+        [
+          "65198"
+        ]
+      ],
+      "noneLabel": "Jeg har allerede en ELRS-radio på 2,4 GHz",
+      "note": "Dronen bruker ELRS. Radioen må også bruke ELRS på 2,4 GHz. Batterier til radioen (2 × 18650) kommer i tillegg."
     }
   },
   "73874": {

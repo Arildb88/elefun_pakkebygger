@@ -107,3 +107,13 @@ I tillegg kan hvert dokumenterte batteri velges som to sett (ekstra sett for dob
 **Bytte av medfølgende radio (biler og båter).** Komplette Spektrum-sett med egen mottaker, fra Elefuns kategori for bil- og båtradioer: [DX3 m/SR315](https://www.elefun.no/vare-47635/radioutstyr-sender-spektrum-dx3-dsmr-3ch-radio-med-sr315-mottaker), [DXC+ m/SR615](https://www.elefun.no/vare-70671/radioutstyr-sender-spektrum-dxc-plus-12-kanaler-radio-dsmr-m-sr615) og [DX Pro+ m/SR2100](https://www.elefun.no/vare-71786/radioutstyr-sender-spektrum-dx-pro-plus-12-kanaler-radio-dsmr-m-sr2100). Mottakeren monteres i modellen i stedet for den originale. Dronene får ikke bytte: Elefun oppgir bare at DJI RC 2 passer til «Air 3», ikke til dronene i utvalget.
 
 **Kontroll per nivå i Ferdige pakker.** Budsjett får det billigste kontrollvalget, Medium det midterste og Premium det dyreste. Medfølgende radio teller som et valg til 0 kr. «Jeg har allerede…» velges aldri automatisk.
+
+## FPV (lagt til 13. november 2026)
+
+FPV-dronene, brillene, radioene, batteriene og laderne er hentet fra Elefuns produktsider. Pris, produkt-ID og side-URL er kontrollert mot sidens egne data (`dataLayer`, `value` og `item_id`). Vekter og ELRS-/videosystem er lest fra produktsidenes spesifikasjoner og ligger med kildelenke i `data/fpv-specs.json`. Lagerstatus står ikke på sidene og vises ikke.
+
+- **Mva:** Elefun merker prisene «Priser eks. mva», og prisen på siden oppgir ikke selv om den er med eller uten mva. Prototypen bruker tallet slik det står, som resten av katalogen. Bør avklares med Elefun.
+- **DJI-briller:** DJI oppgir at Goggles N3 og Goggles 3 virker med «DJI O4 Air Unit Series» ([N3](https://www.dji.com/goggles-n3/faq), [Goggles 3](https://www.dji.com/goggles-3/faq)). At O4 Pro er med, står ikke i kildene. Det er et forbehold i pakken.
+- **Ladere:** Elefun oppgir ikke laderens utgangskontakt for HOTA H6 Pro og ISDT 608AC, og ingen lader er oppgitt for A30 (Happymodel Mobula6). Begge er forbehold i pakken.
+- **Flytid:** Beregnet som energi × 80 % ÷ (vekt × watt per kilo for klassen). Watt per kilo er en studentantakelse tilpasset flytidene Elefun oppgir, se `data/fpv-specs.json`. Droner uten dokumentert vekt får ingen beregnet tid.
+- **Kjøretid for biler:** Beregnet fra batterikapasitet og et antatt snittforbruk per skala. Vises bare når skalaen står i produktnavnet. Antakelsene står i `data/fpv-specs.json`.

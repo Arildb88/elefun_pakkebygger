@@ -3,7 +3,8 @@ import evidenceLinks from "@/data/compatibility-evidence.json";
 import type { CatalogProduct } from "./catalog-types";
 /** How the model is controlled: a sender in the box, or sets (sender + receiver) to choose from. */
 export type ControllerRule={included?:string;unconfirmed?:boolean;sets?:string[][];noneLabel?:string;noneFacts?:string;defaultNone?:boolean;note?:string};
-export type ModelRule={batteryIds:string[];chargerIds:string[];leadIds:string[];includedCharger:boolean;chargingPending:boolean;needsPowerSupply:boolean;batteryPending:boolean;note:string;controller?:ControllerRule};
+/** FPV extras: `gogglesIds` are the goggles documented for the drone's video system, `includedBattery` names a battery in the box, `cautions` are open points that make the package conditional. */
+export type ModelRule={batteryIds:string[];chargerIds:string[];leadIds:string[];includedCharger:boolean;chargingPending:boolean;needsPowerSupply:boolean;batteryPending:boolean;note:string;controller?:ControllerRule;gogglesIds?:string[];includedBattery?:string;cautions?:string[]};
 /** The controller a package starts with: the one in the box, "none" for Neo 2, otherwise the cheapest set. */
 export const defaultControllerKey=(r:ModelRule|undefined)=>r?.controller?.sets&&!r.controller.included&&!r.controller.defaultNone?'0':'none';
 export const controllerIdsFor=(r:ModelRule|undefined,key:string)=>key!=='none'?r?.controller?.sets?.[Number(key)]??[]:[];
@@ -38,8 +39,8 @@ export function batteryReasons(vehicle:CatalogProduct,battery:CatalogProduct):st
 export function chargingReasons(vehicle:CatalogProduct,battery:CatalogProduct|undefined,charger:CatalogProduct|undefined):string[]{
   const rule=rules[vehicle.id];
   if(!rule) return ['Modellen mangler dokumentert ladeoppsett.'];
-  if(!battery) return ['Velg et dokumentert batteri.'];
-  const reasons=batteryReasons(vehicle,battery);
+  if(!battery&&!rule.includedBattery) return ['Velg et dokumentert batteri.'];
+  const reasons=battery?batteryReasons(vehicle,battery):[];
   if(rule.chargingPending) reasons.push('Ladeoppsett eller nødvendig overgang må bekreftes.');
   if(!charger&&!rule.includedCharger) reasons.push('Velg en modellspesifikk lader.');
   if(charger&&!rule.chargerIds.includes(charger.id)) reasons.push('Laderen er ikke dokumentert for dette oppsettet.');
@@ -77,7 +78,8 @@ export function evaluatePackage(
   battery:CatalogProduct|undefined,
   charger:CatalogProduct|undefined,
   controllerIds:string[]=[],
-  demoCatalog?:CatalogProduct[]
+  demoCatalog?:CatalogProduct[],
+  goggles?:CatalogProduct
 ):PackageEvaluation{
   const rule=vehicle.kind==='vehicle'?rules[vehicle.id]:undefined;
   if(!rule) return {status:'UNKNOWN',reasons:['Modellen mangler gjennomgåtte kompatibilitetsdata.'],evidence:[],canAddToCart:false};
@@ -89,12 +91,7 @@ export function evaluatePackage(
 
   const demo=!!battery&&!!demoCatalog&&isDemoBattery(vehicle,battery,demoCatalog);
   const charging=chargingReasons(vehicle,battery,charger).filter(r=>!(demo&&r===UNDOCUMENTED_BATTERY));
-  if(!battery||(!demo&&!rule.batteryIds.includes(battery.id))){
-    raise('INCOMPATIBLE');
-    reasons.push(!battery?'Velg et dokumentert batteri.':'Dette batteriet er ikke dokumentert for modellen.');
-  }else{
-    if(demo){raise('CONDITIONAL');reasons.push(DEMO_BATTERY);evidence.push({part:'Batteri',kind:'demo',url:null});}
-    else evidence.push(evidenceFor(vehicle,battery.id,'Batteri','elefun'));
+  const chargerPart=()=>{
     if(charging.length){
       reasons.push(...charging);
       const definiteChargerFailure=(!charger&&!rule.includedCharger)||(!!charger&&!rule.chargerIds.includes(charger.id));
@@ -103,6 +100,17 @@ export function evaluatePackage(
     if(charger) evidence.push(evidenceFor(vehicle,charger.id,'Lader','review'));
     else if(rule.includedCharger) evidence.push({part:'Lader som følger med',kind:'elefun',url:vehicle.sourceUrl});
     evidence.push(...rule.leadIds.map(id=>evidenceFor(vehicle,id,'Kabel','review')));
+  };
+  if(!battery&&rule.includedBattery){
+    evidence.push({part:'Batteri som følger med',kind:'elefun',url:vehicle.sourceUrl});
+    chargerPart();
+  }else if(!battery||(!demo&&!rule.batteryIds.includes(battery.id))){
+    raise('INCOMPATIBLE');
+    reasons.push(!battery?'Velg et dokumentert batteri.':'Dette batteriet er ikke dokumentert for modellen.');
+  }else{
+    if(demo){raise('CONDITIONAL');reasons.push(DEMO_BATTERY);evidence.push({part:'Batteri',kind:'demo',url:null});}
+    else evidence.push(evidenceFor(vehicle,battery.id,'Batteri','elefun'));
+    chargerPart();
   }
 
   const radio=rule.controller;
@@ -127,12 +135,20 @@ export function evaluatePackage(
     reasons.push('Modellen mangler dokumentert sender- og mottakeroppsett.');
   }
 
+  // FPV: the goggles must match the drone's video system, and open points keep the package conditional.
+  if(rule.gogglesIds){
+    if(!goggles){raise('INCOMPATIBLE');reasons.push('Velg FPV-briller. Uten briller ser du ikke hva dronen ser.');}
+    else if(!rule.gogglesIds.includes(goggles.id)){raise('INCOMPATIBLE');reasons.push('Brillene er ikke dokumentert for dronens videosystem.');}
+    else evidence.push(evidenceFor(vehicle,goggles.id,'Briller','review'));
+  }
+  for(const caution of rule.cautions??[]){raise('CONDITIONAL');reasons.push(caution);}
+
   const status:PackageStatus=problem??(evidence.every(e=>e.kind!=='review')?'CONFIRMED':'RULE_DERIVED');
   return {status,reasons:[...new Set(reasons)],evidence,canAddToCart:status!=='INCOMPATIBLE'&&status!=='UNKNOWN'&&charging.length===0};
 }
 
 /** Package lines. `sets` buys extra full battery sets; `controllerIds` adds a sender (and receiver). */
-export function packageLines(products:CatalogProduct[],vehicle:CatalogProduct,battery:CatalogProduct|undefined,charger:CatalogProduct|undefined,opts:{sets?:number;controllerIds?:string[]}={}){
+export function packageLines(products:CatalogProduct[],vehicle:CatalogProduct,battery:CatalogProduct|undefined,charger:CatalogProduct|undefined,opts:{sets?:number;controllerIds?:string[];goggles?:CatalogProduct}={}){
  const r=rules[vehicle.id];const controllers=(opts.controllerIds??[]).flatMap(id=>{const p=products.find(p=>p.id===id);return p?[{product:p,quantity:1}]:[];});
- return [{product:vehicle,quantity:1},...(battery?[{product:battery,quantity:vehicle.batteryCount*(opts.sets??1)}]:[]),...controllers,...(charger?[{product:charger,quantity:1}]:[]),...(r?.leadIds??[]).flatMap(id=>{const p=products.find(p=>p.id===id);return p?[{product:p,quantity:vehicle.batteryCount}]:[];})];
+ return [{product:vehicle,quantity:1},...(battery?[{product:battery,quantity:vehicle.batteryCount*(opts.sets??1)}]:[]),...controllers,...(opts.goggles?[{product:opts.goggles,quantity:1}]:[]),...(charger?[{product:charger,quantity:1}]:[]),...(r?.leadIds??[]).flatMap(id=>{const p=products.find(p=>p.id===id);return p?[{product:p,quantity:vehicle.batteryCount}]:[];})];
 }
