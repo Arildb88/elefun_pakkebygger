@@ -3,18 +3,21 @@ import { useEffect, useRef, useState } from "react";
 import type { CatalogProduct } from "@/lib/catalog-types";
 import { batteryReasons, controllerIdsFor, defaultControllerKey, evaluatePackage, isDemoBattery, packageLines, rules } from "@/lib/compatibility";
 import { readCart, writeCart, type SavedPackage } from "@/lib/cart";
-import { cleanName, discountFor, discountLine, money, optionFacts, productHref, shortTitle, specsFor, tierPackages, type DefaultPackage } from "@/lib/store";
+import { cleanName, discountFor, discountLine, fpvPackages, money, optionFacts, productHref, shortTitle, specsFor, tierPackages, type DefaultPackage } from "@/lib/store";
+import { driveTime, flightComparison, flightTime, formatMinutes } from "@/lib/flight-time";
+import FpvPackages from "@/components/fpv-packages";
+import FlightTimeBar from "@/components/flight-time-bar";
 import PackageSelect, { PackagePart, QuantityStepper, type PackageOption } from "@/components/package-select";
 import PackageTiers from "@/components/package-tiers";
 import PackageStatus from "@/components/package-status";
 import BeginnerGuide from "@/components/beginner-guide";
 import { ProductCard, SpecRail } from "@/components/store-ui";
-import { ArrowRight, ArrowUpRight, BatteryCharging, CircleAlert, Gamepad2, PackageCheck, Search, ShoppingCart, X, Zap } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BatteryCharging, CircleAlert, Gamepad2, Glasses, PackageCheck, Search, ShoppingCart, X, Zap } from "lucide-react";
 const MAX_BATTERY_SETS=4;
-const categories=[['car','Elektrobiler'],['boat','Elektrobåter'],['drone','Droner med kamera'],['plane','Elektrofly']] as const;
+const categories=[['car','Elektrobiler'],['boat','Elektrobåter'],['drone','Droner med kamera'],['fpv','FPV-droner'],['plane','Elektrofly']] as const;
 export default function Configurator({products}:{products:CatalogProduct[]}){
  const [category,setCategory]=useState('car');const [experience,setExperience]=useState<'beginner'|'experienced'>('beginner');const [query,setQuery]=useState('');const [sort,setSort]=useState('default');
- const [vehicleId,setVehicleId]=useState<string>();const [batteryId,setBatteryId]=useState<string>();const [chargerId,setChargerId]=useState<string>();const [batterySets,setBatterySets]=useState(1);const [controllerKey,setControllerKey]=useState('none');
+ const [vehicleId,setVehicleId]=useState<string>();const [batteryId,setBatteryId]=useState<string>();const [chargerId,setChargerId]=useState<string>();const [batterySets,setBatterySets]=useState(1);const [controllerKey,setControllerKey]=useState('none');const [gogglesId,setGogglesId]=useState<string>();
  // The ready-made package the builder was opened from. Its discount holds whatever the customer changes.
  const [origin,setOrigin]=useState<{vehicleId:string;tier:string}|null>(null);
  const [cart,setCart]=useState<SavedPackage[]>([]);const [cartOpen,setCartOpen]=useState(false);const [notice,setNotice]=useState('');
@@ -37,8 +40,9 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
  const vehicle=products.find(p=>p.id===vehicleId);const rule=vehicle?rules[vehicle.id]:undefined;
  const battery=products.find(p=>p.id===batteryId);const charger=products.find(p=>p.id===chargerId);
  const ctrl=rule?.controller;const controllerIds=controllerIdsFor(rule,controllerKey);
- const lines=vehicle?packageLines(products,vehicle,battery,charger,{sets:batterySets,controllerIds}):[];const total=lines.reduce((s,l)=>s+l.quantity*l.product.price,0);
- const evaluation=vehicle?evaluatePackage(vehicle,battery,charger,controllerIds,products):undefined;
+ const goggles=products.find(p=>p.id===gogglesId);
+ const lines=vehicle?packageLines(products,vehicle,battery,charger,{sets:batterySets,controllerIds,goggles}):[];const total=lines.reduce((s,l)=>s+l.quantity*l.product.price,0);
+ const evaluation=vehicle?evaluatePackage(vehicle,battery,charger,controllerIds,products,goggles):undefined;
  const blocked=!!evaluation&&!evaluation.canAddToCart;
  const reasons=blocked?evaluation.reasons:[];
  const caveats=!blocked&&evaluation?.status==='CONDITIONAL'?evaluation.reasons:[];
@@ -55,15 +59,22 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
  const chargerPending=!!(rule?.chargingPending||rule?.needsPowerSupply);
  const chargerOptions:PackageOption[]=rule?[...(rule.includedCharger?[{key:'included',title:'Lader som følger med',facts:'Følger med modellen',price:0,priceLabel:'Inkludert'}]:[]),...rule.chargerIds.map(id=>products.find(p=>p.id===id)).filter((p):p is CatalogProduct=>!!p).map(c=>({key:c.id,title:shortTitle(c),facts:chargerPending?'Trenger bekreftelse eller ekstra tilbehør':optionFacts(c),price:c.price,imageUrl:c.imageUrl}))]:[];
  const leads=rule?rule.leadIds.map(id=>products.find(p=>p.id===id)).filter((p):p is CatalogProduct=>!!p):[];
- function choose(v:CatalogProduct,controller?:string,tier?:string,tierBattery?:string){const r=rules[v.id];setVehicleId(v.id);setBatteryId(tierBattery??r?.batteryIds[0]);setBatterySets(1);setControllerKey(controller??defaultControllerKey(r));setChargerId(r?.includedCharger?undefined:r?.chargerIds[0]);setNotice('');setOrigin(tier?{vehicleId:v.id,tier}:null);}
+ const gogglesOptions:PackageOption[]=rule?.gogglesIds?rule.gogglesIds.map(id=>products.find(p=>p.id===id)).filter((p):p is CatalogProduct=>!!p).map(g=>({key:g.id,title:cleanName(g.name),facts:specsFor(g).join(' · ')||'FPV-briller',price:g.price,imageUrl:g.imageUrl})).sort((a,b)=>a.price-b.price):[];
+  // Flight time of the chosen FPV package next to every other FPV drone, each with its first documented battery.
+  const flight=vehicle?.vehicleType==='fpv'?flightTime(vehicle,battery):null;
+  const flightRows=vehicle?.vehicleType==='fpv'?flightComparison(products,{droneId:vehicle.id,battery},d=>products.find(p=>p.id===rules[d.id]?.batteryIds[0])):[];
+  const drive=vehicle?.vehicleType==='car'?driveTime(vehicle,battery):null;
+  function choose(v:CatalogProduct,controller?:string,tier?:string,tierBattery?:string){const r=rules[v.id];setVehicleId(v.id);setGogglesId(r?.gogglesIds?.[0]);setBatteryId(tierBattery??r?.batteryIds[0]);setBatterySets(1);setControllerKey(controller??defaultControllerKey(r));setChargerId(r?.includedCharger?undefined:r?.chargerIds[0]);setNotice('');setOrigin(tier?{vehicleId:v.id,tier}:null);}
  const fromTier=!!origin&&origin.vehicleId===vehicleId;
  const discount=fromTier?discountFor(total):0;
  function add(){if(!vehicle||blocked)return;saveCart([...cart,{id:crypto.randomUUID(),name:cleanName(vehicle.name),total:total-discount,lines:[...lines.map(l=>({id:l.product.id,name:cleanName(l.product.name),quantity:l.quantity,price:l.product.price})),...(discount?[discountLine(discount)]:[])]}]);setNotice('Pakken er lagt i demo-handlevognen.');}
  function addReady(p:DefaultPackage){const d=discountFor(p.total);saveCart([...cart,{id:crypto.randomUUID(),name:cleanName(p.vehicle.name),total:p.total-d,lines:[...p.lines.map(l=>({id:l.product.id,name:cleanName(l.product.name),quantity:l.quantity,price:l.product.price})),discountLine(d)]}]);}
  function pick(id:string){setCategory(id);history.replaceState(null,'',`#${id}`);setQuery('');}
- const filtered=products.filter(p=>p.kind==='vehicle'&&p.vehicleType===category&&p.tags.includes(`experience:${experience}`)&&`${p.name} ${p.brand}`.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>sort==='low'?a.price-b.price:sort==='high'?b.price-a.price:0);
- const tierProducts=products.filter(p=>p.kind!=='vehicle'||p.tags.includes(`experience:${experience}`));
- const tiers=tierPackages(tierProducts,category);
+ const filtered=products.filter(p=>p.kind==='vehicle'&&p.vehicleType===category&&(category==='fpv'||p.tags.includes(`experience:${experience}`))&&`${p.name} ${p.brand}`.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>sort==='low'?a.price-b.price:sort==='high'?b.price-a.price:0);
+ // FPV shows all three classes at once, so the level filter does not apply there.
+ const tierProducts=products.filter(p=>p.kind!=='vehicle'||category==='fpv'||p.tags.includes(`experience:${experience}`));
+ const tiers=category==='fpv'?[]:tierPackages(tierProducts,category);
+ const fpv=category==='fpv'?fpvPackages(tierProducts):[];
  const title=categories.find(([id])=>id===category)?.[1];
  return <main className="builder-main">
   <section className="pick" aria-labelledby="pick-title">
@@ -71,13 +82,14 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
     <h1 id="pick-title">Finn modellen. Bygg pakken.</h1>
     <div className="pick-steps">
      <div className="pick-step pick-step-grow"><h2 className="step-label"><span className="step-num"><span className="sr-only">Steg </span>1</span>Velg type</h2><div className="segmented" role="tablist" aria-label="Produktkategori">{categories.map(([id,label])=><button role="tab" aria-selected={category===id} key={id} onClick={()=>pick(id)}>{label}</button>)}</div></div>
-     <div className="pick-step"><h2 className="step-label"><span className="step-num"><span className="sr-only">Steg </span>2</span>Velg nivå</h2><div className="experience-toggle" role="group" aria-label="Erfaringsnivå"><button type="button" aria-pressed={experience==='beginner'} onClick={()=>setExperience('beginner')}>Nybegynner</button><button type="button" aria-pressed={experience==='experienced'} onClick={()=>setExperience('experienced')}>Erfaren</button></div></div>
+     {category!=='fpv'&&<div className="pick-step"><h2 className="step-label"><span className="step-num"><span className="sr-only">Steg </span>2</span>Velg nivå</h2><div className="experience-toggle" role="group" aria-label="Erfaringsnivå"><button type="button" aria-pressed={experience==='beginner'} onClick={()=>setExperience('beginner')}>Nybegynner</button><button type="button" aria-pressed={experience==='experienced'} onClick={()=>setExperience('experienced')}>Erfaren</button></div></div>}
     </div>
    </div>
   </section>
 
   <section id="katalog" className="builder-catalog" aria-labelledby="catalog-title">
-   <PackageTiers tiers={tiers} onAdd={addReady} onCustomize={(p,tier)=>choose(p.vehicle,p.controllerKey,tier,p.battery?.id)}/>
+   {category==='fpv'?<FpvPackages packages={fpv} products={products} onAdd={addReady} onCustomize={(p,tier)=>choose(p.vehicle,p.controllerKey,tier,p.battery?.id)}/>
+   :<PackageTiers tiers={tiers} onAdd={addReady} onCustomize={(p,tier)=>choose(p.vehicle,p.controllerKey,tier,p.battery?.id)}/>}
    <div className="toolbar">
     <div><h2 id="catalog-title">{title}</h2><p>{filtered.length} produkter <span>· Prisene er øyeblikksbilder fra elefun.no</span></p></div>
     <div className="toolbar-controls">
@@ -105,13 +117,22 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
      <h3 id="pb-config-title">Din pakke</h3>
      <div className="pb-rows">
       <PackagePart label="Modell" src={vehicle.imageUrl} title={cleanName(vehicle.name)} price={money(vehicle.price)}/>
+      {batteryOptions.length===0&&rule.includedBattery&&<PackagePart label="Batteri" icon={<BatteryCharging size={20}/>} title="Batteri som følger med" facts={rule.includedBattery} price="Inkludert"/>}
       {batteryOptions.length>0&&<div>{batteryOptions.length>1?<PackageSelect label={vehicle.batteryCount>1?`Batteri · ${vehicle.batteryCount} stk. trengs`:'Batteri'} icon={<BatteryCharging size={20}/>} value={batteryId??''} quantity={batteryQuantity} onChange={k=>{setBatteryId(k);setNotice('');}} options={batteryOptions}/>:<PackagePart label={vehicle.batteryCount>1?`Batteri · ${vehicle.batteryCount} stk. trengs`:'Batteri'} src={batteryOptions[0].imageUrl} icon={<BatteryCharging size={20}/>} title={batteryOptions[0].title} facts={batteryOptions[0].facts} price={money(batteryOptions[0].price*batteryQuantity)}/>}<QuantityStepper value={batteryQuantity} step={n} max={n*MAX_BATTERY_SETS} onChange={q=>{setBatterySets(q/n);setNotice('');}}/></div>}
+      {gogglesOptions.length>1?<PackageSelect label="Briller" icon={<Glasses size={20}/>} value={gogglesId??''} onChange={k=>{setGogglesId(k);setNotice('');}} options={gogglesOptions}/>
+      :gogglesOptions.length===1&&<PackagePart label="Briller" src={gogglesOptions[0].imageUrl} icon={<Glasses size={20}/>} title={gogglesOptions[0].title} facts={gogglesOptions[0].facts} price={money(gogglesOptions[0].price)}/>}
       {chargerOptions.length>1?<PackageSelect label="Lader" icon={<Zap size={20}/>} value={chargerId??'included'} onChange={k=>{setChargerId(k==='included'?undefined:k);setNotice('');}} options={chargerOptions}/>
       :chargerOptions.length===1&&<PackagePart label="Lader" src={chargerOptions[0].imageUrl} icon={<Zap size={20}/>} title={chargerOptions[0].title} facts={chargerOptions[0].facts} price={chargerOptions[0].price?money(chargerOptions[0].price):'Inkludert'}/>}
       {controllerOptions.length>0?<div><PackageSelect label="Kontroll" icon={<Gamepad2 size={20}/>} value={controllerKey} onChange={k=>{setControllerKey(k);setNotice('');}} options={controllerOptions}/>{ctrl?.note&&<p className="pb-row-note">{ctrl.note}</p>}</div>
       :ctrl?.included&&<PackagePart label="Kontroll" icon={<Gamepad2 size={20}/>} title={ctrl.unconfirmed?'Ikke bekreftet':'Følger med modellen'} facts={ctrl.included} price={ctrl.unconfirmed?'–':'Inkludert'} warn={!!ctrl.unconfirmed}/>}
       {leads.map(l=><PackagePart key={l.id} label="Kabel · legges til automatisk" src={l.imageUrl} title={`${vehicle.batteryCount} × ${cleanName(l.name)}`} facts={l.description!=='Tilbehør fra Elefuns produktkatalog.'?l.description:'Trengs for å lade batteriet'} price={money(l.price*vehicle.batteryCount)}/>)}
      </div>
+     {vehicle.vehicleType==='fpv'&&<div className="pb-flight">
+      <div className="pb-flight-head">{flight?<><strong>{formatMinutes(flight.minutes)}</strong><span>{flight.basis==='stated'?'Flytid oppgitt av Elefun':'Beregnet flytid med valgt batteri'}</span></>:<span>Flytid er ikke beregnet. Vekt for dronen eller batteriet er ikke dokumentert.</span>}</div>
+      {flight&&<p className="pb-drive">{flight.note}</p>}
+      <FlightTimeBar rows={flightRows}/>
+     </div>}
+     {drive&&<div className="pb-flight"><div className="pb-flight-head"><strong>{formatMinutes(drive.minutes)}</strong><span>Anslått kjøretid med valgt batteri</span></div><p className="pb-drive">{drive.note} Kjøretiden varierer med underlag og kjørestil.</p></div>}
      {reasons.length>0&&<div className="note note-warn"><CircleAlert size={18} aria-hidden/><div><strong>Må avklares før pakken er komplett</strong><ul>{reasons.map(r=><li key={r}>{r}</li>)}</ul></div></div>}
      {caveats.length>0&&<div className="note note-warn"><CircleAlert size={18} aria-hidden/><div><strong>Pakken har forbehold</strong><ul>{caveats.map(r=><li key={r}>{r}</li>)}</ul></div></div>}
      <div className="pb-total">
@@ -120,7 +141,7 @@ export default function Configurator({products}:{products:CatalogProduct[]}){
       <p className="pb-sum-split">Modell {money(vehicle.price)} · tilbehør {money(total-vehicle.price)} · demopriser inkl. mva., frakt ikke beregnet</p>
       {evaluation&&<PackageStatus evaluation={evaluation}/>}
       <button className="btn-buy btn-buy-full" disabled={blocked} onClick={add}><ShoppingCart size={18} aria-hidden/> Legg i demo-handlevogn</button>
-      <p className="fine-print">{vehicle.vehicleType==='plane'?'Sender og eventuelt mottaker kommer i tillegg. Pakken er ikke et komplett flyklart sett.':'Kontroller hva som følger med, og eventuelle batterier til senderen.'}</p>
+      <p className="fine-print">{vehicle.vehicleType==='fpv'?'Batterier til radioen (2 × 18650) og eventuelle ekstra batterier til dronen kommer i tillegg.':vehicle.vehicleType==='plane'?'Sender og eventuelt mottaker kommer i tillegg. Pakken er ikke et komplett flyklart sett.':'Kontroller hva som følger med, og eventuelle batterier til senderen.'}</p>
       <div aria-live="polite" className="success-notice">{notice}</div>
      </div>
     </section>

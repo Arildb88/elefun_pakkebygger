@@ -683,3 +683,41 @@ a.rating-badge:hover{color:var(--blue-deep);text-decoration:underline;text-under
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
 
+/* FPV: package cards, discount flag and flight-time bars */
+.tier-fpv{position:relative}
+.save-flag{position:absolute;top:-12px;right:16px;padding:7px 12px;border-radius:6px;background:var(--destructive);color:#fff;font:700 16px/1 Play,sans-serif;font-variant-numeric:tabular-nums;box-shadow:0 6px 14px -8px rgb(196 43 34 / .8)}
+.tier-blurb{margin:-6px 0 14px;font-size:14px;line-height:1.4;color:var(--ink-2)}
+.tier-flight{margin:14px 0 0;font-size:14px;color:var(--ink-2)}
+.tier-flight strong{font:700 20px/1.2 Play,sans-serif;color:var(--ink)}
+.tier-flight-none{font-style:italic}
+.tier-caveat{margin:12px 0 0;padding:8px 10px;border:1px solid var(--warn-line);border-radius:8px;background:var(--warn-bg);color:var(--warn-ink);font-size:13.5px;line-height:1.4}
+.tier-save{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.tier-save s{font-size:16px}
+.tier-fpv .discount-badge{font-size:14px}
+.ft{margin:14px 0 0}
+.ft-title{margin:0 0 10px;font:700 16px/1.3 Play,sans-serif}
+.ft-list{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.ft-row{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) auto;align-items:center;gap:4px 12px;font-size:14px}
+.ft-name{min-width:0;display:flex;align-items:center;gap:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink-2)}
+.ft-you{flex:none;padding:1px 7px;border-radius:99px;background:var(--blue);color:#fff;font:700 11.5px/1.5 Play,sans-serif}
+.ft-track{height:12px;border-radius:99px;background:var(--well);overflow:hidden}
+.ft-fill{display:block;height:100%;border-radius:99px;background:var(--ink-3)}
+.ft-selected .ft-name{color:var(--ink);font-weight:600}
+.ft-selected .ft-fill{background:var(--blue)}
+.ft-value{font:700 14px/1.2 Play,sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ft-value small{font:400 12px/1 Signika,sans-serif;color:var(--ink-2)}
+.ft-compact .ft-row{grid-template-columns:minmax(0,1fr) auto;font-size:13px}
+.ft-compact .ft-name{grid-column:1/-1}
+.ft-compact .ft-track{grid-column:1;height:8px}
+.ft-how{margin-top:12px;font-size:13.5px;color:var(--ink-2)}
+.ft-how summary{cursor:pointer;color:var(--blue-deep);font-weight:600}
+.ft-how p{margin:8px 0 0;line-height:1.45}
+.pb-flight{margin:16px 0 0;padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--well)}
+.pb-flight-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;margin:0 0 10px}
+.pb-flight-head strong{font:700 24px/1.1 Play,sans-serif}
+.pb-flight-head span{font-size:13.5px;color:var(--ink-2)}
+.pb-drive{margin:6px 0 0;font-size:14px;color:var(--ink-2)}
+.pb-drive strong{color:var(--ink)}
+.tier-drive{margin:10px 0 0;font-size:14px;color:var(--ink-2)}
+.tier-drive strong{color:var(--ink)}
+@media (max-width:640px){.ft-row{grid-template-columns:minmax(0,1fr) auto}.ft-row .ft-name{grid-column:1/-1}.ft-row .ft-track{grid-column:1}}

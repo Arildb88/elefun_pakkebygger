@@ -1,0 +1,88 @@
+{
+  "about": "Vekter, videosystem og oppgitte flytider for FPV-dronene og batteriene i utvalget. Alt er lest fra Elefuns produktsider (sourceUrl per rad) 2026-11-13. Mangler en vekt her, regnes det ikke ut flytid.",
+  "assumptions": {
+    "usableBatteryShare": 0.8,
+    "cellVolts": 3.7,
+    "wattsPerKgByClass": { "whoop": 330, "freestyle": 300, "longrange": 150 },
+    "basis": "Studentantakelse, ikke en måling. Effekt per kilo er tilpasset flytidene Elefun oppgir: Air75 II (7,5 min med 480 mAh), Nazgul Evoque F5 (opptil 7 min, 6S 1300–1500 mAh) og CineLR 7 (opptil 18 min med 6S 3300 mAh). Oppgitte tider gjelder best mulig forhold. Faktisk flytid varierer med flystil, vind og temperatur."
+  },
+  "driveTime": {
+    "usableBatteryShare": 0.8,
+    "averageAmpsByScale": { "1/8": 25, "1/10": 15, "1/14": 10, "1/16": 8 },
+    "basis": "Studentantakelse, ikke en måling. Gjennomsnittlig strømforbruk per skala er en grov, forsiktig antakelse. Elefun oppgir ikke kjøretid. Estimatet vises bare når skalaen står i produktnavnet. Kjøretid varierer sterkt med underlag, kjørestil og last."
+  },
+  "drones": {
+    "73850": {
+      "class": "whoop",
+      "weightG": 21.3,
+      "weightNote": "Uten batteri",
+      "videoSystem": "analog",
+      "connector": "BT2.0",
+      "cells": 1,
+      "statedFlightMinutes": 7.5,
+      "statedFlightNote": "Opptil 7:30 min med LAVA II 1S 480 mAh",
+      "source": "https://www.elefun.no/vare-73850/fpv-race-drone-betafpv-air75-ii-brushless-whoop-freestyle1s-elrs"
+    },
+    "73234": {
+      "class": "whoop",
+      "weightG": 17.6,
+      "weightNote": "Uten batteri",
+      "videoSystem": "analog",
+      "connector": "A30",
+      "cells": 1,
+      "source": "https://www.elefun.no/vare-73234/fpv-race-drone-happymodel-mobula6-2024-v3-analog-micro-1s-elrs"
+    },
+    "70501": {
+      "class": "whoop",
+      "weightG": null,
+      "videoSystem": "analog",
+      "connector": "EM2.0",
+      "cells": 1,
+      "statedFlightMinutes": 8,
+      "statedFlightNote": "Ca. 8 min oppgitt av Elefun",
+      "source": "https://www.elefun.no/vare-70501/fpv-race-drone-emax-tinyhawk-lite-bnf-analog-elrs"
+    },
+    "61677": {
+      "class": "freestyle",
+      "weightG": null,
+      "videoSystem": "analog",
+      "cells": 1,
+      "source": "https://www.elefun.no/vare-61677/fpv-race-drone-emax-tinyhawk-iii-plus-freestyle-bnf-analog-elrs"
+    },
+    "70433": {
+      "class": "freestyle",
+      "weightG": 492,
+      "weightNote": "Uten batteri",
+      "videoSystem": "DJI O4",
+      "connector": "XT60",
+      "cells": 6,
+      "statedFlightMinutes": 7,
+      "statedFlightNote": "Opptil 7 min under optimale forhold",
+      "source": "https://www.elefun.no/vare-70433/fpv-race-drone-iflight-nazgul-evoque-f5-v3-o4-pro-6s-bnf-elrs"
+    },
+    "67564": {
+      "class": "longrange",
+      "weightG": 770,
+      "weightNote": "Uten batteri, ±5 g",
+      "videoSystem": "DJI O4",
+      "connector": "XT60",
+      "cells": 6,
+      "statedFlightNote": "Maks 18 min med 6S 3300 mAh og 25 min med 6S 8000 mAh oppgitt av Elefun",
+      "source": "https://www.elefun.no/vare-67564/fpv-race-drone-iflight-cinelr-o4-hd-6s-bnf-elrs"
+    }
+  },
+  "batteries": {
+    "73773": { "weightG": 12.7, "source": "https://www.elefun.no/vare-73773/batteri-lipo-1s-480mah-95c-betafpv-lava-lihv-bt20-4pk" },
+    "72957": { "weightG": 14.1, "source": "https://www.elefun.no/vare-72957/batteri-lipo-1s-580mah-95c-betafpv-lava-lihv-bt20-4pk" },
+    "63188": { "weightG": 7.2, "source": "https://www.elefun.no/vare-63188/batteri-lipo-1s-300mah-60c-gnb-hv-a30" },
+    "66600": { "weightG": 204, "source": "https://www.elefun.no/vare-66600/batteri-lipo-6s-1200mah-120c-speedypizzadrones-v2-xt60" },
+    "69200": { "weightG": 247, "source": "https://www.elefun.no/vare-69200/batteri-lipo-6s-1500mah-150c-speedypizzadrones-pro-xt60" },
+    "72405": { "weightG": 358, "source": "https://www.elefun.no/vare-72405/batteri-lipo-6s-2200mah-150c-gens-ace-tattu-r-line-5-xt60" }
+  },
+  "goggles": {
+    "63240": { "systems": ["analog"] },
+    "62114": { "systems": ["analog"] },
+    "66909": { "systems": ["DJI O4"] },
+    "63480": { "systems": ["DJI O4"] }
+  }
+}

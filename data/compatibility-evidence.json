@@ -36,5 +36,21 @@
   },
   "71458:61097": {
     "kind": "elefun"
+  },
+  "70433:66909": {
+    "kind": "manufacturer",
+    "url": "https://www.dji.com/goggles-n3/faq"
+  },
+  "70433:63480": {
+    "kind": "manufacturer",
+    "url": "https://www.dji.com/goggles-3/faq"
+  },
+  "67564:66909": {
+    "kind": "manufacturer",
+    "url": "https://www.dji.com/goggles-n3/faq"
+  },
+  "67564:63480": {
+    "kind": "manufacturer",
+    "url": "https://www.dji.com/goggles-3/faq"
   }
 }

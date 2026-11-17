@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Check, ShoppingCart } from "lucide-react";
 import { cleanName, discountFor, money, productHref, shortTitle, type DefaultPackage, type TIERS } from "@/lib/store";
+import { driveTime, formatMinutes } from "@/lib/flight-time";
 
 type Tier={tier:(typeof TIERS)[number];pkg:DefaultPackage};
 
@@ -12,8 +13,9 @@ export default function PackageTiers({tiers,onAdd,onCustomize}:{tiers:Tier[];onA
     <div className="tiers-head"><h2 id="tiers-title"><span className="step-num"><span className="sr-only">Steg </span>3</span>Bygg pakken</h2></div>
     <div className="tier-grid">
       {tiers.map(({tier,pkg})=>{
-        const v=pkg.vehicle;const extras=pkg.lines.slice(1);const saved=discountFor(pkg.total);
-        return <article key={tier.id} className="tier" aria-labelledby={`tier-${tier.id}`}>
+        const v=pkg.vehicle;const extras=pkg.lines.slice(1);const saved=discountFor(pkg.total);const drive=v.vehicleType==="car"?driveTime(v,pkg.battery):null;
+        return <article key={tier.id} className="tier tier-fpv" aria-labelledby={`tier-${tier.id}`}>
+          <span className="save-flag" aria-label="15 prosent rabatt">−15 %</span>
           <header className="tier-head">
             <h3 id={`tier-${tier.id}`}>{tier.name}</h3>
             <p>{tier.purpose}</p>
@@ -29,9 +31,10 @@ export default function PackageTiers({tiers,onAdd,onCustomize}:{tiers:Tier[];onA
               </ul>
             </div>
           </div>
+          {drive&&<p className="tier-drive">Anslått kjøretid <strong>{formatMinutes(drive.minutes)}</strong></p>}
           <div className="tier-total">
             <p className="tier-price"><strong className="price">{money(pkg.total-saved)}</strong> hele pakken</p>
-            <p className="tier-save"><s>{money(pkg.total)}</s> · Du sparer {money(saved)} (15 %)</p>
+            <p className="tier-save"><s>{money(pkg.total)}</s> <span className="discount-badge">Du sparer {money(saved)}</span></p>
           </div>
           <div className="tier-actions">
             <button type="button" className="btn-buy btn-buy-full" onClick={()=>{onAdd(pkg);setAdded(tier.id);}}>
