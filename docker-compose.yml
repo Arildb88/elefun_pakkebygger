@@ -3,7 +3,7 @@ services:
     build: .
     container_name: elefun-pakkebygger
     ports:
-      - "8787:8787"   # DSM reverse proxy forwards elefunpakkebygger.xxxx.no -> localhost:8787
+      - "18085:8787"   # NAS host port; nginx on the Oracle VPS proxies to <nas-wg-ip>:18085
     volumes:
       - wrangler-state:/app/.wrangler/state   # local D1 data survives rebuilds
     restart: unless-stopped
