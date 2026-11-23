@@ -52,7 +52,7 @@ export default async function ProductPage({params}:{params:Promise<{id:string}>}
         <div className="buy-box">
           <div className="buy-price">
             <strong className="price price-xl">{money(product.price)}</strong>
-            <small>Inkl. mva. Prisøyeblikksbilde fra elefun.no, ikke sanntidspris.</small>
+            <small>Inkl. mva. Veiledende pris i prototypens produktutvalg.</small>
           </div>
           <div className="buy-actions">
             {isVehicle&&<a className="btn-build" href={builderHref(product)}><PackageCheck size={19} aria-hidden/> Bygg pakke med batteri og lader</a>}

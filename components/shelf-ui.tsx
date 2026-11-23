@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Star } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 import { discountPercent, productHref, shelfHref, type Shelf, type ShelfCategory, type ShelfProduct } from "@/lib/shelf-types";
 import { cleanName, money } from "@/lib/store";
 import { AddToCart } from "./cart-controls";
@@ -30,7 +30,7 @@ export function ShelfCard({product,href,priority=false}:{product:ShelfProduct;hr
         </div>
         {product.stock.inStock
           ?<AddToCart product={{id:`elefun-${product.id}`,name:product.name,price:product.price}}/>
-          :<a className="btn-secondary scard-ext" href={product.url} target="_blank" rel="noreferrer">Se hos Elefun <ArrowUpRight size={15} aria-hidden/></a>}
+          :<span className="btn-secondary scard-ext" aria-disabled="true">Ikke tilgjengelig i prototypen</span>}
       </div>
     </div>
   </article>;

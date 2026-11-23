@@ -11,7 +11,6 @@ const CLOSE_DELAY=220;
 
 export default function MegaMenu({categories}:{categories:MenuCategory[]}){
   const path=usePathname()??"/";
-  // The panel belongs to the page it was opened on, so navigating closes it.
   const [state,setState]=useState<{id:string;path:string}|null>(null);
   const openId=state?.path===path?state.id:null;
   const setOpenId=useCallback((id:string|null)=>setState(id===null?null:{id,path}),[path]);
@@ -59,9 +58,6 @@ export default function MegaMenu({categories}:{categories:MenuCategory[]}){
       <ul ref={listRef}>
         {categories.map(c=>{
           const current=c.slug==="pakkebygger"?path==="/":path===c.href;
-          if(!c.columns.length) return <li key={c.slug}>
-            <Link href={c.href} aria-current={current?"page":undefined} onPointerEnter={e=>{if(e.pointerType==="mouse") schedule(null,CLOSE_DELAY);}}>{c.name}</Link>
-          </li>;
           const expanded=c.slug===openId;
           return <li key={c.slug}>
             <button type="button" data-cat={c.slug} aria-expanded={expanded} aria-controls={expanded?panelId:undefined}
@@ -85,7 +81,7 @@ export default function MegaMenu({categories}:{categories:MenuCategory[]}){
           </section>)}
         </div>
         <div className="mega-foot">
-          <Link className="mega-all" href={open.href} onClick={()=>setOpenId(null)}>{open.footLabel??`Se alt innen ${open.name}`} <CircleArrowRight size={20} aria-hidden/></Link>
+          <Link className="mega-all" href={open.href} onClick={()=>setOpenId(null)}>Vis alt innen {open.name} <CircleArrowRight size={20} aria-hidden/></Link>
         </div>
       </div>
     </div>}
