@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowUpRight, ChevronRight } from "lucide-react";
-import { SHELF_CATEGORIES, categoryHref, findCategory, findShelf, formatFetchedAt } from "@/lib/elefun-shelves";
+import { ChevronRight } from "lucide-react";
+import { SHELF_CATEGORIES, categoryHref, findCategory, findShelf } from "@/lib/elefun-shelves";
 import { ShelfNav } from "@/components/shelf-ui";
 import ShelfView from "@/components/shelf-view";
 
@@ -39,8 +39,7 @@ export default async function ShelfPage({params}:Params){
       {shelf.column&&<p className="eyebrow">{shelf.column}</p>}
       <h1>{shelf.name}</h1>
       <p>
-        Et utvalg på {shelf.products.length} varer fra Elefuns kategori, med varer på lager først. Hentet {formatFetchedAt()}.{" "}
-        <a href={shelf.sourceUrl} target="_blank" rel="noreferrer" className="inline-ext">Se alle hos Elefun <ArrowUpRight size={14} aria-hidden/></a>
+        Et utvalg på {shelf.products.length} eksempelvarer, med tilgjengelige varer først.
       </p>
     </header>
     <ShelfNav category={category} current={shelf}/>

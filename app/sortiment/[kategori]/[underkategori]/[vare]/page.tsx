@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, ArrowUpRight, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import {
-  SHELF_CATEGORIES, categoryHref, findCategory, findProduct, findShelf, formatFetchedAt, productHref, shelfHref,
+  SHELF_CATEGORIES, categoryHref, findCategory, findProduct, findShelf, productHref, shelfHref,
 } from "@/lib/elefun-shelves";
 import { discountPercent } from "@/lib/shelf-types";
 import { cleanName, money } from "@/lib/store";
@@ -26,7 +26,7 @@ async function resolve(params:Params["params"]){
 
 export async function generateMetadata({params}:Params):Promise<Metadata>{
   const found=await resolve(params);
-  return found?{title:`${cleanName(found.product.name)} – Elefun`}:{};
+  return found?{title:`${cleanName(found.product.name)} – ${found.category.name}`}:{};
 }
 
 export default async function ShelfProductPage({params}:Params){
@@ -56,9 +56,9 @@ export default async function ShelfProductPage({params}:Params){
         <h1>{name}</h1>
         <div className="scard-meta product-meta">
           <StockLine stock={product.stock}/>
-          {product.reviews>0&&<span className="scard-reviews">{product.reviews} omtaler hos Elefun</span>}
+          {product.reviews>0&&<span className="scard-reviews">{product.reviews} produktomtaler</span>}
         </div>
-        <p className="product-note">Utvalg fra {shelf.name} i {category.name}. Pris og lagerstatus er et øyeblikksbilde fra elefun.no {formatFetchedAt()}.</p>
+        <p className="product-note">Eksempelvare fra {shelf.name} i {category.name}. Pris og lagerstatus er vist som et øyeblikksbilde fra prototypens produktutvalg.</p>
         <div className="buy-box">
           <div className="buy-price">
             <div className="scard-price">
@@ -70,9 +70,8 @@ export default async function ShelfProductPage({params}:Params){
           <div className="buy-actions">
             {product.stock.inStock
               ?<AddToCart product={{id:`elefun-${product.id}`,name:product.name,price:product.price}} variant="full"/>
-              :<a className="btn-secondary" href={product.url} target="_blank" rel="noreferrer">Se hos Elefun <ArrowUpRight size={16} aria-hidden/></a>}
+              :<span className="btn-secondary" aria-disabled="true">Ikke tilgjengelig i prototypen</span>}
           </div>
-          <a className="source-link" href={product.url} target="_blank" rel="noreferrer">Åpne varen hos Elefun <ArrowUpRight size={15} aria-hidden/></a>
         </div>
       </div>
     </article>

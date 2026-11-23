@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowUpRight, ChevronRight } from "lucide-react";
-import { SHELF_CATEGORIES, findCategory, formatFetchedAt, productCount } from "@/lib/elefun-shelves";
+import { ChevronRight } from "lucide-react";
+import { SHELF_CATEGORIES, findCategory, productCount } from "@/lib/elefun-shelves";
 import { ShelfNav, ShelfSection } from "@/components/shelf-ui";
 import { CategoryIcon } from "@/components/category-icons";
 
@@ -28,14 +28,10 @@ export default async function ShelfCategoryPage({params}:Params){
       <span className="shelf-head-icon"><CategoryIcon name={category.icon} size={30}/></span>
       <div>
         <h1>{category.name}</h1>
-        <p>{productCount(category)} utvalgte varer fra {category.subs.length} underkategorier. Priser og lagerstatus er hentet fra elefun.no {formatFetchedAt()}.</p>
+        <p>{productCount(category)} utvalgte eksempelvarer fordelt på {category.subs.length} underkategorier.</p>
       </div>
     </header>
     <ShelfNav category={category}/>
     {category.subs.map(s=><ShelfSection key={s.id} category={category} shelf={s}/>)}
-    <aside className="shelf-more">
-      <p>Elefun har mange flere varer innen {category.name.toLowerCase()} enn utvalget her.</p>
-      <a className="btn-secondary" href={category.sourceUrl} target="_blank" rel="noreferrer">Hele sortimentet hos Elefun <ArrowUpRight size={16} aria-hidden/></a>
-    </aside>
   </main>;
 }
