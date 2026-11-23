@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, ArrowUpRight, CircleAlert, ChevronRight, PackageCheck, PlugZap } from "lucide-react";
+import { ArrowRight, CircleAlert, ChevronRight, PackageCheck, PlugZap } from "lucide-react";
 import { loadCatalog } from "@/lib/catalog";
 import type { CatalogProduct } from "@/lib/catalog-types";
 import { accessoriesFor, builderHref, categoryOf, cleanName, modelsUsing, money, productHref, specsFor } from "@/lib/store";
@@ -52,13 +52,12 @@ export default async function ProductPage({params}:{params:Promise<{id:string}>}
         <div className="buy-box">
           <div className="buy-price">
             <strong className="price price-xl">{money(product.price)}</strong>
-            <small>Inkl. mva. Prisøyeblikksbilde fra elefun.no, ikke sanntidspris.</small>
+            <small>Inkl. mva. Veiledende pris i prototypens produktutvalg.</small>
           </div>
           <div className="buy-actions">
             {isVehicle&&<a className="btn-build" href={builderHref(product)}><PackageCheck size={19} aria-hidden/> Bygg pakke med batteri og lader</a>}
             <AddToCart product={product} variant="full"/>
           </div>
-          <a className="source-link" href={product.sourceUrl??"https://www.elefun.no/"} target="_blank" rel="noreferrer">Se varen hos Elefun <ArrowUpRight size={15} aria-hidden/></a>
         </div>
       </div>
     </article>

@@ -11,7 +11,6 @@ const CLOSE_DELAY=220;
 
 export default function MegaMenu({categories}:{categories:MenuCategory[]}){
   const path=usePathname()??"/";
-  // The panel belongs to the page it was opened on, so navigating closes it.
   const [state,setState]=useState<{id:string;path:string}|null>(null);
   const openId=state?.path===path?state.id:null;
   const setOpenId=useCallback((id:string|null)=>setState(id===null?null:{id,path}),[path]);
@@ -57,12 +56,8 @@ export default function MegaMenu({categories}:{categories:MenuCategory[]}){
     <div className="catbar-inner" data-left={overflow.left||undefined} data-right={overflow.right||undefined}>
       {overflow.left&&<button type="button" className="mega-scroll mega-scroll-left" aria-label="Bla til forrige kategorier" tabIndex={-1} onClick={()=>scrollBar(-1)}><ChevronLeft size={18} aria-hidden/></button>}
       <ul ref={listRef}>
-        <li><Link href="/" aria-current={path==="/"?"page":undefined}>Pakkebygger</Link></li>
         {categories.map(c=>{
-          const current=path===c.href;
-          if(!c.columns.length) return <li key={c.slug}>
-            <Link href={c.href} aria-current={current?"page":undefined} onPointerEnter={e=>{if(e.pointerType==="mouse") schedule(null,CLOSE_DELAY);}}>{c.name}</Link>
-          </li>;
+          const current=c.slug==="pakkebygger"?path==="/":path===c.href;
           const expanded=c.slug===openId;
           return <li key={c.slug}>
             <button type="button" data-cat={c.slug} aria-expanded={expanded} aria-controls={expanded?panelId:undefined}
@@ -82,11 +77,11 @@ export default function MegaMenu({categories}:{categories:MenuCategory[]}){
         <div className="mega-grid">
           {open.columns.map(col=><section key={col.title} className="mega-col">
             <h3><CategoryIcon name={col.icon} size={18}/><span>{col.title}</span></h3>
-            <ul>{col.links.map(l=><li key={l.href}><Link href={l.href}>{l.name}</Link></li>)}</ul>
+            <ul>{col.links.map(l=><li key={l.href}><Link href={l.href} onClick={()=>setOpenId(null)}>{l.name}</Link></li>)}</ul>
           </section>)}
         </div>
         <div className="mega-foot">
-          <Link className="mega-all" href={open.href}>Se alt innen {open.name} <CircleArrowRight size={20} aria-hidden/></Link>
+          <Link className="mega-all" href={open.href} onClick={()=>setOpenId(null)}>Vis alt innen {open.name} <CircleArrowRight size={20} aria-hidden/></Link>
         </div>
       </div>
     </div>}
