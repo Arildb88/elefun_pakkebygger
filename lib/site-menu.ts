@@ -31,31 +31,31 @@ const local=(ids:string[],products:CatalogProduct[])=>ids
   .map(p=>({name:p.name.replace(/\s+/g," ").trim(),href:`/produkt/${p.id}`}));
 
 const column=(title:string,icon:string,links:MenuLink[]):MenuColumn=>({title,icon,links});
-const shelf=(underkategori:string,id:string)=>`/sortiment/${underkategori==="seilbater"||underkategori==="elektrobater"?"bater":underkategori==="alle-elektrobiler"?"biler":"fly"}/${underkategori}/${id}`;
+const shelf=(category:string,underkategori:string,id:string)=>`/sortiment/${category}/${underkategori}/${id}`;
 
 function categoryExamples(slug:string,products:CatalogProduct[]):MenuColumn[]|null{
   if(slug==="biler") return [
     column("Buggy","car-side",local(["50807","47308"],products)),
-    column("Crawlere","car-side",[{name:"Axial RBX10 Ryft Rock Bouncer",href:shelf("alle-elektrobiler","51241")}]),
+    column("Crawlere","car-side",[{name:"Axial RBX10 Ryft Rock Bouncer",href:shelf("biler","alle-elektrobiler","51241")}]),
     column("Monstertruck","car-side",["74810","48057","55990"].map(id=>({name:({
       "74810":"MJX Hyper GO Monstertruck",
       "48057":"HSP Brontosaurus Monster",
       "55990":"FTX Tracer Monstertruck",
-    } as Record<string,string>)[id],href:shelf("alle-elektrobiler",id)}))),
+    } as Record<string,string>)[id],href:shelf("biler","alle-elektrobiler",id)}))),
     column("Truggy","car-side",local(["73081"],products)),
   ];
   if(slug==="baater") return [
     column("Racerbåter","ship",local(["63738","67353","73874"],products)),
-    column("Seilbåter","ship",[{name:"Joysway Focus V3 seilbåt",href:shelf("seilbater","62802")}]),
-    column("Redningsbåter","ship",[{name:"Snig Rescue Coast Guard",href:shelf("elektrobater","69029")}]),
+    column("Seilbåter","ship",[{name:"Joysway Focus V3 seilbåt",href:shelf("bater","seilbater","62802")}]),
+    column("Redningsbåter","ship",[{name:"Snig Rescue Coast Guard",href:shelf("bater","elektrobater","69029")}]),
   ];
   if(slug==="fly") return [
-    column("Sjøfly","plane",[{name:"Top RC Hobby TF-350 RTF",href:shelf("komplette-flypakker","73180")}]),
-    column("Sport","plane",[{name:"Seagull Magic Bird EF1 Racer Sport",href:shelf("acro-3d","73842")}]),
-    column("Indoor","plane",[{name:"E-Flite UMX Night Vapor RTF",href:shelf("komplette-flypakker","51342")}]),
+    column("Sjøfly","plane",[{name:"Top RC Hobby TF-350 RTF",href:shelf("fly","komplette-flypakker","73180")}]),
+    column("Sport","plane",[{name:"Seagull Magic Bird EF1 Racer Sport",href:shelf("fly","acro-3d","73842")}]),
+    column("Indoor","plane",[{name:"E-Flite UMX Night Vapor RTF",href:shelf("fly","komplette-flypakker","51342")}]),
     column("EDF / Jet","plane",[
-      {name:"E-Flite UMX Viper EDF",href:shelf("alle-elektrofly","72539")},
-      {name:"E-Flite UF-86 Sabre EDF",href:shelf("alle-elektrofly","66222")},
+      {name:"E-Flite UMX Viper EDF",href:shelf("fly","alle-elektrofly","72539")},
+      {name:"E-Flite UF-86 Sabre EDF",href:shelf("fly","alle-elektrofly","66222")},
     ]),
   ];
   if(slug==="droner") return [
