@@ -5,7 +5,7 @@ export type MenuLink={name:string;href:string};
 export type MenuColumn={title:string;icon:string;links:MenuLink[]};
 export type MenuCategory={slug:string;name:string;href:string;columns:MenuColumn[];footLabel?:string};
 
-export const menuGroupSlug=(title:string)=>title.toLocaleLowerCase("nb-NO").normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+export const menuGroupSlug=(title:string)=>title.toLowerCase().replace(/æ/g,"ae").replace(/ø/g,"o").replace(/å/g,"a").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 
 /** Example products and category paths are all served by this prototype. */
 function builderMenu(products:CatalogProduct[]):MenuCategory{
