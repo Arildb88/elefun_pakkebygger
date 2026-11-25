@@ -49,7 +49,7 @@ export default async function ElefunChrome({children}:{children:React.ReactNode}
       <footer className="site-footer">
         <div className="footer-inner">
           <div className="footer-brand">
-            <img src="/brand/elefun-logo-white.svg" alt="Elefun" width={168} height={44}/>
+            <Link href="/" aria-label="Elefun – til forsiden"><img src="/brand/elefun-logo-white.svg" alt="Elefun" width={168} height={44}/></Link>
             <p>Radiostyrt, hobby og fritid. En moderne skisse av Elefuns nettbutikk, laget som studentprosjekt.</p>
             <a className="prisjakt-link" href="https://www.prisjakt.no/shop.php?f=18260" target="_blank" rel="noreferrer">
               <img src="/brand/prisjakt.png" alt="" width={22} height={22}/>
