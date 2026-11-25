@@ -44,7 +44,7 @@ export default async function MenuGroupPage({ params }: Params) {
   );
 
   const entries = column.links.map((link) => {
-    const id = link.href.match(/\\/(?:produkt|sortiment\\/[^/]+\\/[^/]+)\\/([^/?#]+)/)?.[1];
+    const id = link.href.match(/\/(?:produkt|sortiment\/[^/]+\/[^/]+)\/([^/?#]+)/)?.[1];
     return {
       link,
       catalogProduct: id ? products.find((product) => product.id === id) : undefined,
