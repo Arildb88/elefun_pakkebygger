@@ -3,7 +3,7 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, ChevronLeft, ChevronRight, CircleArrowRight } from "lucide-react";
-import type { MenuCategory } from "@/lib/site-menu";
+import { menuGroupSlug, type MenuCategory } from "@/lib/site-menu";
 import { CategoryIcon } from "./category-icons";
 
 const OPEN_DELAY=120;
@@ -76,7 +76,7 @@ export default function MegaMenu({categories}:{categories:MenuCategory[]}){
       <div className="mega-inner">
         <div className="mega-grid">
           {open.columns.map(col=><section key={col.title} className="mega-col">
-            <h3><CategoryIcon name={col.icon} size={18}/><span>{col.title}</span></h3>
+            <h3><Link href={`/kategori/${open.slug}/gruppe/${menuGroupSlug(col.title)}`} onClick={()=>setOpenId(null)}><CategoryIcon name={col.icon} size={18}/><span>{col.title}</span></Link></h3>
             <ul>{col.links.map(l=><li key={l.href}><Link href={l.href} onClick={()=>setOpenId(null)}>{l.name}</Link></li>)}</ul>
           </section>)}
         </div>
