@@ -1,0 +1,26 @@
+# dependencies and build output (rebuilt inside the image)
+node_modules
+.next
+.vinext
+dist
+out
+.wrangler
+.sites-runtime
+
+# git and tooling
+.git
+.gitignore
+.claude
+.impeccable
+.agents
+.codex
+
+# secrets / local env
+.env*
+
+# misc
+*.log
+.DS_Store
+Dockerfile
+docker-compose.yml
+.dockerignore

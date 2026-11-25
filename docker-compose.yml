@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    container_name: elefun-pakkebygger
+    ports:
+      - "18085:8787"   # NAS host port; nginx on the Oracle VPS proxies to <nas-wg-ip>:18085
+    volumes:
+      - wrangler-state:/app/.wrangler/state   # local D1 data survives rebuilds
+    restart: unless-stopped
+
+volumes:
+  wrangler-state:
