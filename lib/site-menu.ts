@@ -5,6 +5,8 @@ export type MenuLink={name:string;href:string};
 export type MenuColumn={title:string;icon:string;links:MenuLink[]};
 export type MenuCategory={slug:string;name:string;href:string;columns:MenuColumn[];footLabel?:string};
 
+export const menuGroupSlug=(title:string)=>title.toLowerCase().replace(/æ/g,"ae").replace(/ø/g,"o").replace(/å/g,"a").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+
 /** Example products and category paths are all served by this prototype. */
 function builderMenu(products:CatalogProduct[]):MenuCategory{
   const modelIds=["67191","63738","67428"];
@@ -45,7 +47,7 @@ function categoryExamples(slug:string,products:CatalogProduct[]):MenuColumn[]|nu
     column("Truggy","car-side",local(["73081"],products)),
   ];
   if(slug==="baater") return [
-    column("Racerbåter","ship",local(["63738","67353","73874"],products)),
+    column("Racerbåter","ship",local(["63738","67353","73874","75083"],products)),
     column("Seilbåter","ship",[{name:"Joysway Focus V3 seilbåt",href:shelf("bater","seilbater","62802")}]),
     column("Redningsbåter","ship",[{name:"Snig Rescue Coast Guard",href:shelf("bater","elektrobater","69029")}]),
   ];
