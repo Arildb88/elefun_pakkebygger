@@ -47,7 +47,7 @@ function categoryExamples(slug:string,products:CatalogProduct[]):MenuColumn[]|nu
     column("Truggy","car-side",local(["73081"],products)),
   ];
   if(slug==="baater") return [
-    column("Racerbåter","ship",local(["63738","67353","73874"],products)),
+    column("Racerbåter","ship",local(["63738","67353","73874","75083"],products)),
     column("Seilbåter","ship",[{name:"Joysway Focus V3 seilbåt",href:shelf("bater","seilbater","62802")}]),
     column("Redningsbåter","ship",[{name:"Snig Rescue Coast Guard",href:shelf("bater","elektrobater","69029")}]),
   ];
